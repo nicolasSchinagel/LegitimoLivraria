@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Worker\Controllers\" />
+    <Folder Include="Areas\Worker\Views\Managements\" />
+    <Folder Include="Areas\Worker\Views\Worker\" />
+    <Folder Include="Libraries\" />
+    <Folder Include="Repository\Contract\" />
+    <Folder Include="Views\Login\" />
+    <Folder Include="Views\Client\" />
+  </ItemGroup>
+
+</Project>
