@@ -2,15 +2,13 @@
 
 namespace LivrariaLegitimo.Models
 {
+    // continuar daqui
     public class Carrinho
     {
         public List<LivroCarrinho> LivroCarrinho { get; set; } = new();
     }
-    public class LivroCarrinho
+    public class LivroCarrinho: Livro
     {
-        [Display(Name = "Código de barras")]
-        public int CodigoBarras { get; set; }
-
         [Display(Name = "Quantidade Carrinho")]
         public int QtdCarrinho { get; set; }
     }

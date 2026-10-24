@@ -11,9 +11,13 @@
     <Folder Include="Areas\Worker\Views\Managements\" />
     <Folder Include="Areas\Worker\Views\Worker\" />
     <Folder Include="Libraries\" />
-    <Folder Include="Repository\Contract\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Client\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="X.PagedList" Version="10.6.0" />
   </ItemGroup>
 
 </Project>

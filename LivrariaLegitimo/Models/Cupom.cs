@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿/* -- Só vou usar se der tempo
+using System.ComponentModel.DataAnnotations;
 
 namespace LivrariaLegitimo.Models
 {
@@ -15,3 +16,4 @@ namespace LivrariaLegitimo.Models
         public string Promocao { get; set; }
     }
 }
+*/
