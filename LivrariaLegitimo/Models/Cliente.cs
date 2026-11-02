@@ -11,7 +11,7 @@ namespace LivrariaLegitimo.Models
         public string Nome { get; set; }
 
         [Display(Name = "Email")]
-        public int Email { get; set; }
+        public string Email { get; set; }
 
         [Display(Name = "Telefone")]
         public int Telefone { get; set; }
