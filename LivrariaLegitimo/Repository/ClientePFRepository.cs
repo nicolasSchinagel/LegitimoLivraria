@@ -40,7 +40,6 @@ namespace LivrariaLegitimo.Repository
                 cmd.Parameters.Add("@Bairro", MySqlDbType.VarChar).Value = clientePF.Bairro;
                 cmd.Parameters.Add("@Cidade", MySqlDbType.VarChar).Value = clientePF.Cidade;
                 cmd.Parameters.Add("@Estado", MySqlDbType.VarChar).Value = clientePF.Estado;
-                cmd.Parameters.Add("@DataNascimento", MySqlDbType.VarChar).Value = clientePF.DataNasc;
 
 
 
