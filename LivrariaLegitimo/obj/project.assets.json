@@ -560,23 +560,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lizsc\\.nuget\\packages\\": {},
+    "C:\\Users\\3MTEC\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LivrariaLegitimo\\LivrariaLegitimo\\LivrariaLegitimo.csproj",
+      "projectUniqueName": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\LivrariaLegitimo.csproj",
       "projectName": "LivrariaLegitimo",
-      "projectPath": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LivrariaLegitimo\\LivrariaLegitimo\\LivrariaLegitimo.csproj",
-      "packagesPath": "C:\\Users\\lizsc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LivrariaLegitimo\\LivrariaLegitimo\\obj\\",
+      "projectPath": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\LivrariaLegitimo.csproj",
+      "packagesPath": "C:\\Users\\3MTEC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\lizsc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\3MTEC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -605,7 +605,7 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.300"
+      "SdkAnalysisLevel": "10.0.400"
     },
     "frameworks": {
       "net10.0": {
@@ -644,7 +644,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.303/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

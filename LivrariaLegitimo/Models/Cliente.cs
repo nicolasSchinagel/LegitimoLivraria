@@ -14,10 +14,10 @@ namespace LivrariaLegitimo.Models
         public string Email { get; set; }
 
         [Display(Name = "Telefone")]
-        public int Telefone { get; set; }
+        public string Telefone { get; set; }
 
         [Display(Name = "CEP")]
-        public decimal Cep { get; set; }
+        public string Cep { get; set; }
 
         [Display(Name = "Logradouro")]
         public string Logradouro { get; set; }
@@ -44,7 +44,7 @@ namespace LivrariaLegitimo.Models
     public class ClientePF : Cliente
     {
         [Display(Name = "CPF")]
-        public long Cpf { get; set; }
+        public string Cpf { get; set; }
 
         [Display(Name = "Data de Nascimento")]
         public DateOnly DataNasc { get; set; }
@@ -53,6 +53,6 @@ namespace LivrariaLegitimo.Models
     public class ClientePJ : Cliente
     {
         [Display(Name = "CNPJ")]
-        public long Cnpj { get; set; }
+        public string Cnpj { get; set; }
     }
 }

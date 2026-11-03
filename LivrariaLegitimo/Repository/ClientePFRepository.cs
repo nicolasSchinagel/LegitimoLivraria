@@ -5,7 +5,7 @@ using X.PagedList;
 
 namespace LivrariaLegitimo.Repository
 {
-    public class ClientePFRepository : IClienteRepository
+    public class ClientePFRepository : IClientePFRepository
     {
         private readonly string _conexaoMySQL;
         IConfiguration _config;
@@ -14,66 +14,43 @@ namespace LivrariaLegitimo.Repository
             _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
             _config = conf;
         }
-        public void Atualizar(Cliente cliente)
+        
+        public void Atualizar(ClientePF clientePF)
         {
             throw new NotImplementedException();
         }
 
-        public void Cadastrar(Cliente cliente)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Cliente Login(string Email, string Senha)
+        public void Cadastrar(ClientePF clientePF)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from tbClientePFG where Email = @Email and Senha = @Senha", conexao);
+                MySqlCommand cmd = new MySqlCommand("call spCadastroClientePF(@Nome, @CPF , @Email, @Telefone , @Senha , @CEP, @NumeroEndereco, @Complemento, @Logradouro, @Bairro, @Cidade, @Estado, @DataNascimento );", conexao);
 
-                cmd.Parameters.Add("@Email", MySqlDbType.VarChar).Value = Email;
-                cmd.Parameters.Add("@Senha", MySqlDbType.VarChar).Value = Senha;
+                cmd.Parameters.Add("@Nome", MySqlDbType.VarChar).Value = clientePF.Nome;
+                cmd.Parameters.Add("@DataNascimento", MySqlDbType.Date).Value = clientePF.DataNasc.ToDateTime(TimeOnly.MinValue);
+                cmd.Parameters.Add("@CPF", MySqlDbType.Int32).Value = clientePF.Cpf.Replace("-", "").Replace(".", "");
+                cmd.Parameters.Add("@Telefone", MySqlDbType.Int32).Value = clientePF.Telefone.Replace("(", "").Replace(")", "").Replace("-", "");
+                cmd.Parameters.Add("@Email", MySqlDbType.VarChar).Value = clientePF.Email;
+                cmd.Parameters.Add("@Senha", MySqlDbType.VarChar).Value = clientePF.Senha;
+                cmd.Parameters.Add("@CEP", MySqlDbType.Decimal).Value = clientePF.Cep.Replace("-", "");
+                cmd.Parameters.Add("@NumeroEndereco", MySqlDbType.Int32).Value = clientePF.NumeroEndereco;
+                cmd.Parameters.Add("@Complemento", MySqlDbType.VarChar).Value = clientePF.ComplementoEndereco;
+                cmd.Parameters.Add("@Logradouro", MySqlDbType.VarChar).Value = clientePF.Logradouro;
+                cmd.Parameters.Add("@Bairro", MySqlDbType.VarChar).Value = clientePF.Bairro;
+                cmd.Parameters.Add("@Cidade", MySqlDbType.VarChar).Value = clientePF.Cidade;
+                cmd.Parameters.Add("@Estado", MySqlDbType.VarChar).Value = clientePF.Estado;
+                cmd.Parameters.Add("@DataNascimento", MySqlDbType.VarChar).Value = clientePF.DataNasc;
 
-                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                MySqlDataReader dr;
 
-                ClientePF clientePF = new ClientePF();
-                dr = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
 
-                while (dr.Read())
-                {
-                    clientePF.IdCli = Convert.ToInt32(dr["Id"]);
-                    clientePF.Nome = Convert.ToString(dr["Nome"]);
-                    clientePF.DataNasc = DateOnly.Parse(dr["Nascimento"].ToString());
-                    clientePF.Cep = Convert.ToInt32(dr["Cep"]);
-                    clientePF.NumeroEndereco = Convert.ToInt32(dr["NumeroEndereco"]);
-                    clientePF.Cpf = Convert.ToInt32(dr["CPF"]);
-                    clientePF.Telefone = Convert.ToInt32(dr["Telefone"]);
-                    clientePF.ComplementoEndereco = Convert.ToString(dr["ComplementoEndereco"]);
-                    clientePF.Logradouro = Convert.ToString(dr["Logradouro"]);
-                    clientePF.Bairro = Convert.ToString(dr["Bairro"]);
-                    clientePF.Cidade = Convert.ToString(dr["Cidade"]);
-                    clientePF.Estado = Convert.ToString(dr["Estado"]);
-                    clientePF.Email = Convert.ToString(dr["Email"]);
-                    clientePF.Senha = Convert.ToString(dr["Senha"]);
-                }
-                return clientePF;
+                cmd.ExecuteNonQuery();
+                conexao.Close();
             }
         }
 
-        public Cliente ObterCliente(int Id)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public IEnumerable<Cliente> ObterTodosClientes()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IPagedList<Cliente> ObterTodosClientes(int? pagina, string pesquisa)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
