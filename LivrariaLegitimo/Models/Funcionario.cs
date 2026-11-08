@@ -8,10 +8,10 @@ namespace LivrariaLegitimo.Models
         public int IdFuncionario { get; set; }
 
         [Display(Name = "Email")]
-        public int Email { get; set; }
+        public string Email { get; set; }
 
         [Display(Name = "Telefone")]
-        public int Telefone { get; set; }
+        public string Telefone { get; set; }
 
         [Display(Name = "CPF")]
         public long Cpf { get; set; }

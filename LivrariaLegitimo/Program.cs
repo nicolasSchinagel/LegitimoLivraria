@@ -1,7 +1,35 @@
+using LivrariaLegitimo.Repository.Contract;
+using LivrariaLegitimo.Repository;
+//using LivrariaLegitimo.Libraries.Middleware;
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IClientePFRepository, ClientePFRepository>();
+builder.Services.AddScoped<IClientePJRepository, ClientePJRepository>();
+// colocar outros serviços aqui depois
+
+// Corrigir problema com TEMPDATA
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    // Definir um tempo para duração. 
+    options.IdleTimeout = TimeSpan.FromSeconds(900);
+    options.Cookie.HttpOnly = true;
+    // Mostrar para o navegador que o cookie e essencial   
+    options.Cookie.IsEssential = true;
+});
+builder.Services.AddMvc().AddSessionStateTempDataProvider();
+
+builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -14,7 +42,11 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapControllers();
+
 app.MapStaticAssets();
+
+// colocar outros aqui depois
 
 app.MapControllerRoute(
     name: "default",

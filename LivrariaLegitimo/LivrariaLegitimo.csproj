@@ -10,7 +10,7 @@
     <Folder Include="Areas\Worker\Controllers\" />
     <Folder Include="Areas\Worker\Views\Managements\" />
     <Folder Include="Areas\Worker\Views\Worker\" />
-    <Folder Include="Libraries\" />
+    <Folder Include="Libraries\Middleware\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Client\" />
   </ItemGroup>
