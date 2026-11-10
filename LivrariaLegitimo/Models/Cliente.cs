@@ -11,6 +11,7 @@ namespace LivrariaLegitimo.Models
         public string Nome { get; set; }
 
         [Display(Name = "Email")]
+        [RegularExpression(@"^(.{6,12})$", ErrorMessage = "O texto deve ter entre 6 e 12 caracteres")]
         public string Email { get; set; }
 
         [Display(Name = "Telefone")]
@@ -47,7 +48,7 @@ namespace LivrariaLegitimo.Models
         public string Cpf { get; set; }
 
         [Display(Name = "Data de Nascimento")]
-        public DateOnly DataNasc { get; set; }
+        public DateTime DataNasc { get; set; }
     }
 
     public class ClientePJ : Cliente

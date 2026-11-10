@@ -32,11 +32,18 @@ namespace LivrariaLegitimo.Repository
 
                 while (dr.Read())
                 {
-                    cliente.IdCli = Convert.ToInt32(dr["Id"]);
+                    cliente.IdCli = Convert.ToInt32(dr["IdCli"]);
                     cliente.Nome = Convert.ToString(dr["Nome"]);
                     cliente.Email = Convert.ToString(dr["Email"]);
                     cliente.Senha = Convert.ToString(dr["Senha"]);
-                    cliente.Telefone = Convert.ToString(dr["Telefone"]);
+                    cliente.Telefone = Convert.ToString(dr["NumTel"]);
+                    cliente.Cep = Convert.ToString(dr["Cep"]);
+                    cliente.Logradouro = Convert.ToString(dr["Logradouro"]);
+                    cliente.Bairro = Convert.ToString(dr["Bairro"]);
+                    cliente.Cidade = Convert.ToString(dr["Cidade"]);
+                    cliente.Estado = Convert.ToString(dr["Estado"]);
+                    cliente.NumeroEndereco = Convert.ToInt32(dr["NumeroEndereco"]);
+                    cliente.ComplementoEndereco = Convert.ToString(dr["ComplementoEndereco"]);
                 }
                 return cliente;
             }

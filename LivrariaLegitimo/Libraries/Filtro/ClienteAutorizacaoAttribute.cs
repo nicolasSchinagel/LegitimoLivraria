@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using LivrariaLegitimo.Libraries.Login;
 using LivrariaLegitimo.Models;
-
+/*
 namespace LivrariaLegitimo.Libraries.Filtro
 {
     public class ClienteAutorizacaoAttribute : Attribute, IAuthorizationFilter
@@ -20,3 +20,4 @@ namespace LivrariaLegitimo.Libraries.Filtro
         }
     }
 }
+*/

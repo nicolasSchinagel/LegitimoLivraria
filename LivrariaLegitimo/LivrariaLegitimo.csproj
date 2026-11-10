@@ -7,12 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Login\**" />
+    <Content Remove="Views\Login\**" />
+    <EmbeddedResource Remove="Views\Login\**" />
+    <None Remove="Views\Login\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Areas\Worker\Controllers\" />
     <Folder Include="Areas\Worker\Views\Managements\" />
     <Folder Include="Areas\Worker\Views\Worker\" />
     <Folder Include="Libraries\Middleware\" />
-    <Folder Include="Views\Login\" />
     <Folder Include="Views\Client\" />
+    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
   <ItemGroup>

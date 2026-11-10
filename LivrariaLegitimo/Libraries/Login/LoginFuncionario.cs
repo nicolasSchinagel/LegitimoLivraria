@@ -22,7 +22,7 @@ namespace LivrariaLegitimo.Libraries.Login
             _sessao.Cadastrar(Key, clienteJSONString);
         }
 
-        public Funcionario GetCliente()
+        public Funcionario GetFuncionario()
         {
             //deserializar
             if (_sessao.Existe(Key))

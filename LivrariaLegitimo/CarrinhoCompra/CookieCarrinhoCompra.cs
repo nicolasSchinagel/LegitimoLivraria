@@ -41,14 +41,14 @@ namespace LivrariaLegitimo.CarrinhoCompra
             if (_cookie.Existe(Key))
             {
                 Lista = Consultar();
-                var ItemLocalizado = Lista.SingleOrDefault(a => a.codLivro == item.codLivro);
+                var ItemLocalizado = Lista.SingleOrDefault(a => a.CodigoBarras == item.CodigoBarras);
                 if(ItemLocalizado == null)
                 {
                     Lista.Add(item);
                 }
                 else
                 {
-                    ItemLocalizado.quantidade = ItemLocalizado.quantidade + 1;
+                    ItemLocalizado.Quantidade = ItemLocalizado.Quantidade + 1;
 
                 }
             }
@@ -64,11 +64,11 @@ namespace LivrariaLegitimo.CarrinhoCompra
         public void Atualizar(Livro item)
         {
             var Lista = Consultar();
-            var ItemLocalizado = Lista.SingleOrDefault(a => a.codLivro == item.codLivro);
+            var ItemLocalizado = Lista.SingleOrDefault(a => a.CodigoBarras == item.CodigoBarras);
 
             if(ItemLocalizado != null)
             {
-                ItemLocalizado.quantidade = item.quantidade + 1;
+                ItemLocalizado.Quantidade = item.Quantidade + 1;
                 Salvar(Lista);
             }
         }
@@ -76,7 +76,7 @@ namespace LivrariaLegitimo.CarrinhoCompra
         public void Remover(Livro item)
         {
             var Lista = Consultar();
-            var ItemLocalizado = Lista.SingleOrDefault(a => a.codLivro == item.codLivro);
+            var ItemLocalizado = Lista.SingleOrDefault(a => a.CodigoBarras == item.CodigoBarras);
 
             if(ItemLocalizado != null)
             {

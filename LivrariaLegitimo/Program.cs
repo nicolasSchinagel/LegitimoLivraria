@@ -14,6 +14,10 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IClientePFRepository, ClientePFRepository>();
 builder.Services.AddScoped<IClientePJRepository, ClientePJRepository>();
+builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
+builder.Services.AddScoped<LivrariaLegitimo.Libraries.Sessao.Sessao>();
+builder.Services.AddScoped<LivrariaLegitimo.Libraries.Login.LoginCliente>();
+builder.Services.AddScoped<LivrariaLegitimo.Libraries.Login.LoginFuncionario>();
 // colocar outros serviços aqui depois
 
 // Corrigir problema com TEMPDATA
@@ -47,6 +51,7 @@ app.MapControllers();
 app.MapStaticAssets();
 
 // colocar outros aqui depois
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

@@ -8,13 +8,14 @@ namespace LivrariaLegitimo.Models
         public int IdFuncionario { get; set; }
 
         [Display(Name = "Email")]
+        [RegularExpression(@"^(.{16})$", ErrorMessage = "O texto deve ter 16 caracteres")]
         public string Email { get; set; }
 
         [Display(Name = "Telefone")]
         public string Telefone { get; set; }
 
         [Display(Name = "CPF")]
-        public long Cpf { get; set; }
+        public string Cpf { get; set; }
 
         [Display(Name = "Nome")]
         public string Nome { get; set; }
@@ -26,7 +27,7 @@ namespace LivrariaLegitimo.Models
         public DateTime DataAdmissao { get; set; }
 
         [Display(Name = "CEP")]
-        public decimal Cep { get; set; }
+        public string Cep { get; set; }
 
         [Display(Name = "Logradouro")]
         public string Logradouro { get; set; }
@@ -50,6 +51,6 @@ namespace LivrariaLegitimo.Models
         public string? ComplementoEndereco { get; set; }
 
         [Display(Name = "Fim do Contrato")]
-        public DateOnly FimContrato { get; set; }
+        public DateTime FimContrato { get; set; }
     }
 }

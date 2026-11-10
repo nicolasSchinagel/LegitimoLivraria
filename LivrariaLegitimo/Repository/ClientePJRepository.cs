@@ -28,11 +28,11 @@ namespace LivrariaLegitimo.Repository
                 MySqlCommand cmd = new MySqlCommand("call spCadastroClientePJ(@Nome, @CNPJ , @Email, @Telefone , @Senha , @CEP, @NumeroEndereco, @Complemento, @Logradouro, @Bairro, @Cidade, @Estado );", conexao);
 
                 cmd.Parameters.Add("@Nome", MySqlDbType.VarChar).Value = clientePJ.Nome;
-                cmd.Parameters.Add("@CNPJ", MySqlDbType.Int32).Value = clientePJ.Cnpj.Replace("-", "").Replace(".", "").Replace("/", "");
-                cmd.Parameters.Add("@Telefone", MySqlDbType.Int32).Value = clientePJ.Telefone.Replace("(", "").Replace(")", "").Replace("-", "");
+                cmd.Parameters.Add("@CNPJ", MySqlDbType.Int32).Value = Convert.ToInt32(clientePJ.Cnpj.Replace("-", "").Replace(".", "").Replace("/", ""));
+                cmd.Parameters.Add("@Telefone", MySqlDbType.Int32).Value = Convert.ToInt32(clientePJ.Telefone.Replace("(", "").Replace(")", "").Replace("-", ""));
                 cmd.Parameters.Add("@Email", MySqlDbType.VarChar).Value = clientePJ.Email;
                 cmd.Parameters.Add("@Senha", MySqlDbType.VarChar).Value = clientePJ.Senha;
-                cmd.Parameters.Add("@CEP", MySqlDbType.Decimal).Value = clientePJ.Cep.Replace("-", "");
+                cmd.Parameters.Add("@CEP", MySqlDbType.Decimal).Value = Convert.ToDecimal(clientePJ.Cep.Replace("-", ""));
                 cmd.Parameters.Add("@NumeroEndereco", MySqlDbType.Int32).Value = clientePJ.NumeroEndereco;
                 cmd.Parameters.Add("@Complemento", MySqlDbType.VarChar).Value = clientePJ.ComplementoEndereco;
                 cmd.Parameters.Add("@Logradouro", MySqlDbType.VarChar).Value = clientePJ.Logradouro;

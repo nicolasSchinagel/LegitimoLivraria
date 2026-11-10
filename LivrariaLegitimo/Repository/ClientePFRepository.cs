@@ -28,12 +28,12 @@ namespace LivrariaLegitimo.Repository
                 MySqlCommand cmd = new MySqlCommand("call spCadastroClientePF(@Nome, @CPF , @Email, @Telefone , @Senha , @CEP, @NumeroEndereco, @Complemento, @Logradouro, @Bairro, @Cidade, @Estado, @DataNascimento );", conexao);
 
                 cmd.Parameters.Add("@Nome", MySqlDbType.VarChar).Value = clientePF.Nome;
-                cmd.Parameters.Add("@DataNascimento", MySqlDbType.Date).Value = clientePF.DataNasc.ToDateTime(TimeOnly.MinValue);
-                cmd.Parameters.Add("@CPF", MySqlDbType.Int32).Value = clientePF.Cpf.Replace("-", "").Replace(".", "");
-                cmd.Parameters.Add("@Telefone", MySqlDbType.Int32).Value = clientePF.Telefone.Replace("(", "").Replace(")", "").Replace("-", "");
+                cmd.Parameters.Add("@DataNascimento", MySqlDbType.Date).Value = clientePF.DataNasc.ToString("yyyy/MM/dd");
+                cmd.Parameters.Add("@CPF", MySqlDbType.Int32).Value = Convert.ToInt32(clientePF.Cpf.Replace("-", "").Replace(".", ""));
+                cmd.Parameters.Add("@Telefone", MySqlDbType.Int32).Value = Convert.ToInt32(clientePF.Telefone.Replace("(", "").Replace(")", "").Replace("-", ""));
                 cmd.Parameters.Add("@Email", MySqlDbType.VarChar).Value = clientePF.Email;
                 cmd.Parameters.Add("@Senha", MySqlDbType.VarChar).Value = clientePF.Senha;
-                cmd.Parameters.Add("@CEP", MySqlDbType.Decimal).Value = clientePF.Cep.Replace("-", "");
+                cmd.Parameters.Add("@CEP", MySqlDbType.Decimal).Value = Convert.ToDecimal(clientePF.Cep.Replace("-", ""));
                 cmd.Parameters.Add("@NumeroEndereco", MySqlDbType.Int32).Value = clientePF.NumeroEndereco;
                 cmd.Parameters.Add("@Complemento", MySqlDbType.VarChar).Value = clientePF.ComplementoEndereco;
                 cmd.Parameters.Add("@Logradouro", MySqlDbType.VarChar).Value = clientePF.Logradouro;

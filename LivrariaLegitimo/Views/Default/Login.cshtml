@@ -1,0 +1,53 @@
+﻿@model LivrariaLegitimo.Models.LoginGeral
+@{
+    ViewData["Title"] = "Faça o Login";
+}
+<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+<div class="pagina-login">
+    <img src="~/img/background_login.png" class="background-login-image">
+    <section class="area-formulario-login">
+        <img src="/img/logoLivraria.png" alt="Livraria Legítimo" class="logo-login">
+        <div class="cartao-login">
+            <div class="cabecalho-formulario">
+                <h2 class="titulo-formulario">
+                    Entrar
+                </h2>
+                <p class="descricao-formulario">
+                    Para continuar, faça o login
+                </p>
+            </div>
+            <form class="formulario-entrada" asp-action="Login" asp-controller="Default" method="post">
+                <div class="grupo-campo-login">
+                    <label asp-for="Email" class="rotulo-campo-login"></label>
+                    <div class="campo-com-icone">
+                        <img src="~/img/icon_email.png" class="form-icon">
+                        <input type="email" id="Email" name="Email" class="campo-login" placeholder="Digite o seu e-mail" required />
+                    </div>
+                </div>
+                <div class="grupo-campo-login">
+                    <label asp-for="Senha" class="rotulo-campo-login"></label>
+                    <div class="campo-com-icone">
+                        <img src="~/img/cadeado.icon.png" class="form-icon">
+                        <input type="password" id="Senha" name="Senha" class="campo-login" placeholder="Digite a sua senha" required>
+                    </div>
+                </div>
+                <div class="area-esqueceu-senha">
+                    <a href="#" class="link-esqueceu-senha"> Esqueci a minha senha </a>
+                </div>
+                <button type="submit" class="botao-entrar">
+                    <img src="~/img/icon_join.png" class="icone-botao-entrar-login-image">
+                    Entrar
+                </button>
+            </form>
+            <div class="area-cadastro">
+                <span class="texto-cadastro">
+                    Ainda não criou a sua conta?
+                </span>
+                <a href="#"
+                   class="link-cadastro">
+                    Cadastre-se
+                </a>
+            </div>
+        </div>
+    </section>
+</div>

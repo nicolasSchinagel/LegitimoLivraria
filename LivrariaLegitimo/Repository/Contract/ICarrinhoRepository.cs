@@ -6,6 +6,6 @@
         public void Somar(int codBarras);
         public void Subtrair(int codBarras);
         public void Remover(int codBarras);
-        public void 
+        
     }
 }

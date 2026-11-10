@@ -1,49 +1,165 @@
-﻿<!DOCTYPE html>
+﻿@inject LivrariaLegitimo.Libraries.Login.LoginCliente _LoginCliente
+@inject LivrariaLegitimo.Libraries.Login.LoginFuncionario _LoginFuncionario
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - LivrariaLegitimo</title>
     <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/LivrariaLegitimo.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/lateralMenu.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/header.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LivrariaLegitimo</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+        <section class="uper-header">
+            <img src="~/img/logoLivraria.png" class="logo-header">
+            <div class="search-bar-header">
+                <a class="icon-search-bar-font"><img src="~/img/SearchbarIcon.png" class="icon-search-bar"></a>
+                <input type="text" class="input-search-bar" placeholder="Digite livros, autores ou editoras"/>
+            </div>
+            <a class="carrinho-header">
+                <h2 class="tittle-carrinho-header">Carrinho de compras</h2>
+                <div class="icon-carrinho-header">
+                    <img src="~/img/CartIcon.png" class="image-icon-carrinho-header">
+                    <h3 class="number-carrinho-header">1</h3>
+                </div>
+            </a>
+            <div class="entry-header">
+                @if(_LoginCliente.GetCliente() != null)
+                {
+                  <a class="tittle-login-header no-underline">@_LoginCliente.GetCliente().Nome</a>      
+                }
+                else @if(_LoginFuncionario.GetFuncionario() != null)
+                {
+                  <a class="tittle-login-header no-underline">@_LoginFuncionario.GetFuncionario().Nome</a>
+                }
+                else
+                {
+                  <a class="tittle-login-header no-underline" asp-action="Login" asp-controller="Default">Olá Sr. Anônimo</a>
+                }
+            </div>
+        </section>
+        <section class="deeper-header">
+            <a class="font-deeper-header-menu"><img src="~/img/menuIcon.png" class="deeper-header-menu-icon"></a>
+            <div class="main-items-deeper">
+                <a class="main-items-deeper-text">Ofertas</a>
+                <a class="main-items-deeper-text">Destaques</a>
+                <a class="main-items-deeper-text">Lançamentos</a>
+                <a class="main-items-deeper-text">Contato</a>
+                <a class="main-items-deeper-text">Clássicos</a>
+            </div>
+            <a class="deeper-header-bonus">Bônus disponíveis</a>
+        </section>
+    </header>
+    <div class="lateral-bar">
+        <section class="lateral-bar-header">
+            <div class="lateral-bar-userDiv">
+                <img src="~/img/cliente_iconbar.png" class="lateral-bar-userDiv-image" />
+                <h2 class="lateral-bar-userDiv-name">Usuário não conectado</h2>
+            </div>
+            <img src="~/img/leave_iconbar.png" class="lateral-bar-userDiv-leave" />
+        </section>
+        <section class="lateral-bar-content">
+            <div class="lateral-bar-content-block">
+                <h2 class="lateral-bar-content-block-title">Destaques</h2>
+                <div class="lateral-bar-content-block-list">
+                    <a class="lateral-bar-content-block-list-item">Mais vendidos</a>
+                    <a class="lateral-bar-content-block-list-item">Ofertas do mês</a>
+                    <a class="lateral-bar-content-block-list-item">Bem avaliados</a>
                 </div>
             </div>
-        </nav>
-    </header>
+            <div class="lateral-bar-content-block">
+                <h2 class="lateral-bar-content-block-title">Para você</h2>
+                <div class="lateral-bar-content-block-list">
+                    <a class="lateral-bar-content-block-list-item">Talvez você goste</a>
+                    <a class="lateral-bar-content-block-list-item">Minhas compras</a>
+                    <a class="lateral-bar-content-block-list-item">Meus cupons</a>
+                    <a class="lateral-bar-content-block-list-item">Avaliações disponíveis</a>
+                    <a class="lateral-bar-content-block-list-item">Favoritos</a>
+                </div>
+            </div>
+            <div class="lateral-bar-content-block">
+                <h2 class="lateral-bar-content-block-title">Escolha do seu jeito</h2>
+                <div class="lateral-bar-content-block-list">
+                    <a class="lateral-bar-content-block-list-item">Gêneros</a>
+                    <a class="lateral-bar-content-block-list-item">Procurar livros</a>
+                    <a class="lateral-bar-content-block-list-item">Autores</a>
+                    <a class="lateral-bar-content-block-list-item">Histórico de navegação</a>
+                </div>
+            </div>
+        </section>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - LivrariaLegitimo - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer>
+        <section class="footer-space-top"></section>
+        <section class="footer-content">
+            <div class="footer-topics">
+                <h2 class="footer-topics-title">Sobre nós</h2>
+                <div class="footer-topics-list">
+                    <a class="footer-topics-link" >Legítimo</a>
+                    <a class="footer-topics-link" >Créditos</a>
+                    <a class="footer-topics-link" >Informações corporativas</a>
+                    <a class="footer-topics-link" >Tecnologias</a>
+                </div>
+            </div>
+            <div class="footer-topics">
+                <h2 class="footer-topics-title">Coopere conosco</h2>
+                <div class="footer-topics-list">
+                    <a class="footer-topics-link" >Doe livros usados</a>
+                    <a class="footer-topics-link" >Seja um fornecedor</a>
+                    <a class="footer-topics-link" >Avalie livros comprados</a>
+                    <a class="footer-topics-link" >Doe dinheiro</a>
+                </div>
+            </div>
+            <div class="footer-topics-center">
+                <a class="footer-topics-center-backstart">Voltar ao início</a>
+                <img src="~/img/iconFooter.png" class="footer-topics-center-icon"/>
+            </div>
+            <div class="footer-topics">
+                <h2 class="footer-topics-title">Pagamento</h2>
+                <div class="footer-topics-list">
+                    <a class="footer-topics-link" >Meios de pagamento</a>
+                    <a class="footer-topics-link" >Bônus disponíveis</a>
+                    <a class="footer-topics-link" >Termos e condições</a>
+                </div>
+            </div>
+            <div class="footer-topics">
+                <h2 class="footer-topics-title">Contato</h2>
+                <div class="footer-topics-list">
+                    <a class="footer-topics-link" >Ajuda por telefone</a>
+                    <a class="footer-topics-link" >Visite a loja física</a>
+                    <a class="footer-topics-link" >Frete e prazo de entrega</a>
+                    <a class="footer-topics-link" >Reembolsos</a>
+                </div>
+            </div>
+        </section>
+        <section class="footer-foot">
+            <h2 class="footer-foot-line"> <span class="footer-foot-span">Condições de uso</span> | <span class="footer-foot-span">Cookies</span> | <span class="footer-foot-span">@@2026 Legitimolivros.com</span></h2>
+        </section>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+            const lateralBar = document.querySelector('.lateral-bar');
+            const lateralBarLeave = document.querySelector('.lateral-bar-userDiv-leave');
+            const headerMenu = document.querySelector('.deeper-header-menu-icon');
+
+            lateralBarLeave.addEventListener('click', () => {
+                lateralBar.style.left = '-35%';
+            });
+            headerMenu.addEventListener('click', () => {
+                lateralBar.style.left = '0%';
+            });
+    </script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

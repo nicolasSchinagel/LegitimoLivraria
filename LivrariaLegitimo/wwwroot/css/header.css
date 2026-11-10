@@ -1,2 +1,190 @@
-﻿body {
+﻿/*Tinha feito arquivos no visutal studio code para o css, agora estou repassando eles*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uper-header {
+    display: flex;
+    width: 100%;
+    height: 70%;
+    background-color: #FAFAFA;
+    justify-content: space-between;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    align-items: center;
+}
+
+.deeper-header {
+    display: flex;
+    width: 100%;
+    height: 30%;
+    background-color: #9D0000;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    align-items: center;
+}
+
+.logo-header {
+    height: 100%;
+    width: auto;
+}
+
+.search-bar-header {
+    display: flex;
+    width: 50%;
+    height: 50%;
+    gap: 20px;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: white;
+    border: 2px solid #BFBFBF;
+    border-radius: 70px;
+    align-items: center;
+}
+
+.icon-search-bar {
+    height: 90%;
+    width: auto;
+    cursor: pointer;
+}
+
+.icon-search-bar-font {
+    display: contents;
+}
+
+.input-search-bar {
+    width: 90%;
+    height: 90%;
+    color: black;
+    font-size: 18px;
+    border: none;
+    outline: none;
+}
+
+    .input-search-bar::placeholder {
+        color: #909090;
+        font-size: 18px;
+    }
+
+.carrinho-header {
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+}
+
+.tittle-carrinho-header {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    width: 120px;
+    height: auto;
+    text-align: center;
+    color: #C8060A;
+}
+
+.icon-carrinho-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-icon-carrinho-header {
+    width: 70px;
+    height: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+}
+
+.number-carrinho-header {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #C8060A;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    position: absolute;
+    z-index: 10;
+}
+
+.entry-header {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tittle-login-header {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #C8060A;
+    cursor: pointer;
+}
+
+
+.font-deeper-header-menu {
+    height: 100%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deeper-header-menu-icon {
+    height: 60%;
+    width: auto;
+    cursor: pointer;
+}
+
+.main-items-deeper {
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-items-deeper-text {
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 19px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.deeper-header-bonus {
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.no-underline{
+    text-decoration: none;
 }
