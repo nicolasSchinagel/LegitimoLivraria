@@ -93,5 +93,15 @@ namespace LivrariaLegitimo.Controllers
             }
         }
         
+        public IActionResult LogoutCliente()
+        {
+            _loginCliente.Logout();
+            return RedirectToAction("Index", "Default");
+        }
+        public IActionResult LogoutFuncionario()
+        {
+            _loginFuncionario.Logout();
+            return RedirectToAction("Index", "Default");
+        }
     }
 }

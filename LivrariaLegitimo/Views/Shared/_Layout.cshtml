@@ -58,40 +58,104 @@
     <div class="lateral-bar">
         <section class="lateral-bar-header">
             <div class="lateral-bar-userDiv">
-                <img src="~/img/cliente_iconbar.png" class="lateral-bar-userDiv-image" />
-                <h2 class="lateral-bar-userDiv-name">Usuário não conectado</h2>
+                @if(_LoginCliente.GetCliente() != null)
+                {
+                    <img src="~/img/cliente_iconbar.png" class="lateral-bar-userDiv-image" />
+                    <h2 class="lateral-bar-userDiv-name">@_LoginCliente.GetCliente().Nome</h2>
+                }
+                else if(_LoginFuncionario.GetFuncionario() != null)
+                {
+                    <img src="~/img/funcionario_iconbar.png" class="lateral-bar-userDiv-image" />
+                    <h2 class="lateral-bar-userDiv-name">@_LoginFuncionario.GetFuncionario().Nome</h2>
+                }
+                else
+                {
+                    <img src="~/img/cliente_iconbar.png" class="lateral-bar-userDiv-image" />
+                    <h2 class="lateral-bar-userDiv-name">Usuário não conectado</h2>
+                }
+                
             </div>
             <img src="~/img/leave_iconbar.png" class="lateral-bar-userDiv-leave" />
         </section>
-        <section class="lateral-bar-content">
-            <div class="lateral-bar-content-block">
-                <h2 class="lateral-bar-content-block-title">Destaques</h2>
-                <div class="lateral-bar-content-block-list">
-                    <a class="lateral-bar-content-block-list-item">Mais vendidos</a>
-                    <a class="lateral-bar-content-block-list-item">Ofertas do mês</a>
-                    <a class="lateral-bar-content-block-list-item">Bem avaliados</a>
+            @if(_LoginFuncionario.GetFuncionario() != null)
+            {
+            <section class="lateral-bar-content">
+                <div class="lateral-bar-content-block">
+                    <h2 class="lateral-bar-content-block-title">Gerenciamentos</h2>
+                    <div class="lateral-bar-content-block-list">
+                        <a class="lateral-bar-content-block-list-item">Explorar gerenciamentos</a>
+                            @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de compras")
+                            {
+                                <a class="lateral-bar-content-block-list-item">Adicionar Livro</a>
+                            }
+                            @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial" || _LoginFuncionario.GetFuncionario().Cargo == "caixa")
+                            {
+                                <a class="lateral-bar-content-block-list-item">Registrar Venda</a>
+                            }
+                            @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de compras")
+                            {
+                                <a class="lateral-bar-content-block-list-item">Fazer Reposição</a>  
+                            }
+                            @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de contratação")
+                            {
+                                <a class="lateral-bar-content-block-list-item">Cadastrar Funcionário</a>
+                            }
+                            @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial")
+                            {
+                                <a class="lateral-bar-content-block-list-item">Modificar Preços</a>
+                            }
+                            @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial" || _LoginFuncionario.GetFuncionario().Cargo == "caixa"){
+                                <a class="lateral-bar-content-block-list-item">Cadastrar Cliente</a>
+                            }
+                        
+                    </div>
                 </div>
-            </div>
-            <div class="lateral-bar-content-block">
-                <h2 class="lateral-bar-content-block-title">Para você</h2>
-                <div class="lateral-bar-content-block-list">
-                    <a class="lateral-bar-content-block-list-item">Talvez você goste</a>
-                    <a class="lateral-bar-content-block-list-item">Minhas compras</a>
-                    <a class="lateral-bar-content-block-list-item">Meus cupons</a>
-                    <a class="lateral-bar-content-block-list-item">Avaliações disponíveis</a>
-                    <a class="lateral-bar-content-block-list-item">Favoritos</a>
+                
+                <div class="lateral-bar-content-block">
+                    <h2 class="lateral-bar-content-block-title">Configurações</h2>
+                    <div class="lateral-bar-content-block-list">
+                        <a class="lateral-bar-content-block-list-item no-underline" href="/Default/LogoutFuncionario">Sair</a>
+                        <a class="lateral-bar-content-block-list-item">Dados</a>
+                        <a class="lateral-bar-content-block-list-item">Editar Informações</a>
+                    </div>
                 </div>
-            </div>
-            <div class="lateral-bar-content-block">
-                <h2 class="lateral-bar-content-block-title">Escolha do seu jeito</h2>
-                <div class="lateral-bar-content-block-list">
-                    <a class="lateral-bar-content-block-list-item">Gêneros</a>
-                    <a class="lateral-bar-content-block-list-item">Procurar livros</a>
-                    <a class="lateral-bar-content-block-list-item">Autores</a>
-                    <a class="lateral-bar-content-block-list-item">Histórico de navegação</a>
+            </section>
+            }
+            else
+            {
+            <section class="lateral-bar-content">
+                <div class="lateral-bar-content-block">
+                    <h2 class="lateral-bar-content-block-title">Destaques</h2>
+                    <div class="lateral-bar-content-block-list">
+                        <a class="lateral-bar-content-block-list-item">Mais vendidos</a>
+                        <a class="lateral-bar-content-block-list-item">Ofertas do mês</a>
+                        <a class="lateral-bar-content-block-list-item">Bem avaliados</a>
+                    </div>
                 </div>
-            </div>
-        </section>
+                <div class="lateral-bar-content-block">
+                    <h2 class="lateral-bar-content-block-title">Para você</h2>
+                    <div class="lateral-bar-content-block-list">
+                        <a class="lateral-bar-content-block-list-item">Histórico de Navegação</a>
+                        <a class="lateral-bar-content-block-list-item">Minhas compras</a>
+                        <a class="lateral-bar-content-block-list-item">Meus cupons</a>
+                        <a class="lateral-bar-content-block-list-item">Avaliações disponíveis</a>
+                        <a class="lateral-bar-content-block-list-item">Favoritos</a>
+                    </div>
+                </div>
+                    @if(_LoginCliente.GetCliente != null)
+                    {
+                    <div class="lateral-bar-content-block">
+                        <h2 class="lateral-bar-content-block-title">Configurações</h2>
+                        <div class="lateral-bar-content-block-list">
+                            <a class="lateral-bar-content-block-list-item no-underline" href="/Default/LogoutCliente">Sair</a>
+                            <a class="lateral-bar-content-block-list-item">Dados</a>
+                            <a class="lateral-bar-content-block-list-item">Editar Informações</a>
+                        </div>
+                    </div>
+                    }
+                </section>
+            }
+            
     </div>
     <div class="container">
         <main role="main" class="pb-3">
