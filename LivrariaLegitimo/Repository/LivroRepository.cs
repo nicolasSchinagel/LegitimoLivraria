@@ -241,7 +241,33 @@ namespace LivrariaLegitimo.Repository
         //  NAO SAO SELECTS - ignorar / manter o que ja tem
         //  (so estao aqui pra classe compilar implementando ILivroRepository)
         
-        public void Cadastrar(Livro livro) { throw new NotImplementedException(); }
+        public void Cadastrar(Livro livro) {
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("call spAdicionarLivro(@CodBarras, @ISBN , @Nome, @Preco , @Sinopse , @Autor, @Editora, @IdadeMinRecomendada, @DataPublicacao, @Tipo, @Idioma, @Literatura, @Tamanho, @ImagemPri, @EbookFile, @CapacidadeEstoque );", conexao);
+
+                cmd.Parameters.Add("@CodBarras", MySqlDbType.Decimal).Value = livro.CodigoBarras;
+                cmd.Parameters.Add("@ISBN", MySqlDbType.Decimal).Value = livro.ISBN;
+                cmd.Parameters.Add("@Nome", MySqlDbType.VarChar).Value = livro.Nome;
+                cmd.Parameters.Add("@Preco", MySqlDbType.Decimal).Value = livro.Preco;
+                cmd.Parameters.Add("@Sinopse", MySqlDbType.Text).Value = livro.Sinopse;
+                cmd.Parameters.Add("@Autor", MySqlDbType.VarChar).Value = livro.Autor;
+                cmd.Parameters.Add("@Editora", MySqlDbType.VarChar).Value = livro.Editora;
+                cmd.Parameters.Add("@IdadeMinRecomendada", MySqlDbType.Int32).Value = livro.IdadeRecomendada;
+                cmd.Parameters.Add("@DataPublicacao", MySqlDbType.Date).Value = livro.DataPubli;
+                cmd.Parameters.Add("@Tipo", MySqlDbType.VarChar).Value = livro.TipoCapa;
+                cmd.Parameters.Add("@Idioma", MySqlDbType.VarChar).Value = livro.Idioma;
+                cmd.Parameters.Add("@Literatura", MySqlDbType.VarChar).Value = livro.Literatura;
+                cmd.Parameters.Add("@Tamanho", MySqlDbType.VarChar).Value = livro.Tamanho;
+                cmd.Parameters.Add("@ImagemPri", MySqlDbType.VarChar).Value = livro.Imagem;
+                cmd.Parameters.Add("@EbookFile", MySqlDbType.VarChar).Value = livro.ArquivoEbook;
+                cmd.Parameters.Add("@CapacidadeEstoque", MySqlDbType.Int32).Value = livro.Capacidade;
+
+                cmd.ExecuteNonQuery();
+                conexao.Close();
+            }
+        }
         public void ModificarPreco(int promocao, decimal preco) { throw new NotImplementedException(); }
         public void AtualizarHistoricoG(Livro livro) { throw new NotImplementedException(); }
         public void AtualizarHistoricoE(Livro livro) { throw new NotImplementedException(); }
