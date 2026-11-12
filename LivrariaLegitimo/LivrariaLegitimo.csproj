@@ -18,6 +18,8 @@
     <Folder Include="Libraries\Middleware\" />
     <Folder Include="Views\Client\" />
     <Folder Include="wwwroot\img\" />
+    <Folder Include="wwwroot\capas\" />
+    <Folder Include="wwwroot\ebooks\" />
   </ItemGroup>
 
   <ItemGroup>
