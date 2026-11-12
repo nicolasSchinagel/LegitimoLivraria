@@ -16,7 +16,7 @@
         <div class="opcoes-gerenciamento">
             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de compras")
             {
-            <a href="#" class="opcao-gerenciamento">
+            <a asp-area="Worker" asp-controller="Livro" asp-action="AdicionarLivro" class="opcao-gerenciamento no-underline">
                 <div class="icone-opcao">
                     <img src="~/img/mais.icon.png" alt="Adicionar livro">
                 </div>

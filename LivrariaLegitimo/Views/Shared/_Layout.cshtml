@@ -86,7 +86,7 @@
                         <a class="lateral-bar-content-block-list-item no-underline" asp-area="Worker" asp-controller="Default" asp-action="MenuGerenciar">Explorar gerenciamentos</a>
                             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de compras")
                             {
-                                <a class="lateral-bar-content-block-list-item no-underline">Adicionar Livro</a>
+                                <a class="lateral-bar-content-block-list-item no-underline" asp-area="Worker" asp-controller="Livro" asp-action="AdicionarLivro">Adicionar Livro</a>
                             }
                             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial" || _LoginFuncionario.GetFuncionario().Cargo == "caixa")
                             {

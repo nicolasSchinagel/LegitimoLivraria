@@ -354,11 +354,11 @@
         }
     });
 });
-       const tipoLivro = document.querySelector('select[name="Tipos"]');
+    const tipoLivro = document.querySelector('select[name="TipoCapa"]');
     const campoEbook = document.querySelector('.input-div-type-E-block').parentElement;
 
     function verificarTipoLivro() {
-        if (tipoLivro.options[tipoLivro.selectedIndex].text === 'Ebook') {
+        if (tipoLivro.value === 'e-book') {
             campoEbook.style.display = 'flex';
         } else {
             campoEbook.style.display = 'none';

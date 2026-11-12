@@ -185,9 +185,11 @@ namespace LivrariaLegitimo.Repository
                 (l.Editora ?? "").Contains(p, StringComparison.OrdinalIgnoreCase) ||
                 (l.Literatura ?? "").Contains(p, StringComparison.OrdinalIgnoreCase));
         }
-
+        
         private List<Livro> Selecionar(string sql, List<MySqlParameter> parametros)
+            
         {
+            /*
             var lista = new List<Livro>();
 
             using (var conexao = new MySqlConnection(_conexaoMySQL))
@@ -235,6 +237,8 @@ namespace LivrariaLegitimo.Repository
             }
 
             return lista;
+            */
+            throw new NotImplementedException();
         }
 
         
