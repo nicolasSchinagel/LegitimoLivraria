@@ -241,6 +241,9 @@ namespace LivrariaLegitimo.Repository
         //  NAO SAO SELECTS - ignorar / manter o que ja tem
         //  (so estao aqui pra classe compilar implementando ILivroRepository)
         
+
+
+        // Fazendo cadastro do Livro bem detalhado :)
         public void Cadastrar(Livro livro) {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
@@ -265,6 +268,17 @@ namespace LivrariaLegitimo.Repository
                 cmd.Parameters.Add("@CapacidadeEstoque", MySqlDbType.Int32).Value = livro.Capacidade;
 
                 cmd.ExecuteNonQuery();
+                // Como se trata de uma lista de gêneros, adicionamos uma por uma aqui, com outra procedure
+                foreach (string genero in livro.Generos)
+                {
+                    MySqlCommand cmdGenero = new MySqlCommand("call spAdicionarLivroGenero(@Genero, @CodBarras);", conexao);
+
+                    cmdGenero.Parameters.Add("@Genero", MySqlDbType.VarChar).Value = genero;
+                    cmdGenero.Parameters.Add("@CodBarras", MySqlDbType.Decimal).Value = livro.CodigoBarras;
+
+                    cmdGenero.ExecuteNonQuery();
+                }
+
                 conexao.Close();
             }
         }
