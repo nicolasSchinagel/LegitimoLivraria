@@ -1,0 +1,546 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FAFAFA;
+}
+
+.addLivro-main {
+    width: 100%;
+    height: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    gap: 40px;
+}
+
+.addLivro-main-header {
+    width: 90%;
+    height: 18vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 15px;
+}
+
+.addLivro-main-header-img {
+    height: 100%;
+    object-fit: contain;
+    width: auto;
+}
+
+.addLivro-main-header-texts {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.addLivro-main-header-title {
+    font-size: 40px;
+}
+
+.addLivro-main-header-subtitle {
+    font-size: 20px;
+    color: #3D3D3D;
+    font-weight: 500;
+}
+
+.addLivro-main-form {
+    background-color: white;
+    border: #ECECEC 1px solid;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 90%;
+    height: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 24px;
+}
+
+.addLivro-main-form-col {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+}
+
+.addLivro-main-form-col-part {
+    width: 49%;
+    height: auto;
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.addLivro-main-form-col-part-title {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 6vh;
+}
+
+.addLivro-main-form-col-part-title-icon {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.addLivro-main-form-col-part-title-text {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.input-div-type-1 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: start;
+    width: 100%;
+}
+
+.input-div-type-1-texts {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+    justify-content: start;
+}
+
+.label-div-type-1 {
+    font-size: 16px;
+    font-weight: 700;
+    color: black;
+}
+
+.obligate-div-type-1 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #C8060A;
+}
+
+.message-div-type-1 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #C8060A;
+}
+
+.input-div-type-1-block {
+    width: 100%;
+    height: 50px;
+    padding-right: 4px;
+    padding-left: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border: #ABABAB 1px solid;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-div-type-1-block-insert {
+    outline: none;
+    border: none;
+    display: flex;
+    color: black;
+    font-weight: 500;
+    font-size: 16px;
+    height: 100%;
+    width: 95%;
+}
+
+    .input-div-type-1-block-insert::placeholder {
+        text-align: left;
+        font-size: 16px;
+        color: #ABABAB;
+    }
+
+.input-double-line {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+}
+
+.message-div-type-2 {
+    font-size: 11px;
+    font-weight: 500;
+    color: #C8060A;
+}
+
+.input-div-type-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: start;
+    width: 49%;
+}
+
+.input-div-type-5-block {
+    padding: 4px;
+    border-radius: 8px;
+    width: 100%;
+    height: 50px;
+    padding-right: 4px;
+    padding-left: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border: #ABABAB 1px solid;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.input-div-type-5-block-insert {
+    outline: none;
+    border: none;
+    display: flex;
+    color: black;
+    font-weight: 500;
+    font-size: 16px;
+    height: 100%;
+    width: 90%;
+    padding-left: 10px;
+    background-color: transparent;
+    pointer-events: none;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.input-div-type-1-block-insertLong {
+    outline: none;
+    border: none;
+    display: flex;
+    color: black;
+    font-weight: 500;
+    font-size: 16px;
+    height: 100%;
+    width: 95%;
+    resize: none;
+}
+
+.input-div-type-1-block-long {
+    padding: 4px;
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+    padding-right: 4px;
+    padding-left: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border: #ABABAB 1px solid;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+textarea {
+    font-family: 'Inter', sans-serif;
+}
+
+    textarea::placeholder {
+        color: #ABABAB;
+    }
+
+.input-div-type-2-block-expand {
+    height: 80%;
+    width: auto;
+    cursor: pointer;
+}
+
+.input-div-type-3-block {
+    border-radius: 8px;
+    width: 100%;
+    height: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border: #ABABAB 1px solid;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.input-div-type-3-block-rs {
+    color: black;
+    font-weight: bold;
+    width: 12%;
+    text-align: center;
+    font-size: 20px;
+}
+
+.input-div-type-3-block-divisor {
+    background-color: #ABABAB;
+    height: 100%;
+    width: 1px;
+}
+
+.input-div-type-3-block-insert {
+    outline: none;
+    border: none;
+    display: flex;
+    color: black;
+    font-weight: 500;
+    font-size: 16px;
+    height: 100%;
+    width: 82%;
+}
+
+    .input-div-type-3-block-insert::placeholder {
+        text-align: left;
+        font-size: 16px;
+        color: #ABABAB;
+    }
+
+.input-div-type-3-block-icon {
+    width: 12%;
+    height: auto;
+    object-fit: contain;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+}
+
+.input-div-type-4-block {
+    aspect-ratio: 2.6/1;
+    width: 100%;
+    height: auto;
+    background-color: #FAFAFA;
+    border: #ABABAB 1px solid;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.input-div-type-4-block-insert {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-left: 8px;
+    padding-top: 8px;
+    align-items: center;
+}
+
+.input-div-type-4-block-icon {
+    height: 25%;
+    width: auto;
+    object-fit: contain;
+}
+
+input[type="file"]::file-selector-button {
+    display: none;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+input[type="file"] {
+    text-align: center;
+}
+
+.input-div-type-4-block-title {
+    font-weight: 700;
+    font-size: 28px;
+    color: black;
+}
+
+.input-div-type-4-block-subtitle {
+    font-weight: lighter;
+    font-size: 18px;
+    color: #ABABAB;
+}
+
+.addLivro-main-filters-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.addLivro-main-form-supercol-part {
+    display: flex;
+    width: 48%;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+}
+
+.div-mainList-section-filtros-generos-block-2 {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    gap: 10px;
+    align-items: center;
+}
+
+.div-mainList-section-filtros-generos-block-square-2 {
+    width: 15%;
+    aspect-ratio: 1/1;
+}
+
+.div-mainList-section-filtros-generos-block-square-title-2 {
+    font-size: 18px;
+    color: black;
+    font-weight: 500;
+    text-align: start;
+    width: 220px;
+}
+
+.addLivro-main-form-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 100px;
+}
+
+.addLivro-main-form-footer-cancelar {
+    border-radius: 8px;
+    border: 1px solid #ABABAB;
+    width: 20%;
+    aspect-ratio: 6/1;
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    transition: 0.6s;
+    cursor: pointer;
+}
+
+    .addLivro-main-form-footer-cancelar:hover {
+        background-color: #ABABAB;
+    }
+
+.addLivro-main-form-footer-cancelar-text {
+    color: black;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.addLivro-main-form-footer-registrar {
+    border-radius: 8px;
+    background-color: #C8060A;
+    border: none;
+    width: 30%;
+    aspect-ratio: 8/1;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: 0.6s;
+}
+
+    .addLivro-main-form-footer-registrar:hover {
+        background-color: #A0060A;
+    }
+
+.addLivro-main-form-footer-registrar-icon {
+    height: 80%;
+    width: auto;
+    object-fit: contain;
+}
+
+.addLivro-main-form-footer-registrar-title {
+    font-size: 23px;
+    font-weight: 700;
+    color: white;
+}
+
+.input-div-type-E-block {
+    aspect-ratio: 4.5/1;
+    width: 100%;
+    height: auto;
+    background-color: #FAFAFA;
+    border: #ABABAB 1px solid;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.input-div-type-E-block-insert {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-left: 8px;
+    padding-top: 8px;
+    align-items: center;
+}
+
+.input-div-type-E-block-title {
+    font-weight: 700;
+    font-size: 25px;
+    color: black;
+}
+
+.input-div-type-E-block-subtitle {
+    font-weight: lighter;
+    font-size: 15px;
+    color: #000000;
+    font-weight: lighter;
+}
