@@ -87,11 +87,11 @@ namespace LivrariaLegitimo.Models
         [Display(Name = "Imagem da Capa")]
         [Required(ErrorMessage = "A Imagem da Capa é obrigatória")]
         [RegularExpression(@"^.+\.(jpg|jpeg|png|webp)$", ErrorMessage = "A imagem deve estar no formato JPG, JPEG, PNG ou WebP.")]
-        public string Imagem { get; set; }
+        public IFormFile Imagem { get; set; }
 
         [Display(Name = "Arquivo do Ebook")]
         [RegularExpression(@"^.+\.pdf$", ErrorMessage = "O arquivo deve estar no formato PDF.")]
-        public string? ArquivoEbook { get; set; }
+        public IFormFile? ArquivoEbook { get; set; }
 
 
 
@@ -101,10 +101,10 @@ namespace LivrariaLegitimo.Models
         // Teste para obrigar arquivos Ebook quando tipo for Ebook
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (TipoCapa == "e-book" && string.IsNullOrWhiteSpace(ArquivoEbook))
+            if (TipoCapa == "e-book" && ArquivoEbook == null)
             {
                 yield return new ValidationResult(
-                    "O arquivo do Ebook é obrigatório para livros Ebook.",
+                    "O arquivo do Ebook é obrigatório para livros digitais.",
                     new[] { nameof(ArquivoEbook) }
                 );
             }

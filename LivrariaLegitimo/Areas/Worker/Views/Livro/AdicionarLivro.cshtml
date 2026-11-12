@@ -1,3 +1,375 @@
-﻿@{
+﻿@model LivrariaLegitimo.Models.Livro
+@{
 
+}
+<link rel="stylesheet" href="~/css/adicionarLivro.css" asp-append-version="true" />
+<main class="addLivro-main">
+        <section class="addLivro-main-header">
+            <img src="~/img/addEmblema.png" class="addLivro-main-header-img"/>
+            <div class="addLivro-main-header-texts">
+                <h1 class="addLivro-main-header-title">Adicionar Livro</h1>
+                <h3 class="addLivro-main-header-subtitle">Preencha as informações para adicionar um novo item ao catálogo</h3>
+            </div>
+        </section>
+
+
+    <form class="addLivro-main-form" method="post" enctype="multipart/form-data" asp-area="Worker" asp-controller="Livro" asp-action="AdicionarLivro">
+        <div class="addLivro-main-form-col">
+            <div class="addLivro-main-form-col-part">
+                <div class="addLivro-main-form-col-part-title">
+                    <img src="~/img/Basics_icon.png" class="addLivro-main-form-col-part-title-icon" />
+                    <h2 class="addLivro-main-form-col-part-title-text">Informações básicas</h2>
+                </div>
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label asp-for="Nome" class="label-div-type-1"></label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span asp-validation-for="Nome" class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input asp-for="Nome" type="text" class="input-div-type-1-block-insert" placeholder="Ex:Memórias Póstumas de Brás Cubas" />
+                    </div>
+                </div>
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label asp-for="TipoCapa" class="label-div-type-1"></label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span asp-validation-for="TipoCapa" class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-5-block">
+                        <select asp-for="TipoCapa" class="input-div-type-5-block-insert">
+                            <option value="capa mole">Capa mole</option>
+                            <option value="capa dura">Capa dura</option>
+                            <option value="e-book">Ebook</option>
+                        </select>
+                        <img src="~/img/expand_icon.png" class="input-div-type-2-block-expand" />
+                    </div>
+                </div>
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label asp-for="Autor" class="label-div-type-1"></label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span asp-validation-for="Autor" class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input asp-for="Autor" type="text" class="input-div-type-1-block-insert" placeholder="Ex:Machado de Assis" />
+                    </div>
+                </div>
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label asp-for="Editora" class="label-div-type-1"></label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span asp-validation-for="Editora" class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input asp-for="Editora" type="text" class="input-div-type-1-block-insert" placeholder="Ex:Companhia das Letras" />
+                    </div>
+                </div>
+                <div class="input-double-line">
+                    <div class="input-div-type-2">
+                        <div class="input-div-type-1-texts">
+                            <label asp-for="Tamanho" class="label-div-type-1"></label>
+                            <span class="obligate-div-type-1">*</span>
+                            <span asp-validation-for="Tamanho" class="message-div-type-2"></span>
+                        </div>
+                        <div class="input-div-type-1-block">
+                            <input asp-for="Tamanho" type="text" class="input-div-type-1-block-insert" placeholder="Ex:14x21 cm" />
+                        </div>
+                    </div>
+                    <div class="input-div-type-2">
+                        <div class="input-div-type-1-texts">
+                            <label asp-for="Capacidade" class="label-div-type-1"></label>
+                            <span class="obligate-div-type-1">*</span>
+                            <span asp-validation-for="Capacidade" class="message-div-type-2"></span>
+                        </div>
+                        <div class="input-div-type-1-block">
+                            <input asp-for="Capacidade" type="number" class="input-div-type-1-block-insert" placeholder="Ex: 40" />
+                        </div>
+                    </div>
+                </div>
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label asp-for="ISBN" class="label-div-type-1"></label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span asp-validation-for="ISBN" class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input asp-for="ISBN" type="text" class="input-div-type-1-block-insert" placeholder="XX-XX-XXXX-XXX-X" />
+                    </div>
+                </div>
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label asp-for="CodigoBarras" class="label-div-type-1"></label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span asp-validation-for="CodigoBarras" class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input asp-for="CodigoBarras" type="text" class="input-div-type-1-block-insert" placeholder="Insira o código de 13 dígitos" />
+                    </div>
+                </div>
+                <div class="col-part-divisor"></div>
+                <div class="addLivro-main-form-col-part-title">
+                    <img src="~/img/filters_icon.png" class="addLivro-main-form-col-part-title-icon" />
+                    <h2 class="addLivro-main-form-col-part-title-text">Classificações</h2>
+                </div>
+                <section class="addLivro-main-filters-section">
+                    <div class="addLivro-main-form-supercol-part">
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Fantasia" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Fantasia</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Aventura" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Aventura</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Ficção Científica" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Ficção Científica</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="História" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">História</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Romance" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Romance</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Biografia" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Biografia</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Autoajuda" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Autoajuda</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Terror" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Terror</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Mistério" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Mistério</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Filosofia" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Filosofia</h4>
+                        </div>
+
+                    </div>
+                    <div class="addLivro-main-form-supercol-part">
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Humor" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Humor</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Drama" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Drama</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Suspense" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Suspense</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Religião" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Religião</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Literatura Clássica" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Literatura Clássica</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Literatura Infantil" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Literatura Infantil</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Literatura Juvenil" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Literatura Juvenil</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Contos" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Contos</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Poesias" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Poesias</h4>
+                        </div>
+                        <div class="div-mainList-section-filtros-generos-block-2">
+                            <input type="checkbox" name="Generos" value="Mangás" class="div-mainList-section-filtros-generos-block-square-2" />
+                            <h4 class="div-mainList-section-filtros-generos-block-square-title-2">Mangás</h4>
+                        </div>
+                    </div>
+                </section>
+                <div class="col-part-divisor"></div>
+            </div>
+            <div class="addLivro-main-form-col-part">
+                <div class="addLivro-main-form-col-part-title">
+                    <img src="~/img/Description_icon.png" class="addLivro-main-form-col-part-title-icon" />
+                    <h2 class="addLivro-main-form-col-part-title-text">Descrição</h2>
+                </div>
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label asp-for="Sinopse" class="label-div-type-1"></label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span asp-validation-for="Sinopse" class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block-long">
+                        <textarea asp-for="Sinopse" class="input-div-type-1-block-insertLong" rows="14" cols="50" placeholder="Resume o livro com uma sinopse"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-part-divisor"></div>
+                <div class="addLivro-main-form-col-part-title">
+                    <img src="~/img/others_icon.png" class="addLivro-main-form-col-part-title-icon" />
+                    <h2 class="addLivro-main-form-col-part-title-text">Informações adicionais</h2>
+                </div>
+                <div class="input-double-line">
+                    <div class="input-div-type-2">
+                        <div class="input-div-type-1-texts">
+                            <label asp-for="IdadeRecomendada" class="label-div-type-1"></label>
+                            <span class="obligate-div-type-1">*</span>
+                            <span asp-validation-for="IdadeRecomendada" class="message-div-type-2"></span>
+                        </div>
+                        <div class="input-div-type-5-block">
+                            <select asp-for="IdadeRecomendada" class="input-div-type-5-block-insert">
+                                <option value="+3">+3</option>
+                                <option value="+5">+5</option>
+                                <option value="+10">+10</option>
+                                <option value="+14">+14</option>
+                                <option value="+18">+18</option>
+                            </select>
+                            <img src="~/img/expand_icon.png" class="input-div-type-2-block-expand" />
+                        </div>
+                    </div>
+                    <div class="input-div-type-2">
+                        <div class="input-div-type-1-texts">
+                            <label asp-for="Idioma" class="label-div-type-1"></label>
+                            <span class="obligate-div-type-1">*</span>
+                            <span asp-validation-for="Idioma" class="message-div-type-2"></span>
+                        </div>
+                        <div class="input-div-type-5-block">
+                            <select asp-for="Idioma" class="input-div-type-5-block-insert">
+                                <option value="português">Português</option>
+                                <option value="inglês">Inglês</option>
+                                <option value="espanhol">Espanhol</option>
+                            </select>
+                            <img src="~/img/expand_icon.png" class="input-div-type-2-block-expand" />
+                        </div>
+                    </div>
+                </div>
+                <div class="input-double-line">
+                    <div class="input-div-type-2">
+                        <div class="input-div-type-1-texts">
+                            <label asp-for="Preco" class="label-div-type-1"></label>
+                            <span class="obligate-div-type-1">*</span>
+                            <span asp-validation-for="Preco" class="message-div-type-2"></span>
+                        </div>
+                        <div class="input-div-type-3-block">
+                            <h3 class="input-div-type-3-block-rs">R$</h3>
+                            <div class="input-div-type-3-block-divisor"></div>
+                            <input asp-for="Preco" type="number" step="0.01" class="input-div-type-3-block-insert" placeholder="Ex: 50,00" />
+                        </div>
+                    </div>
+                    <div class="input-div-type-2">
+                        <div class="input-div-type-1-texts">
+                            <label asp-for="DataPubli" class="label-div-type-1"></label>
+                            <span class="obligate-div-type-1">*</span>
+                            <span asp-validation-for="DataPubli" class="message-div-type-2"></span>
+                        </div>
+                        <div class="input-div-type-3-block">
+                            <img src="~/img/date_icon.png" class="input-div-type-3-block-icon" />
+                            <div class="input-div-type-3-block-divisor"></div>
+                            <input asp-for="DataPubli" type="date" class="input-div-type-3-block-insert" />
+                        </div>
+                    </div>
+                </div>
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label asp-for="Imagem" class="label-div-type-1"></label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span asp-validation-for="Imagem" class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-4-block">
+                        <input asp-for="Imagem" type="file" accept=".jpg,.jpeg,.png,.webp" class="input-div-type-4-block-insert" />
+                        <img src="~/img/image_icon.png" class="input-div-type-4-block-icon" />
+                        <h2 class="input-div-type-4-block-title">Clique para selecionar</h2>
+                        <h3 class="input-div-type-4-block-subtitle">ou arraste a imagem aqui</h3>
+                        <h3 class="input-div-type-4-block-subtitle">Formato: jpg, png e Webp</h3>
+                    </div>
+                </div>
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label asp-for="Literatura" class="label-div-type-1"></label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span asp-validation-for="Literatura" class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-5-block">
+                        <select asp-for="Literatura" class="input-div-type-5-block-insert">
+                            <option value="internacional">Literatura Estrangeira</option>
+                            <option value="nacional">Literatura Nacional</option>
+                        </select>
+                        <img src="~/img/expand_icon.png" class="input-div-type-2-block-expand" />
+                    </div>
+                </div>
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label asp-for="ArquivoEbook" class="label-div-type-1"></label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span asp-validation-for="ArquivoEbook" class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-E-block">
+                        <input asp-for="ArquivoEbook" type="file" accept=".pdf" class="input-div-type-E-block-insert" />
+                        <img src="~/img/ebook_icon.png" class="input-div-type-4-block-icon" />
+                        <h2 class="input-div-type-E-block-title">Clique para selecionar</h2>
+                        <h3 class="input-div-type-E-block-subtitle">arquivo em pdf</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="addLivro-main-form-footer">
+            <a class="addLivro-main-form-footer-cancelar">
+                <h3 class="addLivro-main-form-footer-cancelar-text">Cancelar</h3>
+            </a>
+            <button type="submit" class="addLivro-main-form-footer-registrar">
+                <img src="~/img/file_icon.png" class="addLivro-main-form-footer-registrar-icon" />
+                <h2 class="addLivro-main-form-footer-registrar-title">REGISTRAR</h2>
+            </button>
+        </div>
+    </form>
+
+    </main>
+    <script>
+        document.querySelectorAll(".input-div-type-2-block-expand").forEach(img => {
+    let ativo = false;
+
+    img.addEventListener("click", function () {
+        const container = this.closest(".input-div-type-5-block");
+        const select = container.querySelector(".input-div-type-5-block-insert");
+
+        if (!ativo) {
+            select.showPicker();
+            ativo = true;
+        } else {
+            select.blur();
+            ativo = false;
+        }
+    });
+});
+       const tipoLivro = document.querySelector('select[name="Tipos"]');
+    const campoEbook = document.querySelector('.input-div-type-E-block').parentElement;
+
+    function verificarTipoLivro() {
+        if (tipoLivro.options[tipoLivro.selectedIndex].text === 'Ebook') {
+            campoEbook.style.display = 'flex';
+        } else {
+            campoEbook.style.display = 'none';
+        }
+    }
+
+    tipoLivro.addEventListener('change', verificarTipoLivro);
+
+    verificarTipoLivro();
+    </script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
