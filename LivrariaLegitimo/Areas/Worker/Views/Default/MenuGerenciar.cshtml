@@ -1,0 +1,113 @@
+﻿@inject LivrariaLegitimo.Libraries.Login.LoginFuncionario _LoginFuncionario
+
+<link rel="stylesheet" href="~/css/menuGerenciar.css" asp-append-version="true" />
+<main class="gerenciamento">
+    <section class="gerenciamento-card">
+        <div class="gerenciamento-titulo">
+            <div class="icone-titulo">
+                <img src="~/img/tabela.icon.png" alt="Tituio">
+            </div>
+            <h1>Qual será o tipo de gerenciamento que será feito?</h1>
+
+            <p>Selecione uma opção abaixo para continuar</p>
+        </div>
+        <div class="opcoes-gerenciamento">
+            @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de compras")
+            {
+            <a href="#" class="opcao-gerenciamento">
+                <div class="icone-opcao">
+                    <img src="~/img/mais.icon.png" alt="Adicionar livro">
+                </div>
+                <div class="texto-opcao">
+                    <h2>ADICIONAR LIVRO</h2>
+                    <p>Adicionar um novo livro na loja, ou novo produto.</p>
+                </div>
+                <div class="seta-opcao">
+                    <img src="~/img/setaDireitaVermelha.png">
+                </div>
+            </a>
+            }
+            @if(_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial" || _LoginFuncionario.GetFuncionario().Cargo == "caixa")
+            {
+                
+            <a href="#" class="opcao-gerenciamento">
+                <div class="icone-opcao">
+                    <img src="~/img/redHand.png" alt="Registrar venda">
+                </div>
+                <div class="texto-opcao">
+                    <h2>REGISTRAR VENDA</h2>
+                    <p>Registrar vendas feitas na loja física ao vivo.</p>
+                </div>
+                <div class="seta-opcao">
+                    <img src="~/img/setaDireitaVermelha.png">
+                </div>
+            </a>
+            }
+            @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de compras")
+            {
+                
+            
+            <a href="#" class="opcao-gerenciamento">
+                <div class="icone-opcao">
+                    <img src="~/img/casaVermelha.png" alt="Repor estoque">
+                </div>
+                <div class="texto-opcao">
+                    <h2>REPOSIÇÃO DE ESTOQUE</h2>
+                    <p>Fazer reposição do estoque de um livro.</p>
+                </div>
+                <div class="seta-opcao">
+                    <img src="~/img/setaDireitaVermelha.png">
+                </div>
+            </a>
+            }
+            @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de contratação")
+            {
+
+                <a href="#" class="opcao-gerenciamento">
+                <div class="icone-opcao">
+                    <img src="~/img/imagens/funcionario.icon.png" alt="Cadastrar funcionário">
+                </div>
+                <div class="texto-opcao">
+                    <h2>CADASTRAR FUNCIONÁRIO</h2>
+                    <p>Cadastrar funcionários contratados pela empresa.</p>
+                </div>
+                <div class="seta-opcao">
+                    <img src="~/img/setaDireitaVermelha.png">
+                </div>
+            </a>
+            }
+            @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial")
+            {
+
+                <a href="#" class="opcao-gerenciamento">
+                <div class="icone-opcao">
+                    <img src="~/img/etiqueta.icon.png" alt="Modificar preços">
+                </div>
+                <div class="texto-opcao">
+                    <h2>MODIFICAR PREÇOS</h2>
+                    <p>Alterar preços e adicionar promoções nos livros.</p>
+                </div>
+                <div class="seta-opcao">
+                    <img src="~/img/setaDireitaVermelha.png">
+                </div>
+            </a>
+            }
+            @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial" || _LoginFuncionario.GetFuncionario().Cargo == "caixa")
+            {
+                <a href="#" class="opcao-gerenciamento">
+                    <div class="icone-opcao">
+                        <img src="~/img/cliente.icon.png" alt="Cadastrar cliente">
+                    </div>
+                    <div class="texto-opcao">
+                        <h2>CADASTRAR CLIENTE</h2>
+                        <p>Fazer um cadastro para um cliente.</p>
+                    </div>
+                    <div class="seta-opcao">
+                        <img src="~/img/setaDireitaVermelha.png">
+                    </div>
+                </a>
+            }
+          
+        </div>
+    </section>
+</main>

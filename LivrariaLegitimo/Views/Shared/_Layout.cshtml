@@ -83,29 +83,29 @@
                 <div class="lateral-bar-content-block">
                     <h2 class="lateral-bar-content-block-title">Gerenciamentos</h2>
                     <div class="lateral-bar-content-block-list">
-                        <a class="lateral-bar-content-block-list-item">Explorar gerenciamentos</a>
+                        <a class="lateral-bar-content-block-list-item no-underline" asp-area="Worker" asp-controller="Default" asp-action="MenuGerenciar">Explorar gerenciamentos</a>
                             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de compras")
                             {
-                                <a class="lateral-bar-content-block-list-item">Adicionar Livro</a>
+                                <a class="lateral-bar-content-block-list-item no-underline">Adicionar Livro</a>
                             }
                             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial" || _LoginFuncionario.GetFuncionario().Cargo == "caixa")
                             {
-                                <a class="lateral-bar-content-block-list-item">Registrar Venda</a>
+                                <a class="lateral-bar-content-block-list-item no-underline">Registrar Venda</a>
                             }
                             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de compras")
                             {
-                                <a class="lateral-bar-content-block-list-item">Fazer Reposição</a>  
+                                <a class="lateral-bar-content-block-list-item no-underline">Fazer Reposição</a>  
                             }
                             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de contratação")
                             {
-                                <a class="lateral-bar-content-block-list-item">Cadastrar Funcionário</a>
+                                <a class="lateral-bar-content-block-list-item no-underline">Cadastrar Funcionário</a>
                             }
                             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial")
                             {
-                                <a class="lateral-bar-content-block-list-item">Modificar Preços</a>
+                                <a class="lateral-bar-content-block-list-item no-underline">Modificar Preços</a>
                             }
                             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial" || _LoginFuncionario.GetFuncionario().Cargo == "caixa"){
-                                <a class="lateral-bar-content-block-list-item">Cadastrar Cliente</a>
+                                <a class="lateral-bar-content-block-list-item no-underline">Cadastrar Cliente</a>
                             }
                         
                     </div>

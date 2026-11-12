@@ -7,7 +7,7 @@ wwwroot\css\inputs.css
 wwwroot\css\lateralMenu.css
 wwwroot\css\list.css
 wwwroot\css\login.css
-wwwroot\css\managements.css
+wwwroot\css\menuGerenciar.css
 wwwroot\favicon.ico
 wwwroot\img\addEmblema.png
 wwwroot\img\arrow-carousel.png
@@ -173,7 +173,7 @@ C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\Livrari
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\index.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\inputs.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\list.css
-C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\managements.css
+C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\menuGerenciar.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\favicon.ico
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\js\site.js
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
