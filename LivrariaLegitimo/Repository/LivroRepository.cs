@@ -3,6 +3,7 @@ using LivrariaLegitimo.Libraries.Login;
 using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
 using MySql.Data.MySqlClient;
+using System.Collections;
 using System.Data;
 using System.Globalization;
 using X.PagedList;
@@ -65,23 +66,61 @@ namespace LivrariaLegitimo.Repository
 
             }
         }
-        public IEnumerable<Livro> ObterTodosLivros()
+        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> ObterTodosLivros()
         {
-            var lista = new List<Livro>();
+            List<(Livro, string arquivoImagem, string arquivoEbook)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook)>();
 
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from ViewLivro order by Nome", conexao);
 
-                using (MySqlDataReader dr = cmd.ExecuteReader())
+                string consulta = "select * from ViewLivro where(Quantidade > 0) order by Nome";
+
+                if (_loginFuncionario.GetFuncionario() != null)
                 {
-                    while (dr.Read())
-                        lista.Add(MapearLivro(dr));
+                    consulta = "select * from ViewLivro order by Nome";
                 }
+
+                MySqlCommand cmd = new MySqlCommand(consulta, conexao);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+
+                conexao.Close();
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    listaLivro.Add((
+                        new Livro
+                        {
+                            CodigoBarras = (decimal)(dr["codBarras"]),
+                            ISBN = Convert.ToUInt64(dr["ISBN"]).ToString(@"000-0-00-000000-0"),
+                            Nome = (string)(dr["Nome"]),
+                            Preco = Convert.ToDecimal(dr["Preco"]).ToString("N2", CultureInfo.GetCultureInfo("pt-BR")),
+                            Sinopse = (string)(dr["Sinopse"]),
+                            Autor = (string)(dr["Autor"]),
+                            Editora = (string)(dr["Editora"]),
+                            IdadeRecomendada = (string)(dr["IdadeMinRecomendada"]),
+                            DataPubli = (DateOnly)(dr["DataPublicacao"]),
+                            TipoCapa = (string)(dr["Tipo"]),
+                            Idioma = (string)(dr["Idioma"]),
+                            Literatura = (string)(dr["Literatura"]),
+                            Tamanho = (string)(dr["Tamanho"]),
+                            Quantidade = (int)(dr["Quantidade"]),
+                            Capacidade = (int)(dr["capacidadeEstoque"]),
+                            Generos = (List<string>)(dr["Generos"])
+
+                        },
+                        dr["ImagemPri"].ToString(),
+                        dr["ArquivoEbook"].ToString()
+                        ));
+                }
+                return listaLivro ;
             }
-            return lista;
         }
+
+
 
         // ---------- MELHORES AVALIADOS ----------
         public IEnumerable<Livro> ObterMelhoresAvaliados()
