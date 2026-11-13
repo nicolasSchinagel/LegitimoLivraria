@@ -1,5 +1,6 @@
 ﻿using LivrariaLegitimo.Libraries.Filtro;
 using LivrariaLegitimo.Repository.Contract;
+using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,10 +20,21 @@ namespace LivrariaLegitimo.Areas.Worker.Controllers
         }
 
         [HttpGet]
-        [FuncionarioAutorizacao("administrador total", "gerente de compras", "gerente de contratação", "gerente comercial", "caixa")]
+        [FuncionarioAutorizacao("administrador total", "gerente de compras")]
         public IActionResult AdicionarLivro()
         {
             return View();
         }
+
+
+        [HttpPost]
+        [FuncionarioAutorizacao("administrador total", "gerente de compras")]
+        public IActionResult AdicionarLivro(Livro livro)
+        {
+            _livroRepository.Cadastrar(livro);
+            TempData["msg"] = "Cadastro realizado!";
+            return RedirectToAction("MenuGerenciar", "Default");
+        }
+        
     }
 }

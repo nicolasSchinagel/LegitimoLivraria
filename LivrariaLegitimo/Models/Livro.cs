@@ -16,8 +16,9 @@ namespace LivrariaLegitimo.Models
 
         [Display(Name = "Preço")]
         [Required(ErrorMessage = "O Preço é obrigatório")]
-        [Range(0.01, 99999999.99, ErrorMessage = "O preço deve ser maior que zero.")]
-        public decimal Preco { get; set; }
+        [StringLength(7, MinimumLength = 1, ErrorMessage = "O Preço deve ter pelo menos um número, ou até 6 digitos")]
+        [RegularExpression(@"^(?!0+$).+", ErrorMessage = "O Preço precisa ser maior que 0")]
+        public string Preco { get; set; }
 
         [Display(Name = "Autor")]
         [Required(ErrorMessage = "O Autor é obrigatório")]
@@ -76,8 +77,8 @@ namespace LivrariaLegitimo.Models
 
         [Display(Name = "ISBN")]
         [Required(ErrorMessage = "O ISBN é obrigatório")]
-        [RegularExpression(@"^\d{13}$", ErrorMessage = "O ISBN deve conter exatamente 13 números.")]
-        public decimal ISBN { get; set; }
+        [RegularExpression(@"^\d{16}$", ErrorMessage = "O ISBN deve conter exatamente 13 números.")]
+        public string ISBN { get; set; }
 
         [Display(Name = "Literatura")]
         [Required(ErrorMessage = "A Literatura é obrigatória")]

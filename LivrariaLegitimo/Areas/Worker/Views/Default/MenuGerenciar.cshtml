@@ -2,6 +2,12 @@
 @{
 
 }
+@if (TempData["msg"] != null)
+{
+    <script>
+        alert('@TempData["msg"]');
+    </script>
+}
 <link rel="stylesheet" href="~/css/menuGerenciar.css" asp-append-version="true" />
 <main class="gerenciamento">
     <section class="gerenciamento-card">

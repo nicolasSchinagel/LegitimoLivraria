@@ -210,8 +210,9 @@
             <h2 class="footer-foot-line"> <span class="footer-foot-span">Condições de uso</span> | <span class="footer-foot-span">Cookies</span> | <span class="footer-foot-span">@@2026 Legitimolivros.com</span></h2>
         </section>
     </footer>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/mask/jquery.mask.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
             const lateralBar = document.querySelector('.lateral-bar');
             const lateralBarLeave = document.querySelector('.lateral-bar-userDiv-leave');
@@ -224,7 +225,8 @@
                 lateralBar.style.left = '0%';
             });
     </script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

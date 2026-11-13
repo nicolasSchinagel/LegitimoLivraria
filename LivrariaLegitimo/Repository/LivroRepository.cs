@@ -3,6 +3,7 @@ using LivrariaLegitimo.Repository.Contract;
 using MySql.Data.MySqlClient;
 using X.PagedList;
 using X.PagedList.Extensions;
+using LivrariaLegitimo.GerenciaArquivos;
 
 namespace LivrariaLegitimo.Repository
 {
@@ -253,11 +254,13 @@ namespace LivrariaLegitimo.Repository
             {
                 conexao.Open();
                 MySqlCommand cmd = new MySqlCommand("call spAdicionarLivro(@CodBarras, @ISBN , @Nome, @Preco , @Sinopse , @Autor, @Editora, @IdadeMinRecomendada, @DataPublicacao, @Tipo, @Idioma, @Literatura, @Tamanho, @ImagemPri, @EbookFile, @CapacidadeEstoque );", conexao);
-
+                var caminhoImagem = GerenciadorCapa.CadastrarCapaLivro(livro.Imagem);
+                var caminhoEbook = GerenciadorEbook.CadastrarArquivoEbook(livro.ArquivoEbook);
+                
                 cmd.Parameters.Add("@CodBarras", MySqlDbType.Decimal).Value = livro.CodigoBarras;
-                cmd.Parameters.Add("@ISBN", MySqlDbType.Decimal).Value = livro.ISBN;
+                cmd.Parameters.Add("@ISBN", MySqlDbType.Decimal).Value = Convert.ToDecimal(livro.ISBN.Replace("-", ""));
                 cmd.Parameters.Add("@Nome", MySqlDbType.VarChar).Value = livro.Nome;
-                cmd.Parameters.Add("@Preco", MySqlDbType.Decimal).Value = livro.Preco;
+                cmd.Parameters.Add("@Preco", MySqlDbType.Decimal).Value = Convert.ToInt32(livro.Preco.Replace(",", "."));
                 cmd.Parameters.Add("@Sinopse", MySqlDbType.Text).Value = livro.Sinopse;
                 cmd.Parameters.Add("@Autor", MySqlDbType.VarChar).Value = livro.Autor;
                 cmd.Parameters.Add("@Editora", MySqlDbType.VarChar).Value = livro.Editora;
@@ -267,8 +270,8 @@ namespace LivrariaLegitimo.Repository
                 cmd.Parameters.Add("@Idioma", MySqlDbType.VarChar).Value = livro.Idioma;
                 cmd.Parameters.Add("@Literatura", MySqlDbType.VarChar).Value = livro.Literatura;
                 cmd.Parameters.Add("@Tamanho", MySqlDbType.VarChar).Value = livro.Tamanho;
-                cmd.Parameters.Add("@ImagemPri", MySqlDbType.VarChar).Value = livro.Imagem;
-                cmd.Parameters.Add("@EbookFile", MySqlDbType.VarChar).Value = livro.ArquivoEbook;
+                cmd.Parameters.Add("@ImagemPri", MySqlDbType.VarChar).Value = caminhoImagem;
+                cmd.Parameters.Add("@EbookFile", MySqlDbType.VarChar).Value = caminhoEbook;
                 cmd.Parameters.Add("@CapacidadeEstoque", MySqlDbType.Int32).Value = livro.Capacidade;
 
                 cmd.ExecuteNonQuery();

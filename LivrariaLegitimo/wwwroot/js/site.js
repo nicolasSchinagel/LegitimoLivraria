@@ -2,11 +2,11 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-
+// site.js
 //Máscaras
 $(document).ready(function () {
     $('.CEP').mask('00000-');
-    $('.dinheiro').mask('000.000.000.000.000,00', { reverse: true });
+    $('.dinheiro').mask('000.000,00', { reverse: true });
     $('.CPF').mask('000.000.000-00', { reverse: true });
     $('.CNPJ').mask('00.000.000/0000-00', { reverse: true });
     $('.NumeroCartao').mask('0000.0000.0000.0000', { reverse: true });
