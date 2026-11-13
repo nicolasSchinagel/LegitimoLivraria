@@ -1,4 +1,5 @@
 ﻿using LivrariaLegitimo.GerenciaArquivos;
+using LivrariaLegitimo.Libraries.Login;
 using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
 using MySql.Data.MySqlClient;
@@ -12,8 +13,15 @@ namespace LivrariaLegitimo.Repository
     {
         private readonly string _conexaoMySQL;
         IConfiguration _config;
-
-
+        private readonly LoginCliente _loginCliente;
+        private readonly LoginFuncionario _loginFuncionario;
+        public LivroRepository(LoginCliente loginCliente, LoginFuncionario loginFuncionario, IConfiguration conf)
+        {
+            _loginCliente = loginCliente;
+            _loginFuncionario = loginFuncionario;
+            _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
+            _config = conf;
+        }
 
 
         public IEnumerable<Livro> ObterTodosLivros()
