@@ -68,7 +68,7 @@ namespace LivrariaLegitimo.Models
 
         [Display(Name = "Capacidade do Estoque")]
         [Required(ErrorMessage = "A Capacidade do Estoque é obrigatória")]
-        [Range(0, int.MaxValue, ErrorMessage = "A capacidade deve ser um número positivo.")]
+        [Range(10, 100, ErrorMessage = "A capacidade deve estar entre 10 e 100.")]
         public int Capacidade { get; set; }
 
         [Display(Name = "Quantidade")]
@@ -77,7 +77,7 @@ namespace LivrariaLegitimo.Models
 
         [Display(Name = "ISBN")]
         [Required(ErrorMessage = "O ISBN é obrigatório")]
-        [RegularExpression(@"^\d{16}$", ErrorMessage = "O ISBN deve conter exatamente 13 números.")]
+        [RegularExpression(@"^\d{3}-\d{2}-\d{4}-\d{3}-\d{1}$", ErrorMessage = "O ISBN deve conter 13 números")]
         public string ISBN { get; set; }
 
         [Display(Name = "Literatura")]

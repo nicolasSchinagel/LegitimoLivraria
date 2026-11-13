@@ -252,19 +252,27 @@ namespace LivrariaLegitimo.Repository
         public void Cadastrar(Livro livro) {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
+                string caminhoEbook;
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("call spAdicionarLivro(@CodBarras, @ISBN , @Nome, @Preco , @Sinopse , @Autor, @Editora, @IdadeMinRecomendada, @DataPublicacao, @Tipo, @Idioma, @Literatura, @Tamanho, @ImagemPri, @EbookFile, @CapacidadeEstoque );", conexao);
+                MySqlCommand cmd = new MySqlCommand("call spAdicionarLivro(@CodBarras, @ISBN , @Nome, @Preco , @Sinopse , @Autor, @Editora, @IdadeMinRecomendada, @DataPublicacao, @Tipo, @Idioma, @Literatura, @Tamanho, @ImagemPri, @EbookFile, @CapacidadeEstoque);", conexao);
                 var caminhoImagem = GerenciadorCapa.CadastrarCapaLivro(livro.Imagem);
-                var caminhoEbook = GerenciadorEbook.CadastrarArquivoEbook(livro.ArquivoEbook);
-                
+                if(livro.TipoCapa == "Ebook")
+                {
+                    caminhoEbook = GerenciadorEbook.CadastrarArquivoEbook(livro.ArquivoEbook);
+                }
+                else
+                {
+                    caminhoEbook = "";
+                }
+
                 cmd.Parameters.Add("@CodBarras", MySqlDbType.Decimal).Value = livro.CodigoBarras;
                 cmd.Parameters.Add("@ISBN", MySqlDbType.Decimal).Value = Convert.ToDecimal(livro.ISBN.Replace("-", ""));
                 cmd.Parameters.Add("@Nome", MySqlDbType.VarChar).Value = livro.Nome;
-                cmd.Parameters.Add("@Preco", MySqlDbType.Decimal).Value = Convert.ToInt32(livro.Preco.Replace(",", "."));
+                cmd.Parameters.Add("@Preco", MySqlDbType.Decimal).Value = Convert.ToDecimal(livro.Preco.Replace(",", "."));
                 cmd.Parameters.Add("@Sinopse", MySqlDbType.Text).Value = livro.Sinopse;
                 cmd.Parameters.Add("@Autor", MySqlDbType.VarChar).Value = livro.Autor;
                 cmd.Parameters.Add("@Editora", MySqlDbType.VarChar).Value = livro.Editora;
-                cmd.Parameters.Add("@IdadeMinRecomendada", MySqlDbType.Int32).Value = livro.IdadeRecomendada;
+                cmd.Parameters.Add("@IdadeMinRecomendada", MySqlDbType.VarChar).Value = livro.IdadeRecomendada;
                 cmd.Parameters.Add("@DataPublicacao", MySqlDbType.Date).Value = livro.DataPubli;
                 cmd.Parameters.Add("@Tipo", MySqlDbType.VarChar).Value = livro.TipoCapa;
                 cmd.Parameters.Add("@Idioma", MySqlDbType.VarChar).Value = livro.Idioma;
