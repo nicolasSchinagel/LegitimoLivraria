@@ -228,7 +228,7 @@
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\LivroRepository.cs",
               "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\LivroRepository.cs",
               "RelativeToolTip": "LivrariaLegitimo\\Repository\\LivroRepository.cs",
-              "ViewState": "AgIAAAUBAAAAAAAAAAAAACIBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAAAGUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-02T22:55:56.045Z",
               "EditorCaption": ""
@@ -243,8 +243,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Areas\\Worker\\Controllers\\LivroController.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAEwCgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T20:29:54.544Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-12T20:29:54.544Z"
             },
             {
               "$type": "Document",
@@ -256,8 +255,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Controllers\\DefaultController.cs",
               "ViewState": "AgIAAFgAAAAAAAAAAAAAAGcAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-08T13:48:14.774Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-08T13:48:14.774Z"
             },
             {
               "$type": "Document",
@@ -269,8 +267,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\GerenciaArquivos\\GerenciadorCapa.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T18:47:38.762Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-12T18:47:38.762Z"
             },
             {
               "$type": "Document",
@@ -280,7 +277,7 @@
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Models\\Livro.cs",
               "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Models\\Livro.cs",
               "RelativeToolTip": "LivrariaLegitimo\\Models\\Livro.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAHQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-03T11:22:43.624Z",
               "EditorCaption": ""
@@ -307,8 +304,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\wwwroot\\js\\site.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-11-03T12:08:34.685Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-03T12:08:34.685Z"
             },
             {
               "$type": "Document",
