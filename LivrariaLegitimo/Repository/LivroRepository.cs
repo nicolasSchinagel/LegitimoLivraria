@@ -3,6 +3,7 @@ using LivrariaLegitimo.Libraries.Login;
 using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
 using MySql.Data.MySqlClient;
+using System.Data;
 using System.Globalization;
 using X.PagedList;
 using X.PagedList.Extensions;
@@ -23,7 +24,47 @@ namespace LivrariaLegitimo.Repository
             _config = conf;
         }
 
+        public (Livro, string caminhoImagem, string caminhoEbook) ObterLivro(string codBarras)
+        {
 
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                string caminhoImagem = "";
+                string caminhoEbook = "";
+                MySqlCommand cmd = new MySqlCommand("select * from ViewLivro where(CodBarras = @CodBarras)", conexao);
+                cmd.Parameters.AddWithValue("@CodBarras", Convert.ToDecimal(codBarras));
+
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+
+                Livro livro = new Livro();
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (dr.Read())
+                {
+                    livro.CodigoBarras = (decimal)(dr["codBarras"]);
+                    livro.ISBN = Convert.ToUInt64(dr["ISBN"]).ToString(@"000-0-00-000000-0");
+                    livro.Nome = (string)(dr["Nome"]);
+                    livro.Preco = Convert.ToDecimal(dr["Preco"]).ToString("N2", CultureInfo.GetCultureInfo("pt-BR"));
+                    livro.Sinopse = (string)(dr["Sinopse"]);
+                    livro.Autor = (string)(dr["Autor"]);
+                    livro.Editora = (string)(dr["Editora"]);
+                    livro.IdadeRecomendada = (string)(dr["IdadeMinRecomendada"]);
+                    livro.DataPubli = (DateOnly)(dr["DataPublicacao"]);
+                    livro.TipoCapa = (string)(dr["Tipo"]);
+                    livro.Idioma = (string)(dr["Idioma"]);
+                    livro.Literatura = (string)(dr["Literatura"]);
+                    livro.Tamanho = (string)(dr["Tamanho"]);
+                    caminhoImagem = (string)(dr["ImagemPri"]);
+                    caminhoEbook = (string)(dr["ArquivoEbook"]);
+                    livro.Quantidade = (int)(dr["Quantidade"]);
+                    livro.Capacidade = (int)(dr["capacidadeEstoque"]);
+                    livro.Generos = (List<string>)(dr["Generos"]);
+                }
+                return(livro, caminhoImagem,  caminhoEbook);
+
+            }
+        }
         public IEnumerable<Livro> ObterTodosLivros()
         {
             var lista = new List<Livro>();
