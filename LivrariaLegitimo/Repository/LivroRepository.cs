@@ -1,9 +1,10 @@
-﻿using LivrariaLegitimo.Models;
+﻿using LivrariaLegitimo.GerenciaArquivos;
+using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
 using MySql.Data.MySqlClient;
+using System.Globalization;
 using X.PagedList;
 using X.PagedList.Extensions;
-using LivrariaLegitimo.GerenciaArquivos;
 
 namespace LivrariaLegitimo.Repository
 {
@@ -268,7 +269,7 @@ namespace LivrariaLegitimo.Repository
                 cmd.Parameters.Add("@CodBarras", MySqlDbType.Decimal).Value = livro.CodigoBarras;
                 cmd.Parameters.Add("@ISBN", MySqlDbType.Decimal).Value = Convert.ToDecimal(livro.ISBN.Replace("-", ""));
                 cmd.Parameters.Add("@Nome", MySqlDbType.VarChar).Value = livro.Nome;
-                cmd.Parameters.Add("@Preco", MySqlDbType.Decimal).Value = Convert.ToDecimal(livro.Preco.Replace(",", "."));
+                cmd.Parameters.Add("@Preco", MySqlDbType.Decimal).Value = decimal.Parse(livro.Preco.Replace(".", "").Replace(",", "."), CultureInfo.InvariantCulture);
                 cmd.Parameters.Add("@Sinopse", MySqlDbType.Text).Value = livro.Sinopse;
                 cmd.Parameters.Add("@Autor", MySqlDbType.VarChar).Value = livro.Autor;
                 cmd.Parameters.Add("@Editora", MySqlDbType.VarChar).Value = livro.Editora;
