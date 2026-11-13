@@ -59,6 +59,7 @@ namespace LivrariaLegitimo.Repository
                     caminhoImagem = (string)(dr["ImagemPri"]);
                     caminhoEbook = (string)(dr["ArquivoEbook"]);
                     livro.Quantidade = (int)(dr["Quantidade"]);
+                    livro.PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"]);
                     livro.Capacidade = (int)(dr["capacidadeEstoque"]);
                     livro.Generos = (List<string>)(dr["Generos"]);
                 }
@@ -109,7 +110,8 @@ namespace LivrariaLegitimo.Repository
                             Tamanho = (string)(dr["Tamanho"]),
                             Quantidade = (int)(dr["Quantidade"]),
                             Capacidade = (int)(dr["capacidadeEstoque"]),
-                            Generos = (List<string>)(dr["Generos"])
+                            Generos = (List<string>)(dr["Generos"]),
+                            PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
 
                         },
                         dr["ImagemPri"].ToString(),
@@ -122,224 +124,6 @@ namespace LivrariaLegitimo.Repository
 
 
 
-        // ---------- MELHORES AVALIADOS ----------
-        public IEnumerable<Livro> ObterMelhoresAvaliados()
-        {
-            var lista = new List<Livro>();
-
-            using (var conexao = new MySqlConnection(_conexaoMySQL))
-            {
-                conexao.Open();
-                MySqlCommand cmd = new MySqlCommand(
-                    @"select l.* from ViewLivro l
-              inner join Avaliacao a on a.CodigoBarras = l.CodigoBarras
-              group by l.CodigoBarras
-              order by avg(a.NotaLivro) desc, l.Nome", conexao);
-
-                using (MySqlDataReader dr = cmd.ExecuteReader())
-                {
-                    while (dr.Read())
-                        lista.Add(MapearLivro(dr));
-                }
-            }
-            return lista;
-        }
-
-        public IPagedList<Livro> ObterMelhoresAvaliados(int? pagina, string pesquisa)
-        {
-            IEnumerable<Livro> livros = ObterMelhoresAvaliados();
-
-            if (!string.IsNullOrWhiteSpace(pesquisa))
-            {
-                string p = pesquisa.Trim();
-                livros = livros.Where(l =>
-                    (l.Nome ?? "").Contains(p, StringComparison.OrdinalIgnoreCase) ||
-                    (l.Autor ?? "").Contains(p, StringComparison.OrdinalIgnoreCase) ||
-                    (l.Editora ?? "").Contains(p, StringComparison.OrdinalIgnoreCase) ||
-                    (l.Literatura ?? "").Contains(p, StringComparison.OrdinalIgnoreCase));
-            }
-
-            return livros.ToPagedList(pagina ?? 1, 5);
-        }
-
-        // ---------- MAIS VENDIDOS ----------
-        public IEnumerable<Livro> ObterMaisVendidos()
-        {
-            var lista = new List<Livro>();
-
-            using (var conexao = new MySqlConnection(_conexaoMySQL))
-            {
-                conexao.Open();
-                MySqlCommand cmd = new MySqlCommand(
-                    @"select l.* from ViewLivro l
-              inner join ItemVenda iv on iv.CodBarras = l.CodigoBarras
-              group by l.CodigoBarras
-              order by sum(iv.QtdItem) desc, l.Nome", conexao);
-
-                using (MySqlDataReader dr = cmd.ExecuteReader())
-                {
-                    while (dr.Read())
-                        lista.Add(MapearLivro(dr));
-                }
-            }
-            return lista;
-        }
-        public IPagedList<Livro> ObterMaisVendidos(int? pagina)
-        {
-            IEnumerable<Livro> livros = ObterMaisVendidos();
-
-            return livros.ToPagedList(pagina ?? 1, 5);
-        }
-
-        // ---------- POR LITERATURA ----------
-        public IEnumerable<Livro> ObterPorLiteratura(string literatura)
-        {
-            var lista = new List<Livro>();
-
-            using (var conexao = new MySqlConnection(_conexaoMySQL))
-            {
-                conexao.Open();
-                MySqlCommand cmd = new MySqlCommand(
-                    "select * from ViewLivro where Literatura = @Literatura order by Nome", conexao);
-                cmd.Parameters.AddWithValue("@Literatura", literatura);
-
-                using (MySqlDataReader dr = cmd.ExecuteReader())
-                {
-                    while (dr.Read())
-                        lista.Add(MapearLivro(dr));
-                }
-            }
-            return lista;
-        }
-
-        // ---------- BARRA DE PESQUISA ----------
-        public IEnumerable<Livro> ObterPorPesquisa(string nome)
-        {
-            if (string.IsNullOrWhiteSpace(nome))
-                return ObterTodosLivros();
-
-            var lista = new List<Livro>();
-
-            using (var conexao = new MySqlConnection(_conexaoMySQL))
-            {
-                conexao.Open();
-                MySqlCommand cmd = new MySqlCommand(
-                    @"select * from ViewLivro
-              where Nome like @Pesquisa
-                 or Autor like @Pesquisa
-                 or Editora like @Pesquisa
-                 or Literatura like @Pesquisa
-              order by Nome", conexao);
-                cmd.Parameters.AddWithValue("@Pesquisa", "%" + nome.Trim() + "%");
-
-                using (MySqlDataReader dr = cmd.ExecuteReader())
-                {
-                    while (dr.Read())
-                        lista.Add(MapearLivro(dr));
-                }
-            }
-            return lista;
-        }
-
-        // ---------- HISTORICO GERAL (G) ----------
-        public IEnumerable<Livro> ObterPorHistoricoG(List<string> codBarrasG)
-        {
-            var lista = new List<Livro>();
-            if (codBarrasG == null || codBarrasG.Count == 0)
-                return lista;
-
-            using (var conexao = new MySqlConnection(_conexaoMySQL))
-            {
-                conexao.Open();
-
-                // monta @c0, @c1, @c2...
-                var nomes = new List<string>();
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = conexao;
-                for (int i = 0; i < codBarrasG.Count; i++)
-                {
-                    nomes.Add("@c" + i);
-                    cmd.Parameters.Add("@c" + i, MySqlDbType.Decimal).Value =
-                        decimal.Parse(codBarrasG[i], CultureInfo.InvariantCulture);
-                }
-                cmd.CommandText = "select * from ViewLivro where CodigoBarras in (" + string.Join(",", nomes) + ")";
-
-                using (MySqlDataReader dr = cmd.ExecuteReader())
-                {
-                    while (dr.Read())
-                        lista.Add(MapearLivro(dr));
-                }
-            }
-
-            // mantem a ordem do historico
-            return lista.OrderBy(l => codBarrasG.IndexOf(l.CodigoBarras.ToString(CultureInfo.InvariantCulture))).ToList();
-        }
-
-        // ---------- HISTORICO DE EBOOKS (E) ----------
-        public IEnumerable<Livro> ObterPorHistoricoE(List<string> codBarrasE)
-        {
-            var lista = new List<Livro>();
-            if (codBarrasE == null || codBarrasE.Count == 0)
-                return lista;
-
-            using (var conexao = new MySqlConnection(_conexaoMySQL))
-            {
-                conexao.Open();
-
-                var nomes = new List<string>();
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = conexao;
-                for (int i = 0; i < codBarrasE.Count; i++)
-                {
-                    nomes.Add("@c" + i);
-                    cmd.Parameters.Add("@c" + i, MySqlDbType.Decimal).Value =
-                        decimal.Parse(codBarrasE[i], CultureInfo.InvariantCulture);
-                }
-                cmd.CommandText = "select * from ViewLivro where CodigoBarras in (" + string.Join(",", nomes) + ")";
-
-                using (MySqlDataReader dr = cmd.ExecuteReader())
-                {
-                    while (dr.Read())
-                        lista.Add(MapearLivro(dr));
-                }
-            }
-
-            return lista.OrderBy(l => codBarrasE.IndexOf(l.CodigoBarras.ToString(CultureInfo.InvariantCulture))).ToList();
-        }
-
-        // ---------- converte uma linha do banco em Livro ----------
-        private Livro MapearLivro(MySqlDataReader dr)
-        {
-            string isbn = Convert.ToDecimal(dr["ISBN"]).ToString("0", CultureInfo.InvariantCulture);
-
-            if (isbn.Length == 13)
-                isbn = $"{isbn[..3]}-{isbn.Substring(3, 2)}-{isbn.Substring(5, 4)}-{isbn.Substring(9, 3)}-{isbn[12]}";
-
-            return new Livro
-            {
-                CodigoBarras = Convert.ToDecimal(dr["CodigoBarras"]),
-                Nome = Convert.ToString(dr["Nome"]),
-                Preco = Convert.ToDecimal(dr["Preco"]).ToString("F2", CultureInfo.GetCultureInfo("pt-BR")),
-                Autor = Convert.ToString(dr["Autor"]),
-                Editora = Convert.ToString(dr["Editora"]),
-                Promocao = Convert.ToInt32(dr["Promocao"]),
-                Generos = Convert.ToString(dr["Generos"])
-                    .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                    .ToList(),
-                IdadeRecomendada = Convert.ToString(dr["IdadeRecomendada"]),
-                Sinopse = Convert.ToString(dr["Sinopse"]),
-                DataPubli = DateOnly.FromDateTime(Convert.ToDateTime(dr["DataPubli"])),
-                TipoCapa = Convert.ToString(dr["TipoCapa"]),
-                Idioma = Convert.ToString(dr["Idioma"]),
-                Tamanho = Convert.ToString(dr["Tamanho"]),
-                Capacidade = Convert.ToInt32(dr["Capacidade"]),
-                Quantidade = Convert.ToInt32(dr["Quantidade"]),
-                ISBN = isbn,
-                Literatura = Convert.ToString(dr["Literatura"]),
-                arquivoImagem = dr["ImagemPri"] == DBNull.Value ? null : Convert.ToString(dr["ImagemPri"]),
-                arquivoEbook = dr["ArquivoEbook"] == DBNull.Value ? null : Convert.ToString(dr["ArquivoEbook"])
-            };
-        }
 
 
 
@@ -395,5 +179,167 @@ namespace LivrariaLegitimo.Repository
         public void ModificarPreco(int promocao, decimal preco) { throw new NotImplementedException(); }
         public void AtualizarHistoricoG(Livro livro) { throw new NotImplementedException(); }
         public void AtualizarHistoricoE(Livro livro) { throw new NotImplementedException(); }
+
+        public IEnumerable<Livro> ObterMelhoresAvaliados()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> AleatorizarLivros()
+        {
+            List<(Livro, string arquivoImagem, string arquivoEbook)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook)>();
+
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+
+                MySqlCommand consulta = new MySqlCommand(
+                    "select * from ViewLivro where(Quantidade > 0) order by RAND() limit 2",
+                    conexao
+                );
+
+                if (_loginFuncionario.GetFuncionario() != null)
+                {
+                    consulta = new MySqlCommand(
+                        "select * from ViewLivro order by RAND() limit 2",
+                        conexao
+                    );
+                }
+
+
+
+                MySqlDataAdapter da = new MySqlDataAdapter(consulta);
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+
+                conexao.Close();
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    listaLivro.Add((
+                        new Livro
+                        {
+                            CodigoBarras = (decimal)(dr["codBarras"]),
+                            ISBN = Convert.ToUInt64(dr["ISBN"]).ToString(@"000-0-00-000000-0"),
+                            Nome = (string)(dr["Nome"]),
+                            Preco = Convert.ToDecimal(dr["Preco"]).ToString("N2", CultureInfo.GetCultureInfo("pt-BR")),
+                            Sinopse = (string)(dr["Sinopse"]),
+                            Autor = (string)(dr["Autor"]),
+                            Editora = (string)(dr["Editora"]),
+                            IdadeRecomendada = (string)(dr["IdadeMinRecomendada"]),
+                            DataPubli = (DateOnly)(dr["DataPublicacao"]),
+                            TipoCapa = (string)(dr["Tipo"]),
+                            Idioma = (string)(dr["Idioma"]),
+                            Literatura = (string)(dr["Literatura"]),
+                            Tamanho = (string)(dr["Tamanho"]),
+                            Quantidade = (int)(dr["Quantidade"]),
+                            Capacidade = (int)(dr["capacidadeEstoque"]),
+                            Generos = (List<string>)(dr["Generos"]),
+                            PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
+
+                        },
+                        dr["ImagemPri"].ToString(),
+                        dr["ArquivoEbook"].ToString()
+                        ));
+                }
+
+                return listaLivro;
+            }
+        }
+
+        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> ObterMaioresOfertas()
+        {
+            List<(Livro, string arquivoImagem, string arquivoEbook)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook)>();
+
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+
+                MySqlCommand consulta = new MySqlCommand(
+                    "select * from ViewLivro where(Quantidade > 0) order by PromocaoPorcentagem DESC limit 2",
+                    conexao
+                );
+
+                if (_loginFuncionario.GetFuncionario() != null)
+                {
+                    consulta = new MySqlCommand(
+                        "select * from ViewLivro order by PromocaoPorcentagem DESC limit 2",
+                        conexao
+                    );
+                }
+
+                MySqlDataAdapter da = new MySqlDataAdapter(consulta);
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+
+                conexao.Close();
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    listaLivro.Add((
+                        new Livro
+                        {
+                            CodigoBarras = (decimal)(dr["codBarras"]),
+                            ISBN = Convert.ToUInt64(dr["ISBN"]).ToString(@"000-0-00-000000-0"),
+                            Nome = (string)(dr["Nome"]),
+                            Preco = Convert.ToDecimal(dr["Preco"]).ToString("N2", CultureInfo.GetCultureInfo("pt-BR")),
+                            Sinopse = (string)(dr["Sinopse"]),
+                            Autor = (string)(dr["Autor"]),
+                            Editora = (string)(dr["Editora"]),
+                            IdadeRecomendada = (string)(dr["IdadeMinRecomendada"]),
+                            DataPubli = (DateOnly)(dr["DataPublicacao"]),
+                            TipoCapa = (string)(dr["Tipo"]),
+                            Idioma = (string)(dr["Idioma"]),
+                            Literatura = (string)(dr["Literatura"]),
+                            Tamanho = (string)(dr["Tamanho"]),
+                            Quantidade = (int)(dr["Quantidade"]),
+                            Capacidade = (int)(dr["capacidadeEstoque"]),
+                            Generos = (List<string>)(dr["Generos"]),
+                            PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
+                        },
+                        dr["ImagemPri"].ToString(),
+                        dr["ArquivoEbook"].ToString()
+                    ));
+                }
+
+                return listaLivro;
+            }
+        }
+        public IEnumerable<Livro> ObterMaisVendidos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Livro> ObterPorLiteratura(string literatura)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Livro> ObterPorCategoria(string categoria)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Livro> ObterPorPesquisa(string nome)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Livro> ObterPorHistoricoG(List<string> codBarrasG)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Livro> ObterPorHistoricoE(List<string> codBarrasE)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Livro> FiltroComplexo()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

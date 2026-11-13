@@ -94,6 +94,9 @@ namespace LivrariaLegitimo.Models
         [RegularExpression(@"^.+\.pdf$", ErrorMessage = "O arquivo deve estar no formato PDF.")]
         public IFormFile? ArquivoEbook { get; set; }
 
+        [Display(Name = "Desconto do Livro")]
+        public int PromocaoPorcentagem { get; set; }
+
 
 
 
