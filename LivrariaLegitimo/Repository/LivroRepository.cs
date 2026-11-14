@@ -437,21 +437,21 @@ namespace LivrariaLegitimo.Repository
 
         public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterPorLiteratura(string literatura)
         {
-            List<(Livro, string arquivoImagem, string arquivoEbook)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook)>();
+            List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
 
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
 
                 MySqlCommand consulta = new MySqlCommand(
-                    "select * from ViewLivro where(Quantidade > 0) and Literatura = @Literatura order by Nome",
+                    "select li.*, va.MediaAvaliacao, vv.NumeroVendas from ViewLivro li inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras inner join ViewLivroVendas vv on li.codBarras = vv.codBarras where(li.Quantidade > 0) and li.Literatura = @Literatura order by li.Nome",
                     conexao
                 );
 
                 if (_loginFuncionario.GetFuncionario() != null)
                 {
                     consulta = new MySqlCommand(
-                        "select * from ViewLivro where Literatura = @Literatura order by Nome",
+                        "select li.*, va.MediaAvaliacao, vv.NumeroVendas from ViewLivro li inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras inner join ViewLivroVendas vv on li.codBarras = vv.codBarras where li.Literatura = @Literatura order by li.Nome",
                         conexao
                     );
                 }
@@ -489,7 +489,9 @@ namespace LivrariaLegitimo.Repository
                             PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
                         },
                         dr["ImagemPri"].ToString(),
-                        dr["ArquivoEbook"].ToString()
+                        dr["ArquivoEbook"].ToString(),
+                        Convert.ToDecimal(dr["MediaAvaliacao"]),
+                        Convert.ToInt32(dr["NumeroVendas"])
                     ));
                 }
 
