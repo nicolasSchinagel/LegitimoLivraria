@@ -18,7 +18,7 @@ namespace LivrariaLegitimo.Repository.Contract
 
         IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> ObterMaioresOfertas();
 
-        IEnumerable<Livro> ObterMaisVendidos();
+        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterMaisVendidos();
 
         IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> ObterPorLiteratura(string literatura);
         IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> ObterPorCategoria(string categoria); 

@@ -307,10 +307,69 @@ namespace LivrariaLegitimo.Repository
                 return listaLivro;
             }
         }
-        public IEnumerable<Livro> ObterMaisVendidos()
+
+        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterMaisVendidos()
         {
-            throw new NotImplementedException();
+            List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
+
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+
+                MySqlCommand consulta = new MySqlCommand(
+                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(Quantidade > 0) order by vv.NumeroVendas desc limit 15",
+                    conexao
+                );
+
+                if (_loginFuncionario.GetFuncionario() != null)
+                {
+                    consulta = new MySqlCommand(
+                        "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras order by vv.NumeroVendas desc limit 15",
+                        conexao
+                    );
+                }
+
+                MySqlDataAdapter da = new MySqlDataAdapter(consulta);
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+
+                conexao.Close();
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    listaLivro.Add((
+                        new Livro
+                        {
+                            CodigoBarras = (decimal)(dr["codBarras"]),
+                            ISBN = Convert.ToUInt64(dr["ISBN"]).ToString(@"000-0-00-000000-0"),
+                            Nome = (string)(dr["Nome"]),
+                            Preco = Convert.ToDecimal(dr["Preco"]).ToString("N2", CultureInfo.GetCultureInfo("pt-BR")),
+                            Sinopse = (string)(dr["Sinopse"]),
+                            Autor = (string)(dr["Autor"]),
+                            Editora = (string)(dr["Editora"]),
+                            IdadeRecomendada = (string)(dr["IdadeMinRecomendada"]),
+                            DataPubli = (DateOnly)(dr["DataPublicacao"]),
+                            TipoCapa = (string)(dr["Tipo"]),
+                            Idioma = (string)(dr["Idioma"]),
+                            Literatura = (string)(dr["Literatura"]),
+                            Tamanho = (string)(dr["Tamanho"]),
+                            Quantidade = (int)(dr["Quantidade"]),
+                            Capacidade = (int)(dr["capacidadeEstoque"]),
+                            Generos = (List<string>)(dr["Generos"]),
+                            PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
+                        },
+                        dr["ImagemPri"].ToString(),
+                        dr["ArquivoEbook"].ToString(),
+                        Convert.ToDecimal(dr["MediaAvaliacao"]),
+                        Convert.ToInt32(dr["NumeroVendas"])
+                    ));
+                }
+
+                return listaLivro;
+            }
         }
+
 
         public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> ObterPorLiteratura(string literatura)
         {
