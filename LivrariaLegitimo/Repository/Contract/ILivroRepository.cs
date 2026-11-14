@@ -20,15 +20,15 @@ namespace LivrariaLegitimo.Repository.Contract
 
         IEnumerable<Livro> ObterMaisVendidos();
 
-        IEnumerable<Livro> ObterPorLiteratura(string literatura);
-        IEnumerable<Livro> ObterPorCategoria(string categoria); 
+        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> ObterPorLiteratura(string literatura);
+        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> ObterPorCategoria(string categoria); 
 
 
         IEnumerable<Livro> ObterPorPesquisa(string nome); // ordena baseado em nomes, editoras e autores aproximados
 
-        IEnumerable<Livro> ObterPorHistoricoG(List<string> codBarrasG);
+        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> ObterPorHistoricoG(List<string> codBarrasG);
 
-        IEnumerable<Livro> ObterPorHistoricoE(List<string> codBarrasE);
+        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> ObterPorHistoricoE(List<string> codBarrasE);
 
         IEnumerable<Livro> FiltroComplexo();
 
