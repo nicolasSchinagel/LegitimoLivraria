@@ -75,17 +75,17 @@ namespace LivrariaLegitimo.Repository
 
         public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterTodosLivros()
         {
-            List<(Livro, string arquivoImagem, string arquivoEbook)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook)>();
+            List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
 
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
 
-                string consulta = "select * from ViewLivro where(Quantidade > 0) order by Nome";
+                string consulta = "select li.*, va.MediaAvaliacao, vv.NumeroVendas from ViewLivro li inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras inner join ViewLivroVendas vv on li.codBarras = vv.codBarras where(li.Quantidade > 0) order by li.Nome";
 
                 if (_loginFuncionario.GetFuncionario() != null)
                 {
-                    consulta = "select * from ViewLivro order by Nome";
+                    consulta = "select li.*, va.MediaAvaliacao, vv.NumeroVendas from ViewLivro li inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras inner join ViewLivroVendas vv on li.codBarras = vv.codBarras order by li.Nome";
                 }
 
                 MySqlCommand cmd = new MySqlCommand(consulta, conexao);
@@ -118,13 +118,15 @@ namespace LivrariaLegitimo.Repository
                             Capacidade = (int)(dr["capacidadeEstoque"]),
                             Generos = (List<string>)(dr["Generos"]),
                             PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
-
                         },
                         dr["ImagemPri"].ToString(),
-                        dr["ArquivoEbook"].ToString()
-                        ));
+                        dr["ArquivoEbook"].ToString(),
+                        Convert.ToDecimal(dr["MediaAvaliacao"]),
+                        Convert.ToInt32(dr["NumeroVendas"])
+                    ));
                 }
-                return listaLivro ;
+
+                return listaLivro;
             }
         }
 
@@ -578,7 +580,7 @@ namespace LivrariaLegitimo.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> FiltroComplexo()
+        public IEnumerable<Livro> FiltroComplexo()
         {
             throw new NotImplementedException();
         }
