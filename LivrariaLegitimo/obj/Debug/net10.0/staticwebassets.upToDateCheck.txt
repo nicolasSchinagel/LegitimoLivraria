@@ -1,6 +1,7 @@
 wwwroot\capas\Metamorfose.webp
 wwwroot\capas\O Pequeno Príncipe.webp
 wwwroot\capas\O Processo.webp
+wwwroot\capas\SCB.jpg
 wwwroot\css\adicionarLivro.css
 wwwroot\css\book.css
 wwwroot\css\carrinho.css
@@ -174,8 +175,8 @@ wwwroot\lib\mask\jquery.mask.min.js
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\book.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\carrinho.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\footer.css
-C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\header.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\index.css
+C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\header.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\inputs.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\list.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\menuGerenciar.css

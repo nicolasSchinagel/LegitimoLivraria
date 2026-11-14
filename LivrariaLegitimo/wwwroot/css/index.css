@@ -1,0 +1,1318 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #FAFAFA;
+    justify-content: center;
+    align-items: center;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+
+
+.list1 {
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.card-1-search {
+    background: #fff;
+    width: 95%;
+    aspect-ratio: 253 / 452;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 20px;
+    border: 2px solid #ECECEC;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+    position: relative;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+.card1 {
+    background: #fff;
+    width: 19%;
+    aspect-ratio: 253 / 452;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 20px;
+    border: 2px solid #ECECEC;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+    position: relative;
+    padding-bottom: 5px;
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+    .card1:hover {
+        background-color: #f1f1f1;
+    }
+
+.containerlivro {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+}
+
+.book {
+    width: 65%;
+    aspect-ratio: 152/217;
+    margin-top: 11px;
+    border-radius: 5px;
+    user-select: none;
+}
+
+.retangulocima,
+.retangulocimaNovo,
+.retangulocimaBemavaliado {
+    position: absolute;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    border-radius: 6px;
+}
+
+.card-1-enumerado {
+    position: absolute;
+    width: 11%;
+    aspect-ratio: 1/1;
+    border-radius: 8px;
+    background-color: #EADFbf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    left: 3.64%;
+}
+
+.card-1-enumerado-numero {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 100%;
+    color: #5E4500;
+}
+
+.retangulocima {
+    aspect-ratio: 127/27;
+    left: 41.49%;
+    width: 50%;
+    background: #EADFbf;
+}
+
+.retangulocimaNovo {
+    aspect-ratio: 101/27;
+    left: 46.26%;
+    width: 40%;
+    background: #D6F2CD;
+}
+
+.retangulocimaBemavaliado {
+    left: 31.39%;
+    aspect-ratio: 152/27;
+    width: 60%;
+    background: #EADFbf;
+}
+
+.retangulocima-historico {
+    width: 30%;
+    aspect-ratio: 127/27;
+    background: #EADFbf;
+}
+
+.retangulocimaNovo-historico {
+    aspect-ratio: 101/27;
+    width: 25%;
+    background: #D6F2CD;
+}
+
+.retangulocimaBemavaliado-historico {
+    width: 37%;
+    aspect-ratio: 152/27;
+    background: #EADFbf;
+}
+
+.retangulocima-historico,
+.retangulocimaNovo-historico,
+.retangulocimaBemavaliado-historico {
+    position: absolute;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 5%;
+    top: -10%;
+    gap: 9px;
+    border-radius: 6px;
+}
+
+
+.imgetiqueta {
+    height: 80%;
+    user-select: none;
+}
+
+.alta, .novo, .bemavaliado {
+    font-family: 'Inter',sans-serif;
+    font-weight: 700;
+    user-select: none;
+}
+
+.alta, .novo {
+    font-size: 1.0em;
+}
+
+.bemavaliado {
+    font-size: 0.9em;
+}
+
+.alta, .bemavaliado {
+    color: #C8060A;
+}
+
+.novo {
+    color: #03620C;
+}
+
+.partebaixo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 36%;
+    gap: 2%;
+    padding: 10px 18px 0;
+}
+
+.tituloeheart {
+    display: flex;
+    gap: 2%;
+    width: 100%;
+    height: 30%
+}
+
+.heartfundo {
+    width: 37px;
+    height: 34px;
+    background: #C8060A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+    .heartfundo:hover {
+        background: #A0060A;
+    }
+
+.heart {
+    width: 70%;
+    height: 70%;
+}
+
+.titulolivro {
+    width: 85%;
+    font: 600 16px Mada,sans-serif;
+}
+
+.autor, .editor {
+    font: 500 13px Mada,sans-serif;
+    color: #111;
+}
+
+.estrelas {
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.estrelas-specifics {
+    width: 40%;
+    aspect-ratio: 5/1;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
+    -webkit-mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
+}
+
+.estrelasimg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 4;
+}
+
+.estrelas-specifics-yellowbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 94%;
+    height: 100%;
+    background: rgb(255, 221, 0);
+    z-index: 3;
+}
+
+.avaliados {
+    font-size: 12.5px;
+    color: #3D3D3D;
+    font-weight: 500;
+    font-family: 'Mada', sans-serif;
+}
+
+.setabaixo {
+    width: 14px;
+}
+
+.precoog {
+    margin-top: 2px;
+    font: 400 16px Inter,sans-serif;
+    color: #6A6A6A;
+    text-decoration: line-through;
+    height: 8%;
+}
+
+.precoDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preco {
+    margin-top: 2px;
+    font: 700 20px Inter,sans-serif;
+}
+
+.off {
+    margin-top: 2px;
+    margin-right: 20px;
+    font: 700 17px Inter,sans-serif;
+    color: #1E6900;
+}
+
+.cartCamada {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 36px;
+}
+
+.addcartretangulo {
+    width: 90%;
+    aspect-ratio: 228/36;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    border-radius: 8px;
+    background: #C8060A;
+    color: #fff;
+    font: 900 0.68em Inter,sans-serif;
+    transition: .4s;
+    cursor: pointer;
+}
+
+    .addcartretangulo:hover {
+        background: #A0060A;
+    }
+
+.carrinho {
+    width: 13%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Fazendo a parte do banner da Index*/
+
+
+.space-index-banner {
+    position: relative;
+    width: 95%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 40px;
+}
+
+.track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform .6s ease-in-out;
+    cursor: pointer;
+}
+
+.outside {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+}
+
+.banner-livraria {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.banner-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.arrows {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    flex-direction: row-reverse;
+    pointer-events: none;
+}
+
+.banner-next,
+.banner-prev {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    pointer-events: auto;
+    margin-right: 6px;
+    margin-left: 6px;
+}
+
+.div-menu {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.balls {
+    display: flex;
+    position: absolute;
+    inset: 0;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 30px;
+    pointer-events: none;
+}
+
+.ball {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0, 0.5);
+    border: 1px solid white;
+    pointer-events: auto;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.ball-active {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid white;
+}
+
+
+
+
+
+/* Cards do Index*/
+
+.div-cards-init {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-init {
+    background-color: white;
+    width: 32.5%;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid #ECECEC;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 40px;
+    padding-top: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.card-init-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: bolder;
+    font-size: clamp(16px, 2vw, 40px);
+    color: black;
+    text-align: center;
+}
+
+.books-card-init {
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.book-card-init {
+    width: 46%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    transition: 0.5s;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+    .book-card-init:hover {
+        border: 1px solid #111111;
+        background-color: #f1f1f1;
+    }
+
+.image-book-card-init {
+    width: 100%;
+    aspect-ratio: 185/320;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.title-book-card-init {
+    width: 85%;
+    height: 4.2em;
+    font-size: clamp(6px, 1.8vw, 18px);
+    color: #363636;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    text-align: center;
+}
+
+.discount-book-card-init {
+    font-size: clamp(6px, 2vw, 18px);
+    color: #FFA425;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    text-align: center;
+}
+
+.discount-book-card-init-span {
+    font-size: clamp(8px, 2vw, 20px);
+    font-weight: 600;
+}
+
+.ver-todos-card-init {
+    position: absolute;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    width: auto;
+    height: auto;
+    justify-content: right;
+    padding: 5px;
+    right: 0;
+    bottom: 0;
+    transition: 0.8s;
+    cursor: pointer;
+}
+
+.ver-todos-card-init-text {
+    font-size: clamp(5px, 2vw, 15px);
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    color: #C8060A
+}
+
+.ver-todos-icon {
+    width: 10%;
+    height: auto;
+}
+
+.ver-todos-card-init:hover {
+    scale: calc(1.03);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Div dos cards dos produtos*/
+.div-cards-carousel {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    overflow: hidden;
+}
+
+.div-cards-carousel-static {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    overflow: visible;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.div-cards-carousel-index-1, .div-cards-carousel-index-2, .div-cards-carousel-index-3, .div-cards-carousel-index-0, .div-cards-carousel-index-4 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-top: 0%;
+    min-width: 100%;
+    flex-shrink: 0;
+}
+
+.arrows-carousel-div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 5;
+    display: flex;
+    top: 0%;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.arrow-carousel-left-1, .arrow-carousel-left-2, .arrow-carousel-left-3, .arrow-carousel-left-4 {
+    width: 3%;
+    height: auto;
+    object-fit: contain;
+    transform: scaleX(-1);
+    padding-right: 10px;
+    cursor: pointer;
+    pointer-events: auto;
+    align-self: center;
+}
+
+.arrow-carousel-right-1, .arrow-carousel-right-2, .arrow-carousel-right-3, .arrow-carousel-right-4 {
+    width: 3%;
+    height: auto;
+    object-fit: contain;
+    padding-right: 10px;
+    cursor: pointer;
+    pointer-events: auto;
+    align-self: center;
+}
+
+.div-cards-carousel-total-1, .div-cards-carousel-total-2, .div-cards-carousel-total-3, .div-cards-carousel-total-4 {
+    display: flex;
+    width: 100%;
+    justify-content: left;
+    position: relative;
+    right: 0;
+    transition: 1.2s;
+    align-items: center;
+}
+
+.top-bar-cards {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-top: 1%;
+}
+
+.top-bar-cards-title {
+    font-size: clamp(20px, 2vw, 40px);
+    font-family: 'Inter', sans-serif;
+    font-weight: bolder;
+    color: black;
+    width: 30%;
+}
+
+.ver-todos-top-bar-cards {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    width: auto;
+    height: auto;
+    justify-content: right;
+    right: 0;
+    bottom: 0;
+    transition: 0.8s;
+    cursor: pointer;
+}
+
+    .ver-todos-top-bar-cards:hover {
+        scale: calc(1.03);
+    }
+
+
+/*Parte dos gêneros*/
+
+
+.top-bar-cards-pages {
+    font-size: clamp(12px, 2vw, 20px);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: black;
+    width: 30%;
+    text-align: right;
+}
+
+.card-genero {
+    width: 19%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 6px;
+    border: 1px solid #ECECEC;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+    .card-genero:hover {
+        background-color: #f1f1f1;
+    }
+
+.card-genero-icon {
+    width: 32%;
+    height: auto;
+}
+
+.card-genero-info {
+    width: 65%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4px;
+}
+
+.card-genero-title {
+    font-size: clamp(12px, 2vw, 20px);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: black;
+}
+
+.card-genero-qtd {
+    font-size: clamp(8px, 2vw, 18px);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: #545454;
+}
+
+/*div banner lit*/
+.div-banner-lit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 93%;
+    height: auto;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.div-banner-lit-back {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.div-banner-lit-back-shadow {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, 0.2);
+}
+
+.div-banner-lit-back-shadow-sec {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, 0.5);
+}
+
+.div-banner-lit-items {
+    position: absolute;
+    display: flex;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.div-banner-lit-item {
+    width: 35%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.div-banner-lit:has(.div-banner-lit-item:first-child:hover)
+.div-banner-lit-back-shadow {
+    right: 0;
+    width: 50%;
+}
+
+.div-banner-lit:has(.div-banner-lit-item:last-child:hover)
+.div-banner-lit-back-shadow {
+    left: 0;
+    width: 50%;
+}
+
+.div-banner-lit-blanket {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 30%;
+    height: 100%;
+    border-radius: 20px;
+    font-size: clamp(10px, 2vw,30px);
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+}
+
+.icon-lit-item {
+    width: 20%;
+    height: auto;
+    object-fit: cover;
+}
+
+.title-lit-item {
+    width: 90%;
+    font-size: clamp(20px, 5vh, 40px);
+    color: white;
+    font-weight: 700;
+    font-family: 'Londrina Solid', sans-serif;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*E-book e Historico*/
+
+.banner1 {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+
+.formato-banner-ebook {
+    border-radius: 12px;
+    border: 2px solid #ECECEC;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    min-height: 0;
+    width: 32.5%;
+    aspect-ratio: 270/180;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .formato-banner-ebook:hover {
+        background-color: #f1f1f1;
+    }
+
+
+.livro-e {
+    height: 85%;
+    width: 33%;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.titulo-e {
+    font-family: 'Mada', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+    overflow: hidden;
+    height: 100px;
+}
+
+.partelateral-e {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+    width: 65%;
+    height: 85%;
+}
+
+.autor-e {
+    font-family: 'Mada', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+
+.barraprogresso {
+    width: 85%;
+    height: 10px;
+    border-radius: 999px;
+    background-color: #C2C2C2;
+    margin-top: 8px;
+}
+
+.barraprogresso2 {
+    width: 50%; /* <- porcentagem */
+    height: 100%;
+    background-color: #C8060A;
+    border-radius: 999px;
+}
+
+.porcentagemtext {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #111111;
+}
+
+.continarlendo {
+    width: 85%;
+    height: 35px;
+    border-radius: 8px;
+    background-color: #C8060A;
+    display: flex;
+    padding-left: 3px;
+    gap: 8px;
+    align-items: center;
+    color: white;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+    .continarlendo:hover {
+        background-color: #A0060A;
+    }
+
+.livrolendo {
+    height: 70%;
+    width: auto;
+}
+
+.continuarlendotext {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+/* ===== Banner "Procurar e-books" ===== */
+
+.bannerprocurar {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.wrapperprocurar {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+    gap: 20px;
+}
+
+.mais {
+    width: 20%;
+    height: auto;
+}
+
+.textsmais {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.procurarebookstext {
+    font-family: 'Inter', sans-serif;
+    font-weight: bolder;
+    font-size: 35px;
+    margin-bottom: 5px;
+}
+
+.aumentarleitura {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    color: #616161;
+    font-size: 20px;
+}
+
+.editor-e {
+    font-family: 'Mada', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== Banner 2 (livros com preço) ===== */
+
+.editor-historico {
+    font-family: 'Mada', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    margin: 0;
+}
+
+.autor-historico {
+    font-family: 'Mada', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.parts-card {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.part-cards {
+    background-color: #AAAAAA;
+    width: 70px;
+    height: 7px;
+    border-radius: 100px;
+    transition: 0.8s;
+    cursor: pointer;
+}
+
+.selected-part {
+    background-color: #000000;
+}
+
+.banner2 {
+    width: 33%;
+    aspect-ratio: 460/200;
+    border-radius: 10px;
+    border: 2px solid #ECECEC;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+    overflow: visible;
+    z-index: 2;
+}
+
+    .banner2:hover {
+        background-color: #f1f1f1;
+    }
+
+.partelateral-historico {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+    width: 65%;
+    height: 95%;
+}
+
+.estrelas-historico {
+    margin: 0;
+    font-family: 'Mada', sans-serif;
+    height: auto;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    flex-wrap: wrap;
+}
+
+.estrelas-historico-specifics {
+    width: 30%;
+    aspect-ratio: 5/1;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
+    -webkit-mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
+}
+
+.estrelasimg-historico {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 4;
+}
+
+.estrelas-specifics-yellowbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 94%;
+    height: 100%;
+    background: rgb(255, 221, 0);
+    z-index: 3;
+}
+
+.avaliados-historico {
+    font-size: 0.85rem;
+    color: #3D3D3D;
+    font-weight: 500;
+    user-select: none;
+}
+
+.titulo-historico {
+    font-family: 'Mada', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin: 0;
+    overflow: hidden;
+    height: 80px;
+}
+
+.setabaixo-historico {
+    height: 0.7rem;
+    width: auto;
+}
+
+.partedebaixo-historico {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.preco-historico {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin: 0;
+}
+
+.quadradosred-historico {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.cartfundo-historico,
+.heartfundo-historico {
+    width: 35px;
+    height: 35px;
+    background-color: #C8060A;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    transition: 0.4s;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: 0.4s;
+}
+
+    .cartfundo-historico:hover,
+    .heartfundo-historico:hover {
+        background-color: #A0060A;
+    }
+
+
+.cart-historico {
+    width: 85%;
+    height: auto;
+}
+
+.heart-historico {
+    width: 70%;
+    height: auto;
+}
+
+.livro-historico {
+    height: 95%;
+    width: 25%;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+/* ===== Ajustes finos por tamanho de tela ===== */
+
+
+
+
+
+@media (max-width: 900px) {
+    .formato-banner-ebook {
+        width: 300px;
+        height: 182px;
+    }
+
+    .livro-e {
+        margin-right: 6px;
+    }
+
+    .partelateral {
+        gap: 2px;
+    }
+
+    .titulo {
+        font-size: 14px;
+        height: 70px;
+    }
+
+    .autor1984, .autorbolitar, .editor, .porcentagemtext {
+        font-size: 12px;
+    }
+
+    .barraprogresso {
+        height: 8px;
+    }
+
+    .continarlendo {
+        height: 22px;
+        border-radius: 4px;
+        gap: 5px;
+    }
+
+    .continuarlendotext {
+        font-size: 14px;
+    }
+
+    .wrapperprocurar {
+        gap: 5px;
+    }
+
+    .procurarebookstext {
+        font-size: 23px;
+    }
+
+    .aumentarleitura {
+        font-size: 16px;
+    }
+
+    .textsmais {
+        gap: 1px;
+    }
+
+    .editor-e {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+@media(max-width: 1920px) {
+}
