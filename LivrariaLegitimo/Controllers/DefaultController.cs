@@ -2,6 +2,7 @@ using LivrariaLegitimo.Libraries.Login;
 using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository;
 using LivrariaLegitimo.Repository.Contract;
+using LivrariaLegitimo.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using MySqlX.XDevAPI;
 using System.Diagnostics;
@@ -14,18 +15,29 @@ namespace LivrariaLegitimo.Controllers
         private IFuncionarioRepository _funcionarioRepository;
         private LoginFuncionario _loginFuncionario;
         private LoginCliente _loginCliente;
-        public DefaultController(IFuncionarioRepository funcionarioRepository, IClienteRepository clienteRepository, LoginFuncionario loginFuncionario, LoginCliente loginCliente)
+        private ILivroRepository _livroRepository;
+        public DefaultController(IFuncionarioRepository funcionarioRepository, IClienteRepository clienteRepository, LoginFuncionario loginFuncionario, LoginCliente loginCliente, ILivroRepository livroRepository)
         {
             _funcionarioRepository = funcionarioRepository;
             _clienteRepository = clienteRepository;
             _loginFuncionario = loginFuncionario;
             _loginCliente = loginCliente;
+            _livroRepository = livroRepository;
         }
 
-
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            LivroViewModel model = new LivroViewModel
+            {
+                MaisVendidos = _livroRepository.ObterMaisVendidos(),
+                BemAvaliados = _livroRepository.ObterMelhoresAvaliados(),
+                Aleatorios = _livroRepository.AleatorizarLivros(),
+                MaioresOfertas = _livroRepository.ObterMaioresOfertas(),
+                TodosLivros = _livroRepository.ObterTodosLivros()
+            };
+
+            return View(model);
         }
 
         public IActionResult Privacy()

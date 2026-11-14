@@ -59,7 +59,7 @@ namespace LivrariaLegitimo.Repository
                     livro.Idioma = (string)(dr["Idioma"]);
                     livro.Literatura = (string)(dr["Literatura"]);
                     livro.Tamanho = (string)(dr["Tamanho"]);
-                    caminhoImagem = (string)(dr["ImagemPri"]);
+                    caminhoImagem = (string)(dr["Imagem"]);
                     caminhoEbook = (string)(dr["ArquivoEbook"]);
                     livro.Quantidade = (int)(dr["Quantidade"]);
                     livro.PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"]);
@@ -109,17 +109,17 @@ namespace LivrariaLegitimo.Repository
                             Autor = (string)(dr["Autor"]),
                             Editora = (string)(dr["Editora"]),
                             IdadeRecomendada = (string)(dr["IdadeMinRecomendada"]),
-                            DataPubli = (DateOnly)(dr["DataPublicacao"]),
+                            DataPubli = DateOnly.FromDateTime(Convert.ToDateTime(dr["DataPublicacao"])),
                             TipoCapa = (string)(dr["Tipo"]),
                             Idioma = (string)(dr["Idioma"]),
                             Literatura = (string)(dr["Literatura"]),
                             Tamanho = (string)(dr["Tamanho"]),
                             Quantidade = (int)(dr["Quantidade"]),
                             Capacidade = (int)(dr["capacidadeEstoque"]),
-                            Generos = (List<string>)(dr["Generos"]),
+                            Generos = dr["Generos"] == DBNull.Value ? new List<string>() : dr["Generos"].ToString().Split(", ").ToList(),
                             PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
                         },
-                        dr["ImagemPri"].ToString(),
+                        dr["Imagem"].ToString(),
                         dr["ArquivoEbook"].ToString(),
                         Convert.ToDecimal(dr["MediaAvaliacao"]),
                         Convert.ToInt32(dr["NumeroVendas"])
@@ -230,17 +230,17 @@ namespace LivrariaLegitimo.Repository
                             Autor = (string)(dr["Autor"]),
                             Editora = (string)(dr["Editora"]),
                             IdadeRecomendada = (string)(dr["IdadeMinRecomendada"]),
-                            DataPubli = (DateOnly)(dr["DataPublicacao"]),
+                            DataPubli = DateOnly.FromDateTime(Convert.ToDateTime(dr["DataPublicacao"])),
                             TipoCapa = (string)(dr["Tipo"]),
                             Idioma = (string)(dr["Idioma"]),
                             Literatura = (string)(dr["Literatura"]),
                             Tamanho = (string)(dr["Tamanho"]),
                             Quantidade = (int)(dr["Quantidade"]),
                             Capacidade = (int)(dr["capacidadeEstoque"]),
-                            Generos = (List<string>)(dr["Generos"]),
+                            Generos = dr["Generos"] == DBNull.Value ? new List<string>() : dr["Generos"].ToString().Split(", ").ToList(),
                             PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
                         },
-                        dr["ImagemPri"].ToString(),
+                        dr["Imagem"].ToString(),
                         dr["ArquivoEbook"].ToString(),
                         Convert.ToDecimal(dr["MediaAvaliacao"]),
                         Convert.ToInt32(dr["NumeroVendas"])
@@ -294,18 +294,17 @@ namespace LivrariaLegitimo.Repository
                             Autor = (string)(dr["Autor"]),
                             Editora = (string)(dr["Editora"]),
                             IdadeRecomendada = (string)(dr["IdadeMinRecomendada"]),
-                            DataPubli = (DateOnly)(dr["DataPublicacao"]),
+                            DataPubli = DateOnly.FromDateTime(Convert.ToDateTime(dr["DataPublicacao"])),
                             TipoCapa = (string)(dr["Tipo"]),
                             Idioma = (string)(dr["Idioma"]),
                             Literatura = (string)(dr["Literatura"]),
                             Tamanho = (string)(dr["Tamanho"]),
                             Quantidade = (int)(dr["Quantidade"]),
                             Capacidade = (int)(dr["capacidadeEstoque"]),
-                            Generos = (List<string>)(dr["Generos"]),
+                            Generos = dr["Generos"] == DBNull.Value ? new List<string>() : dr["Generos"].ToString().Split(", ").ToList(),
                             PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
-
                         },
-                        dr["ImagemPri"].ToString(),
+                        dr["Imagem"].ToString(),
                         dr["ArquivoEbook"].ToString()
                         ));
                 }
@@ -355,17 +354,17 @@ namespace LivrariaLegitimo.Repository
                             Autor = (string)(dr["Autor"]),
                             Editora = (string)(dr["Editora"]),
                             IdadeRecomendada = (string)(dr["IdadeMinRecomendada"]),
-                            DataPubli = (DateOnly)(dr["DataPublicacao"]),
+                            DataPubli = DateOnly.FromDateTime(Convert.ToDateTime(dr["DataPublicacao"])),
                             TipoCapa = (string)(dr["Tipo"]),
                             Idioma = (string)(dr["Idioma"]),
                             Literatura = (string)(dr["Literatura"]),
                             Tamanho = (string)(dr["Tamanho"]),
                             Quantidade = (int)(dr["Quantidade"]),
                             Capacidade = (int)(dr["capacidadeEstoque"]),
-                            Generos = (List<string>)(dr["Generos"]),
+                            Generos = dr["Generos"] == DBNull.Value ? new List<string>() : dr["Generos"].ToString().Split(", ").ToList(),
                             PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
                         },
-                        dr["ImagemPri"].ToString(),
+                        dr["Imagem"].ToString(),
                         dr["ArquivoEbook"].ToString()
                     ));
                 }
@@ -415,17 +414,17 @@ namespace LivrariaLegitimo.Repository
                             Autor = (string)(dr["Autor"]),
                             Editora = (string)(dr["Editora"]),
                             IdadeRecomendada = (string)(dr["IdadeMinRecomendada"]),
-                            DataPubli = (DateOnly)(dr["DataPublicacao"]),
+                            DataPubli = DateOnly.FromDateTime(Convert.ToDateTime(dr["DataPublicacao"])),
                             TipoCapa = (string)(dr["Tipo"]),
                             Idioma = (string)(dr["Idioma"]),
                             Literatura = (string)(dr["Literatura"]),
                             Tamanho = (string)(dr["Tamanho"]),
                             Quantidade = (int)(dr["Quantidade"]),
                             Capacidade = (int)(dr["capacidadeEstoque"]),
-                            Generos = (List<string>)(dr["Generos"]),
+                            Generos = dr["Generos"] == DBNull.Value ? new List<string>() : dr["Generos"].ToString().Split(", ").ToList(),
                             PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
                         },
-                        dr["ImagemPri"].ToString(),
+                        dr["Imagem"].ToString(),
                         dr["ArquivoEbook"].ToString(),
                         Convert.ToDecimal(dr["MediaAvaliacao"]),
                         Convert.ToInt32(dr["NumeroVendas"])
@@ -480,17 +479,17 @@ namespace LivrariaLegitimo.Repository
                             Autor = (string)(dr["Autor"]),
                             Editora = (string)(dr["Editora"]),
                             IdadeRecomendada = (string)(dr["IdadeMinRecomendada"]),
-                            DataPubli = (DateOnly)(dr["DataPublicacao"]),
+                            DataPubli = DateOnly.FromDateTime(Convert.ToDateTime(dr["DataPublicacao"])),
                             TipoCapa = (string)(dr["Tipo"]),
                             Idioma = (string)(dr["Idioma"]),
                             Literatura = (string)(dr["Literatura"]),
                             Tamanho = (string)(dr["Tamanho"]),
                             Quantidade = (int)(dr["Quantidade"]),
                             Capacidade = (int)(dr["capacidadeEstoque"]),
-                            Generos = (List<string>)(dr["Generos"]),
+                            Generos = dr["Generos"] == DBNull.Value ? new List<string>() : dr["Generos"].ToString().Split(", ").ToList(),
                             PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
                         },
-                        dr["ImagemPri"].ToString(),
+                        dr["Imagem"].ToString(),
                         dr["ArquivoEbook"].ToString(),
                         Convert.ToDecimal(dr["MediaAvaliacao"]),
                         Convert.ToInt32(dr["NumeroVendas"])
@@ -544,17 +543,17 @@ namespace LivrariaLegitimo.Repository
                             Autor = (string)(dr["Autor"]),
                             Editora = (string)(dr["Editora"]),
                             IdadeRecomendada = (string)(dr["IdadeMinRecomendada"]),
-                            DataPubli = (DateOnly)(dr["DataPublicacao"]),
+                            DataPubli = DateOnly.FromDateTime(Convert.ToDateTime(dr["DataPublicacao"])),
                             TipoCapa = (string)(dr["Tipo"]),
                             Idioma = (string)(dr["Idioma"]),
                             Literatura = (string)(dr["Literatura"]),
                             Tamanho = (string)(dr["Tamanho"]),
                             Quantidade = (int)(dr["Quantidade"]),
                             Capacidade = (int)(dr["capacidadeEstoque"]),
-                            Generos = (List<string>)(dr["Generos"]),
+                            Generos = dr["Generos"] == DBNull.Value ? new List<string>() : dr["Generos"].ToString().Split(", ").ToList(),
                             PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
                         },
-                        dr["ImagemPri"].ToString(),
+                        dr["Imagem"].ToString(),
                         dr["ArquivoEbook"].ToString(),
                         Convert.ToDecimal(dr["MediaAvaliacao"]),
                         Convert.ToInt32(dr["NumeroVendas"])

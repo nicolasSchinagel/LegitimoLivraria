@@ -1,4 +1,5 @@
-﻿@{
+﻿@model LivrariaLegitimo.ViewModels.LivroViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
@@ -70,14 +71,13 @@
     <div class="card-init">
         <h2 class="card-init-title">Talvez você goste</h2>
         <section class="books-card-init">
-            <div class="book-card-init">
-                <img src="~/capas/book3.webp" class="image-book-card-init">
-                <h4 class="title-book-card-init">Dom Quixote</h4>
-            </div>
-            <div class="book-card-init">
-                <img src="~/capas/book4.webp" class="image-book-card-init">
-                <h4 class="title-book-card-init">O Silmarillon</h4>
-            </div>
+            @foreach(var livro in Model.Aleatorios)
+            {
+                <div class="book-card-init">
+                    <img src="@livro.arquivoImagem" class="image-book-card-init">
+                    <h4 class="title-book-card-init">@livro.livro.Nome</h4>
+                </div>
+            }
         </section>
     </div>
     <div class="card-init">
@@ -2159,11 +2159,6 @@
             });
         });
 
-        lateralBarLeave.addEventListener('click', () => {
-            lateralBar.style.left = '-35%';
-        });
-        headerMenu.addEventListener('click', () => {
-            lateralBar.style.left = '0%';
-        });
+
     });
 </script>
