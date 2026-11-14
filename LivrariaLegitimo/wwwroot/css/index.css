@@ -1137,8 +1137,8 @@ h1, h2, h3, h4, h5, h6, p {
     position: relative;
     overflow: hidden;
     justify-content: center;
-    mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
-    -webkit-mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
+    mask: url("~/img/starmask.png") center/100% 100% no-repeat;
+    -webkit-mask: url("~/img/starmask.png") center/100% 100% no-repeat;
 }
 
 .estrelasimg-historico {
