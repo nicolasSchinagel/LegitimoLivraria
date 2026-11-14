@@ -25,7 +25,8 @@ namespace LivrariaLegitimo.Repository
             _config = conf;
         }
 
-        public (Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)  ObterLivro(string codBarras)
+
+        public (Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas) ObterLivro(string codBarras)
         {
 
             using (var conexao = new MySqlConnection(_conexaoMySQL))
@@ -33,7 +34,9 @@ namespace LivrariaLegitimo.Repository
                 conexao.Open();
                 string caminhoImagem = "";
                 string caminhoEbook = "";
-                MySqlCommand cmd = new MySqlCommand("select * from ViewLivro where(CodBarras = @CodBarras)", conexao);
+                decimal mediaLivro = 0;
+                int numeroVendas = 0;
+                MySqlCommand cmd = new MySqlCommand("select li.*, va.MediaAvaliacao, vv.NumeroVendas from ViewLivro li left join ViewLivroAvaliacoes va on li.codBarras = va.codBarras left join ViewLivroVendas vv on li.codBarras = vv.codBarras where(li.CodBarras = @CodBarras)", conexao);
                 cmd.Parameters.AddWithValue("@CodBarras", Convert.ToDecimal(codBarras));
 
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -62,11 +65,14 @@ namespace LivrariaLegitimo.Repository
                     livro.PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"]);
                     livro.Capacidade = (int)(dr["capacidadeEstoque"]);
                     livro.Generos = (List<string>)(dr["Generos"]);
+                    mediaLivro = Convert.ToDecimal(dr["MediaAvaliacao"]);
+                    numeroVendas = Convert.ToInt32(dr["NumeroVendas"]);
                 }
-                return(livro, caminhoImagem,  caminhoEbook);
+                return (livro, caminhoImagem, caminhoEbook, mediaLivro, numeroVendas);
 
             }
         }
+
         public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterTodosLivros()
         {
             List<(Livro, string arquivoImagem, string arquivoEbook)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook)>();
