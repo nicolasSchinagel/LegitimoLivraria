@@ -1,4 +1,6 @@
+wwwroot\capas\DomQuixote.webp
 wwwroot\capas\Metamorfose.webp
+wwwroot\capas\NadaPodeMeFerir.jpg
 wwwroot\capas\O Pequeno Príncipe.webp
 wwwroot\capas\O Processo.webp
 wwwroot\capas\SCB.jpg
