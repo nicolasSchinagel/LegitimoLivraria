@@ -1,6 +1,7 @@
 ﻿@model LivrariaLegitimo.ViewModels.LivroViewModel
 @{
     ViewData["Title"] = "Home Page";
+    int indiceLivro = 1;
 }
 <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
 <div class="div-menu">
@@ -133,21 +134,28 @@
                     <div class="estrelas">
                         <div class="estrelas-specifics">
                             <img class="estrelasimg" src="~/img/StarComb.png">
-                            <div class="estrelas-specifics-yellowbar"></div>
+                            <div class="estrelas-specifics-yellowbar" style="width: @((livro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
                         </div>
-                        <h3 class="avaliados">@livro.mediaLivro</h3>
+                        <h3 class="avaliados">(@livro.mediaLivro)</h3>
                         <img class="setabaixo" src="~/img/setabaixo.png">
                     </div>
-                    <h3 class="precoog">R$ @livro.livro.Preco</h3>
+                    @using System.Globalization
+                    @if(livro.livro.PromocaoPorcentagem <= 0)
+                    {
+                        <h3 class="precoog"></h3>
+                    }
+                    else
+                    {
+                        <h3 class="precoog">R$ @livro.livro.Preco</h3>
+                    }
                     <div class="precoDiv">
                         @if(livro.livro.PromocaoPorcentagem <= 0)
                         {
-                            @using System.Globalization
-                            <h2 class="preco"></h2>
+                            <h2 class="preco">R$ @livro.livro.Preco</h2>
                             <h2 class="off"></h2>
                         }
                         else{
-                        @using System.Globalization <h2 class="preco">R$ @(Math.Round( decimal.Parse(livro.livro.Preco, new CultureInfo("pt-BR")) * (1 - livro.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))
+                         <h2 class="preco">R$ @(Math.Round( decimal.Parse(livro.livro.Preco, new CultureInfo("pt-BR")) * (1 - livro.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))
                         </h2>
                         <h2 class="off">@livro.livro.PromocaoPorcentagem% OFF</h2>
                         }
@@ -177,687 +185,78 @@
             <img src="~/img/arrow-carousel.png" class="arrow-carousel-right-1">
         </div>
         <div class="div-cards-carousel-total-1">
-            <div class="div-cards-carousel-index-1">
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
+            @foreach(var grupo in Model.MaisVendidos.Chunk(5))
+            {
+                <div class="div-cards-carousel-index-1">
+                    @foreach(var livro in grupo)
+                    {
+                        <div class="card1">
+                            <div class="containerlivro">
+                                <img class="book" src="@livro.arquivoImagem">
 
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">1</h3>
-                        </div>
-                    </div>
+                                <div class="retangulocima">
+                                    <img class="imgetiqueta" src="~/img/iconefogo.png">
+                                    <p class="alta">EM ALTA</p>
+                                </div>
+                                <div class="card-1-enumerado">
+                                    <h3 class="card-1-enumerado-numero">@indiceLivro</h3>
+                                </div>
+                            </div>
 
 
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
+                            <div class="partebaixo">
+                                <div class="tituloeheart">
+                                    <h2 class="titulolivro">@livro.livro.Nome</h2>
+                                    <div class="heartfundo">
+                                        <img class="heart" src="~/img/coracaored.png">
+                                    </div>
+                                </div>
+
+                                <p class="autor">Por @livro.livro.Autor</p>
+                                <p class="editor">@livro.livro.Editora</p>
+                                <div class="estrelas">
+                                    <div class="estrelas-specifics">
+                                        <img class="estrelasimg" src="~/img/StarComb.png">
+                                        <div class="estrelas-specifics-yellowbar" style="width: @((livro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
+                                    </div>
+                                    <h3 class="avaliados">(@livro.mediaLivro)</h3>
+                                    <img class="setabaixo" src="~/img/setabaixo.png">
+                                </div>
+                                @if (livro.livro.PromocaoPorcentagem <= 0)
+                                {
+                                    <h3 class="precoog"></h3>
+                                }
+                                else
+                                {
+                                    <h3 class="precoog">R$ @livro.livro.Preco</h3>
+                                }
+                                <div class="precoDiv">
+                                    @if (livro.livro.PromocaoPorcentagem <= 0)
+                                    {
+                                        <h2 class="preco">R$ @livro.livro.Preco</h2>
+                                        <h2 class="off"></h2>
+                                    }
+                                    else
+                                    {
+                                        <h2 class="preco">
+                                            R$ @(Math.Round(decimal.Parse(livro.livro.Preco, new CultureInfo("pt-BR")) * (1 - livro.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))
+                                        </h2>
+                                        <h2 class="off">@livro.livro.PromocaoPorcentagem% OFF</h2>
+                                    }
+                                </div>
+                            </div>
+                            <div class="cartCamada">
+                                <div class="addcartretangulo">
+                                    <img class="carrinho" src="~/img/cart.png">
+                                    <h2>Adicionar ao carrinho</h2>
+                                </div>
                             </div>
                         </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
+                        indiceLivro++;
+                    }
+                    
                 </div>
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">2</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">3</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">4</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">5</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="div-cards-carousel-index-1">
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">6</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">7</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">8</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">9</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">10</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="div-cards-carousel-index-1">
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">11</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">12</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">13</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">14</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="card1">
-                    <div class="containerlivro">
-                        <img class="book" src="~/capas/morroimg.jpg">
-
-                        <div class="retangulocima">
-                            <img class="imgetiqueta" src="~/img/iconefogo.png">
-                            <p class="alta">EM ALTA</p>
-                        </div>
-                        <div class="card-1-enumerado">
-                            <h3 class="card-1-enumerado-numero">15</h3>
-                        </div>
-                    </div>
-
-
-                    <div class="partebaixo">
-                        <div class="tituloeheart">
-                            <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                            <div class="heartfundo">
-                                <img class="heart" src="~/img/coracaored.png">
-                            </div>
-                        </div>
-
-                        <p class="autor">Por Emily Brontë</p>
-                        <p class="editor">Camelot Editora</p>
-                        <div class="estrelas">
-                            <div class="estrelas-specifics">
-                                <img class="estrelasimg" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-                            <h3 class="avaliados">(4.3)</h3>
-                            <img class="setabaixo" src="~/img/setabaixo.png">
-                        </div>
-                        <h3 class="precoog"></h3>
-                        <div class="precoDiv">
-                            <h2 class="preco">R$ 21,90</h2>
-                            <h2 class="off"></h2>
-                        </div>
-                    </div>
-                    <div class="cartCamada">
-                        <div class="addcartretangulo">
-                            <img class="carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </div>

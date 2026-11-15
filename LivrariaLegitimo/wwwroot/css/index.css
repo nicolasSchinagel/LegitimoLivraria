@@ -263,7 +263,6 @@ h1, h2, h3, h4, h5, h6, p {
     position: absolute;
     top: 0;
     left: 0;
-    width: 94%;
     height: 100%;
     background: rgb(255, 221, 0);
     z-index: 3;
@@ -1152,7 +1151,6 @@ h1, h2, h3, h4, h5, h6, p {
     position: absolute;
     top: 0;
     left: 0;
-    width: 94%;
     height: 100%;
     background: rgb(255, 221, 0);
     z-index: 3;
