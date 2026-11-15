@@ -1,10 +1,18 @@
+wwwroot\capas\Metamorfose.webp
+wwwroot\capas\O Pequeno Príncipe.webp
+wwwroot\capas\O Processo.webp
+wwwroot\capas\SCB.jpg
+wwwroot\capas\yukiguni.jpg
+wwwroot\css\adicionarLivro.css
 wwwroot\css\book.css
 wwwroot\css\carrinho.css
 wwwroot\css\footer.css
-wwwroot\css\index.css
 wwwroot\css\header.css
+wwwroot\css\index.css
 wwwroot\css\inputs.css
+wwwroot\css\lateralMenu.css
 wwwroot\css\list.css
+wwwroot\css\login.css
 wwwroot\css\menuGerenciar.css
 wwwroot\favicon.ico
 wwwroot\img\addEmblema.png
@@ -14,6 +22,7 @@ wwwroot\img\arrow-right.png
 wwwroot\img\arrowAddress_icon.png
 wwwroot\img\autoajuda-icon-gender.png
 wwwroot\img\aventura-icon-gender.png
+wwwroot\img\background_login.png
 wwwroot\img\back_literatura.png
 wwwroot\img\Basics_icon.png
 wwwroot\img\bemavaliado.png
@@ -25,6 +34,7 @@ wwwroot\img\bi-5.webp
 wwwroot\img\biografia-icon-gender.png
 wwwroot\img\BuyA.png
 wwwroot\img\BuyD.png
+wwwroot\img\cadeado.icon.png
 wwwroot\img\cart.png
 wwwroot\img\cartCarrinho.png
 wwwroot\img\CartIcon.png
@@ -39,6 +49,7 @@ wwwroot\img\correct_icon.png
 wwwroot\img\date_icon.png
 wwwroot\img\Description_icon.png
 wwwroot\img\drama-icon-gender.png
+wwwroot\img\ebook_icon.png
 wwwroot\img\etiqueta.icon.png
 wwwroot\img\expand_icon.png
 wwwroot\img\fantasia-icon-gender.png
@@ -57,6 +68,8 @@ wwwroot\img\icon_avaliation.png
 wwwroot\img\icon_backAvaliation.png
 wwwroot\img\icon_buy.png
 wwwroot\img\icon_codBarras.png
+wwwroot\img\icon_email.png
+wwwroot\img\icon_join.png
 wwwroot\img\icon_numpags.png
 wwwroot\img\icon_profile_comment.png
 wwwroot\img\icon_published.png
@@ -160,18 +173,6 @@ wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\lib\mask\jquery.mask.min.js
-wwwroot\css\lateralMenu.css
-wwwroot\css\login.css
-wwwroot\img\background_login.png
-wwwroot\img\cadeado.icon.png
-wwwroot\img\icon_email.png
-wwwroot\img\icon_join.png
-wwwroot\img\ebook_icon.png
-wwwroot\css\adicionarLivro.css
-wwwroot\capas\Metamorfose.webp
-wwwroot\capas\O Processo.webp
-wwwroot\capas\O Pequeno Príncipe.webp
-wwwroot\capas\SCB.jpg
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\book.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\carrinho.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\footer.css

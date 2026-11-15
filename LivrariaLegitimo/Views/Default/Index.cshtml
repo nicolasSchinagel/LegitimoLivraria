@@ -83,16 +83,14 @@
     <div class="card-init">
         <h2 class="card-init-title">Ofertas do mês</h2>
         <section class="books-card-init">
-            <div class="book-card-init">
-                <img src="~/capas/book5.webp" class="image-book-card-init">
-                <h4 class="title-book-card-init">Memórias do Subsolo</h4>
-                <h5 class="discount-book-card-init"><span class="discount-book-card-init-span">30%</span> de desconto</h5>
-            </div>
-            <div class="book-card-init">
-                <img src="~/capas/book6.webp" class="image-book-card-init">
-                <h4 class="title-book-card-init">A morte de Ivan Ilitch e senhores e servos</h4>
-                <h5 class="discount-book-card-init"><span class="discount-book-card-init-span">24%</span> de desconto</h5>
-            </div>
+            @foreach(var livro in Model.MaioresOfertas)
+            {
+                <div class="book-card-init">
+                    <img src="@livro.arquivoImagem" class="image-book-card-init">
+                    <h4 class="title-book-card-init">@livro.livro.Nome</h4>
+                    <h5 class="discount-book-card-init"><span class="discount-book-card-init-span">@livro.livro.PromocaoPorcentagem %</span> de desconto</h5>
+                </div>
+            }
         </section>
         <section class="ver-todos-card-init">
             <h3 class="ver-todos-card-init-text">Ver todos</h3>
@@ -110,215 +108,59 @@
     </div>
 
     <div class="div-cards-carousel-index-0">
-        <div class="card1">
-            <div class="containerlivro">
-                <img class="book" src="~/capas/morroimg.jpg">
+        @foreach(var livro in Model.BemAvaliados)
+        {
+            <div class="card1">
+                <div class="containerlivro">
+                    <img class="book" src="@livro.arquivoImagem">
 
-                <div class="retangulocimaBemavaliado">
-                    <img class="imgetiqueta" src="~/img/bemavaliado.png">
-                    <p class="bemavaliado">BEM AVALIADO</p>
-                </div>
-            </div>
-
-
-            <div class="partebaixo">
-                <div class="tituloeheart">
-                    <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                    <div class="heartfundo">
-                        <img class="heart" src="~/img/coracaored.png">
-                    </div>
-                </div>
-                <p class="autor">Por Emily Brontë</p>
-                <p class="editor">Camelot Editora</p>
-                <div class="estrelas">
-                    <div class="estrelas-specifics">
-                        <img class="estrelasimg" src="~/img/StarComb.png">
-                        <div class="estrelas-specifics-yellowbar"></div>
-                    </div>
-                    <h3 class="avaliados">(4.3)</h3>
-                    <img class="setabaixo" src="~/img/setabaixo.png">
-                </div>
-                <h3 class="precoog">R$ 24,90</h3>
-                <div class="precoDiv">
-                    <h2 class="preco">R$ 21,90</h2>
-                    <h2 class="off">12% OFF</h2>
-                </div>
-            </div>
-            <div class="cartCamada">
-                <div class="addcartretangulo">
-                    <img class="carrinho" src="~/img/cart.png">
-                    <h2>Adicionar ao carrinho</h2>
-                </div>
-            </div>
-        </div>
-        <div class="card1">
-            <div class="containerlivro">
-                <img class="book" src="~/capas/morroimg.jpg">
-
-                <div class="retangulocimaBemavaliado">
-                    <img class="imgetiqueta" src="~/img/bemavaliado.png">
-                    <p class="bemavaliado">BEM AVALIADO</p>
-                </div>
-            </div>
-
-
-            <div class="partebaixo">
-                <div class="tituloeheart">
-                    <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                    <div class="heartfundo">
-                        <img class="heart" src="~/img/coracaored.png">
+                    <div class="retangulocimaBemavaliado">
+                        <img class="imgetiqueta" src="~/img/bemavaliado.png">
+                        <p class="bemavaliado">BEM AVALIADO</p>
                     </div>
                 </div>
 
-                <p class="autor">Por Emily Brontë</p>
-                <p class="editor">Camelot Editora</p>
-                <div class="estrelas">
-                    <div class="estrelas-specifics">
-                        <img class="estrelasimg" src="~/img/StarComb.png">
-                        <div class="estrelas-specifics-yellowbar"></div>
+
+                <div class="partebaixo">
+                    <div class="tituloeheart">
+                        <h2 class="titulolivro">@livro.livro.Nome</h2>
+                        <div class="heartfundo">
+                            <img class="heart" src="~/img/coracaored.png">
+                        </div>
                     </div>
-                    <h3 class="avaliados">(4.3)</h3>
-                    <img class="setabaixo" src="~/img/setabaixo.png">
-                </div>
-                <h3 class="precoog">R$ 24,90</h3>
-                <div class="precoDiv">
-                    <h2 class="preco">R$ 21,90</h2>
-                    <h2 class="off">12% OFF</h2>
-                </div>
-            </div>
-            <div class="cartCamada">
-                <div class="addcartretangulo">
-                    <img class="carrinho" src="~/img/cart.png">
-                    <h2>Adicionar ao carrinho</h2>
-                </div>
-            </div>
-        </div>
-        <div class="card1">
-            <div class="containerlivro">
-                <img class="book" src="~/capas/morroimg.jpg">
-
-                <div class="retangulocimaBemavaliado">
-                    <img class="imgetiqueta" src="~/img/bemavaliado.png">
-                    <p class="bemavaliado">BEM AVALIADO</p>
-                </div>
-            </div>
-
-
-            <div class="partebaixo">
-                <div class="tituloeheart">
-                    <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                    <div class="heartfundo">
-                        <img class="heart" src="~/img/coracaored.png">
+                    <p class="autor">Por @livro.livro.Autor</p>
+                    <p class="editor">@livro.livro.Editora</p>
+                    <div class="estrelas">
+                        <div class="estrelas-specifics">
+                            <img class="estrelasimg" src="~/img/StarComb.png">
+                            <div class="estrelas-specifics-yellowbar"></div>
+                        </div>
+                        <h3 class="avaliados">@livro.mediaLivro</h3>
+                        <img class="setabaixo" src="~/img/setabaixo.png">
+                    </div>
+                    <h3 class="precoog">R$ @livro.livro.Preco</h3>
+                    <div class="precoDiv">
+                        @if(livro.livro.PromocaoPorcentagem <= 0)
+                        {
+                            @using System.Globalization
+                            <h2 class="preco"></h2>
+                            <h2 class="off"></h2>
+                        }
+                        else{
+                        @using System.Globalization <h2 class="preco">R$ @(Math.Round( decimal.Parse(livro.livro.Preco, new CultureInfo("pt-BR")) * (1 - livro.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))
+                        </h2>
+                        <h2 class="off">@livro.livro.PromocaoPorcentagem% OFF</h2>
+                        }
                     </div>
                 </div>
-
-                <p class="autor">Por Emily Brontë</p>
-                <p class="editor">Camelot Editora</p>
-                <div class="estrelas">
-                    <div class="estrelas-specifics">
-                        <img class="estrelasimg" src="~/img/StarComb.png">
-                        <div class="estrelas-specifics-yellowbar"></div>
-                    </div>
-                    <h3 class="avaliados">(4.3)</h3>
-                    <img class="setabaixo" src="~/img/setabaixo.png">
-                </div>
-                <h3 class="precoog">R$ 24,90</h3>
-                <div class="precoDiv">
-                    <h2 class="preco">R$ 21,90</h2>
-                    <h2 class="off">12% OFF</h2>
-                </div>
-            </div>
-            <div class="cartCamada">
-                <div class="addcartretangulo">
-                    <img class="carrinho" src="~/img/cart.png">
-                    <h2>Adicionar ao carrinho</h2>
-                </div>
-            </div>
-        </div>
-        <div class="card1">
-            <div class="containerlivro">
-                <img class="book" src="~/capas/morroimg.jpg">
-
-                <div class="retangulocimaBemavaliado">
-                    <img class="imgetiqueta" src="~/img/bemavaliado.png">
-                    <p class="bemavaliado">BEM AVALIADO</p>
-                </div>
-            </div>
-
-
-            <div class="partebaixo">
-                <div class="tituloeheart">
-                    <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                    <div class="heartfundo">
-                        <img class="heart" src="~/img/coracaored.png">
+                <div class="cartCamada">
+                    <div class="addcartretangulo">
+                        <img class="carrinho" src="~/img/cart.png">
+                        <h2>Adicionar ao carrinho</h2>
                     </div>
                 </div>
-
-                <p class="autor">Por Emily Brontë</p>
-                <p class="editor">Camelot Editora</p>
-                <div class="estrelas">
-                    <div class="estrelas-specifics">
-                        <img class="estrelasimg" src="~/img/StarComb.png">
-                        <div class="estrelas-specifics-yellowbar"></div>
-                    </div>
-                    <h3 class="avaliados">(4.3)</h3>
-                    <img class="setabaixo" src="~/img/setabaixo.png">
-                </div>
-                <h3 class="precoog">R$ 24,90</h3>
-                <div class="precoDiv">
-                    <h2 class="preco">R$ 21,90</h2>
-                    <h2 class="off">12% OFF</h2>
-                </div>
             </div>
-            <div class="cartCamada">
-                <div class="addcartretangulo">
-                    <img class="carrinho" src="~/img/cart.png">
-                    <h2>Adicionar ao carrinho</h2>
-                </div>
-            </div>
-        </div>
-        <div class="card1">
-            <div class="containerlivro">
-                <img class="book" src="~/capas/morroimg.jpg">
-
-                <div class="retangulocimaBemavaliado">
-                    <img class="imgetiqueta" src="~/img/bemavaliado.png">
-                    <p class="bemavaliado">BEM AVALIADO</p>
-                </div>
-            </div>
-
-
-            <div class="partebaixo">
-                <div class="tituloeheart">
-                    <h2 class="titulolivro">O Morro dos Ventos Uivantes</h2>
-                    <div class="heartfundo">
-                        <img class="heart" src="~/img/coracaored.png">
-                    </div>
-                </div>
-
-                <p class="autor">Por Emily Brontë</p>
-                <p class="editor">Camelot Editora</p>
-                <div class="estrelas">
-                    <div class="estrelas-specifics">
-                        <img class="estrelasimg" src="~/img/StarComb.png">
-                        <div class="estrelas-specifics-yellowbar"></div>
-                    </div>
-                    <h3 class="avaliados">(4.3)</h3>
-                    <img class="setabaixo" src="~/img/setabaixo.png">
-                </div>
-                <h3 class="precoog">R$ 24,90</h3>
-                <div class="precoDiv">
-                    <h2 class="preco">R$ 21,90</h2>
-                    <h2 class="off">12% OFF</h2>
-                </div>
-            </div>
-            <div class="cartCamada">
-                <div class="addcartretangulo">
-                    <img class="carrinho" src="~/img/cart.png">
-                    <h2>Adicionar ao carrinho</h2>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </div>
 <div class="div-cards-carousel">

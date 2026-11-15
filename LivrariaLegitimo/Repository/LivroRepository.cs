@@ -198,14 +198,14 @@ namespace LivrariaLegitimo.Repository
                 conexao.Open();
 
                 MySqlCommand consulta = new MySqlCommand(
-                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(Quantidade > 0) order by va.MediaAvaliacao desc, vv.NumeroVendas desc limit 15",
+                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(Quantidade > 0) order by va.MediaAvaliacao desc, vv.NumeroVendas desc limit 5",
                     conexao
                 );
 
                 if (_loginFuncionario.GetFuncionario() != null)
                 {
                     consulta = new MySqlCommand(
-                        "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras order by va.MediaAvaliacao desc, vv.NumeroVendas desc limit 15",
+                        "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras order by va.MediaAvaliacao desc, vv.NumeroVendas desc limit 5",
                         conexao
                     );
                 }

@@ -28,9 +28,6 @@ namespace LivrariaLegitimo.Models
         [Required(ErrorMessage = "A Editora é obrigatória")]
         public string Editora { get; set; }
 
-        [Display(Name = "Promoção")]
-        [Range(0, 89, ErrorMessage = "A promoção deve estar entre 0 e 89.")]
-        public int Promocao { get; set; }
 
         [Display(Name = "Gêneros")]
         [Required(ErrorMessage = "Selecione pelo menos um gênero")]
@@ -94,7 +91,8 @@ namespace LivrariaLegitimo.Models
         [RegularExpression(@"^.+\.pdf$", ErrorMessage = "O arquivo deve estar no formato PDF.")]
         public IFormFile? ArquivoEbook { get; set; }
 
-        [Display(Name = "Desconto do Livro")]
+        [Display(Name = "Promoção do Livro")]
+        [Range(0, 89, ErrorMessage = "A promoção deve estar entre 0 e 89.")]
         public int PromocaoPorcentagem { get; set; }
 
 
