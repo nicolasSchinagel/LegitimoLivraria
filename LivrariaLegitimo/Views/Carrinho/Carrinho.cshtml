@@ -1,3 +1,106 @@
 ﻿
 @{
 }
+<link rel="stylesheet" href="~/css/carrinho.css" asp-append-version="true" />
+
+<main class="main-carrinho">
+    <section class="main-carrinho-header">
+        <div class="main-carrinho-header-item">
+            <img src="./imagens/KartA.png" class="main-carrinho-header-item-icon" />
+            <h2 class="main-carrinho-header-item-text carrinhos-active">1.Carrinho</h2>
+        </div>
+        <div class="main-carrinho-header-item">
+            <img src="./imagens/LocalD.png" class="main-carrinho-header-item-icon" />
+            <h2 class="main-carrinho-header-item-text carrinhos-inactive">2.Confirmar endereço</h2>
+        </div>
+        <div class="main-carrinho-header-item">
+            <img src="./imagens/BuyD.png" class="main-carrinho-header-item-icon" />
+            <h2 class="main-carrinho-header-item-text carrinhos-inactive">3.Confirmar pagamento</h2>
+        </div>
+    </section>
+    <section class="main-carrinho-content">
+        <div class="main-carrinho-content-listaItens">
+            <div class="main-carrinho-content-card">
+                <img src="./imagens/book11.webp" class="main-carrinho-content-card-img" />
+                <div class="main-carrinho-content-card-info">
+                    <h2 class="main-carrinho-content-card-info-title">Bleach Remix Vol.1 - <span>Tite Kubo</span></h2>
+                    <div class="main-carrinho-content-card-info-subinfo">
+                        <div class="main-carrinho-content-card-info-subinfo-descriptions">
+                            <h4 class="main-carrinho-content-card-info-subinfo-descriptions-editora">Editora: Panini</h4>
+                            <h4 class="main-carrinho-content-card-info-subinfo-descriptions-tipo">Capa mole</h4>
+                            <h5 class="main-carrinho-content-card-info-subinfo-descriptions-exemplares">Restam 11 exemplares disponíveis</h5>
+                        </div>
+                        <div class="main-carrinho-content-card-info-subinfo-qtd">
+                            <h4 class="main-carrinho-content-card-info-subinfo-off">23% off</h4>
+                            <div class="main-carrinho-content-card-info-subinfo-qtd-block">
+                                <img class="qtd-block-minus" src="./imagens/minus.png" />
+                                <input type="number" class="main-carrinho-content-card-info-subinfo-qtd-block-input" />
+                                <img class="qtd-block-plus" src="./imagens/plus.png" />
+                            </div>
+                        </div>
+                        <div class="main-carrinho-content-card-info-subinfo-price">
+                            <h4 class="main-carrinho-content-card-info-subinfo-price-off">R$75,90</h4>
+                            <h3 class="main-carrinho-content-card-info-subinfo-price-now">R$58,50</h3>
+                        </div>
+                    </div>
+                    <img src="./imagens/trash.png" class="main-carrinho-content-card-info-remove" />
+                </div>
+            </div>
+            <div class="main-carrinho-content-card">
+                <img src="./imagens/book12.jpg" class="main-carrinho-content-card-img" />
+                <div class="main-carrinho-content-card-info">
+                    <h2 class="main-carrinho-content-card-info-title">Dom Quixote <span>Cervantes</span></h2>
+                    <div class="main-carrinho-content-card-info-subinfo">
+                        <div class="main-carrinho-content-card-info-subinfo-descriptions">
+                            <h4 class="main-carrinho-content-card-info-subinfo-descriptions-editora">Editora: Antofágica</h4>
+                            <h4 class="main-carrinho-content-card-info-subinfo-descriptions-tipo">Capa dura</h4>
+                            <h5 class="main-carrinho-content-card-info-subinfo-descriptions-exemplares">Restam 11 exemplares disponíveis</h5>
+                        </div>
+                        <div class="main-carrinho-content-card-info-subinfo-qtd">
+                            <h4 class="main-carrinho-content-card-info-subinfo-off">20% off</h4>
+                            <div class="main-carrinho-content-card-info-subinfo-qtd-block">
+                                <img class="qtd-block-minus" src="./imagens/minus.png" />
+                                <input type="number" class="main-carrinho-content-card-info-subinfo-qtd-block-input" />
+                                <img class="qtd-block-plus" src="./imagens/plus.png" />
+                            </div>
+                        </div>
+                        <div class="main-carrinho-content-card-info-subinfo-price">
+                            <h4 class="main-carrinho-content-card-info-subinfo-price-off">R$100,00</h4>
+                            <h3 class="main-carrinho-content-card-info-subinfo-price-now">R$80,00</h3>
+                        </div>
+                    </div>
+                    <img src="./imagens/trash.png" class="main-carrinho-content-card-info-remove" />
+                </div>
+            </div>
+        </div>
+        <div class="main-carrinho-content-sobre">
+            <h2 class="main-carrinho-content-sobre-title">Resumo da Compra</h2>
+            <div class="main-carrinho-content-sobre-infos">
+                <h3 class="main-carrinho-content-sobre-infos-frete">Frete: Grátis</h3>
+                <h4 class="main-carrinho-content-sobre-infos-datapossivel">Datas possíveis de entrega:</h4>
+                <h4 class="main-carrinho-content-sobre-infos-datas">De segunda-feira até quinta-feira</h4>
+            </div>
+            <div class="main-carrinho-content-sobre-lista">
+                <div class="main-carrinho-content-sobre-lista-item">
+                    <h3 class="main-carrinho-content-sobre-lista-item-title">Bleach Remix Vol.7</h3>
+                    <h3 class="main-carrinho-content-sobre-lista-item-number">x1</h3>
+                    <h2 class="main-carrinho-content-sobre-lista-item-price">>R$58,50</h2>
+                </div>
+                <div class="main-carrinho-content-sobre-lista-item">
+                    <h3 class="main-carrinho-content-sobre-lista-item-title">Sherlock Holmes: Um estudo em vermelho</h3>
+                    <h3 class="main-carrinho-content-sobre-lista-item-number">x2</h3>
+                    <h2 class="main-carrinho-content-sobre-lista-item-price">>R$63,80</h2>
+                </div>
+                <div class="main-carrinho-content-sobre-divisor"></div>
+                <div class="main-carrinho-content-sobre-totals">
+                    <h3 class="main-carrinho-content-sobre-totals-title">Total:</h3>
+                    <h3 class="main-carrinho-content-sobre-totals-price">R$175,30</h3>
+                </div>
+                <a class="main-carrinho-content-sobre-buttom">
+                    <img src="./imagens/cartCarrinho.png" class="main-carrinho-content-sobre-buttom-icon" />
+                    <h3 class="main-carrinho-content-sobre-buttom-title">Finalizar Compra</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
