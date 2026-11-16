@@ -23,10 +23,10 @@
             </div>
             <a class="carrinho-header">
                 <h2 class="tittle-carrinho-header">Carrinho de compras</h2>
-                <div class="icon-carrinho-header">
+                <a class="icon-carrinho-header no-underline" asp-controller="Carrinho" asp-action="Carrinho">
                     <img src="~/img/CartIcon.png" class="image-icon-carrinho-header">
                     <h3 class="number-carrinho-header">1</h3>
-                </div>
+                </a>
             </a>
             <div class="entry-header">
                 @if(_LoginCliente.GetCliente() != null)
