@@ -1,8 +1,10 @@
+wwwroot\capas\Biblia.webp
 wwwroot\capas\DomQuixote.webp
 wwwroot\capas\Metamorfose.webp
 wwwroot\capas\NadaPodeMeFerir.jpg
 wwwroot\capas\O Pequeno Príncipe.webp
 wwwroot\capas\O Processo.webp
+wwwroot\capas\O Senhor dos Anéis A Sociedade do Anel.webp
 wwwroot\capas\SCB.jpg
 wwwroot\capas\yukiguni.jpg
 wwwroot\css\adicionarLivro.css
