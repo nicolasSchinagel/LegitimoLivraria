@@ -54,17 +54,16 @@ namespace LivrariaLegitimo.Repository
                     livro.Autor = (string)(dr["Autor"]);
                     livro.Editora = (string)(dr["Editora"]);
                     livro.IdadeRecomendada = (string)(dr["IdadeMinRecomendada"]);
-                    livro.DataPubli = (DateOnly)(dr["DataPublicacao"]);
+                    livro.DataPubli = DateOnly.FromDateTime(Convert.ToDateTime(dr["DataPublicacao"]));
                     livro.TipoCapa = (string)(dr["Tipo"]);
                     livro.Idioma = (string)(dr["Idioma"]);
                     livro.Literatura = (string)(dr["Literatura"]);
                     livro.Tamanho = (string)(dr["Tamanho"]);
                     caminhoImagem = (string)(dr["Imagem"]);
-                    caminhoEbook = (string)(dr["ArquivoEbook"]);
                     livro.Quantidade = (int)(dr["Quantidade"]);
                     livro.PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"]);
                     livro.Capacidade = (int)(dr["capacidadeEstoque"]);
-                    livro.Generos = (List<string>)(dr["Generos"]);
+                    livro.Generos = dr["Generos"] == DBNull.Value ? new List<string>() : dr["Generos"].ToString().Split(", ").ToList();
                     mediaLivro = Convert.ToDecimal(dr["MediaAvaliacao"]);
                     numeroVendas = Convert.ToInt32(dr["NumeroVendas"]);
                 }

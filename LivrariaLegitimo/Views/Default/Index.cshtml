@@ -74,10 +74,10 @@
         <section class="books-card-init">
             @foreach(var livro in Model.Aleatorios)
             {
-                <div class="book-card-init">
+                <a class="book-card-init no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
                     <img src="@livro.arquivoImagem" class="image-book-card-init">
                     <h4 class="title-book-card-init">@livro.livro.Nome</h4>
-                </div>
+                </a>
             }
         </section>
     </div>
@@ -86,11 +86,11 @@
         <section class="books-card-init">
             @foreach(var livro in Model.MaioresOfertas)
             {
-                <div class="book-card-init">
+                <a class="book-card-init no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
                     <img src="@livro.arquivoImagem" class="image-book-card-init">
                     <h4 class="title-book-card-init">@livro.livro.Nome</h4>
                     <h5 class="discount-book-card-init"><span class="discount-book-card-init-span">@livro.livro.PromocaoPorcentagem %</span> de desconto</h5>
-                </div>
+                </a>
             }
         </section>
         <section class="ver-todos-card-init">

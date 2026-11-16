@@ -1,7 +1,10 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using System.Globalization
+@inject LivrariaLegitimo.Libraries.Login.LoginCliente _LoginCliente
+@inject LivrariaLegitimo.Libraries.Login.LoginFuncionario _LoginFuncionario
+@model LivrariaLegitimo.ViewModels.LivroViewModel
 @{
+    DateTime dataMais2Dias = DateTime.Today.AddDays(2);
+    DateTime dataMais3Dias = DateTime.Today.AddDays(3);
 }
 <link rel="stylesheet" href="~/css/livro.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
@@ -13,18 +16,18 @@
         <h1 class="supercard-avaliacao-title"><span>AVALIE</span> ESTE LIVRO</h1>
         <div class="supercard-avaliacao-topdetails">
             <div class="supercard-avaliacao-topdetails-info">
-                <h2 class="supercard-avaliacao-topdetails-info-nome">Harry Potter e o Enigma do Príncipe</h2>
-                <h2 class="supercard-avaliacao-topdetails-info-editora">Editora: Rocco</h2>
-                <h2 class="supercard-avaliacao-topdetails-info-tipo">Tipo: Capa mole</h2>
-                <h2 class="supercard-avaliacao-topdetails-info-isbn">ISBN: 8532519474</h2>
+                <h2 class="supercard-avaliacao-topdetails-info-nome">@Model.ObterLivro.livro.Nome</h2>
+                <h2 class="supercard-avaliacao-topdetails-info-editora">Editora: @Model.ObterLivro.livro.Editora</h2>
+                <h2 class="supercard-avaliacao-topdetails-info-tipo">Tipo: @Model.ObterLivro.livro.TipoCapa</h2>
+                <h2 class="supercard-avaliacao-topdetails-info-isbn">ISBN: @Model.ObterLivro.livro.ISBN</h2>
             </div>
             <div class="supercard-avaliacao-topdetails-avaliacao">
                 <h3 class="supercard-avaliacao-topdetails-avaliacao-media">Média geral</h3>
                 <div class="supercard-avaliacao-topdetails-avaliacao-stars">
                     <div class="supercard-avaliacao-topdetails-avaliacao-stars-yellowbar"></div>
-                    <img class="supercard-avaliacao-topdetails-avaliacao-stars-barimageStar" src="./imagens/StarComb.png">
+                    <img class="supercard-avaliacao-topdetails-avaliacao-stars-barimageStar" src="~/img/StarComb.png">
                 </div>
-                <h2 class="supercard-avaliacao-topdetails-avaliacao-limites"><span>4,8</span> de <span>5</span></h2>
+                <h2 class="supercard-avaliacao-topdetails-avaliacao-limites"><span>@Model.ObterLivro.mediaLivro</span> de <span>5</span></h2>
                 <h3 class="supercard-avaliacao-topdetails-avaliacao-quantidade">267 avaliações feitas</h3>
             </div>
         </div>
@@ -67,81 +70,273 @@
         </div>
         <div class="supercard-avaliacao-bottomButton">
             <a class="supercard-avaliacao-bottomButton-back">
-                <img src="./imagens/icon_backAvaliation.png" class="supercard-avaliacao-bottomButton-back-symbol" />
+                <img src="~/img/icon_backAvaliation.png" class="supercard-avaliacao-bottomButton-back-symbol" />
                 <h3 class="supercard-avaliacao-bottomButton-back-title">Voltar</h3>
             </a>
             <button class="supercard-avaliacao-bottomButton-button">
-                <img src="./imagens/icon_avaliation.png" class="supercard-avaliacao-bottomButton-button-icon" />
+                <img src="~/img/icon_avaliation.png" class="supercard-avaliacao-bottomButton-button-icon" />
                 <h3 class="supercard-avaliacao-bottomButton-button-title">AVALIAR</h3>
             </button>
         </div>
     </div>
 </div>
 <div class="genre-list">
-    <div class="card-genero-genre-list">
-        <img src="./imagens/fantasia-icon-gender.png" class="card-genero-icon">
-        <section class="card-genero-info">
-            <h3 class="card-genero-title-genre-list">Fantasia</h3>
-        </section>
-    </div>
-    <div class="card-genero-genre-list">
-        <img src="./imagens/aventura-icon-gender.png" class="card-genero-icon">
-        <section class="card-genero-info">
-            <h3 class="card-genero-title-genre-list">Aventura</h3>
-        </section>
-    </div>
-    <div class="card-genero-genre-list">
-        <img src="./imagens/misterio-icon-gender.png" class="card-genero-icon">
-        <section class="card-genero-info">
-            <h3 class="card-genero-title-genre-list">Mistério</h3>
-        </section>
-    </div>
+    @if (Model.ObterLivro.livro.Generos.Contains("Fantasia"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/fantasia-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Fantasia</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Aventura"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/aventura-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Aventura</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Mistério"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/misterio-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Mistério</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Ficção Científica"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/scifi-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Ficção Científica</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Romance"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/romance-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Romance</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("História"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/historia-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">História</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Biografia"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/biografia-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Biografia</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Autoajuda"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/autoajuda-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Autoajuda</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Terror"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/terror-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Terror</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Mistério"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/misterio-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Mistério</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Filosofia"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/filosofia-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Filosofia</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Humor"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/humor-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Humor</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Drama"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/drama-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Drama</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Suspense"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/suspense-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Suspense</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Religião"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/religiao-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Religião</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Literatura Clássica"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/literatura_classica-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Literatura Clássica</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Literatura Infantil"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/literatura_infantil-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Literatura Infantil</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Literatura Juvenil"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/literatura_juvenil-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Literatura Juvenil</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Contos"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/contos-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Contos</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Poesia"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/poesia-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Poesia</h3>
+            </section>
+        </div>
+    }
+    @if (Model.ObterLivro.livro.Generos.Contains("Mangás"))
+    {
+        <div class="card-genero-genre-list">
+            <img src="~/img/manga-icon-gender.png" class="card-genero-icon">
+            <section class="card-genero-info">
+                <h3 class="card-genero-title-genre-list">Mangás</h3>
+            </section>
+        </div>
+    }
 </div>
 <div class="main-book">
     <section class="cover-section">
-        <img src="./imagens/capaExemplo.webp" class="cover-section-image" />
+        <img src="@Model.ObterLivro.arquivoImagem" class="cover-section-image" />
         <h3 class="cover-section-more">Mais sobre o autor</h3>
-        <h2 class="cover-section-author">J.K Rowling</h2>
+        <h2 class="cover-section-author">@Model.ObterLivro.livro.Autor</h2>
     </section>
     <section class="section-descriptions">
         <div class="section-descriptions-top">
             <div class="section-descriptions-top-names">
-                <h1 class="section-descriptions-nomeLivro">Harry Potter e o Enigma do Príncipe: 6</h1>
+                <h1 class="section-descriptions-nomeLivro">@Model.ObterLivro.livro.Nome</h1>
                 <div class="section-descriptions-top-names-caracteristicas">
-                    <h3 class="section-descriptions-top-names-atribute-1">Edição: <span>português</span></h3>
+                    <h3 class="section-descriptions-top-names-atribute-1">Edição: <span>@Model.ObterLivro.livro.Idioma</span></h3>
                     <h4 class="section-descriptions-top-names-divisor">|</h4>
-                    <h3 class="section-descriptions-top-names-atribute-1">Tipo: <span>capa mole</span></h3>
+                    <h3 class="section-descriptions-top-names-atribute-1">Tipo: <span>@Model.ObterLivro.livro.TipoCapa</span></h3>
                     <h4 class="section-descriptions-top-names-divisor">|</h4>
-                    <h3 class="section-descriptions-top-names-atribute-1">Editora: <span>Rocco</span></h3>
+                    <h3 class="section-descriptions-top-names-atribute-1">Editora: <span>@Model.ObterLivro.livro.Editora</span></h3>
                 </div>
                 <div class="section-descriptions-estrelas-paginalivro">
                     <div class="section-descriptions-estrelas-paginalivro-parteEstrela">
-                        <img class="section-descriptions-estrelasimg-paginalivro" src="imagens/starComb.png">
+                        <img class="section-descriptions-estrelasimg-paginalivro" src="~/img/starComb.png">
                         <div class="section-descriptions-yellowbar-paginalivro"></div>
                     </div>
-                    <h3 class="section-descriptions-avaliados-paginalivro">(4.8)</h3>
-                    <img class="section-descriptions-setabaixo-paginalivro" src="imagens/setabaixo.png">
+                    <h3 class="section-descriptions-avaliados-paginalivro">(@Model.ObterLivro.mediaLivro)</h3>
+                    <img class="section-descriptions-setabaixo-paginalivro" src="~/img/setabaixo.png">
                     <h4 class="section-descriptions-qtd-avaliation">(267)</h4>
                 </div>
-                <p class="section-descriptions-text">Em seu sexto ano em Hogwarts, Harry descobre mais sobre o passado de Voldemort com Dumbledore. Lord Voldemort recupera grande parte de seu poder, e seus seguidores, os Comensais da Morte, espalham terror entre os bruxos. Próximo de seu aniversário de 16 anos, Harry retorna para Hogwarts sabendo que terá grande importância na guerra que se aproxima.</p>
+                <p class="section-descriptions-text">@Model.ObterLivro.livro.Sinopse</p>
                 <h4 class="section-descriptions-relato">Relatar um problema</h4>
                 <div class="section-descriptions-divisor"></div>
             </div>
             <div class="section-descriptions-top-prices">
                 <h2 class="section-descriptions-top-prices-title">Preço</h2>
-                <h3 class="section-descriptions-top-prices-original-price">R$ 40,50</h3>
-                <h1 class="section-descriptions-top-prices-final-price">R$ <span>29,90</span></h1>
+                @if(Model.ObterLivro.livro.PromocaoPorcentagem <= 0)
+                {
+                    <h3 class="section-descriptions-top-prices-original-price"></h3>
+                    <h1 class="section-descriptions-top-prices-final-price">R$ <span>@Model.ObterLivro.livro.Preco</span></h1>
+                }
+                else
+                {
+                    <h3 class="section-descriptions-top-prices-original-price">R$ @Model.ObterLivro.livro.Preco</h3>
+                    <h1 class="section-descriptions-top-prices-final-price">R$ <span>@(Math.Round(decimal.Parse(Model.ObterLivro.livro.Preco, new CultureInfo("pt-BR")) * (1 - Model.ObterLivro.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))</span></h1>
+                }
+                
                 <div class="section-descriptions-top-prices-cartCamada">
                     <div class="section-descriptions-top-prices-addcartretangulo">
-                        <img class="section-descriptions-top-prices-carrinho" src="imagens/cart.png">
+                        <img class="section-descriptions-top-prices-carrinho" src="~/img/cart.png">
                         <h2>Adicionar ao carrinho</h2>
                     </div>
                 </div>
-                <h3 class="section-descriptions-top-prices-dataentrega">ENTREGA GRÁTIS, <span>quinta-feira, 3 de outubro</span></h3>
-                <div class="section-descriptions-top-prices-condicional">
-                    <h3 class="section-descriptions-top-prices-condicional-text">Se pedir até às: <span>15:00</span></h3>
-                    <a class="section-descriptions-top-prices-condicional-sabermais"> Saber mais</a>
-                </div>
+                @if (DateTime.Now.TimeOfDay < new TimeSpan(15, 0, 0))
+                {
+                    <h3 class="section-descriptions-top-prices-dataentrega">ENTREGA GRÁTIS, <span>quarta-feira, @dataMais2Dias.ToString("dd/MM/yyyy")</span></h3>
+                    <div class="section-descriptions-top-prices-condicional">
+                        <h3 class="section-descriptions-top-prices-condicional-text">Se pedir até às: <span>15:00</span></h3>
+                        <a class="section-descriptions-top-prices-condicional-sabermais"> Saber mais</a>
+                    </div>
+                }
+                else
+                {
+                    <h3 class="section-descriptions-top-prices-dataentrega">ENTREGA GRÁTIS, <span>quarta-feira, @dataMais3Dias.ToString("dd/MM/yyyy")</span></h3>
+                    <div class="section-descriptions-top-prices-condicional">
+                        <h3 class="section-descriptions-top-prices-condicional-text">Se pedir até às: <span>00:00</span></h3>
+                        <a class="section-descriptions-top-prices-condicional-sabermais"> Saber mais</a>
+                    </div>
+                }
+
                 <div class="section-descriptions-top-prices-quantidade">
                     <h2 class="section-descriptions-top-prices-quantidade-text">Quantidade:</h2>
                     <div class="section-descriptions-top-prices-quantidade-block">
@@ -149,10 +344,15 @@
                     </div>
                 </div>
                 <h4 class="section-descriptions-top-prices-envio">Envio gerenciado pela livraria Legítimo</h4>
-                <h4 class="section-descriptions-top-prices-exemplares"><span>Últimos exemplares disponíveis: 12</span></h4>
+                <h4 class="section-descriptions-top-prices-exemplares">
+                    @if (Model.ObterLivro.livro.Quantidade <= 20)
+                    {
+                        <span> Últimos exemplares disponíveis: @Model.ObterLivro.livro.Quantidade</span>            
+                    }
+                </h4>
                 <div class="section-descriptions-top-prices-tagCamada">
                     <div class="section-descriptions-top-prices-addcartretangulo">
-                        <img class="section-descriptions-top-prices-tag" src="imagens/icon_buy.png">
+                        <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
                         <h2>Comprar agora</h2>
                     </div>
                 </div>
@@ -162,24 +362,24 @@
             <h2 class="section-descriptions-plusinformations-title">Informações úteis:</h2>
             <section class="section-descriptions-plusinformations-list">
                 <div class="section-descriptions-plusinformations-list-part">
-                    <img src="./imagens/icon_size.png" class="section-descriptions-plusinformations-list-part-image" />
+                    <img src="~/img/icon_size.png" class="section-descriptions-plusinformations-list-part-image" />
                     <div class="section-descriptions-plusinformations-list-part-texts">
                         <h3 class="section-descriptions-plusinformations-list-part-texts-title">Tamanho do livro</h3>
-                        <h4 class="section-descriptions-plusinformations-list-part-texts-value">21.2 x 14.4 x 2.4 cm</h4>
+                        <h4 class="section-descriptions-plusinformations-list-part-texts-value">@Model.ObterLivro.livro.Tamanho</h4>
                     </div>
                 </div>
                 <div class="section-descriptions-plusinformations-list-part">
-                    <img src="./imagens/icon_published.png" class="section-descriptions-plusinformations-list-part-image" />
+                    <img src="~/img/icon_published.png" class="section-descriptions-plusinformations-list-part-image" />
                     <div class="section-descriptions-plusinformations-list-part-texts">
                         <h3 class="section-descriptions-plusinformations-list-part-texts-title">Data de publicação</h3>
-                        <h4 class="section-descriptions-plusinformations-list-part-texts-value">26/11/2005</h4>
+                        <h4 class="section-descriptions-plusinformations-list-part-texts-value">@Model.ObterLivro.livro.DataPubli</h4>
                     </div>
                 </div>
                 <div class="section-descriptions-plusinformations-list-part">
-                    <img src="./imagens/icon_codBarras.png" class="section-descriptions-plusinformations-list-part-image" />
+                    <img src="~/img/icon_codBarras.png" class="section-descriptions-plusinformations-list-part-image" />
                     <div class="section-descriptions-plusinformations-list-part-texts">
                         <h3 class="section-descriptions-plusinformations-list-part-texts-title">ISBN-13</h3>
-                        <h4 class="section-descriptions-plusinformations-list-part-texts-value">8532519474</h4>
+                        <h4 class="section-descriptions-plusinformations-list-part-texts-value">@Model.ObterLivro.livro.ISBN</h4>
                     </div>
                 </div>
             </section>
@@ -193,9 +393,9 @@
     <section class="total-view-section">
         <div class="total-view-section-stars">
             <div class="yellowbar"></div>
-            <img class="barimageStar" src="./imagens/starComb.png">
+            <img class="barimageStar" src="~/img/starComb.png">
         </div>
-        <h3 class="total-view-section-points"><span>4,8</span> de <span>5</span></h3>
+        <h3 class="total-view-section-points"><span>@Model.ObterLivro.mediaLivro</span> de <span>5</span></h3>
         <h4 class="total-view-section-avaliacoes-feitas">267 avaliações feitas</h4>
         <div class="total-view-section-avaliacoes-por-star">
             <div class="total-view-section-avaliacoes-por-star-block">
@@ -245,14 +445,14 @@
         <h1 class="list-view-section-title">Avaliações dos clientes</h1>
         <div class="list-view-section-index">
             <div class="list-view-section-index-header">
-                <img src="./imagens/icon_UserCo.png" class="list-view-section-index-header-icon">
+                <img src="~/img/icon_UserCo.png" class="list-view-section-index-header-icon">
                 <h2 class="list-view-section-index-header-name">Fabiano de Moraes</h2>
             </div>
             <div class="list-view-section-index-avaliacao-sobre">
                 <h3 class="list-view-section-index-avaliacao-sobre-text">"Gostei do clímax da história"</h3>
                 <div class="list-view-section-index-avaliacao-sobre-section-stars">
                     <div class="yellowbar-comment"></div>
-                    <img class="barimageStar-comment" src="./imagens/starComb.png">
+                    <img class="barimageStar-comment" src="~/img/starComb.png">
                 </div>
             </div>
             <h3 class="list-view-section-index-date">Data da avaliação: 20/07/2026</h3>
@@ -264,14 +464,14 @@
         </div>
         <div class="list-view-section-index">
             <div class="list-view-section-index-header">
-                <img src="./imagens/icon_UserCo.png" class="list-view-section-index-header-icon">
+                <img src="~/img/icon_UserCo.png" class="list-view-section-index-header-icon">
                 <h2 class="list-view-section-index-header-name">Fabiano de Moraes</h2>
             </div>
             <div class="list-view-section-index-avaliacao-sobre">
                 <h3 class="list-view-section-index-avaliacao-sobre-text">"Gostei do clímax da história"</h3>
                 <div class="list-view-section-index-avaliacao-sobre-section-stars">
                     <div class="yellowbar-comment"></div>
-                    <img class="barimageStar-comment" src="./imagens/starComb.png">
+                    <img class="barimageStar-comment" src="~/img/starComb.png">
                 </div>
             </div>
             <h3 class="list-view-section-index-date">Data da avaliação: 20/07/2026</h3>
@@ -283,14 +483,14 @@
         </div>
         <div class="list-view-section-index">
             <div class="list-view-section-index-header">
-                <img src="./imagens/icon_UserCo.png" class="list-view-section-index-header-icon">
+                <img src="~/img/icon_UserCo.png" class="list-view-section-index-header-icon">
                 <h2 class="list-view-section-index-header-name">Fabiano de Moraes</h2>
             </div>
             <div class="list-view-section-index-avaliacao-sobre">
                 <h3 class="list-view-section-index-avaliacao-sobre-text">"Gostei do clímax da história"</h3>
                 <div class="list-view-section-index-avaliacao-sobre-section-stars">
                     <div class="yellowbar-comment"></div>
-                    <img class="barimageStar-comment" src="./imagens/starComb.png">
+                    <img class="barimageStar-comment" src="~/img/starComb.png">
                 </div>
             </div>
             <h3 class="list-view-section-index-date">Data da avaliação: 20/07/2026</h3>
@@ -302,14 +502,14 @@
         </div>
         <div class="list-view-section-index">
             <div class="list-view-section-index-header">
-                <img src="./imagens/icon_UserCo.png" class="list-view-section-index-header-icon">
+                <img src="~/img/icon_UserCo.png" class="list-view-section-index-header-icon">
                 <h2 class="list-view-section-index-header-name">Fabiano de Moraes</h2>
             </div>
             <div class="list-view-section-index-avaliacao-sobre">
                 <h3 class="list-view-section-index-avaliacao-sobre-text">"Gostei do clímax da história"</h3>
                 <div class="list-view-section-index-avaliacao-sobre-section-stars">
                     <div class="yellowbar-comment"></div>
-                    <img class="barimageStar-comment" src="./imagens/starComb.png">
+                    <img class="barimageStar-comment" src="~/img/starComb.png">
                 </div>
             </div>
             <h3 class="list-view-section-index-date">Data da avaliação: 20/07/2026</h3>
@@ -321,14 +521,14 @@
         </div>
         <div class="list-view-section-index">
             <div class="list-view-section-index-header">
-                <img src="./imagens/icon_UserCo.png" class="list-view-section-index-header-icon">
+                <img src="~/img/icon_UserCo.png" class="list-view-section-index-header-icon">
                 <h2 class="list-view-section-index-header-name">Fabiano de Moraes</h2>
             </div>
             <div class="list-view-section-index-avaliacao-sobre">
                 <h3 class="list-view-section-index-avaliacao-sobre-text">"Gostei do clímax da história"</h3>
                 <div class="list-view-section-index-avaliacao-sobre-section-stars">
                     <div class="yellowbar-comment"></div>
-                    <img class="barimageStar-comment" src="./imagens/starComb.png">
+                    <img class="barimageStar-comment" src="~/img/starComb.png">
                 </div>
             </div>
             <h3 class="list-view-section-index-date">Data da avaliação: 20/07/2026</h3>
@@ -350,17 +550,17 @@
     </div>
     <div class="div-cards-carousel-static">
         <div class="arrows-carousel-div">
-            <img src="./imagens/arrow-carousel.png" class="arrow-carousel-left-4">
-            <img src="./imagens/arrow-carousel.png" class="arrow-carousel-right-4">
+            <img src="~/img/arrow-carousel.png" class="arrow-carousel-left-4">
+            <img src="~/img/arrow-carousel.png" class="arrow-carousel-right-4">
         </div>
         <div class="div-cards-carousel-total-4">
             <div class="div-cards-carousel-index-4">
                 <div class="banner2">
                     <div class="retangulocima-historico">
-                        <img class="imgetiqueta" src="imagens/iconefogo.png">
+                        <img class="imgetiqueta" src="~/img/iconefogo.png">
                         <p class="alta">EM ALTA</p>
                     </div>
-                    <img class="livro-historico" src="imagens/IrmaosKamarozov.webp">
+                    <img class="livro-historico" src="~/img/IrmaosKamarozov.webp">
                     <div class="partelateral-historico">
                         <h1 class="titulo-historico">Os Irmãos Kamarozov</h1>
                         <h2 class="autor-historico">Por Fiódor Dostoiévski</h2>
@@ -368,12 +568,12 @@
 
                         <div class="estrelas-historico">
                             <div class="estrelas-historico-specifics">
-                                <img class="estrelasimg-historico" src="imagens/StarComb.png">
+                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
                                 <div class="estrelas-specifics-yellowbar"></div>
                             </div>
 
                             <h3 class="avaliados-historico">(4.3)</h3>
-                            <img class="setabaixo-historico" src="imagens/setabaixo.png">
+                            <img class="setabaixo-historico" src="~/img/setabaixo.png">
                         </div>
 
                         <div class="partedebaixo-historico">
@@ -381,11 +581,11 @@
 
                             <div class="quadradosred-historico">
                                 <div class="cartfundo-historico">
-                                    <img class="cart-historico" src="imagens/cart.png">
+                                    <img class="cart-historico" src="~/img/cart.png">
                                 </div>
 
                                 <div class="heartfundo-historico">
-                                    <img class="heart-historico" src="imagens/coracaored.png">
+                                    <img class="heart-historico" src="~/img/coracaored.png">
                                 </div>
                             </div>
                         </div>
@@ -395,9 +595,9 @@
   
                 <!-- Livro - O Guarani -->
                 <div class="banner2">
-                    <img class="livro-historico" src="imagens/Hobbit.webp">
+                    <img class="livro-historico" src="~/img/Hobbit.webp">
                     <div class="retangulocimaBemavaliado-historico">
-                        <img class="imgetiqueta" src="imagens/bemavaliado.png">
+                        <img class="imgetiqueta" src="~/img/bemavaliado.png">
                         <p class="bemavaliado">BEM AVALIADO</p>
                     </div>
                     <div class="partelateral-historico">
@@ -407,12 +607,12 @@
 
                         <div class="estrelas-historico">
                             <div class="estrelas-historico-specifics">
-                                <img class="estrelasimg-historico" src="imagens/StarComb.png">
+                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
                                 <div class="estrelas-specifics-yellowbar"></div>
                             </div>
 
                             <h3 class="avaliados-historico">(4.3)</h3>
-                            <img class="setabaixo-historico" src="imagens/setabaixo.png">
+                            <img class="setabaixo-historico" src="~/img/setabaixo.png">
                         </div>
 
                         <div class="partedebaixo-historico">
@@ -420,11 +620,11 @@
 
                             <div class="quadradosred-historico">
                                 <div class="cartfundo-historico">
-                                    <img class="cart-historico" src="imagens/cart.png">
+                                    <img class="cart-historico" src="~/img/cart.png">
                                 </div>
 
                                 <div class="heartfundo-historico">
-                                    <img class="heart-historico" src="imagens/coracaored.png">
+                                    <img class="heart-historico" src="~/img/coracaored.png">
                                 </div>
                             </div>
                         </div>
@@ -433,9 +633,9 @@
 
                 <!-- Livro - Ensaio sobre a Cegueira -->
                 <div class="banner2">
-                    <img class="livro-historico" src="imagens/Reliquias.webp">
+                    <img class="livro-historico" src="~/img/Reliquias.webp">
                     <div class="retangulocimaNovo-historico">
-                        <img class="imgetiqueta" src="imagens/novo.png">
+                        <img class="imgetiqueta" src="~/img/novo.png">
                         <p class="novo">NOVO</p>
                     </div>
                     <div class="partelateral-historico">
@@ -445,12 +645,12 @@
 
                         <div class="estrelas-historico">
                             <div class="estrelas-historico-specifics">
-                                <img class="estrelasimg-historico" src="imagens/StarComb.png">
+                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
                                 <div class="estrelas-specifics-yellowbar"></div>
                             </div>
 
                             <h3 class="avaliados-historico">(4.3)</h3>
-                            <img class="setabaixo-historico" src="imagens/setabaixo.png">
+                            <img class="setabaixo-historico" src="~/img/setabaixo.png">
                         </div>
 
                         <div class="partedebaixo-historico">
@@ -458,11 +658,11 @@
 
                             <div class="quadradosred-historico">
                                 <div class="cartfundo-historico">
-                                    <img class="cart-historico" src="imagens/cart.png">
+                                    <img class="cart-historico" src="~/img/cart.png">
                                 </div>
 
                                 <div class="heartfundo-historico">
-                                    <img class="heart-historico" src="imagens/coracaored.png">
+                                    <img class="heart-historico" src="~/img/coracaored.png">
                                 </div>
                             </div>
                         </div>
@@ -472,10 +672,10 @@
             <div class="div-cards-carousel-index-4">
                 <div class="banner2">
                     <div class="retangulocima-historico">
-                        <img class="imgetiqueta" src="imagens/iconefogo.png">
+                        <img class="imgetiqueta" src="~/img/iconefogo.png">
                         <p class="alta">EM ALTA</p>
                     </div>
-                    <img class="livro-historico" src="imagens/IrmaosKamarozov.webp">
+                    <img class="livro-historico" src="~/img/IrmaosKamarozov.webp">
                     <div class="partelateral-historico">
                         <h1 class="titulo-historico">Os Irmãos Kamarozov</h1>
                         <h2 class="autor-historico">Por Fiódor Dostoiévski</h2>
@@ -483,12 +683,12 @@
 
                         <div class="estrelas-historico">
                             <div class="estrelas-historico-specifics">
-                                <img class="estrelasimg-historico" src="imagens/StarComb.png">
+                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
                                 <div class="estrelas-specifics-yellowbar"></div>
                             </div>
 
                             <h3 class="avaliados-historico">(4.3)</h3>
-                            <img class="setabaixo-historico" src="imagens/setabaixo.png">
+                            <img class="setabaixo-historico" src="~/img/setabaixo.png">
                         </div>
 
                         <div class="partedebaixo-historico">
@@ -496,11 +696,11 @@
 
                             <div class="quadradosred-historico">
                                 <div class="cartfundo-historico">
-                                    <img class="cart-historico" src="imagens/cart.png">
+                                    <img class="cart-historico" src="~/img/cart.png">
                                 </div>
 
                                 <div class="heartfundo-historico">
-                                    <img class="heart-historico" src="imagens/coracaored.png">
+                                    <img class="heart-historico" src="~/img/coracaored.png">
                                 </div>
                             </div>
                         </div>
@@ -510,9 +710,9 @@
   
                 <!-- Livro - O Guarani -->
                 <div class="banner2">
-                    <img class="livro-historico" src="imagens/Hobbit.webp">
+                    <img class="livro-historico" src="~/img/Hobbit.webp">
                     <div class="retangulocimaBemavaliado-historico">
-                        <img class="imgetiqueta" src="imagens/bemavaliado.png">
+                        <img class="imgetiqueta" src="~/img/bemavaliado.png">
                         <p class="bemavaliado">BEM AVALIADO</p>
                     </div>
                     <div class="partelateral-historico">
@@ -522,12 +722,12 @@
 
                         <div class="estrelas-historico">
                             <div class="estrelas-historico-specifics">
-                                <img class="estrelasimg-historico" src="imagens/StarComb.png">
+                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
                                 <div class="estrelas-specifics-yellowbar"></div>
                             </div>
 
                             <h3 class="avaliados-historico">(4.3)</h3>
-                            <img class="setabaixo-historico" src="imagens/setabaixo.png">
+                            <img class="setabaixo-historico" src="~/img/setabaixo.png">
                         </div>
 
                         <div class="partedebaixo-historico">
@@ -535,11 +735,11 @@
 
                             <div class="quadradosred-historico">
                                 <div class="cartfundo-historico">
-                                    <img class="cart-historico" src="imagens/cart.png">
+                                    <img class="cart-historico" src="~/img/cart.png">
                                 </div>
 
                                 <div class="heartfundo-historico">
-                                    <img class="heart-historico" src="imagens/coracaored.png">
+                                    <img class="heart-historico" src="~/img/coracaored.png">
                                 </div>
                             </div>
                         </div>
@@ -548,9 +748,9 @@
 
                 <!-- Livro - Ensaio sobre a Cegueira -->
                 <div class="banner2">
-                    <img class="livro-historico" src="imagens/Reliquias.webp">
+                    <img class="livro-historico" src="~/img/Reliquias.webp">
                     <div class="retangulocimaNovo-historico">
-                        <img class="imgetiqueta" src="imagens/novo.png">
+                        <img class="imgetiqueta" src="~/img/novo.png">
                         <p class="novo">NOVO</p>
                     </div>
                     <div class="partelateral-historico">
@@ -560,12 +760,12 @@
 
                         <div class="estrelas-historico">
                             <div class="estrelas-historico-specifics">
-                                <img class="estrelasimg-historico" src="imagens/StarComb.png">
+                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
                                 <div class="estrelas-specifics-yellowbar"></div>
                             </div>
 
                             <h3 class="avaliados-historico">(4.3)</h3>
-                            <img class="setabaixo-historico" src="imagens/setabaixo.png">
+                            <img class="setabaixo-historico" src="~/img/setabaixo.png">
                         </div>
 
                         <div class="partedebaixo-historico">
@@ -573,11 +773,11 @@
 
                             <div class="quadradosred-historico">
                                 <div class="cartfundo-historico">
-                                    <img class="cart-historico" src="imagens/cart.png">
+                                    <img class="cart-historico" src="~/img/cart.png">
                                 </div>
 
                                 <div class="heartfundo-historico">
-                                    <img class="heart-historico" src="imagens/coracaored.png">
+                                    <img class="heart-historico" src="~/img/coracaored.png">
                                 </div>
                             </div>
                         </div>
@@ -588,108 +788,108 @@
     </div>
 </div>
 <script>
-const totalList4 = document.querySelector(".div-cards-carousel-total-4");
-const listCards4 = document.querySelectorAll(".div-cards-carousel-index-4");
-const prevlist4 = document.querySelector(".arrow-carousel-left-4");
-const nextlist4 = document.querySelector(".arrow-carousel-right-4");
-const valueMin4 = document.querySelector(".start-page-top-bar-4-1");
-const valueMax4 = document.querySelector(".total-pages-top-bar-4-2");
-const divPartsCard = document.querySelector(".parts-card");
+    const totalList4 = document.querySelector(".div-cards-carousel-total-4");
+    const listCards4 = document.querySelectorAll(".div-cards-carousel-index-4");
+    const prevlist4 = document.querySelector(".arrow-carousel-left-4");
+    const nextlist4 = document.querySelector(".arrow-carousel-right-4");
+    const valueMin4 = document.querySelector(".start-page-top-bar-4-1");
+    const valueMax4 = document.querySelector(".total-pages-top-bar-4-2");
+    const divPartsCard = document.querySelector(".parts-card");
 
 
 
-const lateralBar = document.querySelector('.lateral-bar');
-const lateralBarLeave = document.querySelector('.lateral-bar-userDiv-leave');
-const headerMenu = document.querySelector('.deeper-header-menu-icon');
+    const lateralBar = document.querySelector('.lateral-bar');
+    const lateralBarLeave = document.querySelector('.lateral-bar-userDiv-leave');
+    const headerMenu = document.querySelector('.deeper-header-menu-icon');
 
-const menuAva = document.querySelector('.supercard');
-const backMenuAva = document.querySelector('.background-avaliacao');
-const backAva = document.querySelector('.supercard-avaliacao-bottomButton-back');
-const vamosAva = document.querySelector('.total-view-section-avaliar');
-
-
-let indicePage4 = 0;
-let posicaoPage4 = 0;
-
-lateralBarLeave.addEventListener('click', () => {
-lateralBar.style.left = '-35%';
-});
-headerMenu.addEventListener('click', () => {
-lateralBar.style.left = '0%';
-});
-vamosAva.addEventListener('click', () => {
-console.log("clicou ava");
-menuAva.style.right = '0%';
-backMenuAva.style.display = 'flex';
-});
-console.log(backAva);
-backAva.addEventListener('click', () => {
-menuAva.style.right = '100%';
-backMenuAva.style.display = 'none';
-});
+    const menuAva = document.querySelector('.supercard');
+    const backMenuAva = document.querySelector('.background-avaliacao');
+    const backAva = document.querySelector('.supercard-avaliacao-bottomButton-back');
+    const vamosAva = document.querySelector('.total-view-section-avaliar');
 
 
+    let indicePage4 = 0;
+    let posicaoPage4 = 0;
 
-for (let i = 1; i <= listCards4.length; i++) {
-const pinsindices = document.createElement("div");
-pinsindices.classList.add("part-cards");
-divPartsCard.appendChild(pinsindices);
-console.log("rodado");
-}
-const pinsindices = document.querySelectorAll(".part-cards");
+    lateralBarLeave.addEventListener('click', () => {
+        lateralBar.style.left = '-35%';
+    });
+    headerMenu.addEventListener('click', () => {
+        lateralBar.style.left = '0%';
+    });
+    vamosAva.addEventListener('click', () => {
+        console.log("clicou ava");
+        menuAva.style.right = '0%';
+        backMenuAva.style.display = 'flex';
+    });
+    console.log(backAva);
+    backAva.addEventListener('click', () => {
+        menuAva.style.right = '100%';
+        backMenuAva.style.display = 'none';
+    });
 
-function atualizarPins() {
-pinsindices.forEach((pin, index) => {
-if (index === indicePage4) {
-pin.classList.add("selected-part");
-}
-else {
-pin.classList.remove("selected-part");
-}
-})
-}
 
-function atualizarPagina4() {
-console.log('ativado');
-if (indicePage4 >= listCards4.length - 1) {
-nextlist4.style.visibility = 'hidden';
-} else {
-nextlist4.style.visibility = 'visible';
-console.log(listCards4.length);
-}
+
+    for (let i = 1; i <= listCards4.length; i++) {
+        const pinsindices = document.createElement("div");
+        pinsindices.classList.add("part-cards");
+        divPartsCard.appendChild(pinsindices);
+        console.log("rodado");
+    }
+    const pinsindices = document.querySelectorAll(".part-cards");
+
+    function atualizarPins() {
+        pinsindices.forEach((pin, index) => {
+            if (index === indicePage4) {
+                pin.classList.add("selected-part");
+            }
+            else {
+                pin.classList.remove("selected-part");
+            }
+        })
+    }
+
+    function atualizarPagina4() {
+        console.log('ativado');
+        if (indicePage4 >= listCards4.length - 1) {
+            nextlist4.style.visibility = 'hidden';
+        } else {
+            nextlist4.style.visibility = 'visible';
+            console.log(listCards4.length);
+        }
 
       
-if (indicePage4 <= 0) {
-prevlist4.style.visibility = 'hidden';
-console.log('ativado prev');
-} else {
-prevlist4.style.visibility = 'visible';
-}
-atualizarPins();
-valueMax4.textContent = listCards4.length;
-valueMin4.textContent = indicePage4 + 1;
-}
+        if (indicePage4 <= 0) {
+            prevlist4.style.visibility = 'hidden';
+            console.log('ativado prev');
+        } else {
+            prevlist4.style.visibility = 'visible';
+        }
+        atualizarPins();
+        valueMax4.textContent = listCards4.length;
+        valueMin4.textContent = indicePage4 + 1;
+    }
 
-atualizarPagina4();
-prevlist4.addEventListener("click", () => {
-indicePage4 = indicePage4 - 1;
-posicaoPage4 = posicaoPage4 - 100;
-totalList4.style.right = posicaoPage4 + '%';
-atualizarPagina4();
-});
-nextlist4.addEventListener("click", () => {
-indicePage4 = indicePage4 + 1;
-posicaoPage4 = posicaoPage4 + 100;
-totalList4.style.right = posicaoPage4 + '%';
-atualizarPagina4();
-});
-pinsindices.forEach((elemento, index) => {
-elemento.addEventListener("click", () => {
-indicePage4 = index;
-posicaoPage4 = 100 * index;
-totalList4.style.right = posicaoPage4 + '%';
-atualizarPagina4();
-console.log("clicado");
-})
-});
+    atualizarPagina4();
+    prevlist4.addEventListener("click", () => {
+        indicePage4 = indicePage4 - 1;
+        posicaoPage4 = posicaoPage4 - 100;
+        totalList4.style.right = posicaoPage4 + '%';
+        atualizarPagina4();
+    });
+    nextlist4.addEventListener("click", () => {
+        indicePage4 = indicePage4 + 1;
+        posicaoPage4 = posicaoPage4 + 100;
+        totalList4.style.right = posicaoPage4 + '%';
+        atualizarPagina4();
+    });
+    pinsindices.forEach((elemento, index) => {
+        elemento.addEventListener("click", () => {
+            indicePage4 = index;
+            posicaoPage4 = 100 * index;
+            totalList4.style.right = posicaoPage4 + '%';
+            atualizarPagina4();
+            console.log("clicado");
+        })
+    });
 </script>

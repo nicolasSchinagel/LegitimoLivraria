@@ -17,5 +17,7 @@ namespace LivrariaLegitimo.ViewModels
         public IEnumerable<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> HistoricoG { get; set; }
 
         public IEnumerable<(Livro livro, string arquivoImagem, string arquivoEbook)> HistoricoE { get; set; }
+
+        public (Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas) ObterLivro { get; set; }
     }
 }

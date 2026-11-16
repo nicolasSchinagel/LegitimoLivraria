@@ -22,8 +22,8 @@
 }
 
 .cover-section-image {
-    width: 90%;
-    aspect-ratio: 253 / 332;
+    width: 80%;
+    aspect-ratio: 253 / 372;
     height: auto;
     object-fit: cover;
     border-radius: 12px;
@@ -108,8 +108,8 @@
     position: relative;
     overflow: hidden;
     justify-content: center;
-    mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
-    -webkit-mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
+    mask: url("../img/starmask.png") center/100% 100% no-repeat;
+    -webkit-mask: url("../img/starmask.png") center/100% 100% no-repeat;
 }
 
 .section-descriptions-estrelasimg-paginalivro {
@@ -423,8 +423,8 @@ input[type=number] {
     position: relative;
     overflow: hidden;
     justify-content: center;
-    mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
-    -webkit-mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
+    mask: url("../img/starmask.png") center/100% 100% no-repeat;
+    -webkit-mask: url("../img/starmask.png") center/100% 100% no-repeat;
 }
 
 .yellowbar {
@@ -628,8 +628,8 @@ input[type=number] {
     position: relative;
     overflow: hidden;
     justify-content: center;
-    mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
-    -webkit-mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
+    mask: url("../img/starmask.png") center/100% 100% no-repeat;
+    -webkit-mask: url("../img/imagens/starmask.png") center/100% 100% no-repeat;
 }
 
 .yellowbar-comment {
@@ -830,8 +830,8 @@ input[type=number] {
     position: relative;
     overflow: hidden;
     justify-content: center;
-    mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
-    -webkit-mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
+    mask: url("../img/starmask.png") center/100% 100% no-repeat;
+    -webkit-mask: url(../img/starmask.png") center/100% 100% no-repeat;
 }
 
 .supercard-avaliacao-topdetails-avaliacao-stars-yellowbar {
