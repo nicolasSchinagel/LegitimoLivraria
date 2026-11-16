@@ -21,6 +21,13 @@ builder.Services.AddScoped<LivrariaLegitimo.Libraries.Login.LoginCliente>();
 builder.Services.AddScoped<LivrariaLegitimo.Libraries.Login.LoginFuncionario>();
 // colocar outros serviços aqui depois
 
+
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = contet => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+
 // Corrigir problema com TEMPDATA
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
