@@ -11,7 +11,15 @@ namespace LivrariaLegitimo.Controllers
         }
         public IActionResult Carrinho()
         {
-            return View();
+            return View(_cookieCarrinhoCompra.Consultar());
+        }
+        public IActionResult AdicionarItem(string codBarras)
+        {
+
+        }
+        public IActionResult RemoverItem(string codBarras)
+        {
+
         }
     }
 }
