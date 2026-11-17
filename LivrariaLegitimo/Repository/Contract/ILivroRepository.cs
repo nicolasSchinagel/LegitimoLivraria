@@ -8,7 +8,7 @@ namespace LivrariaLegitimo.Repository.Contract
         public void Cadastrar(Livro livro);
         public void ModificarPreco(int promocao, decimal preco);
 
-        (Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas) ObterLivro(string CodBarras);
+        public (Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas) ObterLivro(string codBarras);
 
         IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterTodosLivros();
 

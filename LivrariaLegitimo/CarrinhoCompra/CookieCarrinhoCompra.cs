@@ -1,90 +1,108 @@
 ﻿
+
 using LivrariaLegitimo.Cookie;
 using LivrariaLegitimo.Models;
+using LivrariaLegitimo.Repository.Contract;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace LivrariaLegitimo.CarrinhoCompra
 {
-
-
-
     public class CookieCarrinhoCompra
     {
         private string Key = "Carrinho.Compras";
         private Cookie.Cookie _cookie;
+        private ILivroRepository _livroRepository;
 
-        public CookieCarrinhoCompra(Cookie.Cookie cookie)
+        public CookieCarrinhoCompra(Cookie.Cookie cookie, ILivroRepository livroRepository)
         {
             _cookie = cookie;
+            _livroRepository = livroRepository;
         }
 
-        public void Salvar(List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> Lista)
+        // Salva somente os códigos de barras
+        public void Salvar(List<string> Lista)
         {
             string Valor = JsonConvert.SerializeObject(Lista);
             _cookie.Cadastrar(Key, Valor);
         }
 
+        // Recupera os livros completos do banco
         public List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> Consultar()
         {
-            if (_cookie.Existe(Key))
+            List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> Lista = new();
+
+
+            if (!_cookie.Existe(Key))
             {
-                string valor = _cookie.Consultar(Key);
+                return Lista;
+            }
 
-                if (!string.IsNullOrEmpty(valor))
+            string valor = _cookie.Consultar(Key);
+
+            Console.WriteLine("VALOR RECEBIDO: " + valor);
+            Console.WriteLine("TIPO ESPERADO: List<string>");
+            if (string.IsNullOrEmpty(valor))
+            {
+                return Lista;
+            }
+
+            List<string> codigos =
+                JsonConvert.DeserializeObject<List<string>>(valor)
+                ?? new List<string>();
+
+            foreach (var codigo in codigos)
+            {
+                var livro = _livroRepository.ObterLivro(codigo);
+
+                if (livro.livro != null)
                 {
-                    var lista = JsonConvert.DeserializeObject<List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>>(valor);
-
-                    return lista?.Where(a => a.livro != null).ToList()
-                        ?? new List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
+                    Lista.Add(livro);
                 }
             }
 
-            return new List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
+            return Lista;
         }
 
-        public void Cadastrar((Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas) item)
+        // Adiciona um código de barras
+        public bool Cadastrar(string codBarras)
         {
-            if (item.livro == null)
+            var livro = _livroRepository.ObterLivro(codBarras);
+
+            if (livro.livro == null)
             {
-                return;
+                return false;
             }
 
-            List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> Lista;
+            List<string> Lista = ConsultarCodigos();
 
-            if (_cookie.Existe(Key))
+            if (!Lista.Contains(codBarras))
             {
-                Lista = Consultar();
-
-                var ItemLocalizado = Lista.SingleOrDefault(a => a.livro != null && a.livro.CodigoBarras == item.livro.CodigoBarras);
-
-                if (ItemLocalizado.livro == null)
-                {
-                    Lista.Add(item);
-                }
-                else
-                {
-                    ItemLocalizado.livro.Quantidade = ItemLocalizado.livro.Quantidade + 1;
-                }
-            }
-            else
-            {
-                Lista = new List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
-                Lista.Add(item);
+                Lista.Add(codBarras);
             }
 
             Salvar(Lista);
+
+            return true;
         }
 
-        public void Atualizar(Livro item)
+        // Recupera somente os códigos armazenados
+        private List<string> ConsultarCodigos()
         {
-            var Lista = Consultar();
-            var ItemLocalizado = Lista.SingleOrDefault(a => a.livro.CodigoBarras == item.CodigoBarras);
-
-            if (ItemLocalizado.livro != null)
+            if (!_cookie.Existe(Key))
             {
-                ItemLocalizado.livro.Quantidade = item.Quantidade + 1;
-                Salvar(Lista);
+                return new List<string>();
             }
+
+            string valor = _cookie.Consultar(Key);
+
+            if (string.IsNullOrEmpty(valor))
+            {
+                return new List<string>();
+            }
+
+            return JsonConvert.DeserializeObject<List<string>>(valor)
+                   ?? new List<string>();
         }
 
         public void Remover(Livro item)
@@ -94,17 +112,14 @@ namespace LivrariaLegitimo.CarrinhoCompra
                 return;
             }
 
-            var Lista = Consultar();
+            List<string> Lista = ConsultarCodigos();
 
-            var ItemLocalizado = Lista.SingleOrDefault(a =>
-                a.livro != null &&
-                a.livro.CodigoBarras == item.CodigoBarras);
+            string codigo = item.CodigoBarras.ToString(
+                CultureInfo.InvariantCulture);
 
-            if (ItemLocalizado.livro != null)
-            {
-                Lista.Remove(ItemLocalizado);
-                Salvar(Lista);
-            }
+            Lista.Remove(codigo);
+
+            Salvar(Lista);
         }
 
         public bool Existe(string Key)
@@ -112,11 +127,9 @@ namespace LivrariaLegitimo.CarrinhoCompra
             return _cookie.Existe(Key);
         }
 
-        
         public void RemoverTodos()
         {
             _cookie.Remover(Key);
         }
     }
-
 }

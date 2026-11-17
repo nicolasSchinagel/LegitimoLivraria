@@ -26,7 +26,7 @@ namespace LivrariaLegitimo.Repository
         }
 
 
-        public (Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas) ObterLivro(string codBarras)
+        public (Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas) ObterLivro(string codBarras)
         {
 
             using (var conexao = new MySqlConnection(_conexaoMySQL))
