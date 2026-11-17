@@ -46,5 +46,19 @@ namespace LivrariaLegitimo.Controllers
 
             return RedirectToAction(nameof(Carrinho));
         }
+
+        public IActionResult AumentarQuantidade(string codBarras)
+        {
+            _cookieCarrinhoCompra.AumentarQuantidade(codBarras);
+
+            return RedirectToAction(nameof(Carrinho));
+        }
+
+        public IActionResult DiminuirQuantidade(string codBarras)
+        {
+            _cookieCarrinhoCompra.DiminuirQuantidade(codBarras);
+
+            return RedirectToAction(nameof(Carrinho));
+        }
     }
 }
