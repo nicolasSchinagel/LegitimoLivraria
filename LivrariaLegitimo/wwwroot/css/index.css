@@ -227,6 +227,7 @@ h1, h2, h3, h4, h5, h6, p {
 .titulolivro {
     width: 85%;
     font: 600 15px Mada,sans-serif;
+    color: black;
 }
 
 .autor, .editor {
@@ -295,6 +296,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 .preco {
     margin-top: 2px;
+    color: black;
     font: 700 20px Inter,sans-serif;
 }
 

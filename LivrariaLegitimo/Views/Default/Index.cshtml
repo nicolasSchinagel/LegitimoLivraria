@@ -111,7 +111,7 @@
     <div class="div-cards-carousel-index-0">
         @foreach(var livro in Model.BemAvaliados)
         {
-            <div class="card1">
+            <a class="card1 no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
                 <div class="containerlivro">
                     <img class="book" src="@livro.arquivoImagem">
 
@@ -167,7 +167,7 @@
                         <h2>Adicionar ao carrinho</h2>
                     </div>
                 </div>
-            </div>
+            </a>
         }
     </div>
 </div>
@@ -190,7 +190,7 @@
                 <div class="div-cards-carousel-index-1">
                     @foreach(var livro in grupo)
                     {
-                        <div class="card1">
+                        <a class="card1 no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
                             <div class="containerlivro">
                                 <img class="book" src="@livro.arquivoImagem">
 
@@ -251,7 +251,7 @@
                                     <h2>Adicionar ao carrinho</h2>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                         indiceLivro++;
                     }
                     
