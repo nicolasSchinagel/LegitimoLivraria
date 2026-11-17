@@ -1,5 +1,6 @@
-using LivrariaLegitimo.Repository.Contract;
+using LivrariaLegitimo.CarrinhoCompra;
 using LivrariaLegitimo.Repository;
+using LivrariaLegitimo.Repository.Contract;
 //using LivrariaLegitimo.Libraries.Middleware;
 
 
@@ -19,6 +20,7 @@ builder.Services.AddScoped<ILivroRepository, LivroRepository>();
 builder.Services.AddScoped<LivrariaLegitimo.Libraries.Sessao.Sessao>();
 builder.Services.AddScoped<LivrariaLegitimo.Libraries.Login.LoginCliente>();
 builder.Services.AddScoped<LivrariaLegitimo.Libraries.Login.LoginFuncionario>();
+
 // colocar outros serviços aqui depois
 
 
@@ -39,6 +41,13 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 builder.Services.AddMvc().AddSessionStateTempDataProvider();
+builder.Services.AddMemoryCache();
+
+
+builder.Services.AddScoped<LivrariaLegitimo.Cookie.Cookie>();
+builder.Services.AddScoped<LivrariaLegitimo.CarrinhoCompra.CookieCarrinhoCompra>();
+
+
 
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();

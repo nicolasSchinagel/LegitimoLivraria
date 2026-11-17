@@ -21,7 +21,14 @@ namespace LivrariaLegitimo.Controllers
         public IActionResult AdicionarItem(string codBarras)
         {
             (Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas) livro = _livroRepository.ObterLivro(codBarras);
+
+            if (livro.livro == null)
+            {
+                return NotFound();
+            }
+
             var item = (livro.livro, livro.arquivoImagem, livro.arquivoEbook, livro.mediaLivro, livro.numeroVendas);
+
             _cookieCarrinhoCompra.Cadastrar(item);
 
             return RedirectToAction(nameof(Carrinho));
@@ -36,6 +43,13 @@ namespace LivrariaLegitimo.Controllers
             {
                 _cookieCarrinhoCompra.Remover(ItemLocalizado.livro);
             }
+
+            return RedirectToAction(nameof(Carrinho));
+        }
+
+        public IActionResult LimparCarrinho()
+        {
+            _cookieCarrinhoCompra.RemoverTodos();
 
             return RedirectToAction(nameof(Carrinho));
         }

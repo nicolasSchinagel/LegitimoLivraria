@@ -29,22 +29,33 @@ namespace LivrariaLegitimo.CarrinhoCompra
             if (_cookie.Existe(Key))
             {
                 string valor = _cookie.Consultar(Key);
-                return JsonConvert.DeserializeObject<List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>>(valor);
+
+                if (!string.IsNullOrEmpty(valor))
+                {
+                    var lista = JsonConvert.DeserializeObject<List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>>(valor);
+
+                    return lista?.Where(a => a.livro != null).ToList()
+                        ?? new List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
+                }
             }
-            else
-            {
-                return new List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
-            }
+
+            return new List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
         }
 
         public void Cadastrar((Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas) item)
         {
+            if (item.livro == null)
+            {
+                return;
+            }
+
             List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> Lista;
 
             if (_cookie.Existe(Key))
             {
                 Lista = Consultar();
-                var ItemLocalizado = Lista.SingleOrDefault(a => a.livro.CodigoBarras == item.livro.CodigoBarras);
+
+                var ItemLocalizado = Lista.SingleOrDefault(a => a.livro != null && a.livro.CodigoBarras == item.livro.CodigoBarras);
 
                 if (ItemLocalizado.livro == null)
                 {
@@ -78,8 +89,16 @@ namespace LivrariaLegitimo.CarrinhoCompra
 
         public void Remover(Livro item)
         {
+            if (item == null)
+            {
+                return;
+            }
+
             var Lista = Consultar();
-            var ItemLocalizado = Lista.SingleOrDefault(a => a.livro.CodigoBarras == item.CodigoBarras);
+
+            var ItemLocalizado = Lista.SingleOrDefault(a =>
+                a.livro != null &&
+                a.livro.CodigoBarras == item.CodigoBarras);
 
             if (ItemLocalizado.livro != null)
             {
@@ -90,13 +109,10 @@ namespace LivrariaLegitimo.CarrinhoCompra
 
         public bool Existe(string Key)
         {
-            if (_cookie.Existe(Key))
-            {
-                return false;
-            }
-            return true;
+            return _cookie.Existe(Key);
         }
 
+        
         public void RemoverTodos()
         {
             _cookie.Remover(Key);

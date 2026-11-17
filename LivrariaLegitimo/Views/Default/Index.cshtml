@@ -111,7 +111,8 @@
     <div class="div-cards-carousel-index-0">
         @foreach(var livro in Model.BemAvaliados)
         {
-            <a class="card1 no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
+            <div class="card1 no-underline">
+                <a class="no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
                 <div class="containerlivro">
                     <img class="book" src="@livro.arquivoImagem">
 
@@ -161,13 +162,14 @@
                         }
                     </div>
                 </div>
-                <div class="cartCamada">
+                </a>
+                <a class="cartCamada no-underline" asp-controller="Carrinho" asp-action="AdicionarItem" asp-route-codBarras="@livro.livro.CodigoBarras">
                     <div class="addcartretangulo">
                         <img class="carrinho" src="~/img/cart.png">
                         <h2>Adicionar ao carrinho</h2>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         }
     </div>
 </div>

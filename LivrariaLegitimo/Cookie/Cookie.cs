@@ -29,7 +29,7 @@
         }
         public void Remover(string Key)
         {
-            var valor = _context.HttpContext.Request.Cookies[Key];
+            _context.HttpContext.Response.Cookies.Delete(Key);
         }
         public string Consultar(string Key, bool Cript = true)
         {
