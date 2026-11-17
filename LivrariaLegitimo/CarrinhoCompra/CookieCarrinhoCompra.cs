@@ -1,5 +1,4 @@
 ﻿
-
 using LivrariaLegitimo.Cookie;
 using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
@@ -20,18 +19,17 @@ namespace LivrariaLegitimo.CarrinhoCompra
             _livroRepository = livroRepository;
         }
 
-        // Salva somente os códigos de barras
-        public void Salvar(List<string> Lista)
+        // Salva os códigos de barras e suas respectivas quantidades
+        public void Salvar(Dictionary<string, int> Lista)
         {
             string Valor = JsonConvert.SerializeObject(Lista);
             _cookie.Cadastrar(Key, Valor);
         }
 
-        // Recupera os livros completos do banco
-        public List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> Consultar()
+        // Recupera os livros completos do banco e suas quantidades no carrinho
+        public List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas, int quantidadeCarrinho)> Consultar()
         {
-            List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> Lista = new();
-
+            List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas, int quantidadeCarrinho)> Lista = new();
 
             if (!_cookie.Existe(Key))
             {
@@ -40,31 +38,36 @@ namespace LivrariaLegitimo.CarrinhoCompra
 
             string valor = _cookie.Consultar(Key);
 
-            Console.WriteLine("VALOR RECEBIDO: " + valor);
-            Console.WriteLine("TIPO ESPERADO: List<string>");
             if (string.IsNullOrEmpty(valor))
             {
                 return Lista;
             }
 
-            List<string> codigos =
-                JsonConvert.DeserializeObject<List<string>>(valor)
-                ?? new List<string>();
+            Dictionary<string, int> codigos =
+                JsonConvert.DeserializeObject<Dictionary<string, int>>(valor)
+                ?? new Dictionary<string, int>();
 
-            foreach (var codigo in codigos)
+            foreach (var item in codigos)
             {
-                var livro = _livroRepository.ObterLivro(codigo);
+                var livro = _livroRepository.ObterLivro(item.Key);
 
                 if (livro.livro != null)
                 {
-                    Lista.Add(livro);
+                    Lista.Add((
+                        livro.livro,
+                        livro.arquivoImagem,
+                        livro.arquivoEbook,
+                        livro.mediaLivro,
+                        livro.numeroVendas,
+                        item.Value
+                    ));
                 }
             }
 
             return Lista;
         }
 
-        // Adiciona um código de barras
+        // Adiciona um livro ou incrementa sua quantidade
         public bool Cadastrar(string codBarras)
         {
             var livro = _livroRepository.ObterLivro(codBarras);
@@ -74,11 +77,15 @@ namespace LivrariaLegitimo.CarrinhoCompra
                 return false;
             }
 
-            List<string> Lista = ConsultarCodigos();
+            Dictionary<string, int> Lista = ConsultarCodigos();
 
-            if (!Lista.Contains(codBarras))
+            if (Lista.ContainsKey(codBarras))
             {
-                Lista.Add(codBarras);
+                Lista[codBarras]++;
+            }
+            else
+            {
+                Lista.Add(codBarras, 1);
             }
 
             Salvar(Lista);
@@ -86,25 +93,26 @@ namespace LivrariaLegitimo.CarrinhoCompra
             return true;
         }
 
-        // Recupera somente os códigos armazenados
-        private List<string> ConsultarCodigos()
+        // Recupera os códigos e suas quantidades
+        private Dictionary<string, int> ConsultarCodigos()
         {
             if (!_cookie.Existe(Key))
             {
-                return new List<string>();
+                return new Dictionary<string, int>();
             }
 
             string valor = _cookie.Consultar(Key);
 
             if (string.IsNullOrEmpty(valor))
             {
-                return new List<string>();
+                return new Dictionary<string, int>();
             }
 
-            return JsonConvert.DeserializeObject<List<string>>(valor)
-                   ?? new List<string>();
+            return JsonConvert.DeserializeObject<Dictionary<string, int>>(valor)
+                   ?? new Dictionary<string, int>();
         }
 
+        // Remove completamente um livro do carrinho
         public void Remover(Livro item)
         {
             if (item == null)
@@ -112,7 +120,7 @@ namespace LivrariaLegitimo.CarrinhoCompra
                 return;
             }
 
-            List<string> Lista = ConsultarCodigos();
+            Dictionary<string, int> Lista = ConsultarCodigos();
 
             string codigo = item.CodigoBarras.ToString(
                 CultureInfo.InvariantCulture);
@@ -122,14 +130,55 @@ namespace LivrariaLegitimo.CarrinhoCompra
             Salvar(Lista);
         }
 
+        // Verifica se o cookie existe
         public bool Existe(string Key)
         {
             return _cookie.Existe(Key);
         }
 
+        // Remove todos os livros do carrinho
         public void RemoverTodos()
         {
             _cookie.Remover(Key);
+        }
+
+        public bool AumentarQuantidade(string codBarras)
+        {
+            Dictionary<string, int> Lista = ConsultarCodigos();
+
+            if (!Lista.ContainsKey(codBarras))
+            {
+                return false;
+            }
+
+            Lista[codBarras]++;
+
+            Salvar(Lista);
+
+            return true;
+        }
+
+        public bool DiminuirQuantidade(string codBarras)
+        {
+            Dictionary<string, int> Lista = ConsultarCodigos();
+
+            if (!Lista.ContainsKey(codBarras))
+            {
+                return false;
+            }
+
+            if (Lista[codBarras] > 1)
+            {
+                Lista[codBarras]--;
+            }
+            else
+            {
+                Lista.Remove(codBarras);
+            }
+
+            Salvar(Lista);
+
+            return true;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@using System.Globalization
-@model List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>
+@model List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas, int quantidadeCarrinho)>
 @{
 }
 <link rel="stylesheet" href="~/css/carrinho.css" asp-append-version="true" />
@@ -50,7 +50,7 @@
                                 <h4 class="main-carrinho-content-card-info-subinfo-off">@item.livro.PromocaoPorcentagem% off</h4>
                                 <div class="main-carrinho-content-card-info-subinfo-qtd-block">
                                     <img class="qtd-block-minus" src="~/img/minus.png" />
-                                    <input type="number" class="main-carrinho-content-card-info-subinfo-qtd-block-input" />
+                                    <input type="number" class="main-carrinho-content-card-info-subinfo-qtd-block-input" value="@item.quantidadeCarrinho" />
                                     <img class="qtd-block-plus" src="~/img/plus.png" />
                                 </div>
                             </div>
