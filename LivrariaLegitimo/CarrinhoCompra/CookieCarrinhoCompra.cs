@@ -7,6 +7,7 @@ namespace LivrariaLegitimo.CarrinhoCompra
 {
 
 
+
     public class CookieCarrinhoCompra
     {
         private string Key = "Carrinho.Compras";
@@ -17,28 +18,28 @@ namespace LivrariaLegitimo.CarrinhoCompra
             _cookie = cookie;
         }
 
-        public void Salvar(List<(Livro livro, string arquivoImagem, string arquivoEbook)> Lista)
+        public void Salvar(List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> Lista)
         {
             string Valor = JsonConvert.SerializeObject(Lista);
             _cookie.Cadastrar(Key, Valor);
         }
 
-        public List<(Livro livro, string arquivoImagem, string arquivoEbook)> Consultar()
+        public List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> Consultar()
         {
             if (_cookie.Existe(Key))
             {
                 string valor = _cookie.Consultar(Key);
-                return JsonConvert.DeserializeObject<List<(Livro livro, string arquivoImagem, string arquivoEbook)>>(valor);
+                return JsonConvert.DeserializeObject<List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>>(valor);
             }
             else
             {
-                return new List<(Livro livro, string arquivoImagem, string arquivoEbook)>();
+                return new List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
             }
         }
 
-        public void Cadastrar((Livro livro, string arquivoImagem, string arquivoEbook) item)
+        public void Cadastrar((Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas) item)
         {
-            List<(Livro livro, string arquivoImagem, string arquivoEbook)> Lista;
+            List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> Lista;
 
             if (_cookie.Existe(Key))
             {
@@ -56,7 +57,7 @@ namespace LivrariaLegitimo.CarrinhoCompra
             }
             else
             {
-                Lista = new List<(Livro livro, string arquivoImagem, string arquivoEbook)>();
+                Lista = new List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
                 Lista.Add(item);
             }
 
@@ -100,8 +101,6 @@ namespace LivrariaLegitimo.CarrinhoCompra
         {
             _cookie.Remover(Key);
         }
-
-
-
     }
+
 }
