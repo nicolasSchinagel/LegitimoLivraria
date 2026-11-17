@@ -13,6 +13,7 @@ namespace LivrariaLegitimo.Controllers
             _cookieCarrinhoCompra = cookieCarrinhoCompra;
             _livroRepository = livroRepository;
         }
+        [HttpGet]
         public IActionResult Carrinho()
         {
             return View(_cookieCarrinhoCompra.Consultar());
