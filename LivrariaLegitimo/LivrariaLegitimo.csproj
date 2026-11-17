@@ -16,6 +16,7 @@
   <ItemGroup>
     <Folder Include="Areas\Worker\Views\Funcionario\" />
     <Folder Include="Libraries\Middleware\" />
+    <Folder Include="NovaPasta\" />
     <Folder Include="Views\Client\" />
     <Folder Include="wwwroot\img\" />
     <Folder Include="wwwroot\capas\" />

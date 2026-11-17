@@ -68,7 +68,9 @@
                                 
                             </div>
                         </div>
+                        <a asp-controller="Carrinho" asp-action="RemoverItem" asp-route-codBarras="@item.livro.CodigoBarras">
                         <img src="~/img/trash.png" class="main-carrinho-content-card-info-remove" />
+                        </a>
                     </div>
                 </div>
             }
