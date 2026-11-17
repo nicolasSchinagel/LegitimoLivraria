@@ -192,7 +192,8 @@
                 <div class="div-cards-carousel-index-1">
                     @foreach(var livro in grupo)
                     {
-                        <a class="card1 no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
+                        <div class="card1 no-underline">
+                            <a class="no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
                             <div class="containerlivro">
                                 <img class="book" src="@livro.arquivoImagem">
 
@@ -247,13 +248,14 @@
                                     }
                                 </div>
                             </div>
-                            <div class="cartCamada">
-                                <div class="addcartretangulo">
+                            </a>
+                            <a class="cartCamada no-underline" asp-controller="Carrinho" asp-action="AdicionarItem" asp-route-codBarras="@livro.livro.CodigoBarras">
+                                <div class="addcartretangulo no-underline">
                                     <img class="carrinho" src="~/img/cart.png">
                                     <h2>Adicionar ao carrinho</h2>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                         indiceLivro++;
                     }
                     

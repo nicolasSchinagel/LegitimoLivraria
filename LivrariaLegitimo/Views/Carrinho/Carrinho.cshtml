@@ -49,7 +49,7 @@
                             <div class="main-carrinho-content-card-info-subinfo-qtd">
                                 <h4 class="main-carrinho-content-card-info-subinfo-off">@item.livro.PromocaoPorcentagem% off</h4>
                                 <div class="main-carrinho-content-card-info-subinfo-qtd-block">
-                                    <a asp-controller="Carrinho" asp-action="AumentarQuantidade" asp-route-codBarras="@item.livro.CodigoBarras"><img class="qtd-block-minus" src="~/img/minus.png" /></a>
+                                    <a asp-controller="Carrinho" asp-action="DiminuirQuantidade" asp-route-codBarras="@item.livro.CodigoBarras"><img class="qtd-block-minus" src="~/img/minus.png" /></a>
                                     <input type="number" class="main-carrinho-content-card-info-subinfo-qtd-block-input" value="@item.quantidadeCarrinho" />
                                     <a asp-controller="Carrinho" asp-action="AumentarQuantidade" asp-route-codBarras="@item.livro.CodigoBarras"><img class="qtd-block-plus" src="~/img/plus.png" /></a>
                                 </div>
