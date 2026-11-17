@@ -1,6 +1,7 @@
 ﻿@using System.Globalization
 @model List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas, int quantidadeCarrinho)>
 @{
+    decimal totalCompra = 0;
 }
 <link rel="stylesheet" href="~/css/carrinho.css" asp-append-version="true" />
 
@@ -83,20 +84,21 @@
                 <h4 class="main-carrinho-content-sobre-infos-datas">De segunda-feira até quinta-feira</h4>
             </div>
             <div class="main-carrinho-content-sobre-lista">
-                <div class="main-carrinho-content-sobre-lista-item">
-                    <h3 class="main-carrinho-content-sobre-lista-item-title">Bleach Remix Vol.7</h3>
-                    <h3 class="main-carrinho-content-sobre-lista-item-number">x1</h3>
-                    <h2 class="main-carrinho-content-sobre-lista-item-price">>R$58,50</h2>
-                </div>
-                <div class="main-carrinho-content-sobre-lista-item">
-                    <h3 class="main-carrinho-content-sobre-lista-item-title">Sherlock Holmes: Um estudo em vermelho</h3>
-                    <h3 class="main-carrinho-content-sobre-lista-item-number">x2</h3>
-                    <h2 class="main-carrinho-content-sobre-lista-item-price">>R$63,80</h2>
-                </div>
+                @foreach(var item in Model){
+                    <div class="main-carrinho-content-sobre-lista-item">
+                        <h3 class="main-carrinho-content-sobre-lista-item-title">@(item.livro.Nome.Length > 35 ? item.livro.Nome.Substring(0, 35) + "..." : item.livro.Nome)</h3>
+                        <h3 class="main-carrinho-content-sobre-lista-item-number">x @item.quantidadeCarrinho</h3>
+                        <h2 class="main-carrinho-content-sobre-lista-item-price">@((Convert.ToDecimal(item.livro.Preco) * item.quantidadeCarrinho).ToString("N2", CultureInfo.GetCultureInfo("pt-BR")))</h2>
+                    </div>
+                    totalCompra = totalCompra + Convert.ToDecimal(item.livro.Preco) * item.quantidadeCarrinho;
+                    
+                    totalCompra.ToString("N2", CultureInfo.GetCultureInfo("pt-BR"));
+
+                }
                 <div class="main-carrinho-content-sobre-divisor"></div>
                 <div class="main-carrinho-content-sobre-totals">
                     <h3 class="main-carrinho-content-sobre-totals-title">Total:</h3>
-                    <h3 class="main-carrinho-content-sobre-totals-price">R$175,30</h3>
+                    <h3 class="main-carrinho-content-sobre-totals-price">R$ @totalCompra.ToString("N2", CultureInfo.GetCultureInfo("pt-BR"))</h3>
                 </div>
                 <a class="main-carrinho-content-sobre-buttom">
                     <img src="~/img/cartCarrinho.png" class="main-carrinho-content-sobre-buttom-icon" />
