@@ -20,14 +20,14 @@ namespace LivrariaLegitimo.Repository
             _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
             _config = conf;
         }
-        public bool ExisteAvaliacaoConta(int codBarras, int idCli)
+        public bool ExisteAvaliacaoConta(string codBarras, int idCli)
         {
             using(var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 bool existencia;
                 conexao.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbAvaliacao where (codBarras = @CodBarras and idCli = @IdCli");
-                cmd.Parameters.AddWithValue("@CodBarras", codBarras);
+                cmd.Parameters.AddWithValue("@CodBarras", Convert.ToDecimal(codBarras));
                 cmd.Parameters.AddWithValue("@IdCli", idCli);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 MySqlDataReader dr;
@@ -57,12 +57,13 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
-        public (int quantidadeG, int nota0,  int nota1, int nota2, int nota3, int nota4, int nota5) ObterQuantidadesAvaliacaoLivro(int idCli)
+        public (int quantidadeG, int nota0,  int nota1, int nota2, int nota3, int nota4, int nota5) ObterQuantidadesAvaliacaoLivro(string codBarras)
         {
             using(var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from ViewLivroQuantidadeAvaliacoes;");
+                MySqlCommand cmd = new MySqlCommand("select * from ViewLivroQuantidadeAvaliacoes where codBarras = @CodigoBarras;");
+                cmd.Parameters.AddWithValue("@CodigoBarras", Convert.ToDecimal(codBarras));
 
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 MySqlDataReader dr;
@@ -95,7 +96,7 @@ namespace LivrariaLegitimo.Repository
                     conexao
                 );
 
-                cmd.Parameters.AddWithValue("@CodigoBarras", codigoBarras);
+                cmd.Parameters.AddWithValue("@CodigoBarras", Convert.ToDecimal(codigoBarras));
 
                 MySqlDataReader dr = cmd.ExecuteReader();
 

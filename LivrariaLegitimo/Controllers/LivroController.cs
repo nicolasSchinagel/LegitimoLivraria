@@ -16,26 +16,32 @@ namespace LivrariaLegitimo.Controllers
         private LoginFuncionario _loginFuncionario;
         private LoginCliente _loginCliente;
         private ILivroRepository _livroRepository;
-        public LivroController(IClienteRepository clienteRepository, IFuncionarioRepository funcionarioRepository, LoginFuncionario loginFuncionario, LoginCliente loginCliente, ILivroRepository livroRepository)
+        private IAvaliacaoRepository _avaliacaoRepository;
+        public LivroController(IClienteRepository clienteRepository, IFuncionarioRepository funcionarioRepository, LoginFuncionario loginFuncionario, LoginCliente loginCliente, ILivroRepository livroRepository, IAvaliacaoRepository avaliacaoRepository)
         {
             _funcionarioRepository = funcionarioRepository;
             _clienteRepository = clienteRepository;
             _loginFuncionario = loginFuncionario;
             _loginCliente = loginCliente;
             _livroRepository = livroRepository;
+            _avaliacaoRepository = avaliacaoRepository;
         }
 
         [HttpGet]
         public IActionResult Livro(string codBarras)
         {
             var livro = _livroRepository.ObterLivro(codBarras);
+            var quantidades = _avaliacaoRepository.ObterQuantidadesAvaliacaoLivro(codBarras);
 
             var model = new LivroViewModel
             {
-                ObterLivro = livro
+                ObterLivro = livro,
+                ObterQuantidadesAvaliacaoLivro = quantidades
             };
 
             return View(model);
         }
+
+
     }
 }
