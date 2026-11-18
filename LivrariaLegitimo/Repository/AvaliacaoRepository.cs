@@ -42,7 +42,19 @@ namespace LivrariaLegitimo.Repository
 
         public void FazerAvaliacao(Avaliacao avaliacao, int idCli)
         {
-            throw new NotImplementedException();
+            using(var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("call spFazerAvaliacao(@CodBarras, @IdCli, @NotaLivro, @Comentario, @TituloComentario);");
+                cmd.Parameters.Add("@CodBarras", MySqlDbType.Decimal).Value = avaliacao.CodigoBarras;
+                cmd.Parameters.Add("@IdCli", MySqlDbType.Int32).Value = idCli;
+                cmd.Parameters.Add("@NotaLivro", MySqlDbType.Int32).Value = avaliacao.NotaLivro;
+                cmd.Parameters.Add("@Comentario", MySqlDbType.VarChar).Value = avaliacao.Comentario;
+                cmd.Parameters.Add("@TituloComentario", MySqlDbType.VarChar).Value = avaliacao.TituloAvaliacao;
+
+                cmd.ExecuteNonQuery();
+                conexao.Close();
+            }
         }
 
         public (int quantidadeG, int nota1, int nota2, int nota3, int nota4, int nota5) ObterQuantidadesAvaliacaoLivro(int idCli)
