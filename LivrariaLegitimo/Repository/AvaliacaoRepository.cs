@@ -26,7 +26,7 @@ namespace LivrariaLegitimo.Repository
             {
                 bool existencia;
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from tbAvaliacao where (codBarras = @CodBarras and idCli = @IdCli");
+                MySqlCommand cmd = new MySqlCommand("select * from tbAvaliacao where (codBarras = @CodBarras and idCli = @IdCli", conexao);
                 cmd.Parameters.AddWithValue("@CodBarras", Convert.ToDecimal(codBarras));
                 cmd.Parameters.AddWithValue("@IdCli", idCli);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -45,7 +45,7 @@ namespace LivrariaLegitimo.Repository
             using(var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("call spFazerAvaliacao(@CodBarras, @IdCli, @NotaLivro, @Comentario, @TituloComentario);");
+                MySqlCommand cmd = new MySqlCommand("call spFazerAvaliacao(@CodBarras, @IdCli, @NotaLivro, @Comentario, @TituloComentario);", conexao);
                 cmd.Parameters.Add("@CodBarras", MySqlDbType.Decimal).Value = avaliacao.CodigoBarras;
                 cmd.Parameters.Add("@IdCli", MySqlDbType.Int32).Value = idCli;
                 cmd.Parameters.Add("@NotaLivro", MySqlDbType.Int32).Value = avaliacao.NotaLivro;
@@ -62,24 +62,26 @@ namespace LivrariaLegitimo.Repository
             using(var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from ViewLivroQuantidadeAvaliacoes where codBarras = @CodigoBarras;");
+                MySqlCommand cmd = new MySqlCommand("select * from ViewLivroQuantidadeAvaliacoes where codBarras = @CodigoBarras;", conexao);
                 cmd.Parameters.AddWithValue("@CodigoBarras", Convert.ToDecimal(codBarras));
 
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 MySqlDataReader dr;
 
                 (int quantidadeG, int nota0, int nota1, int nota2, int nota3, int nota4, int nota5) quantidades = (0, 0, 0, 0, 0, 0, 0);
-                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                dr = cmd.ExecuteReader();
+
                 while (dr.Read())
                 {
-                    quantidades.quantidadeG = (int)(dr["QuantidadeTotal"]);
-                    quantidades.nota0 = (int)(dr["Nota0"]);
-                    quantidades.nota1 = (int)(dr["Nota1"]);
-                    quantidades.nota2 = (int)(dr["Nota2"]);
-                    quantidades.nota3 = (int)(dr["Nota3"]);
-                    quantidades.nota4 = (int)(dr["Nota4"]);
-                    quantidades.nota5 = (int)(dr["Nota5"]);
+                    quantidades.quantidadeG = Convert.ToInt32(dr["QuantidadeTotal"]);
+                    quantidades.nota0 = Convert.ToInt32(dr["Nota0"]);
+                    quantidades.nota1 = Convert.ToInt32(dr["Nota1"]);
+                    quantidades.nota2 = Convert.ToInt32(dr["Nota2"]);
+                    quantidades.nota3 = Convert.ToInt32(dr["Nota3"]);
+                    quantidades.nota4 = Convert.ToInt32(dr["Nota4"]);
+                    quantidades.nota5 = Convert.ToInt32(dr["Nota5"]);
                 }
+
 
                 return quantidades;
             }
@@ -107,7 +109,7 @@ namespace LivrariaLegitimo.Repository
                     Avaliacao avaliacao = new Avaliacao();
 
                     avaliacao.CodigoBarras = (decimal)dr["codBarras"];
-                    avaliacao.NotaLivro = (int)dr["nota"];
+                    avaliacao.NotaLivro = (Int32)dr["nota"];
                     avaliacao.Comentario = (string)dr["comentario"];
                     avaliacao.TituloAvaliacao = (string)dr["titulo"];
 

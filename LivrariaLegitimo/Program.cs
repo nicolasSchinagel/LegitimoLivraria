@@ -17,6 +17,7 @@ builder.Services.AddScoped<IClientePFRepository, ClientePFRepository>();
 builder.Services.AddScoped<IClientePJRepository, ClientePJRepository>();
 builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
 builder.Services.AddScoped<ILivroRepository, LivroRepository>();
+builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
 builder.Services.AddScoped<LivrariaLegitimo.Libraries.Sessao.Sessao>();
 builder.Services.AddScoped<LivrariaLegitimo.Libraries.Login.LoginCliente>();
 builder.Services.AddScoped<LivrariaLegitimo.Libraries.Login.LoginFuncionario>();
