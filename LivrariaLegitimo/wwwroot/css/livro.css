@@ -122,7 +122,6 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 94%;
     height: 100%;
     background: rgb(255, 221, 0);
     z-index: 3;
@@ -431,7 +430,6 @@ input[type=number] {
     position: absolute;
     top: 0;
     left: 0;
-    width: 94%;
     height: 100%;
     background: rgb(255, 221, 0);
     z-index: 3;
@@ -479,7 +477,7 @@ input[type=number] {
 }
 
 .total-view-section-avaliacoes-por-star-barra {
-    width: 55%;
+    width: 50%;
     height: 100%;
     border: 1px solid;
     border-radius: 3px;
@@ -515,7 +513,7 @@ input[type=number] {
 }
 
 .total-view-section-avaliacoes-por-star-porcentagem {
-    width: 10%;
+    width: 20%;
     font-size: 14px;
     font-weight: 500;
     color: #C8060A;

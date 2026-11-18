@@ -21,7 +21,6 @@ wwwroot\css\index.css
 wwwroot\css\inputs.css
 wwwroot\css\lateralMenu.css
 wwwroot\css\list.css
-wwwroot\css\livro.css
 wwwroot\css\login.css
 wwwroot\css\menuGerenciar.css
 wwwroot\favicon.ico
@@ -183,12 +182,16 @@ wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\lib\mask\jquery.mask.min.js
-C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\livro.css
+wwwroot\css\livro.css
+C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\adicionarLivro.css
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\carrinho.css
+C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\footer.css
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\header.css
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\index.css
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\inputs.css
+C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\lateralMenu.css
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\list.css
+C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\login.css
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\menuGerenciar.css
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\favicon.ico
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\js\site.js
@@ -252,7 +255,4 @@ C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\jquery\di
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\jquery\dist\jquery.slim.min.map
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\mask\jquery.mask.min.js
-C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\footer.css
-C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\lateralMenu.css
-C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\login.css
-C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\adicionarLivro.css
+C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\livro.css

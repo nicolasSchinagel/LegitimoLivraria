@@ -282,11 +282,11 @@
                 <div class="section-descriptions-estrelas-paginalivro">
                     <div class="section-descriptions-estrelas-paginalivro-parteEstrela">
                         <img class="section-descriptions-estrelasimg-paginalivro" src="~/img/starComb.png">
-                        <div class="section-descriptions-yellowbar-paginalivro"></div>
+                        <div class="section-descriptions-yellowbar-paginalivro" style="width: @((Model.ObterLivro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
                     </div>
                     <h3 class="section-descriptions-avaliados-paginalivro">(@Model.ObterLivro.mediaLivro)</h3>
                     <img class="section-descriptions-setabaixo-paginalivro" src="~/img/setabaixo.png">
-                    <h4 class="section-descriptions-qtd-avaliation">(267)</h4>
+                    <h4 class="section-descriptions-qtd-avaliation">(@Model.ObterQuantidadesAvaliacaoLivro.quantidadeG)</h4>
                 </div>
                 <p class="section-descriptions-text">@Model.ObterLivro.livro.Sinopse</p>
                 <h4 class="section-descriptions-relato">Relatar um problema</h4>
@@ -383,7 +383,7 @@
 <div class="main-avaliations">
     <section class="total-view-section">
         <div class="total-view-section-stars">
-            <div class="yellowbar"></div>
+            <div class="yellowbar" style="width: @((Model.ObterLivro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
             <img class="barimageStar" src="~/img/starComb.png">
         </div>
         <h3 class="total-view-section-points"><span>@Model.ObterLivro.mediaLivro</span> de <span>5</span></h3>
@@ -392,37 +392,44 @@
             <div class="total-view-section-avaliacoes-por-star-block">
                 <h3 class="total-view-section-avaliacoes-por-star-title">5 estrelas</h3>
                 <div class="total-view-section-avaliacoes-por-star-barra">
-                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" id="five"></div>
+                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((Model.ObterQuantidadesAvaliacaoLivro.nota5 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100).ToString(CultureInfo.InvariantCulture))%;" id="five"></div>
                 </div>
-                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">52%</h3>
+                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@((Model.ObterQuantidadesAvaliacaoLivro.nota5 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100) %</h3>
             </div>
             <div class="total-view-section-avaliacoes-por-star-block">
                 <h3 class="total-view-section-avaliacoes-por-star-title">4 estrelas</h3>
                 <div class="total-view-section-avaliacoes-por-star-barra">
-                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" id="four"></div>
+                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((Model.ObterQuantidadesAvaliacaoLivro.nota4 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100).ToString(CultureInfo.InvariantCulture))%;"  id="four"></div>
                 </div>
-                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">12%</h3>
+                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@((Model.ObterQuantidadesAvaliacaoLivro.nota4 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100) %</h3>
             </div>
             <div class="total-view-section-avaliacoes-por-star-block">
                 <h3 class="total-view-section-avaliacoes-por-star-title">3 estrelas</h3>
                 <div class="total-view-section-avaliacoes-por-star-barra">
-                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" id="three"></div>
+                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((Model.ObterQuantidadesAvaliacaoLivro.nota3 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100).ToString(CultureInfo.InvariantCulture))%;" id="three"></div>
                 </div>
-                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">17%</h3>
+                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@((Model.ObterQuantidadesAvaliacaoLivro.nota3 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100) %</h3>
             </div>
             <div class="total-view-section-avaliacoes-por-star-block">
                 <h3 class="total-view-section-avaliacoes-por-star-title">2 estrelas</h3>
                 <div class="total-view-section-avaliacoes-por-star-barra">
-                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" id="two"></div>
+                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((Model.ObterQuantidadesAvaliacaoLivro.nota2 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100).ToString(CultureInfo.InvariantCulture))%;" id="two"></div>
                 </div>
-                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">8%</h3>
+                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@((Model.ObterQuantidadesAvaliacaoLivro.nota2 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100) %</h3>
             </div>
             <div class="total-view-section-avaliacoes-por-star-block">
-                <h3 class="total-view-section-avaliacoes-por-star-title">1 estrelas</h3>
+                <h3 class="total-view-section-avaliacoes-por-star-title">1 estrela</h3>
                 <div class="total-view-section-avaliacoes-por-star-barra">
-                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" id="one"></div>
+                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((Model.ObterQuantidadesAvaliacaoLivro.nota1 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100).ToString(CultureInfo.InvariantCulture))%;" id="one"></div>
                 </div>
-                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">11%</h3>
+                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@((Model.ObterQuantidadesAvaliacaoLivro.nota1 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100) %</h3>
+            </div>
+            <div class="total-view-section-avaliacoes-por-star-block">
+                <h3 class="total-view-section-avaliacoes-por-star-title">0 estrelas</h3>
+                <div class="total-view-section-avaliacoes-por-star-barra">
+                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((Model.ObterQuantidadesAvaliacaoLivro.nota0 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100).ToString(CultureInfo.InvariantCulture))%;" id="one"></div>
+                </div>
+                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@((Model.ObterQuantidadesAvaliacaoLivro.nota0 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100) %</h3>
             </div>
         </div>
         <h2 class="total-view-section-como">Como funciona as avaliações?</h2>
