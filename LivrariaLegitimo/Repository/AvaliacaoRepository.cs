@@ -1,14 +1,43 @@
-﻿using LivrariaLegitimo.Models;
+﻿using LivrariaLegitimo.Libraries.Login;
+using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
 using MySql.Data.MySqlClient;
+using System.Data;
+using System.Globalization;
 
 namespace LivrariaLegitimo.Repository
 {
     public class AvaliacaoRepository : IAvaliacaoRepository
     {
-        public void ExisteAvaliacaoConta(int codBarras, int idCli)
+        private readonly string _conexaoMySQL;
+        IConfiguration _config;
+        private readonly LoginCliente _loginCliente;
+        private readonly LoginFuncionario _loginFuncionario;
+        public AvaliacaoRepository(LoginCliente loginCliente, LoginFuncionario loginFuncionario, IConfiguration conf)
+        {
+            _loginCliente = loginCliente;
+            _loginFuncionario = loginFuncionario;
+            _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
+            _config = conf;
+        }
+        public bool ExisteAvaliacaoConta(int codBarras, int idCli)
         {
             using(var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                bool existencia;
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from tbAvaliacao where (codBarras = @CodBarras and idCli = @IdCli");
+                cmd.Parameters.AddWithValue("@CodBarras", codBarras);
+                cmd.Parameters.AddWithValue("@IdCli", idCli);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+
+                Avaliacao avaliacao = new Avaliacao();
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                
+                existencia = dr.Read();
+                return existencia;
+            }
         }
 
         public void FazerAvaliacao(Avaliacao avaliacao, int idCli)

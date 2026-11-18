@@ -8,7 +8,7 @@ namespace LivrariaLegitimo.Repository.Contract
         void FazerAvaliacao(Avaliacao avaliacao, int idCli);
 
         // void RemoverAvaliacao(int codBarras, int Id);     Ainda estou vendo
-        void ExisteAvaliacaoConta(int codBarras, int Id);
+        bool ExisteAvaliacaoConta(int codBarras, int Id);
         IEnumerable<Avaliacao> ObterTodasAvaliacoes();
 
         public (int quantidadeG, int nota1, int nota2, int nota3, int nota4, int nota5) ObterQuantidadesAvaliacaoLivro(int idCli);
