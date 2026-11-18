@@ -84,9 +84,36 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
-        public IEnumerable<Avaliacao> ObterTodasAvaliacoes()
+        public IEnumerable<(Avaliacao avaliacao, string NomeCliente)> ObterTodasAvaliacoes()
         {
-            throw new NotImplementedException();
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+
+                MySqlCommand cmd = new MySqlCommand("select * from ViewAvaliacao;", conexao);
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                List<(Avaliacao avaliacao, string NomeCliente)> avaliacoes = new();
+
+                while (dr.Read())
+                {
+                    Avaliacao avaliacao = new Avaliacao();
+
+                    avaliacao.CodigoBarras = (decimal)dr["codBarras"];
+                    avaliacao.NotaLivro = (int)dr["nota"];
+                    avaliacao.Comentario = (string)dr["comentario"];
+                    avaliacao.TituloAvaliacao = (string)dr["titulo"];
+
+                    string NomeCliente = (string)dr["nome"];
+
+                    avaliacoes.Add((avaliacao, NomeCliente));
+                }
+
+                dr.Close();
+
+                return avaliacoes;
+            }
         }
     }
 }
