@@ -57,9 +57,31 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
-        public (int quantidadeG, int nota1, int nota2, int nota3, int nota4, int nota5) ObterQuantidadesAvaliacaoLivro(int idCli)
+        public (int quantidadeG, int nota0,  int nota1, int nota2, int nota3, int nota4, int nota5) ObterQuantidadesAvaliacaoLivro(int idCli)
         {
-            throw new NotImplementedException();
+            using(var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from ViewLivroQuantidadeAvaliacoes;");
+
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+
+                (int quantidadeG, int nota0, int nota1, int nota2, int nota3, int nota4, int nota5) quantidades = (0, 0, 0, 0, 0, 0, 0);
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (dr.Read())
+                {
+                    quantidades.quantidadeG = (int)(dr["QuantidadeTotal"]);
+                    quantidades.nota0 = (int)(dr["Nota0"]);
+                    quantidades.nota1 = (int)(dr["Nota1"]);
+                    quantidades.nota2 = (int)(dr["Nota2"]);
+                    quantidades.nota3 = (int)(dr["Nota3"]);
+                    quantidades.nota4 = (int)(dr["Nota4"]);
+                    quantidades.nota5 = (int)(dr["Nota5"]);
+                }
+
+                return quantidades;
+            }
         }
 
         public IEnumerable<Avaliacao> ObterTodasAvaliacoes()

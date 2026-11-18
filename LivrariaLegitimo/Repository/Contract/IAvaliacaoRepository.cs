@@ -11,6 +11,6 @@ namespace LivrariaLegitimo.Repository.Contract
         bool ExisteAvaliacaoConta(int codBarras, int Id);
         IEnumerable<Avaliacao> ObterTodasAvaliacoes();
 
-        public (int quantidadeG, int nota1, int nota2, int nota3, int nota4, int nota5) ObterQuantidadesAvaliacaoLivro(int idCli);
+        public (int quantidadeG, int nota0, int nota1, int nota2, int nota3, int nota4, int nota5) ObterQuantidadesAvaliacaoLivro(int idCli);
     }
 }
