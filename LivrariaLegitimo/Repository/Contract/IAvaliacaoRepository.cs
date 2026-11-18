@@ -5,10 +5,12 @@ namespace LivrariaLegitimo.Repository.Contract
 {
     public interface IAvaliacaoRepository
     {
-        void FazerAvaliacao(Avaliacao avaliacao);
-        void RemoverAvaliacao(int codBarras, int Id);
+        void FazerAvaliacao(Avaliacao avaliacao, int idCli);
+
+        // void RemoverAvaliacao(int codBarras, int Id);     Ainda estou vendo
         void ExisteAvaliacaoConta(int codBarras, int Id);
         IEnumerable<Avaliacao> ObterTodasAvaliacoes();
-        IPagedList<Avaliacao> ObterTodasAvaliacoes(int? pagina, string pesquisa);
+
+        public (int quantidadeG, int nota1, int nota2, int nota3, int nota4, int nota5) ObterQuantidadesAvaliacaoLivro(int idCli);
     }
 }

@@ -4,18 +4,20 @@ namespace LivrariaLegitimo.Models
 {
     public class Avaliacao
     {
-        [Display(Name = "ID Cliente")]
-        public int IdCliente { get; set; }
+       
 
-        [Display(Name = "Codigo de Barras")]
-        public int CodigoBarras { get; set; }
+        [Display(Name = "Código de Barras")]
+        [Required]
+        public decimal CodigoBarras { get; set; }
 
         [Display(Name = "Título da Avaliação")]
-        [Required]
+        [Required(ErrorMessage = "Informe o título da avaliação.")]
+        [StringLength(50, ErrorMessage = "O título deve ter no máximo 50 caracteres.")]
         public string TituloAvaliacao { get; set; }
 
         [Display(Name = "Comentário")]
-        [Required]
+        [Required(ErrorMessage = "Informe seu comentário.")]
+        [StringLength(200, ErrorMessage = "O comentário deve ter no máximo 200 caracteres.")]
         public string Comentario { get; set; }
 
         [Display(Name = "Nota do livro")]
