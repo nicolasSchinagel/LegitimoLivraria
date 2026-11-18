@@ -84,7 +84,7 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
-        public IEnumerable<(Avaliacao avaliacao, string NomeCliente)> ObterTodasAvaliacoes(decimal codigoBarras)
+        public IEnumerable<(Avaliacao avaliacao, string NomeCliente)> ObterTodasAvaliacoes(string codigoBarras)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {

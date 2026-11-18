@@ -88,9 +88,31 @@
                     <div class="main-carrinho-content-sobre-lista-item">
                         <h3 class="main-carrinho-content-sobre-lista-item-title">@(item.livro.Nome.Length > 35 ? item.livro.Nome.Substring(0, 35) + "..." : item.livro.Nome)</h3>
                         <h3 class="main-carrinho-content-sobre-lista-item-number">x @item.quantidadeCarrinho</h3>
-                        <h2 class="main-carrinho-content-sobre-lista-item-price">@((Convert.ToDecimal(item.livro.Preco) * item.quantidadeCarrinho).ToString("N2", CultureInfo.GetCultureInfo("pt-BR")))</h2>
+                        @if(item.livro.PromocaoPorcentagem > 0)
+                        {
+                            <h2 class="main-carrinho-content-sobre-lista-item-price">
+                                @(
+                                    Convert.ToDecimal(
+                                        Math.Round(
+                                            decimal.Parse(item.livro.Preco, new CultureInfo("pt-BR"))
+                                            * (1 - item.livro.PromocaoPorcentagem / 100m),
+                                            2
+                                        ) * item.quantidadeCarrinho
+                                    ).ToString("N2", CultureInfo.GetCultureInfo("pt-BR"))
+                                )
+                            </h2>
+                        }
+                        else
+                        {
+                            <h2 class="main-carrinho-content-sobre-lista-item-price">@((Convert.ToDecimal(item.livro.Preco) * item.quantidadeCarrinho).ToString("N2", CultureInfo.GetCultureInfo("pt-BR")))</h2>
+                        }
+                        
                     </div>
-                    totalCompra = totalCompra + Convert.ToDecimal(item.livro.Preco) * item.quantidadeCarrinho;
+                    totalCompra = totalCompra + Convert.ToDecimal(Math.Round(
+                                        decimal.Parse(item.livro.Preco, new CultureInfo("pt-BR"))
+                                            * (1 - item.livro.PromocaoPorcentagem / 100m),
+                                            2
+                                        ) * item.quantidadeCarrinho) ;
                     
                     totalCompra.ToString("N2", CultureInfo.GetCultureInfo("pt-BR"));
 
