@@ -84,13 +84,18 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
-        public IEnumerable<(Avaliacao avaliacao, string NomeCliente)> ObterTodasAvaliacoes()
+        public IEnumerable<(Avaliacao avaliacao, string NomeCliente)> ObterTodasAvaliacoes(decimal codigoBarras)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand("select * from ViewAvaliacao;", conexao);
+                MySqlCommand cmd = new MySqlCommand(
+                    "select * from ViewAvaliacao where codBarras = @CodigoBarras;",
+                    conexao
+                );
+
+                cmd.Parameters.AddWithValue("@CodigoBarras", codigoBarras);
 
                 MySqlDataReader dr = cmd.ExecuteReader();
 
