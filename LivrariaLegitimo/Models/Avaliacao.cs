@@ -24,7 +24,9 @@ namespace LivrariaLegitimo.Models
         [Required]
         public int NotaLivro { get; set; }
 
-
+        [Display(Name = "Data da avaliação")]
+        [Required]
+        public DateOnly DataAvaliacao { get; set; }
 
     }
 }

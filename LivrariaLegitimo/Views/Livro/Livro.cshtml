@@ -389,48 +389,108 @@
         <h3 class="total-view-section-points"><span>@Model.ObterLivro.mediaLivro</span> de <span>5</span></h3>
         <h4 class="total-view-section-avaliacoes-feitas">@Model.ObterQuantidadesAvaliacaoLivro.quantidadeG avaliações feitas</h4>
         <div class="total-view-section-avaliacoes-por-star">
-            <div class="total-view-section-avaliacoes-por-star-block">
-                <h3 class="total-view-section-avaliacoes-por-star-title">5 estrelas</h3>
-                <div class="total-view-section-avaliacoes-por-star-barra">
-                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((Model.ObterQuantidadesAvaliacaoLivro.nota5 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100).ToString(CultureInfo.InvariantCulture))%;" id="five"></div>
+
+            @if (Model.ObterQuantidadesAvaliacaoLivro.quantidadeG > 0)
+            {
+                <div class="total-view-section-avaliacoes-por-star-block">
+                    <h3 class="total-view-section-avaliacoes-por-star-title">5 estrelas</h3>
+                    <div class="total-view-section-avaliacoes-por-star-barra">
+                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota5 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="five"></div>
+                    </div>
+                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota5 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
                 </div>
-                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@((Model.ObterQuantidadesAvaliacaoLivro.nota5 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100) %</h3>
-            </div>
-            <div class="total-view-section-avaliacoes-por-star-block">
-                <h3 class="total-view-section-avaliacoes-por-star-title">4 estrelas</h3>
-                <div class="total-view-section-avaliacoes-por-star-barra">
-                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((Model.ObterQuantidadesAvaliacaoLivro.nota4 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100).ToString(CultureInfo.InvariantCulture))%;"  id="four"></div>
+
+                <div class="total-view-section-avaliacoes-por-star-block">
+                    <h3 class="total-view-section-avaliacoes-por-star-title">4 estrelas</h3>
+                    <div class="total-view-section-avaliacoes-por-star-barra">
+                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota4 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="four"></div>
+                    </div>
+                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota4 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
                 </div>
-                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@((Model.ObterQuantidadesAvaliacaoLivro.nota4 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100) %</h3>
-            </div>
-            <div class="total-view-section-avaliacoes-por-star-block">
-                <h3 class="total-view-section-avaliacoes-por-star-title">3 estrelas</h3>
-                <div class="total-view-section-avaliacoes-por-star-barra">
-                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((Model.ObterQuantidadesAvaliacaoLivro.nota3 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100).ToString(CultureInfo.InvariantCulture))%;" id="three"></div>
+
+                <div class="total-view-section-avaliacoes-por-star-block">
+                    <h3 class="total-view-section-avaliacoes-por-star-title">3 estrelas</h3>
+                    <div class="total-view-section-avaliacoes-por-star-barra">
+                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota3 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="three"></div>
+                    </div>
+                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota3 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
                 </div>
-                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@((Model.ObterQuantidadesAvaliacaoLivro.nota3 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100) %</h3>
-            </div>
-            <div class="total-view-section-avaliacoes-por-star-block">
-                <h3 class="total-view-section-avaliacoes-por-star-title">2 estrelas</h3>
-                <div class="total-view-section-avaliacoes-por-star-barra">
-                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((Model.ObterQuantidadesAvaliacaoLivro.nota2 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100).ToString(CultureInfo.InvariantCulture))%;" id="two"></div>
+
+                <div class="total-view-section-avaliacoes-por-star-block">
+                    <h3 class="total-view-section-avaliacoes-por-star-title">2 estrelas</h3>
+                    <div class="total-view-section-avaliacoes-por-star-barra">
+                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota2 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="two"></div>
+                    </div>
+                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota2 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
                 </div>
-                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@((Model.ObterQuantidadesAvaliacaoLivro.nota2 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100) %</h3>
-            </div>
-            <div class="total-view-section-avaliacoes-por-star-block">
-                <h3 class="total-view-section-avaliacoes-por-star-title">1 estrela</h3>
-                <div class="total-view-section-avaliacoes-por-star-barra">
-                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((Model.ObterQuantidadesAvaliacaoLivro.nota1 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100).ToString(CultureInfo.InvariantCulture))%;" id="one"></div>
+
+                <div class="total-view-section-avaliacoes-por-star-block">
+                    <h3 class="total-view-section-avaliacoes-por-star-title">1 estrela</h3>
+                    <div class="total-view-section-avaliacoes-por-star-barra">
+                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota1 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="one"></div>
+                    </div>
+                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota1 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
                 </div>
-                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@((Model.ObterQuantidadesAvaliacaoLivro.nota1 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100) %</h3>
-            </div>
-            <div class="total-view-section-avaliacoes-por-star-block">
-                <h3 class="total-view-section-avaliacoes-por-star-title">0 estrelas</h3>
-                <div class="total-view-section-avaliacoes-por-star-barra">
-                    <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((Model.ObterQuantidadesAvaliacaoLivro.nota0 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100).ToString(CultureInfo.InvariantCulture))%;" id="one"></div>
+
+                <div class="total-view-section-avaliacoes-por-star-block">
+                    <h3 class="total-view-section-avaliacoes-por-star-title">0 estrelas</h3>
+                    <div class="total-view-section-avaliacoes-por-star-barra">
+                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota0 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="zero"></div>
+                    </div>
+                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota0 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
                 </div>
-                <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@((Model.ObterQuantidadesAvaliacaoLivro.nota0 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG) * 100) %</h3>
-            </div>
+            }
+            else
+            {
+                <div class="total-view-section-avaliacoes-por-star-block">
+                    <h3 class="total-view-section-avaliacoes-por-star-title">5 estrelas</h3>
+                    <div class="total-view-section-avaliacoes-por-star-barra">
+                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: 0%;" id="five"></div>
+                    </div>
+                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">0 %</h3>
+                </div>
+
+                <div class="total-view-section-avaliacoes-por-star-block">
+                    <h3 class="total-view-section-avaliacoes-por-star-title">4 estrelas</h3>
+                    <div class="total-view-section-avaliacoes-por-star-barra">
+                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: 0%;" id="four"></div>
+                    </div>
+                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">0 %</h3>
+                </div>
+
+                <div class="total-view-section-avaliacoes-por-star-block">
+                    <h3 class="total-view-section-avaliacoes-por-star-title">3 estrelas</h3>
+                    <div class="total-view-section-avaliacoes-por-star-barra">
+                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: 0%;" id="three"></div>
+                    </div>
+                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">0 %</h3>
+                </div>
+
+                <div class="total-view-section-avaliacoes-por-star-block">
+                    <h3 class="total-view-section-avaliacoes-por-star-title">2 estrelas</h3>
+                    <div class="total-view-section-avaliacoes-por-star-barra">
+                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: 0%;" id="two"></div>
+                    </div>
+                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">0 %</h3>
+                </div>
+
+                <div class="total-view-section-avaliacoes-por-star-block">
+                    <h3 class="total-view-section-avaliacoes-por-star-title">1 estrela</h3>
+                    <div class="total-view-section-avaliacoes-por-star-barra">
+                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: 0%;" id="one"></div>
+                    </div>
+                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">0 %</h3>
+                </div>
+
+                <div class="total-view-section-avaliacoes-por-star-block">
+                    <h3 class="total-view-section-avaliacoes-por-star-title">0 estrelas</h3>
+                    <div class="total-view-section-avaliacoes-por-star-barra">
+                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: 0%;" id="zero"></div>
+                    </div>
+                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">0 %</h3>
+                </div>
+            }
+
         </div>
         <h2 class="total-view-section-como">Como funciona as avaliações?</h2>
         <a class="total-view-section-saibamais">saiba mais...</a>
@@ -441,102 +501,31 @@
     </section>
     <section class="list-view-section">
         <h1 class="list-view-section-title">Avaliações dos clientes</h1>
-        <div class="list-view-section-index">
-            <div class="list-view-section-index-header">
-                <img src="~/img/icon_UserCo.png" class="list-view-section-index-header-icon">
-                <h2 class="list-view-section-index-header-name">Fabiano de Moraes</h2>
-            </div>
-            <div class="list-view-section-index-avaliacao-sobre">
-                <h3 class="list-view-section-index-avaliacao-sobre-text">"Gostei do clímax da história"</h3>
-                <div class="list-view-section-index-avaliacao-sobre-section-stars">
-                    <div class="yellowbar-comment"></div>
-                    <img class="barimageStar-comment" src="~/img/starComb.png">
+        @*
+        @foreach(var avaliacao in Model.ObterTodasAvaliacoes)
+        {
+            <div class="list-view-section-index">
+                <div class="list-view-section-index-header">
+                    <img src="~/img/icon_UserCo.png" class="list-view-section-index-header-icon">
+                    <h2 class="list-view-section-index-header-name">@avaliacao.NomeCliente</h2>
                 </div>
-            </div>
-            <h3 class="list-view-section-index-date">Data da avaliação: 20/07/2026</h3>
-            <h4 class="list-view-section-index-compraVerificada">Compra verificada</h4>
-            <p class="list-view-section-index-textabout">
-                O livro contém justamente o conteúdo do qual eu procurava, algo sensato, realista e magnífico, gostei muito da leitura e recomendo para todos que ainda vão ler. A história tem um bom recado para o leitor, de maneira simples, cautelosa e interessante.
-            </p>
-            <div class="list-view-section-index-divisor"></div>
-        </div>
-        <div class="list-view-section-index">
-            <div class="list-view-section-index-header">
-                <img src="~/img/icon_UserCo.png" class="list-view-section-index-header-icon">
-                <h2 class="list-view-section-index-header-name">Fabiano de Moraes</h2>
-            </div>
-            <div class="list-view-section-index-avaliacao-sobre">
-                <h3 class="list-view-section-index-avaliacao-sobre-text">"Gostei do clímax da história"</h3>
-                <div class="list-view-section-index-avaliacao-sobre-section-stars">
-                    <div class="yellowbar-comment"></div>
-                    <img class="barimageStar-comment" src="~/img/starComb.png">
+                <div class="list-view-section-index-avaliacao-sobre">
+                    <h3 class="list-view-section-index-avaliacao-sobre-text">"@avaliacao.avaliacao.TituloAvaliacao"</h3>
+                    <div class="list-view-section-index-avaliacao-sobre-section-stars">
+                        <div class="yellowbar-comment"></div>
+                        <img class="barimageStar-comment" src="~/img/starComb.png">
+                    </div>
                 </div>
+                <h3 class="list-view-section-index-date">Data da avaliação: @avaliacao.avaliacao.DataAvaliacao</h3>
+                <h4 class="list-view-section-index-compraVerificada">Compra verificada</h4>
+                <p class="list-view-section-index-textabout">
+                    @avaliacao.avaliacao.Comentario
+                </p>
+                <div class="list-view-section-index-divisor"></div>
             </div>
-            <h3 class="list-view-section-index-date">Data da avaliação: 20/07/2026</h3>
-            <h4 class="list-view-section-index-compraVerificada">Compra verificada</h4>
-            <p class="list-view-section-index-textabout">
-                O livro contém justamente o conteúdo do qual eu procurava, algo sensato, realista e magnífico, gostei muito da leitura e recomendo para todos que ainda vão ler. A história tem um bom recado para o leitor, de maneira simples, cautelosa e interessante.
-            </p>
-            <div class="list-view-section-index-divisor"></div>
-        </div>
-        <div class="list-view-section-index">
-            <div class="list-view-section-index-header">
-                <img src="~/img/icon_UserCo.png" class="list-view-section-index-header-icon">
-                <h2 class="list-view-section-index-header-name">Fabiano de Moraes</h2>
-            </div>
-            <div class="list-view-section-index-avaliacao-sobre">
-                <h3 class="list-view-section-index-avaliacao-sobre-text">"Gostei do clímax da história"</h3>
-                <div class="list-view-section-index-avaliacao-sobre-section-stars">
-                    <div class="yellowbar-comment"></div>
-                    <img class="barimageStar-comment" src="~/img/starComb.png">
-                </div>
-            </div>
-            <h3 class="list-view-section-index-date">Data da avaliação: 20/07/2026</h3>
-            <h4 class="list-view-section-index-compraVerificada">Compra verificada</h4>
-            <p class="list-view-section-index-textabout">
-                O livro contém justamente o conteúdo do qual eu procurava, algo sensato, realista e magnífico, gostei muito da leitura e recomendo para todos que ainda vão ler. A história tem um bom recado para o leitor, de maneira simples, cautelosa e interessante.
-            </p>
-            <div class="list-view-section-index-divisor"></div>
-        </div>
-        <div class="list-view-section-index">
-            <div class="list-view-section-index-header">
-                <img src="~/img/icon_UserCo.png" class="list-view-section-index-header-icon">
-                <h2 class="list-view-section-index-header-name">Fabiano de Moraes</h2>
-            </div>
-            <div class="list-view-section-index-avaliacao-sobre">
-                <h3 class="list-view-section-index-avaliacao-sobre-text">"Gostei do clímax da história"</h3>
-                <div class="list-view-section-index-avaliacao-sobre-section-stars">
-                    <div class="yellowbar-comment"></div>
-                    <img class="barimageStar-comment" src="~/img/starComb.png">
-                </div>
-            </div>
-            <h3 class="list-view-section-index-date">Data da avaliação: 20/07/2026</h3>
-            <h4 class="list-view-section-index-compraVerificada">Compra verificada</h4>
-            <p class="list-view-section-index-textabout">
-                O livro contém justamente o conteúdo do qual eu procurava, algo sensato, realista e magnífico, gostei muito da leitura e recomendo para todos que ainda vão ler. A história tem um bom recado para o leitor, de maneira simples, cautelosa e interessante.
-            </p>
-            <div class="list-view-section-index-divisor"></div>
-        </div>
-        <div class="list-view-section-index">
-            <div class="list-view-section-index-header">
-                <img src="~/img/icon_UserCo.png" class="list-view-section-index-header-icon">
-                <h2 class="list-view-section-index-header-name">Fabiano de Moraes</h2>
-            </div>
-            <div class="list-view-section-index-avaliacao-sobre">
-                <h3 class="list-view-section-index-avaliacao-sobre-text">"Gostei do clímax da história"</h3>
-                <div class="list-view-section-index-avaliacao-sobre-section-stars">
-                    <div class="yellowbar-comment"></div>
-                    <img class="barimageStar-comment" src="~/img/starComb.png">
-                </div>
-            </div>
-            <h3 class="list-view-section-index-date">Data da avaliação: 20/07/2026</h3>
-            <h4 class="list-view-section-index-compraVerificada">Compra verificada</h4>
-            <p class="list-view-section-index-textabout">
-                O livro contém justamente o conteúdo do qual eu procurava, algo sensato, realista e magnífico, gostei muito da leitura e recomendo para todos que ainda vão ler. A história tem um bom recado para o leitor, de maneira simples, cautelosa e interessante.
-            </p>
-            <div class="list-view-section-index-divisor"></div>
-        </div>
-        <a class="list-view-section-vermais">Ver mais avaliações...</a>
+        }
+        *@
+       
     </section>
 </div>
 <div class="div-cards-carousel">

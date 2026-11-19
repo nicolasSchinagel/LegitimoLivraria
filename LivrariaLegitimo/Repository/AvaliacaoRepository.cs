@@ -109,9 +109,10 @@ namespace LivrariaLegitimo.Repository
                     Avaliacao avaliacao = new Avaliacao();
 
                     avaliacao.CodigoBarras = (decimal)dr["codBarras"];
-                    avaliacao.NotaLivro = (Int32)dr["nota"];
+                    avaliacao.NotaLivro = (Int16)dr["nota"];
                     avaliacao.Comentario = (string)dr["comentario"];
                     avaliacao.TituloAvaliacao = (string)dr["titulo"];
+                    avaliacao.DataAvaliacao = DateOnly.FromDateTime(Convert.ToDateTime(dr["dataAvaliacao"]));
 
                     string NomeCliente = (string)dr["nome"];
 
