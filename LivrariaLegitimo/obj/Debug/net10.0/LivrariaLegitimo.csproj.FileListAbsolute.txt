@@ -258,5 +258,5 @@ C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\sta
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\Livraria.2902E4A9.Up2Date
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\LivrariaLegitimo.genruntimeconfig.cache
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\ref\LivrariaLegitimo.dll
-C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\vwseuhyb7b-{0}-m14zdoszhx-m14zdoszhx.gz
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\vwseuhyb7b-{0}-fwupm8gw4d-fwupm8gw4d.gz
+C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\vwseuhyb7b-{0}-fwupm8gw4d-fwupm8gw4d.gz
