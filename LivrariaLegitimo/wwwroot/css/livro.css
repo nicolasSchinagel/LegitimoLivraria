@@ -473,7 +473,8 @@ input[type=number] {
 .total-view-section-avaliacoes-por-star-title {
     font-size: 14px;
     font-weight: 500;
-    color: #C8060A
+    color: #C8060A;
+    width: 25%;
 }
 
 .total-view-section-avaliacoes-por-star-barra {
