@@ -497,7 +497,17 @@
         <div class="total-view-section-divisor"></div>
         <h2 class="total-view-section-avalieText">Avalie este livro</h2>
         <h3 class="total-view-section-compartilhar">Compartilhe sua opinião sobre o produto</h3>
-        <a class="total-view-section-avaliar">Vamos avaliar!</a>
+        @if (_LoginCliente.GetCliente() != null)
+        {
+            @if (!Model.ExisteAvaliacaoConta)
+            {
+                <a class="total-view-section-avaliar">Vamos avaliar!</a>
+            }
+        }
+        @if (_LoginCliente.GetCliente() == null)
+        {
+            <a class="total-view-section-avaliar"></a>
+        }
     </section>
     <section class="list-view-section">
         <h1 class="list-view-section-title">Avaliações dos clientes</h1>

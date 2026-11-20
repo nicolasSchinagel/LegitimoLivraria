@@ -22,21 +22,28 @@ namespace LivrariaLegitimo.Repository
         }
         public bool ExisteAvaliacaoConta(string codBarras)
         {
-            using(var conexao = new MySqlConnection(_conexaoMySQL))
+            if (_loginCliente.GetCliente() != null)
             {
-                bool existencia;
-                conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from tbAvaliacao where (codBarras = @CodBarras and idCli = @IdCli", conexao);
-                cmd.Parameters.AddWithValue("@CodBarras", Convert.ToDecimal(codBarras));
-                cmd.Parameters.AddWithValue("@IdCli", _loginCliente.GetCliente().IdCli);
-                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                MySqlDataReader dr;
+                using (var conexao = new MySqlConnection(_conexaoMySQL))
+                {
+                    bool existencia;
+                    conexao.Open();
+                    MySqlCommand cmd = new MySqlCommand("select * from tbAvaliacao where (codBarras = @CodBarras and idCli = @IdCli)", conexao);
+                    cmd.Parameters.AddWithValue("@CodBarras", Convert.ToDecimal(codBarras));
+                    cmd.Parameters.AddWithValue("@IdCli", _loginCliente.GetCliente().IdCli);
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    MySqlDataReader dr;
 
-                Avaliacao avaliacao = new Avaliacao();
-                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-                
-                existencia = dr.Read();
-                return existencia;
+                    Avaliacao avaliacao = new Avaliacao();
+                    dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+                    existencia = dr.Read();
+                    return existencia;
+                }
+            }
+            else
+            {
+                return false;
             }
         }
 
