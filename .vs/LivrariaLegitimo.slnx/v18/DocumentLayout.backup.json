@@ -196,7 +196,7 @@
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Livro\\Livro.cshtml",
               "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Livro\\Livro.cshtml",
               "RelativeToolTip": "LivrariaLegitimo\\Views\\Livro\\Livro.cshtml",
-              "ViewState": "AgIAACoCAAAAAAAAAAAAAEcCAABQAAAAAAAAAA==",
+              "ViewState": "AgIAAEICAAAAAAAAAAAAAEkCAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-11-18T12:19:13.036Z",
               "EditorCaption": ""
@@ -211,8 +211,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Views\\Default\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-18T14:07:14.64Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T14:07:14.64Z"
             },
             {
               "$type": "Document",
