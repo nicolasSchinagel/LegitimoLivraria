@@ -54,6 +54,9 @@ namespace LivrariaLegitimo.Controllers
             return View(model);
         }
 
-
+        public IActionResult ListaProcura()
+        {
+            return View();
+        }
     }
 }

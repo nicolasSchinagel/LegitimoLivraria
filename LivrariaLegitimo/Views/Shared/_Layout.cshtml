@@ -23,7 +23,7 @@
         <section class="uper-header">
             <img src="~/img/logoLivraria.png" class="logo-header">
             <div class="search-bar-header">
-                <a class="icon-search-bar-font"><img src="~/img/SearchbarIcon.png" class="icon-search-bar"></a>
+                <a class="icon-search-bar-font" asp-controller="Livro" asp-action="ListaProcura"><img src="~/img/SearchbarIcon.png" class="icon-search-bar"></a>
                 <input type="text" class="input-search-bar" placeholder="Digite livros, autores ou editoras"/>
             </div>
             <a class="carrinho-header no-underline" asp-controller="Carrinho" asp-action="Carrinho">
