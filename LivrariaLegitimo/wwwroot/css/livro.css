@@ -628,14 +628,13 @@ input[type=number] {
     overflow: hidden;
     justify-content: center;
     mask: url("../img/starmask.png") center/100% 100% no-repeat;
-    -webkit-mask: url("../img/imagens/starmask.png") center/100% 100% no-repeat;
+    -webkit-mask: url("../img/starmask.png") center/100% 100% no-repeat;
 }
 
 .yellowbar-comment {
     position: absolute;
     top: 0;
     left: 0;
-    width: 80%;
     height: 100%;
     background: rgb(255, 221, 0);
     z-index: 3;

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LivrariaLegitimo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2cb1a71778f17257d203c6da29ba0d48e6e9da7d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32fb8003f65d786bb8499cdab39b36e44fae1639")]
 [assembly: System.Reflection.AssemblyProductAttribute("LivrariaLegitimo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LivrariaLegitimo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

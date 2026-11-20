@@ -20,7 +20,7 @@ namespace LivrariaLegitimo.Repository
             _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
             _config = conf;
         }
-        public bool ExisteAvaliacaoConta(string codBarras, int idCli)
+        public bool ExisteAvaliacaoConta(string codBarras)
         {
             using(var conexao = new MySqlConnection(_conexaoMySQL))
             {
@@ -28,7 +28,7 @@ namespace LivrariaLegitimo.Repository
                 conexao.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbAvaliacao where (codBarras = @CodBarras and idCli = @IdCli", conexao);
                 cmd.Parameters.AddWithValue("@CodBarras", Convert.ToDecimal(codBarras));
-                cmd.Parameters.AddWithValue("@IdCli", idCli);
+                cmd.Parameters.AddWithValue("@IdCli", _loginCliente.GetCliente().IdCli);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 MySqlDataReader dr;
 

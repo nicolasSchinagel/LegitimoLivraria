@@ -33,12 +33,14 @@ namespace LivrariaLegitimo.Controllers
             var livro = _livroRepository.ObterLivro(codBarras);
             var quantidades = _avaliacaoRepository.ObterQuantidadesAvaliacaoLivro(codBarras);
             var avaliacoes = _avaliacaoRepository.ObterTodasAvaliacoes(codBarras);
+            var existeAvaliacao = _avaliacaoRepository.ExisteAvaliacaoConta(codBarras);
 
             var model = new LivroViewModel
             {
                 ObterLivro = livro,
                 ObterQuantidadesAvaliacaoLivro = quantidades,
-                ObterTodasAvaliacoes = avaliacoes
+                ObterTodasAvaliacoes = avaliacoes,
+                ExisteAvaliacaoConta = existeAvaliacao
             };
 
             return View(model);

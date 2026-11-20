@@ -501,7 +501,7 @@
     </section>
     <section class="list-view-section">
         <h1 class="list-view-section-title">Avaliações dos clientes</h1>
-        @*
+
         @foreach(var avaliacao in Model.ObterTodasAvaliacoes)
         {
             <div class="list-view-section-index">
@@ -512,7 +512,7 @@
                 <div class="list-view-section-index-avaliacao-sobre">
                     <h3 class="list-view-section-index-avaliacao-sobre-text">"@avaliacao.avaliacao.TituloAvaliacao"</h3>
                     <div class="list-view-section-index-avaliacao-sobre-section-stars">
-                        <div class="yellowbar-comment"></div>
+                        <div class="yellowbar-comment" style="width: @((avaliacao.avaliacao.NotaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
                         <img class="barimageStar-comment" src="~/img/starComb.png">
                     </div>
                 </div>
@@ -524,7 +524,7 @@
                 <div class="list-view-section-index-divisor"></div>
             </div>
         }
-        *@
+
        
     </section>
 </div>
