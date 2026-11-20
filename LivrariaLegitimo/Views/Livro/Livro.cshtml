@@ -495,17 +495,24 @@
         <h2 class="total-view-section-como">Como funciona as avaliações?</h2>
         <a class="total-view-section-saibamais">saiba mais...</a>
         <div class="total-view-section-divisor"></div>
-        <h2 class="total-view-section-avalieText">Avalie este livro</h2>
-        <h3 class="total-view-section-compartilhar">Compartilhe sua opinião sobre o produto</h3>
         @if (_LoginCliente.GetCliente() != null)
         {
+            <h2 class="total-view-section-avalieText">Avalie este livro</h2>
             @if (!Model.ExisteAvaliacaoConta)
             {
+                <h3 class="total-view-section-compartilhar">Avaliação disponível</h3>
                 <a class="total-view-section-avaliar">Vamos avaliar!</a>
+            }
+            else
+            {
+                <h3 class="total-view-section-compartilhar">Produto já avaliado!</h3>
+                <a class="total-view-section-avaliar"></a>
             }
         }
         @if (_LoginCliente.GetCliente() == null)
         {
+            <h2 class="total-view-section-avalieText">Quer avaliar?</h2>
+            <h3 class="total-view-section-compartilhar">Faça o login do cliente e compre o livro para avaliar</h3>
             <a class="total-view-section-avaliar"></a>
         }
     </section>
