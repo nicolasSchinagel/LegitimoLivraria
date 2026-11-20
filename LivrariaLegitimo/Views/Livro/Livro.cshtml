@@ -577,10 +577,10 @@
                                 <div class="estrelas-historico">
                                     <div class="estrelas-historico-specifics">
                                         <img class="estrelasimg-historico" src="~/img/StarComb.png">
-                                        <div class="estrelas-specifics-yellowbar"></div>
+                                        <div class="estrelas-specifics-yellowbar" style="width: @((livro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
                                     </div>
 
-                                    <h3 class="avaliados-historico">(4.3)</h3>
+                                    <h3 class="avaliados-historico">( @livro.mediaLivro )</h3>
                                     <img class="setabaixo-historico" src="~/img/setabaixo.png">
                                 </div>
 

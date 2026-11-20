@@ -14,9 +14,9 @@ namespace LivrariaLegitimo.Repository.Contract
 
         IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterMelhoresAvaliados();
 
-        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> AleatorizarLivros();
+        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> AleatorizarLivros();
 
-        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> ObterMaioresOfertas();
+        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterMaioresOfertas();
 
         IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterMaisVendidos();
 

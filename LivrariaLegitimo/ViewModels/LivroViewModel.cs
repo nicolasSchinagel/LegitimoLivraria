@@ -8,9 +8,9 @@ namespace LivrariaLegitimo.ViewModels
 
         public IEnumerable<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> BemAvaliados { get; set; }
 
-        public IEnumerable<(Livro livro, string arquivoImagem, string arquivoEbook)> Aleatorios { get; set; }
+        public IEnumerable<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> Aleatorios { get; set; }
 
-        public IEnumerable<(Livro livro, string arquivoImagem, string arquivoEbook)> MaioresOfertas { get; set; }
+        public IEnumerable<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> MaioresOfertas { get; set; }
 
         public IEnumerable<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> TodosLivros { get; set; }
 

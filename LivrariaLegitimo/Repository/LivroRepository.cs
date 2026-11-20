@@ -250,28 +250,26 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
-        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> AleatorizarLivros()
+        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> AleatorizarLivros()
         {
-            List<(Livro, string arquivoImagem, string arquivoEbook)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook)>();
+            List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
 
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
 
                 MySqlCommand consulta = new MySqlCommand(
-                    "select * from ViewLivro where(Quantidade > 0) order by RAND() limit 9",
+                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(Quantidade > 0) order by RAND() limit 9",
                     conexao
                 );
 
                 if (_loginFuncionario.GetFuncionario() != null)
                 {
                     consulta = new MySqlCommand(
-                        "select * from ViewLivro order by RAND() limit 9",
+                        "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras order by RAND() limit 9",
                         conexao
                     );
                 }
-
-
 
                 MySqlDataAdapter da = new MySqlDataAdapter(consulta);
                 DataTable dt = new DataTable();
@@ -304,31 +302,33 @@ namespace LivrariaLegitimo.Repository
                             PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
                         },
                         dr["Imagem"].ToString(),
-                        dr["ArquivoEbook"].ToString()
-                        ));
+                        dr["ArquivoEbook"].ToString(),
+                        Convert.ToDecimal(dr["MediaAvaliacao"]),
+                        Convert.ToInt32(dr["NumeroVendas"])
+                    ));
                 }
 
                 return listaLivro;
             }
         }
 
-        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> ObterMaioresOfertas()
+        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterMaioresOfertas()
         {
-            List<(Livro, string arquivoImagem, string arquivoEbook)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook)>();
+            List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
 
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
 
                 MySqlCommand consulta = new MySqlCommand(
-                    "select * from ViewLivro where(Quantidade > 0) order by PromocaoPorcentagem DESC limit 2",
+                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(Quantidade > 0) order by PromocaoPorcentagem DESC limit 2",
                     conexao
                 );
 
                 if (_loginFuncionario.GetFuncionario() != null)
                 {
                     consulta = new MySqlCommand(
-                        "select * from ViewLivro order by PromocaoPorcentagem DESC limit 2",
+                        "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras order by PromocaoPorcentagem DESC limit 2",
                         conexao
                     );
                 }
@@ -364,7 +364,9 @@ namespace LivrariaLegitimo.Repository
                             PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"])
                         },
                         dr["Imagem"].ToString(),
-                        dr["ArquivoEbook"].ToString()
+                        dr["ArquivoEbook"].ToString(),
+                        Convert.ToDecimal(dr["MediaAvaliacao"]),
+                        Convert.ToInt32(dr["NumeroVendas"])
                     ));
                 }
 
