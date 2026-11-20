@@ -113,4 +113,6 @@
     filtrosAvaliacao.forEach(input => {
         input.addEventListener("input", FiltrarLivros);
     });
+    FiltrarLivros();
 });
+

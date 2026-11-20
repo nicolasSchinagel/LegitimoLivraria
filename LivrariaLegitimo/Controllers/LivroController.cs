@@ -67,7 +67,7 @@ namespace LivrariaLegitimo.Controllers
         }
 
         [HttpGet]
-        public IActionResult ObterPoGenero(string genero)
+        public IActionResult ObterPorGenero(string genero)
         {
             var livro = _livroRepository.ObterTodosLivros("");
             var model = new LivroViewModel
