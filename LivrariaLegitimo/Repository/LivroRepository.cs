@@ -436,6 +436,23 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
+        public bool EmAlta(string codBarras)
+        {
+            using(var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                bool existencia;
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from ViewLivroVendas limit 15 where(codBarras = @CodBarras);", conexao);
+                cmd.Parameters.AddWithValue("@CodBarras", Convert.ToDecimal(codBarras));
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                existencia = dr.Read();
+
+                return existencia;
+            }
+        }
 
         public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterPorLiteratura(string literatura)
         {
