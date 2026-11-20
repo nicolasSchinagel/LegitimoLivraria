@@ -143,7 +143,26 @@
     <section class="div-mainList-section-lista">
         @foreach(var livro in Model.TodosLivros)
         {
-            <div class="card1-2">
+            <div class="card1-2" 
+                 data-generos="@string.Join("|", livro.livro.Generos)"
+                 data-preco="@livro.livro.Preco"
+                 data-avaliacao="@(Convert.ToDouble(livro.mediaLivro))"
+                 data-tipo="@livro.livro.TipoCapa"
+                 data-ebook="@(!string.IsNullOrEmpty(livro.arquivoEbook))"
+                 data-nome="@livro.livro.Nome"
+                 data-autor="@livro.livro.Autor"
+                 data-editora="@livro.livro.Editora"
+                 data-idioma="@livro.livro.Idioma"
+                 data-literatura="@livro.livro.Literatura"
+                 data-data-publi="@livro.livro.DataPubli.ToString("yyyy-MM-dd")"
+                 data-idade-recomendada="@livro.livro.IdadeRecomendada"
+                 data-promocao="@livro.livro.PromocaoPorcentagem"
+                 data-quantidade="@livro.livro.Quantidade"
+                 data-capacidade="@livro.livro.Capacidade"
+                 data-isbn="@livro.livro.ISBN"
+                 data-codigo-barras="@livro.livro.CodigoBarras"
+                 data-tamanho="@livro.livro.Tamanho"
+                 data-vendas="@livro.numeroVendas">
                 <div class="containerlivro">
                     <img class="book" src="@livro.arquivoImagem">
 
@@ -206,3 +225,4 @@
 
     </section>
 </div>
+<script src="~/js/filtroLivros.js" asp-append-version="true"></script>
