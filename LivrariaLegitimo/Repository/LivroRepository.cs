@@ -259,14 +259,14 @@ namespace LivrariaLegitimo.Repository
                 conexao.Open();
 
                 MySqlCommand consulta = new MySqlCommand(
-                    "select * from ViewLivro where(Quantidade > 0) order by RAND() limit 2",
+                    "select * from ViewLivro where(Quantidade > 0) order by RAND() limit 9",
                     conexao
                 );
 
                 if (_loginFuncionario.GetFuncionario() != null)
                 {
                     consulta = new MySqlCommand(
-                        "select * from ViewLivro order by RAND() limit 2",
+                        "select * from ViewLivro order by RAND() limit 9",
                         conexao
                     );
                 }

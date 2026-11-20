@@ -72,7 +72,7 @@
     <div class="card-init">
         <h2 class="card-init-title">Talvez você goste</h2>
         <section class="books-card-init">
-            @foreach(var livro in Model.Aleatorios)
+            @foreach(var livro in Model.Aleatorios.Take(2))
             {
                 <a class="book-card-init no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
                     <img src="@livro.arquivoImagem" class="image-book-card-init">

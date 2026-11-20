@@ -547,7 +547,7 @@
 </div>
 <div class="div-cards-carousel">
     <div class="top-bar-cards">
-        <h2 class="top-bar-cards-title">Relacionados</h2>
+        <h2 class="top-bar-cards-title">Talvez você goste</h2>
         <section class="parts-card">
         </section>
         <h4 class="top-bar-cards-pages">página <span class="start-page-top-bar-4-1">1</span> de <span class="total-pages-top-bar-4-2">5</span></h4>
@@ -558,236 +558,51 @@
             <img src="~/img/arrow-carousel.png" class="arrow-carousel-right-4">
         </div>
         <div class="div-cards-carousel-total-4">
-            <div class="div-cards-carousel-index-4">
-                <div class="banner2">
-                    <div class="retangulocima-historico">
-                        <img class="imgetiqueta" src="~/img/iconefogo.png">
-                        <p class="alta">EM ALTA</p>
-                    </div>
-                    <img class="livro-historico" src="~/img/IrmaosKamarozov.webp">
-                    <div class="partelateral-historico">
-                        <h1 class="titulo-historico">Os Irmãos Kamarozov</h1>
-                        <h2 class="autor-historico">Por Fiódor Dostoiévski</h2>
-                        <h2 class="editor-historico">Editora Principis</h2>
-
-                        <div class="estrelas-historico">
-                            <div class="estrelas-historico-specifics">
-                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
+            @foreach(var grupo in Model.Aleatorios.Chunk(3))
+            {
+                <div class="div-cards-carousel-index-4">
+                    @foreach(var livro in grupo)
+                    {
+                        <div class="banner2">
+                            <div class="retangulocima-historico">
+                                <img class="imgetiqueta" src="~/img/iconefogo.png">
+                                <p class="alta">EM ALTA</p>
                             </div>
+                            <img class="livro-historico" src="@livro.arquivoImagem">
+                            <div class="partelateral-historico">
+                                <h1 class="titulo-historico">@(livro.livro.Nome.Length > 37 ? livro.livro.Nome.Substring(0, 37) + "..." : livro.livro.Nome)</h1>
+                                <h2 class="autor-historico">Por @livro.livro.Autor</h2>
+                                <h2 class="editor-historico">@livro.livro.Editora</h2>
 
-                            <h3 class="avaliados-historico">(4.3)</h3>
-                            <img class="setabaixo-historico" src="~/img/setabaixo.png">
-                        </div>
+                                <div class="estrelas-historico">
+                                    <div class="estrelas-historico-specifics">
+                                        <img class="estrelasimg-historico" src="~/img/StarComb.png">
+                                        <div class="estrelas-specifics-yellowbar"></div>
+                                    </div>
 
-                        <div class="partedebaixo-historico">
-                            <h1 class="preco-historico">R$ 57,00</h1>
-
-                            <div class="quadradosred-historico">
-                                <div class="cartfundo-historico">
-                                    <img class="cart-historico" src="~/img/cart.png">
+                                    <h3 class="avaliados-historico">(4.3)</h3>
+                                    <img class="setabaixo-historico" src="~/img/setabaixo.png">
                                 </div>
 
-                                <div class="heartfundo-historico">
-                                    <img class="heart-historico" src="~/img/coracaored.png">
+                                <div class="partedebaixo-historico">
+
+                                    <h1 class="preco-historico">R$@livro.livro.Preco</h1>
+
+                                    <div class="quadradosred-historico">
+                                        <div class="cartfundo-historico">
+                                            <img class="cart-historico" src="~/img/cart.png">
+                                        </div>
+
+                                        <div class="heartfundo-historico">
+                                            <img class="heart-historico" src="~/img/coracaored.png">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 </div>
-
-  
-                <!-- Livro - O Guarani -->
-                <div class="banner2">
-                    <img class="livro-historico" src="~/img/Hobbit.webp">
-                    <div class="retangulocimaBemavaliado-historico">
-                        <img class="imgetiqueta" src="~/img/bemavaliado.png">
-                        <p class="bemavaliado">BEM AVALIADO</p>
-                    </div>
-                    <div class="partelateral-historico">
-                        <h1 class="titulo-historico">O Hobbit</h1>
-                        <h2 class="autor-historico">Por J.R.R Tolkien</h2>
-                        <h2 class="editor-historico">Editora HarperCollins</h2>
-
-                        <div class="estrelas-historico">
-                            <div class="estrelas-historico-specifics">
-                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-
-                            <h3 class="avaliados-historico">(4.3)</h3>
-                            <img class="setabaixo-historico" src="~/img/setabaixo.png">
-                        </div>
-
-                        <div class="partedebaixo-historico">
-                            <h1 class="preco-historico">R$ 57,00</h1>
-
-                            <div class="quadradosred-historico">
-                                <div class="cartfundo-historico">
-                                    <img class="cart-historico" src="~/img/cart.png">
-                                </div>
-
-                                <div class="heartfundo-historico">
-                                    <img class="heart-historico" src="~/img/coracaored.png">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Livro - Ensaio sobre a Cegueira -->
-                <div class="banner2">
-                    <img class="livro-historico" src="~/img/Reliquias.webp">
-                    <div class="retangulocimaNovo-historico">
-                        <img class="imgetiqueta" src="~/img/novo.png">
-                        <p class="novo">NOVO</p>
-                    </div>
-                    <div class="partelateral-historico">
-                        <h1 class="titulo-historico">Harry Potter e as Relíquias da Morte: 7</h1>
-                        <h2 class="autor-historico">Por J.K Rowling</h2>
-                        <h2 class="editor-historico">Editora Rocco</h2>
-
-                        <div class="estrelas-historico">
-                            <div class="estrelas-historico-specifics">
-                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-
-                            <h3 class="avaliados-historico">(4.3)</h3>
-                            <img class="setabaixo-historico" src="~/img/setabaixo.png">
-                        </div>
-
-                        <div class="partedebaixo-historico">
-                            <h1 class="preco-historico">R$ 57,00</h1>
-
-                            <div class="quadradosred-historico">
-                                <div class="cartfundo-historico">
-                                    <img class="cart-historico" src="~/img/cart.png">
-                                </div>
-
-                                <div class="heartfundo-historico">
-                                    <img class="heart-historico" src="~/img/coracaored.png">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="div-cards-carousel-index-4">
-                <div class="banner2">
-                    <div class="retangulocima-historico">
-                        <img class="imgetiqueta" src="~/img/iconefogo.png">
-                        <p class="alta">EM ALTA</p>
-                    </div>
-                    <img class="livro-historico" src="~/img/IrmaosKamarozov.webp">
-                    <div class="partelateral-historico">
-                        <h1 class="titulo-historico">Os Irmãos Kamarozov</h1>
-                        <h2 class="autor-historico">Por Fiódor Dostoiévski</h2>
-                        <h2 class="editor-historico">Editora Principis</h2>
-
-                        <div class="estrelas-historico">
-                            <div class="estrelas-historico-specifics">
-                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-
-                            <h3 class="avaliados-historico">(4.3)</h3>
-                            <img class="setabaixo-historico" src="~/img/setabaixo.png">
-                        </div>
-
-                        <div class="partedebaixo-historico">
-                            <h1 class="preco-historico">R$ 57,00</h1>
-
-                            <div class="quadradosred-historico">
-                                <div class="cartfundo-historico">
-                                    <img class="cart-historico" src="~/img/cart.png">
-                                </div>
-
-                                <div class="heartfundo-historico">
-                                    <img class="heart-historico" src="~/img/coracaored.png">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-  
-                <!-- Livro - O Guarani -->
-                <div class="banner2">
-                    <img class="livro-historico" src="~/img/Hobbit.webp">
-                    <div class="retangulocimaBemavaliado-historico">
-                        <img class="imgetiqueta" src="~/img/bemavaliado.png">
-                        <p class="bemavaliado">BEM AVALIADO</p>
-                    </div>
-                    <div class="partelateral-historico">
-                        <h1 class="titulo-historico">O Hobbit</h1>
-                        <h2 class="autor-historico">Por J.R.R Tolkien</h2>
-                        <h2 class="editor-historico">Editora HarperCollins</h2>
-
-                        <div class="estrelas-historico">
-                            <div class="estrelas-historico-specifics">
-                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-
-                            <h3 class="avaliados-historico">(4.3)</h3>
-                            <img class="setabaixo-historico" src="~/img/setabaixo.png">
-                        </div>
-
-                        <div class="partedebaixo-historico">
-                            <h1 class="preco-historico">R$ 57,00</h1>
-
-                            <div class="quadradosred-historico">
-                                <div class="cartfundo-historico">
-                                    <img class="cart-historico" src="~/img/cart.png">
-                                </div>
-
-                                <div class="heartfundo-historico">
-                                    <img class="heart-historico" src="~/img/coracaored.png">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Livro - Ensaio sobre a Cegueira -->
-                <div class="banner2">
-                    <img class="livro-historico" src="~/img/Reliquias.webp">
-                    <div class="retangulocimaNovo-historico">
-                        <img class="imgetiqueta" src="~/img/novo.png">
-                        <p class="novo">NOVO</p>
-                    </div>
-                    <div class="partelateral-historico">
-                        <h1 class="titulo-historico">Harry Potter e as Relíquias da Morte: 7</h1>
-                        <h2 class="autor-historico">Por J.K Rowling</h2>
-                        <h2 class="editor-historico">Editora Rocco</h2>
-
-                        <div class="estrelas-historico">
-                            <div class="estrelas-historico-specifics">
-                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
-                                <div class="estrelas-specifics-yellowbar"></div>
-                            </div>
-
-                            <h3 class="avaliados-historico">(4.3)</h3>
-                            <img class="setabaixo-historico" src="~/img/setabaixo.png">
-                        </div>
-
-                        <div class="partedebaixo-historico">
-                            <h1 class="preco-historico">R$ 57,00</h1>
-
-                            <div class="quadradosred-historico">
-                                <div class="cartfundo-historico">
-                                    <img class="cart-historico" src="~/img/cart.png">
-                                </div>
-
-                                <div class="heartfundo-historico">
-                                    <img class="heart-historico" src="~/img/coracaored.png">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </div>
