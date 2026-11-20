@@ -24,7 +24,7 @@ namespace LivrariaLegitimo.Repository.Contract
         bool EmAlta(string codBarras);
 
         IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterPorLiteratura(string literatura);
-        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterPorCategoria(string categoria); 
+        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterPorGenero(string genero); 
 
 
         IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterPorPesquisa(string nome); // ordena baseado em nomes, editoras e autores aproximados

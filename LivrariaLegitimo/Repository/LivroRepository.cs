@@ -599,7 +599,7 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
-        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterPorCategoria(string categoria)
+        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterPorGenero(string genero)
         {
             List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
 
@@ -620,7 +620,7 @@ namespace LivrariaLegitimo.Repository
                     );
                 }
 
-                consulta.Parameters.AddWithValue("@Categoria", "%" + categoria + "%");
+                consulta.Parameters.AddWithValue("@Categoria", "%" + genero + "%");
 
                 MySqlDataAdapter da = new MySqlDataAdapter(consulta);
                 DataTable dt = new DataTable();
