@@ -1,2 +1,170 @@
-﻿body {
+﻿* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.div-mainList {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    width: 100%;
+    height: auto;
+    padding-left: 50px;
+    position: relative;
+    padding-right: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #FAFAFA;
+}
+
+.div-mainList-section-filtros {
+    background-color: white;
+    border-radius: 12px;
+    padding-left: 20px;
+    padding-right: 5px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 22%;
+    height: auto;
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    font-family: 'Inter', sans-serif;
+}
+
+.div-mainList-section-filtros-title {
+    font-size: 24px;
+}
+
+.div-mainList-section-filtros-generos, .div-mainList-section-filtros-tipoLivro {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.div-mainList-section-filtros-generos-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.div-mainList-section-filtros-generos-block {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    gap: 10px;
+    align-items: center;
+}
+
+.div-mainList-section-filtros-generos-block-square {
+    width: 8%;
+    aspect-ratio: 1/1;
+}
+
+.div-mainList-section-filtros-generos-block-square-title {
+    font-size: 18px;
+    color: black;
+    font-weight: 500;
+}
+
+.div-mainList-section-filtros-avaliacao-selector-starList {
+    width: 40%;
+    aspect-ratio: 5/1;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
+    -webkit-mask: url("./imagens/starmask.png") center/100% 100% no-repeat;
+}
+
+.div-mainList-section-filtros-avaliacao-selector-starList-starborder {
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+}
+
+.div-mainList-section-filtros-avaliacao-selector-starList-yellow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100%;
+    background: rgb(255, 221, 0);
+    z-index: 3;
+}
+
+.div-mainList-section-filtros-faixapreco, .div-mainList-section-filtros-avaliacao-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.div-mainList-section-filtros-faixapreco-title, .div-mainList-section-filtros-avaliacao-selector-title {
+    font-size: 20px;
+    font-weight: 700px;
+}
+
+.div-mainList-section-filtros-faixapreco-de, .div-mainList-section-filtros-avaliacao-selector-de {
+    display: flex;
+    width: 40%;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+
+.parte-de-ate, .parte-de-ate-avaliacao {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+}
+
+.div-mainList-section-filtros-faixapreco-de-text, .div-mainList-section-filtros-avaliacao-selector-de-text {
+    font-size: 16px;
+    width: 28%;
+}
+
+.div-mainList-section-filtros-faixapreco-de-input, .div-mainList-section-filtros-avaliacao-selector-de-input {
+    width: 70%;
+    outline: none;
+    border: solid 1px black;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.div-mainList-section-lista {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 75%;
+    gap: 10px;
+    padding-left: 30px;
+    padding-right: 20px;
+}
+
+.card1-2 {
+    background: #fff;
+    width: 100%;
+    aspect-ratio: 253 / 452;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 20px;
+    border: 2px solid #ECECEC;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+    position: relative;
+    padding-bottom: 5px;
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+.card1-2:hover {
+    background-color: #f1f1f1;
 }
