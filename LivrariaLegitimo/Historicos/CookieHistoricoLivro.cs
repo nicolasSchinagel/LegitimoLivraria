@@ -22,9 +22,9 @@ namespace LivrariaLegitimo.Historicos
         }
 
         // Recupera os livros completos do banco e suas quantidades no carrinho
-        public List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas, int quantidadeCarrinho)> Consultar()
+        public List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> Consultar()
         {
-            List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas, int quantidadeCarrinho)> Lista = new();
+            List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> Lista = new();
 
             if (!_cookie.Existe(Key))
             {
@@ -53,8 +53,7 @@ namespace LivrariaLegitimo.Historicos
                         livro.arquivoImagem,
                         livro.arquivoEbook,
                         livro.mediaLivro,
-                        livro.numeroVendas,
-                        item.Value
+                        livro.numeroVendas
                     ));
                 }
             }

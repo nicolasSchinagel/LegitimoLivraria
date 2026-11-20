@@ -1,6 +1,8 @@
-﻿using LivrariaLegitimo.Libraries.Login;
+﻿using LivrariaLegitimo.CarrinhoCompra;
+using LivrariaLegitimo.Libraries.Login;
 using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository;
+using LivrariaLegitimo.Historicos;
 using LivrariaLegitimo.Repository.Contract;
 using LivrariaLegitimo.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +19,8 @@ namespace LivrariaLegitimo.Controllers
         private LoginCliente _loginCliente;
         private ILivroRepository _livroRepository;
         private IAvaliacaoRepository _avaliacaoRepository;
-        public LivroController(IClienteRepository clienteRepository, IFuncionarioRepository funcionarioRepository, LoginFuncionario loginFuncionario, LoginCliente loginCliente, ILivroRepository livroRepository, IAvaliacaoRepository avaliacaoRepository)
+        private CookieHistoricoLivro _cookieHistoricoLivro;
+        public LivroController(CookieHistoricoLivro cookieHistoricoLivro, IClienteRepository clienteRepository, IFuncionarioRepository funcionarioRepository, LoginFuncionario loginFuncionario, LoginCliente loginCliente, ILivroRepository livroRepository, IAvaliacaoRepository avaliacaoRepository)
         {
             _funcionarioRepository = funcionarioRepository;
             _clienteRepository = clienteRepository;
@@ -25,6 +28,7 @@ namespace LivrariaLegitimo.Controllers
             _loginCliente = loginCliente;
             _livroRepository = livroRepository;
             _avaliacaoRepository = avaliacaoRepository;
+            _cookieHistoricoLivro = cookieHistoricoLivro;
         }
 
         [HttpGet]
@@ -44,6 +48,8 @@ namespace LivrariaLegitimo.Controllers
                 ExisteAvaliacaoConta = existeAvaliacao,
                 Aleatorios = aleatorios,
             };
+
+            _cookieHistoricoLivro.Cadastrar(codBarras);
 
             return View(model);
         }
