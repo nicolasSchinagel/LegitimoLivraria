@@ -54,9 +54,16 @@ namespace LivrariaLegitimo.Controllers
             return View(model);
         }
 
-        public IActionResult ListaProcura()
+        [HttpGet]
+        public IActionResult ListaProcura(string pesquisa)
         {
-            return View();
+            var livro = _livroRepository.ObterTodosLivros(pesquisa);
+            var model = new LivroViewModel
+            {
+                TodosLivros = livro
+            };
+
+            return View(model);
         }
     }
 }

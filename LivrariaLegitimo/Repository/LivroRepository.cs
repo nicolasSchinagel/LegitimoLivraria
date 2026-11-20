@@ -6,8 +6,10 @@ using MySql.Data.MySqlClient;
 using System.Collections;
 using System.Data;
 using System.Globalization;
+using System.Text;
 using X.PagedList;
 using X.PagedList.Extensions;
+using System.Text;
 
 namespace LivrariaLegitimo.Repository
 {
@@ -72,7 +74,7 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
-        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterTodosLivros()
+        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterTodosLivros(string pesquisa)
         {
             List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
 
@@ -125,13 +127,92 @@ namespace LivrariaLegitimo.Repository
                     ));
                 }
 
+                if (string.IsNullOrWhiteSpace(pesquisa))
+                {
+                    return listaLivro.OrderBy(item => item.Item1.Nome);
+                }
+
+                listaLivro = listaLivro
+                    .Where(item =>
+                        MenorDistancia(pesquisa, item.Item1.Nome) <= 2 ||
+                        MenorDistancia(pesquisa, item.Item1.Autor) <= 2 ||
+                        MenorDistancia(pesquisa, item.Item1.Editora) <= 2)
+                    .OrderBy(item => Math.Min(
+                        MenorDistancia(pesquisa, item.Item1.Nome),
+                        Math.Min(
+                            MenorDistancia(pesquisa, item.Item1.Autor),
+                            MenorDistancia(pesquisa, item.Item1.Editora))))
+                    .ThenBy(item => item.Item1.Nome)
+                    .ToList();
+
                 return listaLivro;
             }
         }
 
+        // Método auxiliar da pesquisa, que permite variancia de algumas letras
+        private int MenorDistancia(string pesquisa, string atributo)
+        {
+            string pesquisaFormatada = NormalizarTexto(pesquisa);
+            string atributoFormatado = NormalizarTexto(atributo);
 
+            if (atributoFormatado.Contains(pesquisaFormatada))
+            {
+                return 0;
+            }
 
+            int menorDistancia = DistanciaLevenshtein(pesquisaFormatada, atributoFormatado);
 
+            foreach (string palavra in atributoFormatado.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+            {
+                int distancia = DistanciaLevenshtein(pesquisaFormatada, palavra);
+
+                if (distancia < menorDistancia)
+                {
+                    menorDistancia = distancia;
+                }
+            }
+
+            return menorDistancia;
+        }
+        // Normaliza o texto para evitar diferenças entre LoweCase e UpperCase, maiúsculo e minúsculo
+        private string NormalizarTexto(string texto)
+        {
+            return string.Concat(
+                texto.ToLower().Normalize(NormalizationForm.FormD)
+                .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+            ).Normalize(NormalizationForm.FormC);
+        }
+        // calcula diferença entre palavras
+        private int DistanciaLevenshtein(string palavra1, string palavra2)
+        {
+            int[,] matriz = new int[palavra1.Length + 1, palavra2.Length + 1];
+
+            for (int i = 0; i <= palavra1.Length; i++)
+            {
+                matriz[i, 0] = i;
+            }
+
+            for (int j = 0; j <= palavra2.Length; j++)
+            {
+                matriz[0, j] = j;
+            }
+
+            for (int i = 1; i <= palavra1.Length; i++)
+            {
+                for (int j = 1; j <= palavra2.Length; j++)
+                {
+                    int custo = palavra1[i - 1] == palavra2[j - 1] ? 0 : 1;
+
+                    matriz[i, j] = Math.Min(
+                        Math.Min(
+                            matriz[i - 1, j] + 1,
+                            matriz[i, j - 1] + 1),
+                        matriz[i - 1, j - 1] + custo);
+                }
+            }
+
+            return matriz[palavra1.Length, palavra2.Length];
+        }
 
 
         // Fazendo cadastro do Livro bem detalhado :)
