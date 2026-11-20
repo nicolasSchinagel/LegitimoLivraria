@@ -53,16 +53,24 @@
 <div class="div-cards-init">
     <div class="card-init">
         <h2 class="card-init-title">Continue de onde parou</h2>
-        <section class="books-card-init">
-            <div class="book-card-init">
-                <img src="~/capas/book1.webp" class="image-book-card-init">
-                <h4 class="title-book-card-init">Alice no País das Maravilhas</h4>
-            </div>
-            <div class="book-card-init">
-                <img src="~/capas/book2.webp" class="image-book-card-init">
-                <h4 class="title-book-card-init">O Guarani</h4>
-            </div>
-        </section>
+        @if(Model.HistoricoG.Count() > 0)
+        {
+            <section class="books-card-init">
+            @foreach(var livro in Model.HistoricoG.Take(2))
+            {
+                <a class="book-card-init no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
+                    <img src="@livro.arquivoImagem" class="image-book-card-init">
+                    <h4 class="title-book-card-init">@livro.livro.Nome</h4>
+                </a>
+            }
+            </section>
+        }
+        else
+        {
+            <section class="books-card-init">
+                <h3>Explore para aparecer</h3>
+            </section>
+        }
         <section class="ver-todos-card-init">
             <h3 class="ver-todos-card-init-text">Ver todos</h3>
             <img src="~/img/verTodos.png" class="ver-todos-icon">
