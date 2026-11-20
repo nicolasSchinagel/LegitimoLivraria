@@ -1,6 +1,7 @@
 ﻿@using System.Globalization
 @inject LivrariaLegitimo.Libraries.Login.LoginCliente _LoginCliente
 @inject LivrariaLegitimo.Libraries.Login.LoginFuncionario _LoginFuncionario
+@inject LivrariaLegitimo.Repository.LivroRepository _livroRepository
 @model LivrariaLegitimo.ViewModels.LivroViewModel
 @{
     DateTime dataMais2Dias = DateTime.Today.AddDays(2);
@@ -564,10 +565,28 @@
                     @foreach(var livro in grupo)
                     {
                         <div class="banner2">
-                            <div class="retangulocima-historico">
-                                <img class="imgetiqueta" src="~/img/iconefogo.png">
-                                <p class="alta">EM ALTA</p>
-                            </div>
+                            @if(livro.livro.DataPubli.Year == DateTime.Now.Year)
+                            {
+                                <div class="retangulocimaNovo-historico">
+                                    <img class="imgetiqueta" src="~img/novo.png">
+                                    <p class="novo">NOVO</p>
+                                </div>
+                            }
+                            else if (_livroRepository.EmAlta(livro.livro.CodigoBarras.ToString()))
+                            {
+                                <div class="retangulocima-historico">
+                                    <img class="imgetiqueta" src="~/img/iconefogo.png">
+                                    <p class="alta">EM ALTA</p>
+                                </div>
+                            }
+                            else if (Convert.ToDouble(livro.mediaLivro) >= 4.0)
+                            {
+                                <div class="retangulocimaBemavaliado-historico">
+                                    <img class="imgetiqueta" src="~/img/bemavaliado.png">
+                                    <p class="bemavaliado">BEM AVALIADO</p>
+                                </div>
+                            }
+                      
                             <img class="livro-historico" src="@livro.arquivoImagem">
                             <div class="partelateral-historico">
                                 <h1 class="titulo-historico">@(livro.livro.Nome.Length > 37 ? livro.livro.Nome.Substring(0, 37) + "..." : livro.livro.Nome)</h1>

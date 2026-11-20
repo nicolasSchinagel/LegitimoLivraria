@@ -35,7 +35,6 @@ namespace LivrariaLegitimo.Controllers
             var avaliacoes = _avaliacaoRepository.ObterTodasAvaliacoes(codBarras);
             var existeAvaliacao = _avaliacaoRepository.ExisteAvaliacaoConta(codBarras);
             var aleatorios = _livroRepository.AleatorizarLivros();
-            var emAlta = _livroRepository.EmAlta(codBarras);
 
             var model = new LivroViewModel
             {
@@ -44,7 +43,6 @@ namespace LivrariaLegitimo.Controllers
                 ObterTodasAvaliacoes = avaliacoes,
                 ExisteAvaliacaoConta = existeAvaliacao,
                 Aleatorios = aleatorios,
-                EmAlta = emAlta
             };
 
             return View(model);

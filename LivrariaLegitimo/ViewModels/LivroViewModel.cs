@@ -26,7 +26,6 @@ namespace LivrariaLegitimo.ViewModels
 
         public IEnumerable<(Avaliacao avaliacao, string NomeCliente)> ObterTodasAvaliacoes { get; set; }
 
-        public bool EmAlta { get; set; }
 
 
     }

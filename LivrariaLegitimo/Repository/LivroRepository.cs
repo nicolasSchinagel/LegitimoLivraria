@@ -442,7 +442,7 @@ namespace LivrariaLegitimo.Repository
             {
                 bool existencia;
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from ViewLivroVendas limit 15 where(codBarras = @CodBarras);", conexao);
+                MySqlCommand cmd = new MySqlCommand("select * from (select * from ViewLivroVendas order by NumeroVendas desc limit 15) as MaisVendidos where(codBarras = @CodBarras);", conexao);
                 cmd.Parameters.AddWithValue("@CodBarras", Convert.ToDecimal(codBarras));
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 MySqlDataReader dr;
