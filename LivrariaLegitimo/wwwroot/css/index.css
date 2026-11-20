@@ -616,7 +616,7 @@ h1, h2, h3, h4, h5, h6, p {
 .div-cards-carousel-index-1, .div-cards-carousel-index-2, .div-cards-carousel-index-3, .div-cards-carousel-index-0, .div-cards-carousel-index-4 {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    gap: 2%;
     padding-right: 5%;
     padding-left: 5%;
     padding-top: 0%;
