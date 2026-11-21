@@ -83,7 +83,7 @@ namespace LivrariaLegitimo.CarrinhoCompra
             {
                 Lista[codBarras]++;
             }
-            else
+            else if(livro.livro.TipoCapa != "ebook")
             {
                 Lista.Add(codBarras, 1);
             }

@@ -50,7 +50,7 @@ namespace LivrariaLegitimo.Models
 
         [Display(Name = "Tipo de Capa")]
         [Required(ErrorMessage = "O Tipo de Livro é obrigatório")]
-        [RegularExpression(@"^(capa dura|capa mole|e-book)$", ErrorMessage = "Selecione um tipo de livro válido.")]
+        [RegularExpression(@"^(capa dura|capa mole|ebook)$", ErrorMessage = "Selecione um tipo de livro válido.")]
         public string TipoCapa { get; set; }
 
         [Display(Name = "Idioma")]
@@ -65,7 +65,6 @@ namespace LivrariaLegitimo.Models
 
         [Display(Name = "Capacidade do Estoque")]
         [Required(ErrorMessage = "A Capacidade do Estoque é obrigatória")]
-        [Range(10, 100, ErrorMessage = "A capacidade deve estar entre 10 e 100.")]
         public int Capacidade { get; set; }
 
         [Display(Name = "Quantidade")]
@@ -100,14 +99,39 @@ namespace LivrariaLegitimo.Models
 
 
 
-        // Teste para obrigar arquivos Ebook quando tipo for Ebook
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
+            // Verifica se e-book precisa de arquivo PDF
             if (TipoCapa == "e-book" && ArquivoEbook == null)
             {
                 yield return new ValidationResult(
                     "O arquivo do Ebook é obrigatório para livros digitais.",
                     new[] { nameof(ArquivoEbook) }
+                );
+            }
+
+            // E-books não possuem estoque físico
+            if (TipoCapa == "e-book" && Capacidade != 0)
+            {
+                yield return new ValidationResult(
+                    "E-books devem possuir capacidade de estoque igual a 0.",
+                    new[] { nameof(Capacidade) }
+                );
+            }
+
+            // Livros físicos precisam ter capacidade entre 10 e 100
+            if (TipoCapa != "e-book" && (Capacidade < 10 || Capacidade > 100))
+            {
+                yield return new ValidationResult(
+                    "A capacidade de estoque de livros físicos deve estar entre 10 e 100.",
+                    new[] { nameof(Capacidade) }
+                );
+            }
+            if (TipoCapa == "e-book" && Tamanho != "Ebook")
+            {
+                yield return new ValidationResult(
+                    "O tamanho de um e-book deve ser 'Ebook'.",
+                    new[] { nameof(Tamanho) }
                 );
             }
         }

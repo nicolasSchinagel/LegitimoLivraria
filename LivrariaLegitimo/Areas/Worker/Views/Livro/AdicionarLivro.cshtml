@@ -40,7 +40,7 @@
                         <select asp-for="TipoCapa" class="input-div-type-5-block-insert">
                             <option value="capa mole">Capa mole</option>
                             <option value="capa dura">Capa dura</option>
-                            <option value="e-book">Ebook</option>
+                            <option value="ebook">Ebook</option>
                         </select>
                         <img src="~/img/expand_icon.png" class="input-div-type-2-block-expand" />
                     </div>
@@ -357,11 +357,26 @@
     const tipoLivro = document.querySelector('select[name="TipoCapa"]');
     const campoEbook = document.querySelector('.input-div-type-E-block').parentElement;
 
+    const campoTamanho = document.querySelector('input[name="Tamanho"]');
+    const campoCapacidade = document.querySelector('input[name="Capacidade"]');
+
     function verificarTipoLivro() {
-        if (tipoLivro.value === 'e-book') {
+        if (tipoLivro.value === 'ebook') {
             campoEbook.style.display = 'flex';
+
+            campoTamanho.value = 'Ebook';
+            campoCapacidade.value = 0;
+
+            campoTamanho.readOnly = true;
+            campoCapacidade.readOnly = true;
         } else {
             campoEbook.style.display = 'none';
+
+            campoTamanho.value = '';
+            campoCapacidade.value = '';
+
+            campoTamanho.readOnly = false;
+            campoCapacidade.readOnly = false;
         }
     }
 

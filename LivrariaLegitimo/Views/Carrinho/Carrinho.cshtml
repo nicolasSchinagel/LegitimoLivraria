@@ -102,23 +102,28 @@
                                         </h4>
 
                                         <div class="main-carrinho-content-card-info-subinfo-qtd-block">
+                                            @if (item.livro.TipoCapa == "ebook")
+                                            {
+                                                <h3>Item fixo da livraria</h3>
+                                            }
+                                            else
+                                            {
+                                                <a asp-controller="Carrinho"
+                                                asp-action="DiminuirQuantidade"
+                                                asp-route-codBarras="@item.livro.CodigoBarras">
+                                                    <img class="qtd-block-minus" src="~/img/minus.png" />
+                                                </a>
 
-                                            <a asp-controller="Carrinho"
-                                               asp-action="DiminuirQuantidade"
-                                               asp-route-codBarras="@item.livro.CodigoBarras">
-                                                <img class="qtd-block-minus" src="~/img/minus.png" />
-                                            </a>
+                                                <input type="number"
+                                                class="main-carrinho-content-card-info-subinfo-qtd-block-input"
+                                                value="@item.quantidadeCarrinho" readonly />
 
-                                            <input type="number"
-                                                   class="main-carrinho-content-card-info-subinfo-qtd-block-input"
-                                                   value="@item.quantidadeCarrinho" readonly />
-
-                                            <a asp-controller="Carrinho"
-                                               asp-action="AumentarQuantidade"
-                                               asp-route-codBarras="@item.livro.CodigoBarras">
-                                                <img class="qtd-block-plus" src="~/img/plus.png" />
-                                            </a>
-
+                                                <a asp-controller="Carrinho"
+                                                asp-action="AumentarQuantidade"
+                                                asp-route-codBarras="@item.livro.CodigoBarras">
+                                                    <img class="qtd-block-plus" src="~/img/plus.png" />
+                                                </a>
+                                            }
                                         </div>
 
                                     </div>
