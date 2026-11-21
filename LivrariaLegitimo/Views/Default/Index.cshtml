@@ -439,17 +439,17 @@
     <div class="div-banner-lit">
         <img src="~/img/back_literatura.png" class="div-banner-lit-back">
         <div class="div-banner-lit-items">
-            <div class="div-banner-lit-item">
+            <a class="div-banner-lit-item no-underline" asp-controller="Livro" asp-action="ObterPorLiteratura" asp-route-literatura="Internacional">
                 <img src="~/img/icon-lit_world.png" class="icon-lit-item">
                 <h2 class="title-lit-item">Literatura Estrangeira</h2>
-            </div>
+            </a>
             <div class="div-banner-lit-blanket">
                 <h1>Explore os dois mundos</h1>
             </div>
-            <div class="div-banner-lit-item">
+            <a class="div-banner-lit-item no-underline" asp-controller="Livro" asp-action="ObterPorLiteratura" asp-route-literatura="Nacional">
                 <img src="~/img/icon-lit_bra.png" class="icon-lit-item">
                 <h2 class="title-lit-item">Literatura Nacional</h2>
-            </div>
+            </a>
         </div>
         <div class="div-banner-lit-back-shadow"></div>
         <div class="div-banner-lit-back-shadow-sec"></div>

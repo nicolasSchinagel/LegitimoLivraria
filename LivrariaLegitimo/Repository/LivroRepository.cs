@@ -265,8 +265,6 @@ namespace LivrariaLegitimo.Repository
             }
         }
         public void ModificarPreco(int promocao, decimal preco) { throw new NotImplementedException(); }
-        public void AtualizarHistoricoG(Livro livro) { throw new NotImplementedException(); }
-        public void AtualizarHistoricoE(Livro livro) { throw new NotImplementedException(); }
 
 
         public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterMelhoresAvaliados()
