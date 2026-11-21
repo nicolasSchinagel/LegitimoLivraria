@@ -8,5 +8,7 @@ namespace LivrariaLegitimo.Repository.Contract
         Cliente Login(string Email, string Senha);
         Cliente ObterCliente(int Id);
 
+        void AtualizarCliente(Cliente cliente);
+
     }
 }

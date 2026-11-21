@@ -1,6 +1,7 @@
 ﻿using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
 using MySql.Data.MySqlClient;
+using System.Data;
 using X.PagedList;
 
 namespace LivrariaLegitimo.Repository
@@ -14,6 +15,12 @@ namespace LivrariaLegitimo.Repository
             _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
             _config = conf;
         }
+
+        public void AtualizarCliente(Cliente cliente)
+        {
+            throw new NotImplementedException();
+        }
+
         public Cliente Login(string Email, string Senha)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
@@ -49,9 +56,34 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
-        public Cliente ObterCliente(int Id)
+        public Cliente ObterCliente(int id)
         {
-            throw new NotImplementedException();
+            using(var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from ViewCliente where @IdCli = idCli", conexao);
+                cmd.Parameters.AddWithValue("@IdCli", id);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+
+                Cliente cliente = new Cliente();
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while(dr.Read()){
+                    cliente.IdCli = (Int32)(dr["idCli"]);
+                    cliente.Nome = (string)(dr["Nome"]);
+                    cliente.Senha = (string)(dr["Senha"]);
+                    cliente.Telefone = (string)(dr["NumTel"]);
+                    cliente.Email = (string)(dr["Email"]);
+                    cliente.Cep = (string)(dr["Cep"]);
+                    cliente.NumeroEndereco = (Int32)(dr["NumeroEndereco"]);
+                    cliente.ComplementoEndereco = (string)(dr["ComplementoEndereco"]);
+                    cliente.Logradouro = (string)(dr["Logradouro"]);
+                    cliente.Bairro = (string)(dr["Bairro"]);
+                    cliente.Cidade = (string)(dr["Cidade"]);
+                    cliente.Estado = (string)(dr["Estado"]);
+                }
+                return cliente;
+            }
         }
 
     }

@@ -15,10 +15,6 @@ namespace LivrariaLegitimo.Repository
             _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
             _config = conf;
         }
-        public void Atualizar(ClientePJ clientePJ)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Cadastrar(ClientePJ clientePJ)
         {

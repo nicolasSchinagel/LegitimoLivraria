@@ -15,10 +15,6 @@ namespace LivrariaLegitimo.Repository
             _config = conf;
         }
         
-        public void Atualizar(ClientePF clientePF)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Cadastrar(ClientePF clientePF)
         {
