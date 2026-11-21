@@ -1,4 +1,5 @@
-﻿using LivrariaLegitimo.Models;
+﻿using LivrariaLegitimo.Libraries.Login;
+using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
 using MySql.Data.MySqlClient;
 using System.Data;
@@ -10,15 +11,33 @@ namespace LivrariaLegitimo.Repository
     {
         private readonly string _conexaoMySQL;
         IConfiguration _config;
-        public ClienteRepository(IConfiguration conf)
+        private LoginFuncionario _loginFuncionario;
+        private LoginCliente _loginCliente;
+        public ClienteRepository(IConfiguration conf, LoginCliente loginCliente, LoginFuncionario loginFuncionario)
         {
             _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
             _config = conf;
+            _loginCliente = loginCliente;
+            _loginFuncionario = loginFuncionario;
         }
 
         public void AtualizarCliente(Cliente cliente)
         {
             throw new NotImplementedException();
+        }
+
+        public void AtualizarSenha(string senha)
+        {
+            using(var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("update tbCliente set senha = @senha where (Email = @Email);", conexao);
+                cmd.Parameters.AddWithValue("@Email", _loginCliente.GetCliente().Email);
+                cmd.Parameters.AddWithValue("@Senha", senha);
+                cmd.ExecuteNonQuery();
+                conexao.Close();
+
+            }
         }
 
         public Cliente Login(string Email, string Senha)
