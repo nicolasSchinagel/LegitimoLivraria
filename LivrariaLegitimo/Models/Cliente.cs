@@ -19,10 +19,11 @@ namespace LivrariaLegitimo.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+        // verificar depois para permitir tanto telefone quanto celular
         [Required(ErrorMessage = "Telefone é obrigatório")]
         [RegularExpression(
-            @"^\(\d{2}\) \d{4}-\d{4}$",
-            ErrorMessage = "Telefone deve estar no formato (11) 1234-5678")]
+            @"^\(\d{2}\) \d{5}-\d{4}$",
+            ErrorMessage = "Telefone deve estar no formato (11) 12345-6789")]
         [Display(Name = "Telefone")]
         public string Telefone { get; set; }
 
