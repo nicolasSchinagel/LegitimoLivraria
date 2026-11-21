@@ -3,11 +3,27 @@
 @model List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas, int quantidadeCarrinho)>
 @{
     decimal totalCompra = 0;
+
+    foreach (var item in Model)
+    {
+        decimal preco = decimal.Parse(item.livro.Preco, new CultureInfo("pt-BR"));
+
+        if (item.livro.PromocaoPorcentagem > 0)
+        {
+            preco = Math.Round(
+                preco * (1 - item.livro.PromocaoPorcentagem / 100m),
+                2
+            );
+        }
+
+        totalCompra += preco * item.quantidadeCarrinho;
+    }
 }
 <link rel="stylesheet" href="~/css/carrinho.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/confEndereco.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/comprar.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/adicionarLivro.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/checkout.css" asp-append-version="true" />
 
 <main class="main-carrinho">
 
@@ -715,3 +731,84 @@
     </div>
 
 </main>
+<script>
+    let etapaAtual = 0;
+
+    const etapasCheckout = [
+        document.getElementById("etapaCarrinho"),
+        document.getElementById("etapaEndereco"),
+        document.getElementById("etapaPagamento")
+    ];
+
+    const textosEtapas = document.querySelectorAll(".main-carrinho-header-item-text");
+
+    function mostrarEtapa(numero) {
+        etapasCheckout.forEach((etapa, index) => {
+            etapa.classList.toggle("checkout-etapa-ativa", index === numero);
+        });
+
+        textosEtapas.forEach((texto, index) => {
+            texto.classList.toggle("carrinhos-active", index === numero);
+            texto.classList.toggle("carrinhos-inactive", index !== numero);
+        });
+
+        etapaAtual = numero;
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function irParaEndereco() {
+        mostrarEtapa(1);
+    }
+
+    function voltarParaCarrinho() {
+        mostrarEtapa(0);
+    }
+
+    function irParaPagamento() {
+        const formEndereco = document.getElementById("formEndereco");
+
+        if (!formEndereco.reportValidity()) {
+            return;
+        }
+
+        mostrarEtapa(2);
+    }
+
+    function voltarParaEndereco() {
+        mostrarEtapa(1);
+    }
+
+    function confirmarPagamento() {
+        const formaPagamento = document.querySelector(
+            'input[name="formaPagamento"]:checked'
+        );
+
+        if (!formaPagamento) {
+            alert("Selecione uma forma de pagamento.");
+            return;
+        }
+
+        alert("Forma de pagamento selecionada: " + formaPagamento.value);
+    }
+
+    document.querySelectorAll(".input-div-type-2-block-expand").forEach(img => {
+        let ativo = false;
+
+        img.addEventListener("click", function() {
+            const container = this.closest(".input-div-type-5-block");
+            const select = container.querySelector(".input-div-type-5-block-insert");
+
+            if (!ativo) {
+                select.showPicker();
+                ativo = true;
+            } else {
+                select.blur();
+                ativo = false;
+            }
+        });
+    });
+</script>

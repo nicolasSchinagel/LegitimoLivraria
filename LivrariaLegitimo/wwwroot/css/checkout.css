@@ -1,0 +1,8 @@
+﻿
+.checkout-etapa {
+    display: none;
+}
+
+.checkout-etapa-ativa {
+    display: block;
+}
