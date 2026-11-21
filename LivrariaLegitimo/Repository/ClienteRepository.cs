@@ -54,14 +54,5 @@ namespace LivrariaLegitimo.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Cliente> ObterTodosClientes()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IPagedList<Cliente> ObterTodosClientes(int? pagina, string pesquisa)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
