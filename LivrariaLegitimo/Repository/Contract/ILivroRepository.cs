@@ -23,20 +23,5 @@ namespace LivrariaLegitimo.Repository.Contract
 
         bool EmAlta(string codBarras);
 
-        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterPorLiteratura(string literatura);
-        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterPorGenero(string genero); 
-
-
-        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterPorPesquisa(string nome); // ordena baseado em nomes, editoras e autores aproximados
-
-        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterPorHistoricoG(List<string> codBarrasG);
-
-        IEnumerable<(Livro, string arquivoImagem, string arquivoEbook)> ObterPorHistoricoE(List<string> codBarrasE);
-
-        IEnumerable<Livro> FiltroComplexo();
-
-        void AtualizarHistoricoG(Livro livro);
-        void AtualizarHistoricoE(Livro livro);
-
     }
 }
