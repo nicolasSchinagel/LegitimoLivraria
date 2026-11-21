@@ -220,7 +220,7 @@
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Client\\Cadastro.cshtml",
               "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Client\\Cadastro.cshtml",
               "RelativeToolTip": "LivrariaLegitimo\\Views\\Client\\Cadastro.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-11-21T15:08:16.306Z",
               "EditorCaption": ""
@@ -235,8 +235,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\wwwroot\\css\\cadCli.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-11-21T15:07:26.463Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-21T15:07:26.463Z"
             },
             {
               "$type": "Document",
@@ -248,8 +247,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\wwwroot\\css\\adicionarLivro.css",
               "ViewState": "AgIAAAoCAAAAAAAAAAAAAC4CAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-11-21T15:05:40.574Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-21T15:05:40.574Z"
             },
             {
               "$type": "Document",
