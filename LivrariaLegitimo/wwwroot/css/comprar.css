@@ -1,2 +1,516 @@
-﻿body {
+﻿
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #eeeeee;
+    color: #111;
+}
+
+.main-carrinho-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    padding: 35px 20px;
+}
+
+.main-carrinho-header-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+}
+
+    .main-carrinho-header-item:not(:last-child)::after {
+        content: "›";
+        font-size: 35px;
+        font-weight: 200;
+        color: #555;
+        margin-left: 25px;
+    }
+
+.main-carrinho-header-item-icon {
+    width: 27px;
+    height: 27px;
+    object-fit: contain;
+}
+
+.main-carrinho-header-item-text {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.carrinhos-active {
+    color: #111;
+}
+
+.carrinhos-inactive {
+    color: #858585;
+}
+
+.compra-main {
+    width: 92%;
+    max-width: 1400px;
+    margin: 0 auto 50px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 15px;
+    align-items: stretch;
+}
+
+.compra-main-pagamento,
+.compra-main-resumo {
+    background-color: #fff;
+    border-radius: 9px;
+    box-shadow: 0 2px 6px #00000030;
+    border: 1px solid #dddddd;
+}
+
+.compra-main-pagamento {
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.compra-main-pagamento-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.compra-main-pagamento-header p {
+    font-size: 17px;
+    color: #444;
+}
+
+.compra-main-pagamento-formas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 20px 5px 15px;
+}
+
+.compra-main-pagamento-formas-item {
+    background-color: white;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.compra-main-pagamento-formas-item {
+    background-color: white;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+    .compra-main-pagamento-formas-item input {
+        display: none;
+    }
+
+    .compra-main-pagamento-formas-item:hover {
+        background-color: #ededed;
+    }
+
+
+    .compra-main-pagamento-formas-item:has(input:checked) {
+        border: 2px solid #c90000;
+        background-color: #fff5f5;
+    }
+
+    .compra-main-pagamento-formas-item img {
+        width: 60px;
+        height: 45px;
+        object-fit: contain;
+    }
+
+    .compra-main-pagamento-formas-item span {
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .compra-main-pagamento-formas-item span,
+    .compra-main-pagamento-formas-item img {
+        cursor: pointer;
+    }
+
+.compra-main-pagamento-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+    .compra-main-pagamento-form label {
+        display: block;
+        font-size: 13px;
+        margin-bottom: 4px;
+    }
+
+    .compra-main-pagamento-form input,
+    .compra-main-pagamento-form select {
+        width: 100%;
+        height: 39px;
+        padding: 0 10px;
+        border: 1px solid #bcbcbc;
+        border-radius: 5px;
+        outline: none;
+        font-size: 13px;
+        background-color: white;
+    }
+
+        .compra-main-pagamento-form input:focus,
+        .compra-main-pagamento-form select:focus {
+            border-color: #bd0000;
+        }
+
+        .compra-main-pagamento-form input::placeholder {
+            color: #a1a1a1;
+        }
+
+.compra-main-pagamento-form-cartao {
+    position: relative;
+}
+
+.compra-main-pagamento-form-input {
+    position: relative;
+}
+
+    .compra-main-pagamento-form-input img {
+        position: absolute;
+        width: 23px;
+        height: 23px;
+        object-fit: contain;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+.compra-main-pagamento-form-dados {
+    display: grid;
+    grid-template-columns: 2fr 0.8fr 1.1fr;
+    gap: 10px;
+}
+
+.compra-main-pagamento-form-cvv-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+    .compra-main-pagamento-form-cvv-input input {
+        padding-right: 40px;
+    }
+
+    .compra-main-pagamento-form-cvv-input img {
+        position: absolute;
+        right: 10px;
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        cursor: help;
+    }
+
+
+.compra-main-pagamento-form-parcelamento select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.compra-main-pagamento-protecao {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 25px 5px;
+}
+
+    .compra-main-pagamento-protecao img {
+        width: 28px;
+        height: 32px;
+        object-fit: contain;
+    }
+
+    .compra-main-pagamento-protecao h3 {
+        color: #c90000;
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+
+    .compra-main-pagamento-protecao p {
+        font-size: 12px;
+    }
+
+.compra-main-pagamento-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.compra-main-pagamento-voltar {
+    text-decoration: none;
+    color: #c90000;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+    .compra-main-pagamento-voltar span {
+        font-size: 27px;
+    }
+
+.compra-main-pagamento-confirmar {
+    height: 43px;
+    flex: 1;
+    border: none;
+    border-radius: 7px;
+    background-color: #c90000;
+    color: white;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.2s;
+}
+
+    .compra-main-pagamento-confirmar:hover {
+        background-color: #a90000;
+    }
+
+    .compra-main-pagamento-confirmar img {
+        width: 25px;
+        height: 25px;
+        object-fit: contain;
+    }
+
+.compra-main-resumo {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+    .compra-main-resumo h2 {
+        text-align: center;
+        font-size: 23px;
+        padding: 15px 10px 5px;
+    }
+
+.compra-main-resumo-frete {
+    padding: 10px 20px;
+}
+
+    .compra-main-resumo-frete > p {
+        font-size: 13px;
+        color: #087a19;
+        margin-bottom: 8px;
+    }
+
+.compra-main-resumo-entrega {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .compra-main-resumo-entrega label {
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .compra-main-resumo-entrega select {
+        flex: 1;
+        min-width: 0;
+        height: 27px;
+        padding: 0 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        color: #888;
+        font-size: 11px;
+        background-color: white;
+    }
+
+.compra-main-resumo-datas {
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+    .compra-main-resumo-datas p {
+        color: #087a19;
+        margin-top: 3px;
+    }
+
+.compra-main-resumo-livros {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+}
+
+.compra-main-resumo-livros-item {
+    display: grid;
+    grid-template-columns: 50px 0.8fr 30px 75px;
+    align-items: center;
+    gap: 10px;
+}
+
+    .compra-main-resumo-livros-item img {
+        width: 50px;
+        height: 70px;
+        object-fit: contain;
+        border-radius: 6px;
+    }
+
+.compra-main-resumo-livros-item-info h3 {
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.compra-main-resumo-livros-item-info p {
+    font-size: 11px;
+    color: #555;
+}
+
+.compra-main-resumo-livros-item-quantidade {
+    color: #087a19;
+    font-size: 14px;
+    text-align: center;
+}
+
+.compra-main-resumo-livros-item-preco {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.compra-main-resumo-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-top: 1px solid #ccc;
+    margin-top: auto;
+}
+
+    .compra-main-resumo-total span {
+        font-size: 24px;
+    }
+
+    .compra-main-resumo-total strong {
+        color: #c90000;
+        font-size: 27px;
+    }
+
+/* Responsividade */
+
+@media (max-width: 900px) {
+    .compra-main {
+        grid-template-columns: 1fr;
+        width: 95%;
+    }
+
+    .compra-main-resumo {
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-carrinho-header {
+        gap: 10px;
+        padding: 25px 10px;
+    }
+
+    .main-carrinho-header-item {
+        gap: 3px;
+    }
+
+        .main-carrinho-header-item:not(:last-child)::after {
+            margin-left: 5px;
+            font-size: 22px;
+        }
+
+    .main-carrinho-header-item-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .main-carrinho-header-item-text {
+        font-size: 10px;
+    }
+
+    .compra-main-pagamento {
+        padding: 15px;
+    }
+
+    .compra-main-pagamento-formas {
+        gap: 5px;
+        margin: 15px 0;
+    }
+
+    .compra-main-pagamento-formas-item {
+        min-height: 85px;
+    }
+
+        .compra-main-pagamento-formas-item img {
+            width: 30px;
+            height: 28px;
+        }
+
+        .compra-main-pagamento-formas-item span {
+            font-size: 12px;
+        }
+
+    .compra-main-pagamento-form-dados {
+        grid-template-columns: 1fr 0.8fr;
+    }
+
+    .compra-main-pagamento-form-cvv {
+        grid-column: 1 / -1;
+    }
+
+    .compra-main-pagamento-confirmar {
+        font-size: 13px;
+    }
+
+    .compra-main-resumo-livros-item {
+        grid-template-columns: 45px 1fr 25px 65px;
+        gap: 7px;
+    }
+
+    .compra-main-resumo-total span {
+        font-size: 20px;
+    }
+
+    .compra-main-resumo-total strong {
+        font-size: 23px;
+    }
 }
