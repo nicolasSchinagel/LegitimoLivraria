@@ -49,10 +49,17 @@ namespace LivrariaLegitimo.Models
         public string Estado { get; set; }
 
         [Required(ErrorMessage = "Senha é obrigatória")]
-        [RegularExpression(@"^(.{6,12}|.{16})$", ErrorMessage = "O senha deve ter entre 6 e 12")]
+        [RegularExpression(@"^(.{6,12}|.{16})$", ErrorMessage = "A senha deve ter entre 6 e 12")]
         [DataType(DataType.Password)]
         [Display(Name = "Senha")]
         public string Senha { get; set; }
+
+        [Required(ErrorMessage = "Confirmação da senha é obrigatória")]
+        [RegularExpression(@"^(.{6,12}|.{16})$", ErrorMessage = "A senha deve ter entre 6 e 12")]
+        [DataType(DataType.Password)]
+        [Compare("Senha", ErrorMessage = "As senhas não coincidem")]
+        [Display(Name = "Confirmação da senha")]
+        public string ConfirmacaoSenha { get; set; }
 
         [Required(ErrorMessage = "Número de endereço é obrigatório")]
         [Range(1, 999999, ErrorMessage = "Número de endereço inválido")]
