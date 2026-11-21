@@ -7,7 +7,7 @@
 <main class="addLivro-main">
 
     <section class="addLivro-main-header">
-        <img src="./imagens/cadCli_icon.png" class="addLivro-main-header-img" />
+        <img src="~/img/cadCli_icon.png" class="addLivro-main-header-img" />
         <div class="addLivro-main-header-texts">
             <h1 class="addLivro-main-header-title">Cadastro do Cliente</h1>
             <h3 class="addLivro-main-header-subtitle">Cadastre-se como um cliente da Legítimo</h3>
@@ -19,7 +19,7 @@
         <div class="cadLivro-titulo-div">
             <div class="input-div-1-cadCli input-div-1">
                 <div class="input-div-type-1-texts">
-                    <img src="./imagens/clienteTipo_icon.png" class="addLivro-main-form-col-part-title-icon-cadCli" />
+                    <img src="~/img/clienteTipo_icon.png" class="addLivro-main-form-col-part-title-icon-cadCli" />
                     <h2 class="addLivro-main-form-col-part-title-text">Tipo de cliente</h2>
                     <span class="obligate-div-type-1-cadCli">*</span>
                 </div>
@@ -29,7 +29,7 @@
                         <option value="PF">Pessoa física</option>
                         <option value="PJ">Pessoa jurídica</option>
                     </select>
-                    <img src="./imagens/expand_icon.png" class="input-div-type-2-block-expand" />
+                    <img src="~/img/expand_icon.png" class="input-div-type-2-block-expand" />
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
             <div class="addLivro-main-form-col-part">
 
                 <div class="addLivro-main-form-col-part-title">
-                    <img src="./imagens/Basics_icon.png" class="addLivro-main-form-col-part-title-icon" />
+                    <img src="~/img/Basics_icon.png" class="addLivro-main-form-col-part-title-icon" />
                     <h2 class="addLivro-main-form-col-part-title-text">Informações básicas</h2>
                 </div>
 
@@ -61,7 +61,7 @@
                         <span class="message-div-type-1"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="text" id="cpf" name="CadastroPF.Cpf" class="input-div-type-1-block-insert" placeholder="Digite o seu CPF" required />
+                        <input type="text" id="cpf" name="Cpf" class="input-div-type-1-block-insert CPF" placeholder="Digite o seu CPF" required />
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@
                         <span class="message-div-type-1"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="text" id="cnpj" name="ClientePJ.Cnpj" class="input-div-type-1-block-insert" placeholder="Digite o seu CNPJ" disabled />
+                        <input type="text" id="cnpj" name="Cnpj" class="input-div-type-1-block-insert" placeholder="Digite o seu CNPJ" disabled />
                     </div>
                 </div>
 
@@ -94,7 +94,7 @@
                         <span class="message-div-type-1"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="tel" id="telefone" name="Telefone" class="input-div-type-1-block-insert" placeholder="+55   XX XXXXX XXXX" required />
+                        <input type="tel" id="telefone" name="Telefone" class="input-div-type-1-block-insert Telefone" placeholder="+55   XX XXXXX XXXX" required />
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@
                         <span class="message-div-type-1"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="password" id="confirmarSenha" class="input-div-type-1-block-insert" placeholder="Confirme a sua senha" required />
+                        <input type="password" id="confirmarSenha" name="ConfirmacaoSenha" class="input-div-type-1-block-insert" placeholder="Confirme a sua senha" required />
                     </div>
                 </div>
 
@@ -127,9 +127,9 @@
                         <span class="message-div-type-1"></span>
                     </div>
                     <div class="input-div-type-1-block-conjunto">
-                        <img src="./imagens/date_icon.png" class="input-div-type-1-block-icon-conjunto" />
+                        <img src="~/img/date_icon.png" class="input-div-type-1-block-icon-conjunto" />
                         <div class="input-div-type-3-block-divisor"></div>
-                        <input type="date" id="dataNasc" name="CadastroPF.DataNasc" class="input-div-type-3-block-insert" placeholder="Selecione a data" />
+                        <input type="date" id="dataNasc" name="DataNasc" class="input-div-type-3-block-insert" placeholder="Selecione a data" />
                     </div>
                 </div>
 
@@ -138,7 +138,7 @@
             <div class="addLivro-main-form-col-part">
 
                 <div class="addLivro-main-form-col-part-title">
-                    <img src="./imagens/Description_icon.png" class="addLivro-main-form-col-part-title-icon" />
+                    <img src="~/img/Description_icon.png" class="addLivro-main-form-col-part-title-icon" />
                     <h2 class="addLivro-main-form-col-part-title-text">Endereço</h2>
                 </div>
 
@@ -149,7 +149,7 @@
                         <span class="message-div-type-1"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="text" id="cep" name="Cep" class="input-div-type-1-block-insert" placeholder="Digite seu CEP" required />
+                        <input type="text" id="cep" name="Cep" class="input-div-type-1-block-insert CEP" placeholder="Digite seu CEP" required />
                     </div>
                 </div>
 
@@ -190,7 +190,7 @@
                             <option value="SE">Sergipe</option>
                             <option value="TO">Tocantins</option>
                         </select>
-                        <img src="./imagens/expand_icon.png" class="input-div-type-2-block-expand" />
+                        <img src="~/img/expand_icon.png" class="input-div-type-2-block-expand" />
                     </div>
                 </div>
 
@@ -257,12 +257,12 @@
         </div>
 
         <div class="addLivro-main-form-footer">
-            <a href="#" class="addLivro-main-form-footer-cancelar">
+            <a href="#" class="addLivro-main-form-footer-cancelar no-underline">
                 <h3 class="addLivro-main-form-footer-cancelar-text">Cancelar</h3>
             </a>
 
             <button type="submit" class="addLivro-main-form-footer-registrar">
-                <img src="./imagens/file_icon.png" class="addLivro-main-form-footer-registrar-icon" />
+                <img src="~/img/file_icon.png" class="addLivro-main-form-footer-registrar-icon" />
                 <h2 class="addLivro-main-form-footer-registrar-title">REGISTRAR</h2>
             </button>
         </div>
@@ -283,58 +283,58 @@
     const dataNasc = document.getElementById("dataNasc");
 
     function verificarTipoCliente() {
-    if (tipoCliente.value === "PF") {
-    campoCPF.style.display = "flex";
-    campoCNPJ.style.display = "none";
-    campoDataNasc.style.display = "flex";
+        if (tipoCliente.value === "PF") {
+            campoCPF.style.display = "flex";
+            campoCNPJ.style.display = "none";
+            campoDataNasc.style.display = "flex";
 
-    cpf.disabled = false;
-    cpf.required = true;
+            cpf.disabled = false;
+            cpf.required = true;
 
-    cnpj.disabled = true;
-    cnpj.required = false;
+            cnpj.disabled = true;
+            cnpj.required = false;
 
-    dataNasc.disabled = false;
-    dataNasc.required = true;
-    } else {
-    campoCPF.style.display = "none";
-    campoCNPJ.style.display = "flex";
-    campoDataNasc.style.display = "none";
+            dataNasc.disabled = false;
+            dataNasc.required = true;
+        } else {
+            campoCPF.style.display = "none";
+            campoCNPJ.style.display = "flex";
+            campoDataNasc.style.display = "none";
 
-    cpf.disabled = true;
-    cpf.required = false;
+            cpf.disabled = true;
+            cpf.required = false;
 
-    cnpj.disabled = false;
-    cnpj.required = true;
+            cnpj.disabled = false;
+            cnpj.required = true;
 
-    dataNasc.disabled = true;
-    dataNasc.required = false;
-    }
+            dataNasc.disabled = true;
+            dataNasc.required = false;
+        }
     }
 
     tipoCliente.addEventListener("change", verificarTipoCliente);
     verificarTipoCliente();
 
     document.querySelectorAll(".input-div-type-2-block-expand").forEach(img => {
-    img.addEventListener("click", function() {
-    const container = this.closest(".input-div-type-5-block");
-    const select = container.querySelector(".input-div-type-5-block-insert");
+        img.addEventListener("click", function() {
+            const container = this.closest(".input-div-type-5-block");
+            const select = container.querySelector(".input-div-type-5-block-insert");
 
-    if (select) {
-    select.showPicker();
-    }
-    });
+            if (select) {
+                select.showPicker();
+            }
+        });
     });
 
     document.getElementById("confirmarSenha").addEventListener("input", function() {
-    this.setCustomValidity("");
+        this.setCustomValidity("");
 
-    if (this.value !== document.getElementById("senha").value) {
-    this.setCustomValidity("As senhas não coincidem.");
-    }
+        if (this.value !== document.getElementById("senha").value) {
+            this.setCustomValidity("As senhas não coincidem.");
+        }
     });
 
     document.getElementById("senha").addEventListener("input", function() {
-    document.getElementById("confirmarSenha").setCustomValidity("");
+        document.getElementById("confirmarSenha").setCustomValidity("");
     });
 </script>

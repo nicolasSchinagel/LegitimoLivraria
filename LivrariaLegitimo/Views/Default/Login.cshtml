@@ -2,6 +2,12 @@
 @{
     ViewData["Title"] = "Faça o Login";
 }
+@if (TempData["msg"] != null)
+{
+    <script>
+        alert('@TempData["msg"]');
+    </script>
+}
 <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
 <div class="pagina-login">
     <img src="~/img/background_login.png" class="background-login-image">
@@ -43,8 +49,8 @@
                 <span class="texto-cadastro">
                     Ainda não criou a sua conta?
                 </span>
-                <a href="#"
-                   class="link-cadastro">
+                <a asp-controller="Cliente" asp-action="Cadastro"
+                   class="link-cadastro no-underline">
                     Cadastre-se
                 </a>
             </div>

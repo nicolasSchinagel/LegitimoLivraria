@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 
 namespace LivrariaLegitimo.Models
 {
@@ -19,12 +20,16 @@ namespace LivrariaLegitimo.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Telefone é obrigatório")]
-        [StringLength(11, MinimumLength = 10, ErrorMessage = "Telefone deve conter 10 ou 11 dígitos")]
+        [RegularExpression(
+            @"^\(\d{2}\) \d{4}-\d{4}$",
+            ErrorMessage = "Telefone deve estar no formato (11) 1234-5678")]
         [Display(Name = "Telefone")]
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "CEP é obrigatório")]
-        [StringLength(8, MinimumLength = 8, ErrorMessage = "CEP deve conter 8 dígitos")]
+        [RegularExpression(
+            @"^\d{5}-\d{3}$",
+            ErrorMessage = "CEP deve estar no formato 12345-678")]
         [Display(Name = "CEP")]
         public string Cep { get; set; }
 
@@ -49,13 +54,17 @@ namespace LivrariaLegitimo.Models
         public string Estado { get; set; }
 
         [Required(ErrorMessage = "Senha é obrigatória")]
-        [RegularExpression(@"^(.{6,12}|.{16})$", ErrorMessage = "A senha deve ter entre 6 e 12")]
+        [RegularExpression(
+            @"^.{6,12}$",
+            ErrorMessage = "A senha deve ter entre 6 e 12 caracteres")]
         [DataType(DataType.Password)]
         [Display(Name = "Senha")]
         public string Senha { get; set; }
 
         [Required(ErrorMessage = "Confirmação da senha é obrigatória")]
-        [RegularExpression(@"^(.{6,12}|.{16})$", ErrorMessage = "A senha deve ter entre 6 e 12")]
+        [RegularExpression(
+            @"^.{6,12}$",
+            ErrorMessage = "A senha deve ter entre 6 e 12 caracteres")]
         [DataType(DataType.Password)]
         [Compare("Senha", ErrorMessage = "As senhas não coincidem")]
         [Display(Name = "Confirmação da senha")]
@@ -75,7 +84,9 @@ namespace LivrariaLegitimo.Models
     {
         [Display(Name = "CPF")]
         [Required(ErrorMessage = "CPF é obrigatório")]
-        [StringLength(11, MinimumLength = 11, ErrorMessage = "CPF deve conter 11 dígitos")]
+        [RegularExpression(
+            @"^\d{3}\.\d{3}\.\d{3}-\d{2}$",
+            ErrorMessage = "CPF deve estar no formato 000.000.000-00")]
         public string Cpf { get; set; }
 
         [Display(Name = "Data de Nascimento")]
@@ -88,12 +99,13 @@ namespace LivrariaLegitimo.Models
     {
         [Display(Name = "CNPJ")]
         [Required(ErrorMessage = "CNPJ é obrigatório")]
-        [StringLength(14, MinimumLength = 14, ErrorMessage = "CNPJ deve conter 14 dígitos")]
+        [RegularExpression(
+            @"^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$",
+            ErrorMessage = "CNPJ deve estar no formato 00.000.000/0000-00")]
         public string Cnpj { get; set; }
     }
 
-
-    // Validação personalizada para verificar idades indisponíveis
+    // Validação personalizada para verificar idade mínima
     public class IdadeMinimaAttribute : ValidationAttribute
     {
         private readonly int _idadeMinima;
@@ -112,7 +124,8 @@ namespace LivrariaLegitimo.Models
 
             if (dataNascimento.Date > DateTime.Today)
             {
-                return new ValidationResult("A data de nascimento não pode ser futura");
+                return new ValidationResult(
+                    "A data de nascimento não pode ser futura");
             }
 
             DateTime dataLimite = DateTime.Today.AddYears(-_idadeMinima);

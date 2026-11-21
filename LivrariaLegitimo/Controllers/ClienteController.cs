@@ -32,26 +32,88 @@ namespace LivrariaLegitimo.Controllers
             return View();
         }
 
+
         [HttpPost]
         public IActionResult Cadastro(CadastroViewModel model)
         {
-            if(model.TipoCliente == "PF")
+            if (model.TipoCliente == "PF")
             {
+                ClientePF clientePF = new ClientePF
+                {
+                    Nome = model.Nome,
+                    Email = model.Email,
+                    Telefone = model.Telefone,
+                    Senha = model.Senha,
+                    ConfirmacaoSenha = model.ConfirmacaoSenha,
+
+                    Cep = model.Cep,
+                    Estado = model.Estado,
+                    Cidade = model.Cidade,
+                    Bairro = model.Bairro,
+                    Logradouro = model.Logradouro,
+                    NumeroEndereco = model.NumeroEndereco,
+                    ComplementoEndereco = model.ComplementoEndereco,
+
+                    Cpf = model.Cpf,
+                    DataNasc = model.DataNasc ?? DateTime.MinValue
+                };
+
+                if (model.DataNasc == null)
+                {
+                    ModelState.AddModelError(
+                        "DataNasc",
+                        "A data de nascimento é obrigatória."
+                    );
+                }
+                TryValidateModel(clientePF);
+
                 if (!ModelState.IsValid)
                 {
                     return View(model);
                 }
-                _clientePFRepository.Cadastrar(model.CadastroPF);
+
+                _clientePFRepository.Cadastrar(clientePF);
+
+                TempData["msg"] = "Cadastro realizado!";
+                return RedirectToAction("Login", "Default");
             }
-            else if(model.TipoCliente == "PJ")
+
+            else if (model.TipoCliente == "PJ")
             {
+                ClientePJ clientePJ = new ClientePJ
+                {
+                    Nome = model.Nome,
+                    Email = model.Email,
+                    Telefone = model.Telefone,
+                    Senha = model.Senha,
+                    ConfirmacaoSenha = model.ConfirmacaoSenha,
+
+                    Cep = model.Cep,
+                    Estado = model.Estado,
+                    Cidade = model.Cidade,
+                    Bairro = model.Bairro,
+                    Logradouro = model.Logradouro,
+                    NumeroEndereco = model.NumeroEndereco,
+                    ComplementoEndereco = model.ComplementoEndereco,
+
+                    Cnpj = model.Cnpj
+                };
+
+                TryValidateModel(clientePJ);
+
                 if (!ModelState.IsValid)
                 {
                     return View(model);
                 }
-                _clientePJRepository.Cadastrar(model.CadastroPJ);
+
+                _clientePJRepository.Cadastrar(clientePJ);
+
+                TempData["msg"] = "Cadastro realizado!";
+                return RedirectToAction("Login", "Default");
             }
-                return RedirectToAction("Cadastro");
+
+            return RedirectToAction("Cadastro");
         }
+
     }
 }
