@@ -111,7 +111,7 @@
 
                                             <input type="number"
                                                    class="main-carrinho-content-card-info-subinfo-qtd-block-input"
-                                                   value="@item.quantidadeCarrinho" />
+                                                   value="@item.quantidadeCarrinho" readonly />
 
                                             <a asp-controller="Carrinho"
                                                asp-action="AumentarQuantidade"
@@ -188,10 +188,6 @@
 
                     <div class="main-carrinho-content-sobre-lista">
 
-                        @{
-                            decimal totalCompra = 0;
-                        }
-
                         @foreach (var item in Model)
                         {
                             <div class="main-carrinho-content-sobre-lista-item">
@@ -218,21 +214,12 @@
                                         )
                                     </h2>
 
-                                    totalCompra += Convert.ToDecimal(
-                                        Math.Round(
-                                            decimal.Parse(item.livro.Preco, new CultureInfo("pt-BR"))
-                                            * (1 - item.livro.PromocaoPorcentagem / 100m),
-                                            2
-                                        ) * item.quantidadeCarrinho
-                                    );
                                 }
                                 else
                                 {
                                     <h2 class="main-carrinho-content-sobre-lista-item-price">
                                         @((Convert.ToDecimal(item.livro.Preco) * item.quantidadeCarrinho).ToString("N2", CultureInfo.GetCultureInfo("pt-BR")))
                                     </h2>
-
-                                    totalCompra += Convert.ToDecimal(item.livro.Preco) * item.quantidadeCarrinho;
                                 }
 
                             </div>

@@ -125,7 +125,6 @@ C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\Livrari
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\LivrariaLegitimo.pdb
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\LivrariaLegitimo.genruntimeconfig.cache
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\ref\LivrariaLegitimo.dll
-C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\87jzxysxcn-{0}-syvwlnsbpm-syvwlnsbpm.gz
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\LivrariaLegitimo.csproj.AssemblyReference.cache
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\rpswa.dswa.cache.json
 C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\LivrariaLegitimo.GeneratedMSBuildEditorConfig.editorconfig
@@ -261,3 +260,7 @@ C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\Livrari
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\brqr5w91hs-{0}-wqf48wbs4y-wqf48wbs4y.gz
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\wxbt5jzhew-{0}-aj19inzj7l-aj19inzj7l.gz
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\kshfzkk4yv-{0}-9vf1slhke3-9vf1slhke3.gz
+C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\mgu1jkue4g-{0}-gebkrd10ry-gebkrd10ry.gz
+C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\kgdpo4zro1-{0}-2tisf2btcf-2tisf2btcf.gz
+C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\d82ozt4r80-{0}-sefc4px001-sefc4px001.gz
+C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\87jzxysxcn-{0}-2qb3zxtbpy-2qb3zxtbpy.gz

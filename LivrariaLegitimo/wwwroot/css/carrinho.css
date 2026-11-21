@@ -358,6 +358,7 @@ input[type="number"] {
     height: 80px;
     cursor: pointer;
     transition: 0.4s;
+    border: none;
 }
 
     .main-carrinho-content-sobre-buttom:hover {
