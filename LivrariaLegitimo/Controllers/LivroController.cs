@@ -78,5 +78,18 @@ namespace LivrariaLegitimo.Controllers
 
             return View("ListaProcura", model);
         }
+
+        [HttpGet]
+        public IActionResult ObterPorLiteratura(string literatura)
+        {
+            var livro = _livroRepository.ObterTodosLivros("");
+            var model = new LivroViewModel
+            {
+                TodosLivros = livro
+            };
+            ViewBag.Literatura = literatura;
+
+            return View("ListaProcura", model);
+        }
     }
 }

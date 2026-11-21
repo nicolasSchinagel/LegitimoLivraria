@@ -1,4 +1,5 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+﻿
+document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".div-mainList-section-lista .card1-2");
 
     const filtrosGeneros = document.querySelectorAll(
@@ -7,6 +8,10 @@
 
     const filtrosTipo = document.querySelectorAll(
         ".div-mainList-section-filtros-tipoLivro input[type='checkbox']"
+    );
+
+    const filtrosLiteratura = document.querySelectorAll(
+        ".div-mainList-section-filtros-tipoLit input[type='checkbox']"
     );
 
     const filtrosPreco = document.querySelectorAll(
@@ -40,6 +45,10 @@
             .filter(input => input.checked)
             .map(input => NormalizarTexto(input.nextElementSibling.textContent));
 
+        const literaturasSelecionadas = Array.from(filtrosLiteratura)
+            .filter(input => input.checked)
+            .map(input => NormalizarTexto(input.nextElementSibling.textContent));
+
         const precoMinimo = filtrosPreco[0].value !== ""
             ? ConverterPreco(filtrosPreco[0].value)
             : null;
@@ -64,6 +73,7 @@
             const preco = ConverterPreco(card.dataset.preco);
             const avaliacao = Number(card.dataset.avaliacao);
             const tipo = NormalizarTexto(card.dataset.tipo);
+            const literatura = NormalizarTexto(card.dataset.literatura);
             const ebook = card.dataset.ebook === "True" || card.dataset.ebook === "true";
 
             const correspondeGenero =
@@ -80,6 +90,12 @@
                     return tipo === tipoSelecionado;
                 });
 
+            const correspondeLiteratura =
+                literaturasSelecionadas.length === 0 ||
+                literaturasSelecionadas.some(literaturaSelecionada =>
+                    literatura === literaturaSelecionada
+                );
+
             const correspondePreco =
                 (precoMinimo === null || preco >= precoMinimo) &&
                 (precoMaximo === null || preco <= precoMaximo);
@@ -91,6 +107,7 @@
             const mostrarLivro =
                 correspondeGenero &&
                 correspondeTipo &&
+                correspondeLiteratura &&
                 correspondePreco &&
                 correspondeAvaliacao;
 
@@ -106,6 +123,10 @@
         input.addEventListener("change", FiltrarLivros);
     });
 
+    filtrosLiteratura.forEach(input => {
+        input.addEventListener("change", FiltrarLivros);
+    });
+
     filtrosPreco.forEach(input => {
         input.addEventListener("input", FiltrarLivros);
     });
@@ -113,6 +134,6 @@
     filtrosAvaliacao.forEach(input => {
         input.addEventListener("input", FiltrarLivros);
     });
+
     FiltrarLivros();
 });
-

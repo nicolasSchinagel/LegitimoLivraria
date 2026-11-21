@@ -39,7 +39,7 @@
     font-size: 24px;
 }
 
-.div-mainList-section-filtros-generos, .div-mainList-section-filtros-tipoLivro {
+.div-mainList-section-filtros-generos, .div-mainList-section-filtros-tipoLivro, .div-mainList-section-filtros-tipoLit {
     display: flex;
     flex-direction: column;
     gap: 15px;

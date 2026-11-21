@@ -72,7 +72,7 @@
                 <h4 class="div-mainList-section-filtros-generos-block-square-title">Literatura Infantil</h4>
             </div>
             <div class="div-mainList-section-filtros-generos-block">
-                <input type="checkbox" class="div-mainList-section-filtros-generos-block-square" @(ViewBag.Genero == "Ficção Juvenil" ? "checked" : "") />
+                <input type="checkbox" class="div-mainList-section-filtros-generos-block-square" @(ViewBag.Genero == "Literatura Juvenil" ? "checked" : "") />
                 <h4 class="div-mainList-section-filtros-generos-block-square-title">Literatura Juvenil</h4>
             </div>
             <div class="div-mainList-section-filtros-generos-block">
@@ -137,6 +137,17 @@
             <div class="div-mainList-section-filtros-generos-block">
                 <input type="checkbox" class="div-mainList-section-filtros-generos-block-square" />
                 <h4 class="div-mainList-section-filtros-generos-block-square-title">Ebook</h4>
+            </div>
+        </div>
+        <div class="div-mainList-section-filtros-tipoLit">
+            <h3 class="div-mainList-section-filtros-generos-title">Tipo de literatura</h3>
+            <div class="div-mainList-section-filtros-generos-block">
+                <input type="checkbox" class="div-mainList-section-filtros-generos-block-square" @(ViewBag.Literatura == "Nacional" ? "checked" : "") />
+                <h4 class="div-mainList-section-filtros-generos-block-square-title">Nacional</h4>
+            </div>
+            <div class="div-mainList-section-filtros-generos-block">
+                <input type="checkbox" class="div-mainList-section-filtros-generos-block-square" @(ViewBag.Literatura == "Internacional" ? "checked" : "") />
+                <h4 class="div-mainList-section-filtros-generos-block-square-title">Internacional</h4>
             </div>
         </div>
     </section>
