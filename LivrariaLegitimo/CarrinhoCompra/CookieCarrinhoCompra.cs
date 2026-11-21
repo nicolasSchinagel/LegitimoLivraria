@@ -79,11 +79,11 @@ namespace LivrariaLegitimo.CarrinhoCompra
 
             Dictionary<string, int> Lista = ConsultarCodigos();
 
-            if (Lista.ContainsKey(codBarras))
+            if (Lista.ContainsKey(codBarras) && livro.livro.TipoCapa == "ebook")
             {
                 Lista[codBarras]++;
             }
-            else if(livro.livro.TipoCapa != "ebook")
+            else
             {
                 Lista.Add(codBarras, 1);
             }
