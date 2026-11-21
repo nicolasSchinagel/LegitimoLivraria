@@ -1,0 +1,21 @@
+﻿.cadLivro-titulo-div {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    padding-bottom: 15px;
+}
+
+.input-div-1-cadCli {
+    width: 60%;
+}
+
+.obligate-div-type-1-cadCli {
+    font-size: 26px;
+    font-weight: 700;
+    color: #C8060A;
+}
+
+.addLivro-main-form-col-part-title-icon-cadCli {
+    width: 7%;
+    object-fit: contain;
+}
