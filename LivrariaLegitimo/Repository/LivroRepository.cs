@@ -536,5 +536,54 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
+        public (int totalLivros, int romance, int aventura, int fantasia, int ficcaoCientifica, int historia, int biografia, int autoajuda, int terror, int misterio, int filosofia, int humor, int drama, int suspense, int religiao, int literaturaClassica, int literaturaInfantil, int literaturaJuvenil, int contos, int poesia, int mangas, int totalAssociacoesGeneros) ObterQuantidadeGenero()
+        {
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+
+                string consulta = "select COUNT(DISTINCT li.codBarras) as TotalLivros, COALESCE(SUM(case when g.Genero = 'Romance' then 1 else 0 end), 0) as Romance, COALESCE(SUM(case when g.Genero = 'Aventura' then 1 else 0 end), 0) as Aventura, COALESCE(SUM(case when g.Genero = 'Fantasia' then 1 else 0 end), 0) as Fantasia, COALESCE(SUM(case when g.Genero = 'Ficção Científica' then 1 else 0 end), 0) as FiccaoCientifica, COALESCE(SUM(case when g.Genero = 'História' then 1 else 0 end), 0) as Historia, COALESCE(SUM(case when g.Genero = 'Biografia' then 1 else 0 end), 0) as Biografia, COALESCE(SUM(case when g.Genero = 'Autoajuda' then 1 else 0 end), 0) as Autoajuda, COALESCE(SUM(case when g.Genero = 'Terror' then 1 else 0 end), 0) as Terror, COALESCE(SUM(case when g.Genero = 'Mistério' then 1 else 0 end), 0) as Misterio, COALESCE(SUM(case when g.Genero = 'Filosofia' then 1 else 0 end), 0) as Filosofia, COALESCE(SUM(case when g.Genero = 'Humor' then 1 else 0 end), 0) as Humor, COALESCE(SUM(case when g.Genero = 'Drama' then 1 else 0 end), 0) as Drama, COALESCE(SUM(case when g.Genero = 'Suspense' then 1 else 0 end), 0) as Suspense, COALESCE(SUM(case when g.Genero = 'Religião' then 1 else 0 end), 0) as Religiao, COALESCE(SUM(case when g.Genero = 'Literatura Clássica' then 1 else 0 end), 0) as LiteraturaClassica, COALESCE(SUM(case when g.Genero = 'Literatura Infantil' then 1 else 0 end), 0) as LiteraturaInfantil, COALESCE(SUM(case when g.Genero = 'Literatura Juvenil' then 1 else 0 end), 0) as LiteraturaJuvenil, COALESCE(SUM(case when g.Genero = 'Contos' then 1 else 0 end), 0) as Contos, COALESCE(SUM(case when g.Genero = 'Poesia' then 1 else 0 end), 0) as Poesia, COALESCE(SUM(case when g.Genero = 'Mangás' then 1 else 0 end), 0) as Mangas, COUNT(gl.codBarras) as TotalAssociacoesGeneros from tbLivro li left join tbGenerosLivros gl on li.codBarras = gl.codBarras left join tbGeneros g on gl.IdGenero = g.IdGeneros";
+
+                if (_loginFuncionario.GetFuncionario() == null)
+                {
+                    consulta += " where li.Tipo = 'ebook' or exists (select 1 from tbEstoque es where es.codBarras = li.codBarras and es.qtd > 0)";
+                }
+
+                MySqlCommand cmd = new MySqlCommand(consulta, conexao);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+
+                conexao.Close();
+
+                DataRow dr = dt.Rows[0];
+
+                return (
+                    Convert.ToInt32(dr["TotalLivros"]),
+                    Convert.ToInt32(dr["Romance"]),
+                    Convert.ToInt32(dr["Aventura"]),
+                    Convert.ToInt32(dr["Fantasia"]),
+                    Convert.ToInt32(dr["FiccaoCientifica"]),
+                    Convert.ToInt32(dr["Historia"]),
+                    Convert.ToInt32(dr["Biografia"]),
+                    Convert.ToInt32(dr["Autoajuda"]),
+                    Convert.ToInt32(dr["Terror"]),
+                    Convert.ToInt32(dr["Misterio"]),
+                    Convert.ToInt32(dr["Filosofia"]),
+                    Convert.ToInt32(dr["Humor"]),
+                    Convert.ToInt32(dr["Drama"]),
+                    Convert.ToInt32(dr["Suspense"]),
+                    Convert.ToInt32(dr["Religiao"]),
+                    Convert.ToInt32(dr["LiteraturaClassica"]),
+                    Convert.ToInt32(dr["LiteraturaInfantil"]),
+                    Convert.ToInt32(dr["LiteraturaJuvenil"]),
+                    Convert.ToInt32(dr["Contos"]),
+                    Convert.ToInt32(dr["Poesia"]),
+                    Convert.ToInt32(dr["Mangas"]),
+                    Convert.ToInt32(dr["TotalAssociacoesGeneros"])
+                );
+            }
+        }
     }
 }
