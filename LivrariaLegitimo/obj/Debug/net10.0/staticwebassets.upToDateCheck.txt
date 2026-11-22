@@ -5,7 +5,6 @@ wwwroot\capas\Harry Potter e a Câmara Secreta.webp
 wwwroot\capas\Harry Potter e a Pedra Filosofal.webp
 wwwroot\capas\livro.jpg
 wwwroot\capas\Metamorfose.webp
-wwwroot\capas\MorroVento.webp
 wwwroot\capas\NadaPodeMeFerir.jpg
 wwwroot\capas\O Pequeno Príncipe.webp
 wwwroot\capas\O Processo.webp
@@ -16,17 +15,13 @@ wwwroot\capas\SCB.jpg
 wwwroot\capas\Solaris.webp
 wwwroot\capas\yukiguni.jpg
 wwwroot\css\adicionarLivro.css
-wwwroot\css\cadCli.css
 wwwroot\css\carrinho.css
-wwwroot\css\checkout.css
-wwwroot\css\comprar.css
-wwwroot\css\confEndereco.css
 wwwroot\css\footer.css
 wwwroot\css\header.css
 wwwroot\css\index.css
 wwwroot\css\inputs.css
 wwwroot\css\lateralMenu.css
-wwwroot\css\list.css
+wwwroot\js\filtroLivros.js
 wwwroot\css\livro.css
 wwwroot\css\login.css
 wwwroot\css\menuGerenciar.css
@@ -50,24 +45,19 @@ wwwroot\img\bi-5.webp
 wwwroot\img\biografia-icon-gender.png
 wwwroot\img\BuyA.png
 wwwroot\img\BuyD.png
-wwwroot\img\cadCli_icon.png
 wwwroot\img\cadeado.icon.png
 wwwroot\img\cart.png
 wwwroot\img\cartCarrinho.png
 wwwroot\img\CartIcon.png
 wwwroot\img\casaVermelha.png
 wwwroot\img\cliente.icon.png
-wwwroot\img\clienteTipo_icon.png
 wwwroot\img\cliente_iconbar.png
 wwwroot\img\closeAddress_icon.png
 wwwroot\img\contos-icon-gender.png
 wwwroot\img\coracaobranco.png
 wwwroot\img\coracaored.png
 wwwroot\img\correct_icon.png
-wwwroot\img\credito_icon.png
-wwwroot\img\cvv_icon.png
 wwwroot\img\date_icon.png
-wwwroot\img\debito_icon.png
 wwwroot\img\Description_icon.png
 wwwroot\img\drama-icon-gender.png
 wwwroot\img\ebook_icon.png
@@ -115,9 +105,6 @@ wwwroot\img\minus.png
 wwwroot\img\misterio-icon-gender.png
 wwwroot\img\novo.png
 wwwroot\img\others_icon.png
-wwwroot\img\outros_icon.png
-wwwroot\img\pagar_icon.png
-wwwroot\img\pix_icon.png
 wwwroot\img\plus.png
 wwwroot\img\poesia-icon-gender.png
 wwwroot\img\redHand.png
@@ -125,7 +112,6 @@ wwwroot\img\religiao-icon-gender.png
 wwwroot\img\romance-icon-gender.png
 wwwroot\img\scifi-icon-gender.png
 wwwroot\img\SearchbarIcon.png
-wwwroot\img\seguranca_icon.png
 wwwroot\img\setabaixo.png
 wwwroot\img\setaDireitaVermelha.png
 wwwroot\img\simbolomais.png
@@ -136,7 +122,6 @@ wwwroot\img\tabela.icon.png
 wwwroot\img\terror-icon-gender.png
 wwwroot\img\trash.png
 wwwroot\img\verTodos.png
-wwwroot\js\filtroLivros.js
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -199,6 +184,21 @@ wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\lib\mask\jquery.mask.min.js
+wwwroot\css\list.css
+wwwroot\css\checkout.css
+wwwroot\css\comprar.css
+wwwroot\css\confEndereco.css
+wwwroot\css\cadCli.css
+wwwroot\img\cadCli_icon.png
+wwwroot\img\clienteTipo_icon.png
+wwwroot\img\credito_icon.png
+wwwroot\img\cvv_icon.png
+wwwroot\img\debito_icon.png
+wwwroot\img\outros_icon.png
+wwwroot\img\pagar_icon.png
+wwwroot\img\pix_icon.png
+wwwroot\img\seguranca_icon.png
+wwwroot\capas\MorroVento.webp
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\footer.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\jquery\dist\jquery.slim.min.map
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\carrinho.css

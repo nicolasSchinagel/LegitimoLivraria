@@ -82,7 +82,7 @@ namespace LivrariaLegitimo.Repository
             {
                 conexao.Open();
 
-                string consulta = "select li.*, va.MediaAvaliacao, vv.NumeroVendas from ViewLivro li inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras inner join ViewLivroVendas vv on li.codBarras = vv.codBarras where(li.Quantidade > 0) order by li.Nome";
+                string consulta = "select li.*, va.MediaAvaliacao, vv.NumeroVendas from ViewLivro li inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras inner join ViewLivroVendas vv on li.codBarras = vv.codBarras where(li.Tipo = 'ebook' or li.Quantidade > 0) order by li.Nome";
 
                 if (_loginFuncionario.GetFuncionario() != null)
                 {
@@ -216,14 +216,15 @@ namespace LivrariaLegitimo.Repository
 
 
         // Fazendo cadastro do Livro bem detalhado :)
-        public void Cadastrar(Livro livro) {
+        public void Cadastrar(Livro livro)
+        {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 string caminhoEbook;
                 conexao.Open();
                 MySqlCommand cmd = new MySqlCommand("call spAdicionarLivro(@CodBarras, @ISBN , @Nome, @Preco , @Sinopse , @Autor, @Editora, @IdadeMinRecomendada, @DataPublicacao, @Tipo, @Idioma, @Literatura, @Tamanho, @ImagemPri, @EbookFile, @CapacidadeEstoque);", conexao);
                 var caminhoImagem = GerenciadorCapa.CadastrarCapaLivro(livro.Imagem);
-                if(livro.TipoCapa == "Ebook")
+                if (livro.TipoCapa == "Ebook")
                 {
                     caminhoEbook = GerenciadorEbook.CadastrarArquivoEbook(livro.ArquivoEbook);
                 }
@@ -276,7 +277,7 @@ namespace LivrariaLegitimo.Repository
                 conexao.Open();
 
                 MySqlCommand consulta = new MySqlCommand(
-                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(Quantidade > 0) order by va.MediaAvaliacao desc, vv.NumeroVendas desc limit 5",
+                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(li.Tipo = 'ebook' or li.Quantidade > 0) order by va.MediaAvaliacao desc, vv.NumeroVendas desc limit 5",
                     conexao
                 );
 
@@ -338,7 +339,7 @@ namespace LivrariaLegitimo.Repository
                 conexao.Open();
 
                 MySqlCommand consulta = new MySqlCommand(
-                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(Quantidade > 0) order by RAND() limit 9",
+                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(li.Tipo = 'ebook' or li.Quantidade > 0) order by RAND() limit 9",
                     conexao
                 );
 
@@ -400,7 +401,7 @@ namespace LivrariaLegitimo.Repository
                 conexao.Open();
 
                 MySqlCommand consulta = new MySqlCommand(
-                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(Quantidade > 0) order by PromocaoPorcentagem DESC limit 2",
+                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(li.Tipo = 'ebook' or li.Quantidade > 0) order by PromocaoPorcentagem DESC limit 2",
                     conexao
                 );
 
@@ -462,7 +463,7 @@ namespace LivrariaLegitimo.Repository
                 conexao.Open();
 
                 MySqlCommand consulta = new MySqlCommand(
-                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(Quantidade > 0) order by vv.NumeroVendas desc limit 15",
+                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(li.Tipo = 'ebook' or li.Quantidade > 0) order by vv.NumeroVendas desc limit 15",
                     conexao
                 );
 
@@ -517,7 +518,7 @@ namespace LivrariaLegitimo.Repository
 
         public bool EmAlta(string codBarras)
         {
-            using(var conexao = new MySqlConnection(_conexaoMySQL))
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 bool existencia;
                 conexao.Open();
@@ -531,7 +532,7 @@ namespace LivrariaLegitimo.Repository
 
                 return existencia;
             }
-        }  
+        }
 
     }
 }
