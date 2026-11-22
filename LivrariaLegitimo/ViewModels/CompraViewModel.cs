@@ -5,6 +5,8 @@ namespace LivrariaLegitimo.ViewModels
     {
         public List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas, int quantidadeCarrinho)> Carrinho { get; set; }
         public (string CEP, string logradouro, string bairro, string cidade, string estado, int numeroEndereco, string complementoEndereco) EditarEndereco { get; set; }
+        public (string CEP, string logradouro, string bairro, string cidade, string estado, int numeroEndereco, string complementoEndereco) ObterEndereco { get; set; }
         public Venda Compra { get; set; }
+        public Cliente ObterCliente { get; set; }
     }
 }

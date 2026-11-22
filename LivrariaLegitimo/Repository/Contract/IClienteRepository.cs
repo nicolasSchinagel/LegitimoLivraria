@@ -7,7 +7,6 @@ namespace LivrariaLegitimo.Repository.Contract
     {
         Cliente Login(string Email, string Senha);
         Cliente ObterCliente(int Id);
-
         void AtualizarCliente(Cliente cliente);
         void AtualizarEndereco(string CEP, string logradouro, string bairro, string cidade, string estado, int numeroEndereco, string complementoEndereco);
     }
