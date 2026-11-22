@@ -29,7 +29,7 @@ namespace LivrariaLegitimo.Models
 
         [Required(ErrorMessage = "CEP é obrigatório")]
         [RegularExpression(
-            @"^\d{5}-\d{3}$",
+            @"^\d{5}-?\d{3}$",
             ErrorMessage = "CEP deve estar no formato 12345-678")]
         [Display(Name = "CEP")]
         public string Cep { get; set; }

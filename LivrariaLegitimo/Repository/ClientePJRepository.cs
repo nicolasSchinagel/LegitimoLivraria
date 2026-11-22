@@ -28,7 +28,7 @@ namespace LivrariaLegitimo.Repository
                 cmd.Parameters.Add("@Telefone", MySqlDbType.Int64).Value = Convert.ToInt64(clientePJ.Telefone.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", ""));
                 cmd.Parameters.Add("@Email", MySqlDbType.VarChar).Value = clientePJ.Email;
                 cmd.Parameters.Add("@Senha", MySqlDbType.VarChar).Value = clientePJ.Senha;
-                cmd.Parameters.Add("@CEP", MySqlDbType.Decimal).Value = Convert.ToDecimal(clientePJ.Cep.Replace("-", ""));
+                cmd.Parameters.Add("@CEP", MySqlDbType.VarChar).Value = clientePJ.Cep.Replace("-", "");
                 cmd.Parameters.Add("@NumeroEndereco", MySqlDbType.Int32).Value = clientePJ.NumeroEndereco;
                 cmd.Parameters.Add("@Complemento", MySqlDbType.VarChar).Value = clientePJ.ComplementoEndereco;
                 cmd.Parameters.Add("@Logradouro", MySqlDbType.VarChar).Value = clientePJ.Logradouro;

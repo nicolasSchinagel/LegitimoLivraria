@@ -31,7 +31,7 @@ namespace LivrariaLegitimo.Repository
                 cmd.Parameters.AddWithValue("@Senha", cliente.Senha);
                 cmd.Parameters.AddWithValue("@NumTel", Convert.ToInt64(cliente.Telefone));
                 cmd.Parameters.AddWithValue("@Email", cliente.Email);
-                cmd.Parameters.AddWithValue("@CEP", Convert.ToDecimal(cliente.Cep));
+                cmd.Parameters.AddWithValue("@CEP", cliente.Cep.Replace("-", ""));
                 cmd.Parameters.AddWithValue("@NumeroEndereco", cliente.NumeroEndereco);
                 cmd.Parameters.AddWithValue("@Complemento", cliente.ComplementoEndereco);
                 cmd.Parameters.AddWithValue("@Logradouro", cliente.Logradouro);

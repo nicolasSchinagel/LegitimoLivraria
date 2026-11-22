@@ -258,8 +258,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Views\\Livro\\Livro.cshtml",
               "ViewState": "AgIAAN4BAAAAAAAAAAAuwPIBAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-18T12:19:13.036Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T12:19:13.036Z"
             },
             {
               "$type": "Document",
@@ -271,8 +270,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Repository\\Contract\\ILivroRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-20T15:30:31.888Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-20T15:30:31.888Z"
             },
             {
               "$type": "Document",
@@ -306,7 +304,7 @@
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Default\\Index.cshtml",
               "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Default\\Index.cshtml",
               "RelativeToolTip": "LivrariaLegitimo\\Views\\Default\\Index.cshtml",
-              "ViewState": "AgIAAJQBAAAAAAAAAADwv74BAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALUBAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-11-18T14:07:14.64Z",
               "EditorCaption": ""
@@ -525,7 +523,8 @@
               "RelativeToolTip": "LivrariaLegitimo\\Controllers\\ClienteController.cs",
               "ViewState": "AgIAAGgAAAAAAAAAAAAuwHMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-20T17:57:13.839Z"
+              "WhenOpened": "2026-11-20T17:57:13.839Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
