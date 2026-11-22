@@ -6,7 +6,6 @@ namespace LivrariaLegitimo.Repository.Contract
     public interface IVendaRepository
     {
         public void Cadastrar(Venda venda);
-        IEnumerable<ItemVenda> ObterListaPorId(int vendaId);
-        IPagedList<ItemVenda> ObterListaPorId(int? pagina, string pesquisa);
+        IEnumerable<ItemVenda> ObterListaPorNumero(int numeroVenad);
     }
 }
