@@ -43,6 +43,29 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
+        public void AtualizarEndereco(string CEP, string logradouro, string bairro, string cidade, string estado, int numeroEndereco, string complementoEndereco)
+        {
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                var idCli = _loginCliente.GetCliente().IdCli;
+
+                conexao.Open();
+
+                using (var cmd = new MySqlCommand("call spEditarEndereco(@vIdCli, @vCEP, @vLogradouro, @vBairro, @vCidade, @vEstado, @vNumeroEndereco, @vComplementoEndereco)", conexao))
+                {
+                    cmd.Parameters.Add("@vIdCli", MySqlDbType.Int32).Value = idCli;
+                    cmd.Parameters.Add("@vCEP", MySqlDbType.VarChar).Value = CEP;
+                    cmd.Parameters.Add("@vLogradouro", MySqlDbType.VarChar).Value = logradouro;
+                    cmd.Parameters.Add("@vBairro", MySqlDbType.VarChar).Value = bairro;
+                    cmd.Parameters.Add("@vCidade", MySqlDbType.VarChar).Value = cidade;
+                    cmd.Parameters.Add("@vEstado", MySqlDbType.VarChar).Value = estado;
+                    cmd.Parameters.Add("@vNumeroEndereco", MySqlDbType.Int32).Value = numeroEndereco;
+                    cmd.Parameters.Add("@vComplementoEndereco", MySqlDbType.VarChar).Value = complementoEndereco;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
         public Cliente Login(string Email, string Senha)
         {
