@@ -1,6 +1,7 @@
 ﻿using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
 using MySql.Data.MySqlClient;
+using System.Data;
 using X.PagedList;
 
 namespace LivrariaLegitimo.Repository
@@ -44,9 +45,24 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
-        public int ObterCNPJ(int Idcli)
+        public Int64 ObterCNPJ(int idCli)
         {
-            throw new NotImplementedException();
+            Int64 cnpj = 0;
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from tbClientePJ where(idCli = @IdCli);", conexao);
+                cmd.Parameters.AddWithValue("@IdCli", idCli);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (dr.Read())
+                {
+                    cnpj = (Int64)(dr["Cnpj"]);
+                }
+                return cnpj;
+            }
         }
     }
 }
