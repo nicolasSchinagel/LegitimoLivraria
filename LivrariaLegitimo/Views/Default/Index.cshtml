@@ -61,7 +61,7 @@
             {
                 <a class="book-card-init no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
                     <img src="@livro.arquivoImagem" class="image-book-card-init">
-                    <h4 class="title-book-card-init">@livro.livro.Nome</h4>
+                    <h4 class="title-book-card-init">@(livro.livro.Nome.Length > 37 ? livro.livro.Nome.Substring(0, 37) + "..." : livro.livro.Nome)</h4>
                 </a>
             }
             </section>
@@ -85,7 +85,7 @@
             {
                 <a class="book-card-init no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
                     <img src="@livro.arquivoImagem" class="image-book-card-init">
-                    <h4 class="title-book-card-init">@livro.livro.Nome</h4>
+                    <h4 class="title-book-card-init">@(livro.livro.Nome.Length > 37 ? livro.livro.Nome.Substring(0, 37) + "..." : livro.livro.Nome)</h4>
                 </a>
             }
         </section>

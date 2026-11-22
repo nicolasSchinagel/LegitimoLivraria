@@ -1,19 +1,18 @@
-wwwroot\capas\Biblia.webp
-wwwroot\capas\DomQuixote.webp
-wwwroot\capas\Guerra dos Mundos.jpg
-wwwroot\capas\Harry Potter e a Câmara Secreta.webp
-wwwroot\capas\Harry Potter e a Pedra Filosofal.webp
-wwwroot\capas\livro.jpg
-wwwroot\capas\Metamorfose.webp
+wwwroot\capas\Alice'sAd.webp
+wwwroot\capas\AliceIn.jpg
+wwwroot\capas\AssasinatoExpresso.jpg
+wwwroot\capas\AventurasSherlock.webp
+wwwroot\capas\DomCasmurro.webp
+wwwroot\capas\Dracula.webp
+wwwroot\capas\Frankenstein.webp
+wwwroot\capas\GemesAuch.webp
+wwwroot\capas\HistoriaChina.webp
 wwwroot\capas\MorroVento.webp
 wwwroot\capas\NadaPodeMeFerir.jpg
-wwwroot\capas\O Pequeno Príncipe.webp
-wwwroot\capas\O Processo.webp
-wwwroot\capas\O Senhor dos Anéis A Sociedade do Anel.webp
-wwwroot\capas\O Senhor dos Anéis As Duas Torres.webp
-wwwroot\capas\o-planeta-dos-macacos-capa.webp
-wwwroot\capas\SCB.jpg
-wwwroot\capas\Solaris.webp
+wwwroot\capas\NaoSobrouNenhum.webp
+wwwroot\capas\Odisseia.webp
+wwwroot\capas\Republica.png
+wwwroot\capas\VidasSecas.jpg
 wwwroot\capas\yukiguni.jpg
 wwwroot\css\adicionarLivro.css
 wwwroot\css\cadCli.css

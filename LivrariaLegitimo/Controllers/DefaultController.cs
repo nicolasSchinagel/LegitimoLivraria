@@ -60,14 +60,18 @@ namespace LivrariaLegitimo.Controllers
         }
 
 
+        public IActionResult RemoverHistorico()
+        {
+            _cookieHistoricoLivro.RemoverTodos();
 
-
+            return RedirectToAction("Index");
+        }
 
         /*Estou fazendo um login único e mutável, conforme o solicitado, basicamente terá uma única tela de login e será escolhido o tipo de usuário baseado na senha
          Como demonstração, o Cliente só pode ser cadastrado com senha entre 0 a 10 caracteres. O funcionário obrigatoriamente tem 16 caracteres, que vão ser padronizados em
         padrão "X" para letra qualquer e "0" para qualquer número, sendo definido como: "XX00000000XXXXXX", O padrão é uma norma respeitada no cadastrado no funcionário
          */
-        
+
         [HttpPost]
         public IActionResult Login([FromForm] LoginGeral loginGeral)
         {
