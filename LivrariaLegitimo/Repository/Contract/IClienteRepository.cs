@@ -9,6 +9,5 @@ namespace LivrariaLegitimo.Repository.Contract
         Cliente ObterCliente(int Id);
 
         void AtualizarCliente(Cliente cliente);
-        void AtualizarSenha(string senha);
     }
 }

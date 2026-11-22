@@ -38,22 +38,11 @@ namespace LivrariaLegitimo.Repository
                 cmd.Parameters.AddWithValue("@Bairro", cliente.Bairro);
                 cmd.Parameters.AddWithValue("@Cidade", cliente.Cidade);
                 cmd.Parameters.AddWithValue("@Estado", cliente.Estado);
-            }
-        }
-
-        public void AtualizarSenha(string senha)
-        {
-            using(var conexao = new MySqlConnection(_conexaoMySQL))
-            {
-                conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("update tbCliente set senha = @senha where (Email = @Email);", conexao);
-                cmd.Parameters.AddWithValue("@Email", _loginCliente.GetCliente().Email);
-                cmd.Parameters.AddWithValue("@Senha", senha);
                 cmd.ExecuteNonQuery();
                 conexao.Close();
-
             }
         }
+
 
         public Cliente Login(string Email, string Senha)
         {
