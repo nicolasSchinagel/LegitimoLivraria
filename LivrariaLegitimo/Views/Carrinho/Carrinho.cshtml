@@ -1,10 +1,10 @@
-﻿
-@using System.Globalization
-@model List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas, int quantidadeCarrinho)>
+﻿@using System.Globalization
+@model LivrariaLegitimo.ViewModels.CompraViewModel
+
 @{
     decimal totalCompra = 0;
 
-    foreach (var item in Model)
+    foreach (var item in Model.Carrinho)
     {
         decimal preco = decimal.Parse(item.livro.Preco, new CultureInfo("pt-BR"));
 
@@ -19,15 +19,14 @@
         totalCompra += preco * item.quantidadeCarrinho;
     }
 }
+
 <link rel="stylesheet" href="~/css/carrinho.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/confEndereco.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/comprar.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/adicionarLivro.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/checkout.css" asp-append-version="true" />
 
 <main class="main-carrinho">
 
     <section class="main-carrinho-header">
+
         <div class="main-carrinho-header-item">
             <img src="~/img/KartA.png" class="main-carrinho-header-item-icon" />
             <h2 class="main-carrinho-header-item-text carrinhos-active">1.Carrinho</h2>
@@ -42,765 +41,235 @@
             <img src="~/img/BuyD.png" class="main-carrinho-header-item-icon" />
             <h2 class="main-carrinho-header-item-text carrinhos-inactive">3.Confirmar pagamento</h2>
         </div>
+
     </section>
 
-    <div class="checkout-etapas">
+    @if (ViewBag.Erro != null)
+    {
+        <p class="checkout-mensagem-erro">@ViewBag.Erro</p>
+    }
 
-        <section class="checkout-etapa checkout-etapa-ativa" id="etapaCarrinho">
+    @if (ViewBag.Sucesso != null)
+    {
+        <p class="checkout-mensagem-sucesso">@ViewBag.Sucesso</p>
+    }
 
-            <div class="main-carrinho-content">
+    @if (TempData["Sucesso"] != null)
+    {
+        <p class="checkout-mensagem-sucesso">@TempData["Sucesso"]</p>
+    }
 
-                <div class="main-carrinho-content-listaItens">
+    <div class="main-carrinho-content">
 
-                    @foreach (var item in Model)
-                    {
-                        <div class="main-carrinho-content-card">
+        <div class="main-carrinho-content-listaItens">
 
-                            <img src="@item.arquivoImagem" class="main-carrinho-content-card-img" />
+            @foreach (var item in Model.Carrinho)
+            {
+                <div class="main-carrinho-content-card">
 
-                            <div class="main-carrinho-content-card-info">
+                    <img src="@item.arquivoImagem" class="main-carrinho-content-card-img" />
 
-                                <h2 class="main-carrinho-content-card-info-title">
-                                    @item.livro.Nome - <span>@item.livro.Autor</span>
-                                </h2>
+                    <div class="main-carrinho-content-card-info">
 
-                                <div class="main-carrinho-content-card-info-subinfo">
+                        <h2 class="main-carrinho-content-card-info-title">
+                            @item.livro.Nome - <span>@item.livro.Autor</span>
+                        </h2>
 
-                                    <div class="main-carrinho-content-card-info-subinfo-descriptions">
+                        <div class="main-carrinho-content-card-info-subinfo">
 
-                                        <h4 class="main-carrinho-content-card-info-subinfo-descriptions-editora">
-                                            Editora: @item.livro.Editora
-                                        </h4>
+                            <div class="main-carrinho-content-card-info-subinfo-descriptions">
 
-                                        <h4 class="main-carrinho-content-card-info-subinfo-descriptions-tipo">
-                                            @item.livro.TipoCapa
-                                        </h4>
+                                <h4 class="main-carrinho-content-card-info-subinfo-descriptions-editora">
+                                    Editora: @item.livro.Editora
+                                </h4>
 
-                                        @if (item.livro.TipoCapa == "ebook")
-                                        {
-                                            <h5 class="main-carrinho-content-card-info-subinfo-descriptions-exemplares">
-                                                Leitura por meio digital
-                                            </h5>
-                                        }
-                                        else if (item.livro.Quantidade <= 20)
-                                        {
-                                            <h5 class="main-carrinho-content-card-info-subinfo-descriptions-exemplares">
-                                                Restam @item.livro.Quantidade exemplares disponíveis
-                                            </h5>
-                                        }
-                                        else
-                                        {
-                                            <h5 class="main-carrinho-content-card-info-subinfo-descriptions-exemplares"></h5>
-                                        }
+                                <h4 class="main-carrinho-content-card-info-subinfo-descriptions-tipo">
+                                    @item.livro.TipoCapa
+                                </h4>
 
-                                    </div>
-
-                                    <div class="main-carrinho-content-card-info-subinfo-qtd">
-
-                                        <h4 class="main-carrinho-content-card-info-subinfo-off">
-                                            @item.livro.PromocaoPorcentagem% off
-                                        </h4>
-
-                                        <div class="main-carrinho-content-card-info-subinfo-qtd-block">
-                                            @if (item.livro.TipoCapa == "ebook")
-                                            {
-                                                <h3>Item fixo da livraria</h3>
-                                            }
-                                            else
-                                            {
-                                                <a asp-controller="Carrinho"
-                                                asp-action="DiminuirQuantidade"
-                                                asp-route-codBarras="@item.livro.CodigoBarras">
-                                                    <img class="qtd-block-minus" src="~/img/minus.png" />
-                                                </a>
-
-                                                <input type="number"
-                                                class="main-carrinho-content-card-info-subinfo-qtd-block-input"
-                                                value="@item.quantidadeCarrinho" readonly />
-
-                                                <a asp-controller="Carrinho"
-                                                asp-action="AumentarQuantidade"
-                                                asp-route-codBarras="@item.livro.CodigoBarras">
-                                                    <img class="qtd-block-plus" src="~/img/plus.png" />
-                                                </a>
-                                            }
-                                        </div>
-
-                                    </div>
-
-                                    <div class="main-carrinho-content-card-info-subinfo-price">
-
-                                        @if (item.livro.PromocaoPorcentagem > 0)
-                                        {
-                                            <h4 class="main-carrinho-content-card-info-subinfo-price-off">
-                                                R$@item.livro.Preco
-                                            </h4>
-
-                                            <h3 class="main-carrinho-content-card-info-subinfo-price-now">
-                                                R$@(Math.Round(decimal.Parse(item.livro.Preco, new CultureInfo("pt-BR")) * (1 - item.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))
-                                            </h3>
-                                        }
-                                        else
-                                        {
-                                            <h4 class="main-carrinho-content-card-info-subinfo-price-off"></h4>
-
-                                            <h3 class="main-carrinho-content-card-info-subinfo-price-now">
-                                                R$@item.livro.Preco
-                                            </h3>
-                                        }
-
-                                    </div>
-
-                                </div>
-
-                                <a asp-controller="Carrinho"
-                                   asp-action="RemoverItem"
-                                   asp-route-codBarras="@item.livro.CodigoBarras">
-
-                                    <img src="~/img/trash.png"
-                                         class="main-carrinho-content-card-info-remove" />
-
-                                </a>
-
-                            </div>
-
-                        </div>
-                    }
-
-                </div>
-
-                <div class="main-carrinho-content-sobre">
-
-                    <h2 class="main-carrinho-content-sobre-title">
-                        Resumo da Compra
-                    </h2>
-
-                    <div class="main-carrinho-content-sobre-infos">
-
-                        <h3 class="main-carrinho-content-sobre-infos-frete">
-                            Frete: Grátis
-                        </h3>
-
-                        <h4 class="main-carrinho-content-sobre-infos-datapossivel">
-                            Datas possíveis de entrega:
-                        </h4>
-
-                        <h4 class="main-carrinho-content-sobre-infos-datas">
-                            De segunda-feira até quinta-feira
-                        </h4>
-
-                    </div>
-
-                    <div class="main-carrinho-content-sobre-lista">
-
-                        @foreach (var item in Model)
-                        {
-                            <div class="main-carrinho-content-sobre-lista-item">
-
-                                <h3 class="main-carrinho-content-sobre-lista-item-title">
-                                    @(item.livro.Nome.Length > 35 ? item.livro.Nome.Substring(0, 35) + "..." : item.livro.Nome)
-                                </h3>
-
-                                <h3 class="main-carrinho-content-sobre-lista-item-number">
-                                    x @item.quantidadeCarrinho
-                                </h3>
-
-                                @if (item.livro.PromocaoPorcentagem > 0)
+                                @if (item.livro.TipoCapa == "ebook")
                                 {
-                                    <h2 class="main-carrinho-content-sobre-lista-item-price">
-                                        @(
-                                            Convert.ToDecimal(
-                                                Math.Round(
-                                                    decimal.Parse(item.livro.Preco, new CultureInfo("pt-BR"))
-                                                    * (1 - item.livro.PromocaoPorcentagem / 100m),
-                                                    2
-                                                ) * item.quantidadeCarrinho
-                                            ).ToString("N2", CultureInfo.GetCultureInfo("pt-BR"))
-                                        )
-                                    </h2>
-
+                                    <h5 class="main-carrinho-content-card-info-subinfo-descriptions-exemplares">
+                                        Leitura por meio digital
+                                    </h5>
+                                }
+                                else if (item.livro.Quantidade <= 20)
+                                {
+                                    <h5 class="main-carrinho-content-card-info-subinfo-descriptions-exemplares">
+                                        Restam @item.livro.Quantidade exemplares disponíveis
+                                    </h5>
                                 }
                                 else
                                 {
-                                    <h2 class="main-carrinho-content-sobre-lista-item-price">
-                                        @((Convert.ToDecimal(item.livro.Preco) * item.quantidadeCarrinho).ToString("N2", CultureInfo.GetCultureInfo("pt-BR")))
-                                    </h2>
+                                    <h5 class="main-carrinho-content-card-info-subinfo-descriptions-exemplares"></h5>
                                 }
 
                             </div>
-                        }
 
-                        <div class="main-carrinho-content-sobre-divisor"></div>
+                            <div class="main-carrinho-content-card-info-subinfo-qtd">
 
-                        <div class="main-carrinho-content-sobre-totals">
+                                <h4 class="main-carrinho-content-card-info-subinfo-off">
+                                    @item.livro.PromocaoPorcentagem% off
+                                </h4>
 
-                            <h3 class="main-carrinho-content-sobre-totals-title">
-                                Total:
-                            </h3>
+                                <div class="main-carrinho-content-card-info-subinfo-qtd-block">
 
-                            <h3 class="main-carrinho-content-sobre-totals-price">
-                                R$ @totalCompra.ToString("N2", CultureInfo.GetCultureInfo("pt-BR"))
-                            </h3>
+                                    @if (item.livro.TipoCapa == "ebook")
+                                    {
+                                        <h3>Item fixo da livraria</h3>
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="Carrinho"
+                                           asp-action="DiminuirQuantidade"
+                                           asp-route-codBarras="@item.livro.CodigoBarras">
+
+                                            <img class="qtd-block-minus" src="~/img/minus.png" />
+
+                                        </a>
+
+                                        <input type="number"
+                                               class="main-carrinho-content-card-info-subinfo-qtd-block-input"
+                                               value="@item.quantidadeCarrinho"
+                                               readonly />
+
+                                        <a asp-controller="Carrinho"
+                                           asp-action="AumentarQuantidade"
+                                           asp-route-codBarras="@item.livro.CodigoBarras">
+
+                                            <img class="qtd-block-plus" src="~/img/plus.png" />
+
+                                        </a>
+                                    }
+
+                                </div>
+
+                            </div>
+
+                            <div class="main-carrinho-content-card-info-subinfo-price">
+
+                                @if (item.livro.PromocaoPorcentagem > 0)
+                                {
+                                    <h4 class="main-carrinho-content-card-info-subinfo-price-off">
+                                        R$@item.livro.Preco
+                                    </h4>
+
+                                    <h3 class="main-carrinho-content-card-info-subinfo-price-now">
+                                        R$@(Math.Round(decimal.Parse(item.livro.Preco, new CultureInfo("pt-BR")) * (1 - item.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))
+                                    </h3>
+                                }
+                                else
+                                {
+                                    <h4 class="main-carrinho-content-card-info-subinfo-price-off"></h4>
+
+                                    <h3 class="main-carrinho-content-card-info-subinfo-price-now">
+                                        R$@item.livro.Preco
+                                    </h3>
+                                }
+
+                            </div>
 
                         </div>
 
+                        <a asp-controller="Carrinho"
+                           asp-action="RemoverItem"
+                           asp-route-codBarras="@item.livro.CodigoBarras">
+
+                            <img src="~/img/trash.png"
+                                 class="main-carrinho-content-card-info-remove" />
+
+                        </a>
+
                     </div>
 
-                    <button type="button"
-                            class="main-carrinho-content-sobre-buttom"
-                            onclick="irParaEndereco()">
+                </div>
+            }
 
-                        <img src="~/img/cartCarrinho.png"
-                             class="main-carrinho-content-sobre-buttom-icon" />
+        </div>
 
-                        <h3 class="main-carrinho-content-sobre-buttom-title">
-                            Finalizar Compra
+        <div class="main-carrinho-content-sobre">
+
+            <h2 class="main-carrinho-content-sobre-title">
+                Resumo da Compra
+            </h2>
+
+            <div class="main-carrinho-content-sobre-infos">
+
+                <h3 class="main-carrinho-content-sobre-infos-frete">
+                    Frete: Grátis
+                </h3>
+
+                <h4 class="main-carrinho-content-sobre-infos-datapossivel">
+                    Datas possíveis de entrega:
+                </h4>
+
+                <h4 class="main-carrinho-content-sobre-infos-datas">
+                    De segunda-feira até quinta-feira
+                </h4>
+
+            </div>
+
+            <div class="main-carrinho-content-sobre-lista">
+
+                @foreach (var item in Model.Carrinho)
+                {
+                    <div class="main-carrinho-content-sobre-lista-item">
+
+                        <h3 class="main-carrinho-content-sobre-lista-item-title">
+                            @(item.livro.Nome.Length > 35 ? item.livro.Nome.Substring(0, 35) + "..." : item.livro.Nome)
                         </h3>
 
-                    </button>
+                        <h3 class="main-carrinho-content-sobre-lista-item-number">
+                            x @item.quantidadeCarrinho
+                        </h3>
+
+                        <h2 class="main-carrinho-content-sobre-lista-item-price">
+                            @(
+                                (
+                                    Math.Round(
+                                        decimal.Parse(item.livro.Preco, new CultureInfo("pt-BR"))
+                                        * (1 - item.livro.PromocaoPorcentagem / 100m),
+                                        2
+                                    )
+                                * item.quantidadeCarrinho
+                                ).ToString("N2", CultureInfo.GetCultureInfo("pt-BR"))
+                            )
+                        </h2>
+
+                    </div>
+                }
+
+                <div class="main-carrinho-content-sobre-divisor"></div>
+
+                <div class="main-carrinho-content-sobre-totals">
+
+                    <h3 class="main-carrinho-content-sobre-totals-title">
+                        Total:
+                    </h3>
+
+                    <h3 class="main-carrinho-content-sobre-totals-price">
+                        R$ @totalCompra.ToString("N2", CultureInfo.GetCultureInfo("pt-BR"))
+                    </h3>
 
                 </div>
 
             </div>
 
-        </section>
+            <a asp-controller="Carrinho"
+               asp-action="EditarEndereco"
+               class="main-carrinho-content-sobre-buttom">
 
-        <section class="checkout-etapa" id="etapaEndereco">
+                <img src="~/img/cartCarrinho.png"
+                     class="main-carrinho-content-sobre-buttom-icon" />
 
-            <main class="addLivro-main">
+                <h3 class="main-carrinho-content-sobre-buttom-title">
+                    Finalizar Compra
+                </h3>
 
-                <section class="addLivro-main-form">
+            </a>
 
-                    <header class="confirmarEndereco-header">
-
-                        <div class="confirmarEndereco-header-title">
-
-                            <img src="~/img/Mapping_icon.png"
-                                 class="confirmarEndereco-header-icon"
-                                 alt="" />
-
-                            <h1>Antes de tudo, confirme o seu endereço</h1>
-
-                        </div>
-
-                        <p class="confirmarEndereco-header-subtitle">
-                            Ajuste-o caso não esteja correto
-                        </p>
-
-                    </header>
-
-                    <form class="confirmarEndereco-content" id="formEndereco">
-
-                        <div class="confirmarEndereco-columns">
-
-                            <div class="addLivro-main-form-col-part">
-
-                                <div class="input-div-type-1">
-
-                                    <div class="input-div-type-1-texts">
-                                        <label for="cep" class="label-div-type-1">CEP</label>
-                                        <span class="obligate-div-type-1">*</span>
-                                    </div>
-
-                                    <div class="input-div-type-1-block">
-                                        <input type="text"
-                                               id="cep"
-                                               name="cep"
-                                               class="input-div-type-1-block-insert"
-                                               placeholder="Digite seu CEP"
-                                               required />
-                                    </div>
-
-                                </div>
-
-                                <div class="input-div-type-1">
-
-                                    <div class="input-div-type-1-texts">
-                                        <label for="uf" class="label-div-type-1">UF</label>
-                                        <span class="obligate-div-type-1">*</span>
-                                    </div>
-
-                                    <div class="input-div-type-5-block">
-
-                                        <select id="uf"
-                                                name="uf"
-                                                class="input-div-type-5-block-insert"
-                                                required>
-
-                                            <option value="" selected disabled>
-                                                Selecione seu estado brasileiro
-                                            </option>
-                                            <option value="AC">AC</option>
-                                            <option value="AL">AL</option>
-                                            <option value="AP">AP</option>
-                                            <option value="AM">AM</option>
-                                            <option value="BA">BA</option>
-                                            <option value="CE">CE</option>
-                                            <option value="DF">DF</option>
-                                            <option value="ES">ES</option>
-                                            <option value="GO">GO</option>
-                                            <option value="MA">MA</option>
-                                            <option value="MT">MT</option>
-                                            <option value="MS">MS</option>
-                                            <option value="MG">MG</option>
-                                            <option value="PA">PA</option>
-                                            <option value="PB">PB</option>
-                                            <option value="PR">PR</option>
-                                            <option value="PE">PE</option>
-                                            <option value="PI">PI</option>
-                                            <option value="RJ">RJ</option>
-                                            <option value="RN">RN</option>
-                                            <option value="RS">RS</option>
-                                            <option value="RO">RO</option>
-                                            <option value="RR">RR</option>
-                                            <option value="SC">SC</option>
-                                            <option value="SP">SP</option>
-                                            <option value="SE">SE</option>
-                                            <option value="TO">TO</option>
-
-                                        </select>
-
-                                        <img src="~/img/expand_icon.png"
-                                             class="input-div-type-2-block-expand"
-                                             alt="" />
-
-                                    </div>
-
-                                </div>
-
-                                <div class="input-div-type-1">
-
-                                    <div class="input-div-type-1-texts">
-                                        <label for="cidade" class="label-div-type-1">Cidade</label>
-                                        <span class="obligate-div-type-1">*</span>
-                                    </div>
-
-                                    <div class="input-div-type-1-block">
-                                        <input type="text"
-                                               id="cidade"
-                                               name="cidade"
-                                               class="input-div-type-1-block-insert"
-                                               placeholder="Digite o nome da sua cidade"
-                                               required />
-                                    </div>
-
-                                </div>
-
-                                <div class="input-div-type-1">
-
-                                    <div class="input-div-type-1-texts">
-                                        <label for="bairro" class="label-div-type-1">Bairro</label>
-                                        <span class="obligate-div-type-1">*</span>
-                                    </div>
-
-                                    <div class="input-div-type-1-block">
-                                        <input type="text"
-                                               id="bairro"
-                                               name="bairro"
-                                               class="input-div-type-1-block-insert"
-                                               placeholder="Digite o nome do seu bairro"
-                                               required />
-                                    </div>
-
-                                </div>
-
-                                <button type="button"
-                                        class="confirmarEndereco-back"
-                                        onclick="voltarParaCarrinho()">
-
-                                    <img src="~/img/arrowAddress_icon.png"
-                                         class="back-address-icon" />
-
-                                    Voltar
-
-                                </button>
-
-                            </div>
-
-                            <div class="addLivro-main-form-col-part">
-
-                                <div class="input-div-type-1">
-
-                                    <div class="input-div-type-1-texts">
-                                        <label for="numero" class="label-div-type-1">Número</label>
-                                        <span class="obligate-div-type-1">*</span>
-                                    </div>
-
-                                    <div class="input-div-type-1-block">
-                                        <input type="text"
-                                               id="numero"
-                                               name="numero"
-                                               class="input-div-type-1-block-insert"
-                                               placeholder="Digite o seu número de endereço"
-                                               required />
-                                    </div>
-
-                                </div>
-
-                                <div class="input-div-type-1">
-
-                                    <div class="input-div-type-1-texts">
-                                        <label for="logradouro" class="label-div-type-1">Logradouro</label>
-                                        <span class="obligate-div-type-1">*</span>
-                                    </div>
-
-                                    <div class="input-div-type-1-block">
-                                        <input type="text"
-                                               id="logradouro"
-                                               name="logradouro"
-                                               class="input-div-type-1-block-insert"
-                                               placeholder="Digite o nome do seu logradouro"
-                                               required />
-                                    </div>
-
-                                </div>
-
-                                <div class="input-div-type-1">
-
-                                    <div class="input-div-type-1-texts">
-                                        <label for="complemento" class="label-div-type-1">
-                                            Complemento do endereço
-                                        </label>
-                                    </div>
-
-                                    <div class="input-div-type-1-block-long">
-                                        <textarea id="complemento"
-                                                  name="complemento"
-                                                  class="input-div-type-1-block-insertLong"
-                                                  rows="6"
-                                                  placeholder="Deixe aqui algo importante do seu endereço que não pedimos acima..."></textarea>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="addLivro-main-form-footer">
-
-                            <button type="button"
-                                    class="addLivro-main-form-footer-registrar"
-                                    onclick="irParaPagamento()">
-
-                                <img src="~/img/correct_icon.png"
-                                     alt="✓"
-                                     class="confirmarEndereco-check" />
-
-                                <h2 class="addLivro-main-form-footer-registrar-title">
-                                    ENDEREÇO CORRETO
-                                </h2>
-
-                            </button>
-
-                            <button type="button"
-                                    class="addLivro-main-form-footer-cancelar"
-                                    onclick="voltarParaCarrinho()">
-
-                                <img src="~/img/closeAddress_icon.png"
-                                     alt="×"
-                                     class="confirmarEndereco-cancel-icon" />
-
-                                <h3 class="addLivro-main-form-footer-cancelar-text">
-                                    CANCELAR
-                                </h3>
-
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </section>
-
-            </main>
-
-        </section>
-
-        <section class="checkout-etapa" id="etapaPagamento">
-
-            <main class="compra-main">
-
-                <section class="compra-main-pagamento">
-
-                    <div class="compra-main-pagamento-header">
-                        <h1>Pagamento</h1>
-                        <p>Escolha a forma de pagamento</p>
-                    </div>
-
-                    <div class="compra-main-pagamento-formas">
-
-                        <label class="compra-main-pagamento-formas-item">
-                            <input type="radio" name="formaPagamento" value="debito">
-                            <img src="~/img/debito_icon.png" alt="Débito">
-                            <span>Débito</span>
-                        </label>
-
-                        <label class="compra-main-pagamento-formas-item">
-                            <input type="radio" name="formaPagamento" value="credito">
-                            <img src="~/img/credito_icon.png" alt="Crédito">
-                            <span>Crédito</span>
-                        </label>
-
-                        <label class="compra-main-pagamento-formas-item">
-                            <input type="radio" name="formaPagamento" value="pix">
-                            <img src="~/img/pix_icon.png" alt="Pix">
-                            <span>Pix</span>
-                        </label>
-
-                        <label class="compra-main-pagamento-formas-item">
-                            <input type="radio" name="formaPagamento" value="outros">
-                            <img src="~/img/outros_icon.png" alt="Outros">
-                            <span>Outros</span>
-                        </label>
-
-                    </div>
-
-                    <form class="compra-main-pagamento-form" id="formPagamento">
-
-                        <div class="compra-main-pagamento-form-cartao">
-
-                            <label for="numeroCartao">Número do cartão</label>
-
-                            <div class="compra-main-pagamento-form-input">
-                                <input type="text"
-                                       id="numeroCartao"
-                                       placeholder="Digite o número do cartão...">
-
-                                <img src="~/img/credito_icon.png" alt="Ícone do cartão">
-                            </div>
-
-                        </div>
-
-                        <div class="compra-main-pagamento-form-dados">
-
-                            <div class="compra-main-pagamento-form-nome">
-                                <label for="nomeCartao">Nome do cartão</label>
-                                <input type="text" id="nomeCartao" placeholder="Nome do cartão...">
-                            </div>
-
-                            <div class="compra-main-pagamento-form-validade">
-                                <label for="validadeCartao">Validade</label>
-                                <input type="text" id="validadeCartao" placeholder="MM/AA">
-                            </div>
-
-                            <div class="compra-main-pagamento-form-cvv">
-                                <label for="cvvCartao">CVV</label>
-
-                                <div class="compra-main-pagamento-form-cvv-input">
-                                    <input type="text" id="cvvCartao" placeholder="3-4 dígitos">
-
-                                    <img src="~/img/cvv_icon.png"
-                                         title="Código de segurança do cartão"
-                                         alt="Ajuda sobre o CVV">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="compra-main-pagamento-form-parcelamento">
-
-                            <label for="parcelamento">Parcelamento</label>
-
-                            <select id="parcelamento">
-                                <option value="1">1x sem juros</option>
-                                <option value="2">2x sem juros</option>
-                                <option value="3">3x sem juros</option>
-                                <option value="4">4x sem juros</option>
-                                <option value="5">5x sem juros</option>
-                            </select>
-
-                        </div>
-
-                    </form>
-
-                    <div class="compra-main-pagamento-protecao">
-
-                        <img src="~/img/seguranca_icon.png" alt="Proteção">
-
-                        <div>
-                            <h3>DADOS PROTEGIDOS</h3>
-                            <p>Seus dados estão protegidos por criptografia</p>
-                        </div>
-
-                    </div>
-
-                    <div class="compra-main-pagamento-footer">
-
-                        <button type="button"
-                                class="compra-main-pagamento-voltar"
-                                onclick="voltarParaEndereco()">
-
-                            <span>←</span>
-                            Voltar
-
-                        </button>
-
-                        <button type="button"
-                                class="compra-main-pagamento-confirmar"
-                                onclick="confirmarPagamento()">
-
-                            <img src="~/img/pagar_icon.png" alt="">
-                            CONFIRMAR PAGAMENTO
-
-                        </button>
-
-                    </div>
-
-                </section>
-
-                <section class="compra-main-resumo">
-
-                    <h2>Resumo da Compra</h2>
-
-                    <div class="compra-main-resumo-frete">
-
-                        <p><strong>Frete: grátis</strong></p>
-
-                        <div class="compra-main-resumo-entrega">
-                            <label for="tipoEntrega">Entrega:</label>
-
-                            <select id="tipoEntrega">
-                                <option value="">Selecione o tipo de entrega</option>
-                                <option value="normal">Entrega no endereço</option>
-                                <option value="expressa">Pegar na loja</option>
-                            </select>
-                        </div>
-
-                        <div class="compra-main-resumo-datas">
-                            <span>Datas possíveis de entrega:</span>
-                            <p>De segunda-feira até quinta-feira</p>
-                        </div>
-
-                    </div>
-
-                    <div class="compra-main-resumo-livros">
-
-                        @foreach (var item in Model)
-                        {
-                            <div class="compra-main-resumo-livros-item">
-
-                                <img src="@item.arquivoImagem" alt="@item.livro.Nome">
-
-                                <div class="compra-main-resumo-livros-item-info">
-                                    <h3>@item.livro.Nome</h3>
-                                    <p>@item.livro.Autor</p>
-                                </div>
-
-                                <span class="compra-main-resumo-livros-item-quantidade">
-                                    x@(item.quantidadeCarrinho)
-                                </span>
-
-                                <span class="compra-main-resumo-livros-item-preco">
-                                    @if (item.livro.PromocaoPorcentagem > 0)
-                                    {
-                                        @((Math.Round(decimal.Parse(item.livro.Preco, new CultureInfo("pt-BR")) * (1 - item.livro.PromocaoPorcentagem / 100m), 2) * item.quantidadeCarrinho).ToString("C", new CultureInfo("pt-BR")))
-                                    }
-                                    else
-                                    {
-                                        @((Convert.ToDecimal(item.livro.Preco) * item.quantidadeCarrinho).ToString("C", new CultureInfo("pt-BR")))
-                                    }
-                                </span>
-
-                            </div>
-                        }
-
-                    </div>
-
-                    <div class="compra-main-resumo-total">
-
-                        <span>Total:</span>
-                        <strong>@totalCompra.ToString("C", new CultureInfo("pt-BR"))</strong>
-
-                    </div>
-
-                </section>
-
-            </main>
-
-        </section>
+        </div>
 
     </div>
 
 </main>
-<script>
-    let etapaAtual = 0;
-
-    const etapasCheckout = [
-        document.getElementById("etapaCarrinho"),
-        document.getElementById("etapaEndereco"),
-        document.getElementById("etapaPagamento")
-    ];
-
-    const textosEtapas = document.querySelectorAll(".main-carrinho-header-item-text");
-
-    function mostrarEtapa(numero) {
-        etapasCheckout.forEach((etapa, index) => {
-            etapa.classList.toggle("checkout-etapa-ativa", index === numero);
-        });
-
-        textosEtapas.forEach((texto, index) => {
-            texto.classList.toggle("carrinhos-active", index === numero);
-            texto.classList.toggle("carrinhos-inactive", index !== numero);
-        });
-
-        etapaAtual = numero;
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }
-
-    function irParaEndereco() {
-        mostrarEtapa(1);
-    }
-
-    function voltarParaCarrinho() {
-        mostrarEtapa(0);
-    }
-
-    function irParaPagamento() {
-        const formEndereco = document.getElementById("formEndereco");
-
-        if (!formEndereco.reportValidity()) {
-            return;
-        }
-
-        mostrarEtapa(2);
-    }
-
-    function voltarParaEndereco() {
-        mostrarEtapa(1);
-    }
-
-    function confirmarPagamento() {
-        const formaPagamento = document.querySelector(
-            'input[name="formaPagamento"]:checked'
-        );
-
-        if (!formaPagamento) {
-            alert("Selecione uma forma de pagamento.");
-            return;
-        }
-
-        alert("Forma de pagamento selecionada: " + formaPagamento.value);
-    }
-
-    document.querySelectorAll(".input-div-type-2-block-expand").forEach(img => {
-        let ativo = false;
-
-        img.addEventListener("click", function() {
-            const container = this.closest(".input-div-type-5-block");
-            const select = container.querySelector(".input-div-type-5-block-insert");
-
-            if (!ativo) {
-                select.showPicker();
-                ativo = true;
-            } else {
-                select.blur();
-                ativo = false;
-            }
-        });
-    });
-</script>

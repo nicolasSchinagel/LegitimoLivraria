@@ -118,7 +118,7 @@ namespace LivrariaLegitimo.Repository
                     cliente.IdCli = (Int32)(dr["idCli"]);
                     cliente.Nome = (string)(dr["Nome"]);
                     cliente.Senha = (string)(dr["Senha"]);
-                    cliente.Telefone = (string)(dr["NumTel"]);
+                    cliente.Telefone = dr["NumTel"].ToString();
                     cliente.Email = (string)(dr["Email"]);
                     cliente.Cep = (string)(dr["Cep"]);
                     cliente.NumeroEndereco = (Int32)(dr["NumeroEndereco"]);

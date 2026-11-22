@@ -1,0 +1,446 @@
+﻿
+@using System.Globalization
+@model LivrariaLegitimo.ViewModels.CompraViewModel
+
+@{
+    decimal totalCompra = 0;
+
+    foreach (var item in Model.Carrinho)
+    {
+        decimal preco = decimal.Parse(item.livro.Preco, new CultureInfo("pt-BR"));
+
+        if (item.livro.PromocaoPorcentagem > 0)
+        {
+            preco = Math.Round(
+                preco * (1 - item.livro.PromocaoPorcentagem / 100m),
+                2
+            );
+        }
+
+        totalCompra += preco * item.quantidadeCarrinho;
+    }
+}
+
+<link rel="stylesheet" href="~/css/comprar.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/checkout.css" asp-append-version="true" />
+
+<main class="main-carrinho">
+
+    <section class="main-carrinho-header">
+
+        <div class="main-carrinho-header-item">
+            <img src="~/img/KartD.png" class="main-carrinho-header-item-icon" />
+            <h2 class="main-carrinho-header-item-text carrinhos-inactive">1.Carrinho</h2>
+        </div>
+
+        <div class="main-carrinho-header-item">
+            <img src="~/img/LocalD.png" class="main-carrinho-header-item-icon" />
+            <h2 class="main-carrinho-header-item-text carrinhos-inactive">2.Confirmar endereço</h2>
+        </div>
+
+        <div class="main-carrinho-header-item">
+            <img src="~/img/BuyA.png" class="main-carrinho-header-item-icon" />
+            <h2 class="main-carrinho-header-item-text carrinhos-active">3.Confirmar pagamento</h2>
+        </div>
+
+    </section>
+
+    @if (ViewBag.Erro != null)
+    {
+        <p class="checkout-mensagem-erro">@ViewBag.Erro</p>
+    }
+
+    @if (ViewBag.Sucesso != null)
+    {
+        <p class="checkout-mensagem-sucesso">@ViewBag.Sucesso</p>
+    }
+
+    <main class="compra-main">
+
+        <section class="compra-main-pagamento">
+
+            <div class="compra-main-pagamento-header">
+                <h1>Pagamento</h1>
+                <p>Escolha a forma de pagamento</p>
+            </div>
+
+            <form class="compra-main-pagamento-form"
+                  id="formPagamento"
+                  asp-controller="Carrinho"
+                  asp-action="Comprar"
+                  method="post">
+
+                @for (int i = 0; i < Model.Carrinho.Count; i++)
+                {
+                    <input type="hidden"
+                           name="Compra.Itens[@i].CodBarras"
+                           value="@Model.Carrinho[i].livro.CodigoBarras" />
+
+                    <input type="hidden"
+                           name="Compra.Itens[@i].QtdItem"
+                           value="@Model.Carrinho[i].quantidadeCarrinho" />
+                }
+
+                <div class="compra-main-pagamento-formas">
+
+                    <label class="compra-main-pagamento-formas-item">
+                        <input type="radio" name="Compra.FormaPagamento" value="débito">
+                        <img src="~/img/debito_icon.png" alt="Débito">
+                        <span>Débito</span>
+                    </label>
+
+                    <label class="compra-main-pagamento-formas-item">
+                        <input type="radio" name="Compra.FormaPagamento" value="crédito">
+                        <img src="~/img/credito_icon.png" alt="Crédito">
+                        <span>Crédito</span>
+                    </label>
+
+                    <label class="compra-main-pagamento-formas-item">
+                        <input type="radio" name="Compra.FormaPagamento" value="pix">
+                        <img src="~/img/pix_icon.png" alt="Pix">
+                        <span>Pix</span>
+                    </label>
+
+                    <label class="compra-main-pagamento-formas-item">
+                        <input type="radio" name="Compra.FormaPagamento" value="Outro">
+                        <img src="~/img/outros_icon.png" alt="Outros">
+                        <span>Outros</span>
+                    </label>
+
+                </div>
+
+                <div class="compra-main-pagamento-form-cartao" id="camposCartao">
+
+                    <label for="numeroCartao">Número do cartão</label>
+
+                    <div class="compra-main-pagamento-form-input">
+                        <input type="text"
+                               id="numeroCartao"
+                               name="Compra.NumeroCartao"
+                               placeholder="Digite o número do cartão..."
+                               maxlength="19">
+
+                        <img src="~/img/credito_icon.png" alt="Ícone do cartão">
+                    </div>
+
+                </div>
+
+                <div class="compra-main-pagamento-form-dados" id="dadosCartao">
+
+                    <div class="compra-main-pagamento-form-nome">
+                        <label for="nomeCartao">Nome do cartão</label>
+                        <input type="text"
+                               id="nomeCartao"
+                               name="Compra.NomeCartao"
+                               placeholder="Nome do cartão...">
+                    </div>
+
+                    <div class="compra-main-pagamento-form-validade">
+                        <label for="validadeCartao">Validade</label>
+                        <input type="text"
+                               id="validadeCartao"
+                               name="Compra.ValidadeCartao"
+                               placeholder="MM/AA"
+                               maxlength="5">
+                    </div>
+
+                    <div class="compra-main-pagamento-form-cvv">
+                        <label for="cvvCartao">CVV</label>
+
+                        <div class="compra-main-pagamento-form-cvv-input">
+                            <input type="text"
+                                   id="cvvCartao"
+                                   name="Compra.Cvv"
+                                   placeholder="3-4 dígitos"
+                                   maxlength="4">
+
+                            <img src="~/img/cvv_icon.png"
+                                 title="Código de segurança do cartão"
+                                 alt="Ajuda sobre o CVV">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="compra-main-pagamento-form-parcelamento" id="campoParcelamento">
+
+                    <label for="parcelamento">Parcelamento</label>
+
+                    <select id="parcelamento" name="Compra.NumeroParcelamentos">
+                        <option value="1">1x sem juros</option>
+                        <option value="2">2x sem juros</option>
+                        <option value="3">3x sem juros</option>
+                        <option value="4">4x sem juros</option>
+                        <option value="5">5x sem juros</option>
+                    </select>
+
+                </div>
+
+                <div class="compra-main-resumo-entrega">
+
+                    <label for="tipoEntrega">Entrega:</label>
+
+                    <select id="tipoEntrega" name="Compra.TipoEntrega">
+                        <option value="">Selecione o tipo de entrega</option>
+                        <option value="normal">Entrega no endereço</option>
+                        <option value="expressa">Pegar na loja</option>
+                    </select>
+
+                </div>
+
+                <div class="compra-main-pagamento-protecao">
+
+                    <img src="~/img/seguranca_icon.png" alt="Proteção">
+
+                    <div>
+                        <h3>DADOS PROTEGIDOS</h3>
+                        <p>Seus dados estão protegidos por criptografia</p>
+                    </div>
+
+                </div>
+
+                <div class="compra-main-pagamento-footer">
+
+                    <a asp-controller="Carrinho"
+                       asp-action="EditarEndereco"
+                       class="compra-main-pagamento-voltar">
+
+                        <span>←</span>
+                        Voltar
+
+                    </a>
+
+                    <button type="submit"
+                            class="compra-main-pagamento-confirmar"
+                            onclick="return confirmarPagamento()">
+
+                        <img src="~/img/pagar_icon.png" alt="">
+                        CONFIRMAR PAGAMENTO
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <section class="compra-main-resumo">
+
+            <h2>Resumo da Compra</h2>
+
+            <div class="compra-main-resumo-frete">
+
+                <p><strong>Frete: grátis</strong></p>
+
+                <div class="compra-main-resumo-datas">
+                    <span>Datas possíveis de entrega:</span>
+                    <p>De segunda-feira até quinta-feira</p>
+                </div>
+
+            </div>
+
+            <div class="compra-main-resumo-livros">
+
+                @foreach (var item in Model.Carrinho)
+                {
+                    <div class="compra-main-resumo-livros-item">
+
+                        <img src="@item.arquivoImagem" alt="@item.livro.Nome">
+
+                        <div class="compra-main-resumo-livros-item-info">
+                            <h3>@item.livro.Nome</h3>
+                            <p>@item.livro.Autor</p>
+                        </div>
+
+                        <span class="compra-main-resumo-livros-item-quantidade">
+                            x@(item.quantidadeCarrinho)
+                        </span>
+
+                        <span class="compra-main-resumo-livros-item-preco">
+                            @((Math.Round(decimal.Parse(item.livro.Preco, new CultureInfo("pt-BR")) * (1 - item.livro.PromocaoPorcentagem / 100m), 2) * item.quantidadeCarrinho).ToString("C", new CultureInfo("pt-BR")))
+                        </span>
+
+                    </div>
+                }
+
+            </div>
+
+            <div class="compra-main-resumo-total">
+
+                <span>Total:</span>
+                <strong>@totalCompra.ToString("C", new CultureInfo("pt-BR"))</strong>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</main>
+
+<script>
+
+    // FORMAS DE PAGAMENTO
+
+    const formasPagamento = document.querySelectorAll('input[name="Compra.FormaPagamento"]');
+
+    const camposCartao = document.getElementById("camposCartao");
+    const dadosCartao = document.getElementById("dadosCartao");
+    const campoParcelamento = document.getElementById("campoParcelamento");
+
+    const numeroCartao = document.getElementById("numeroCartao");
+    const nomeCartao = document.getElementById("nomeCartao");
+    const validadeCartao = document.getElementById("validadeCartao");
+    const cvvCartao = document.getElementById("cvvCartao");
+    const parcelamento = document.getElementById("parcelamento");
+
+    function atualizarFormaPagamento() {
+
+        const selecionado = document.querySelector('input[name="Compra.FormaPagamento"]:checked');
+
+        const forma = selecionado ? selecionado.value : "";
+
+        const precisaCartao = forma === "débito" || forma === "crédito";
+        const precisaParcelamento = forma === "crédito";
+
+        camposCartao.style.display = precisaCartao ? "" : "none";
+        dadosCartao.style.display = precisaCartao ? "" : "none";
+        campoParcelamento.style.display = precisaParcelamento ? "" : "none";
+
+        numeroCartao.required = precisaCartao;
+        nomeCartao.required = precisaCartao;
+        validadeCartao.required = precisaCartao;
+        cvvCartao.required = precisaCartao;
+        parcelamento.required = precisaParcelamento;
+
+        if (!precisaCartao) {
+
+            numeroCartao.value = "";
+            nomeCartao.value = "";
+            validadeCartao.value = "";
+            cvvCartao.value = "";
+
+        }
+
+        if (!precisaParcelamento) {
+
+            parcelamento.value = "1";
+
+        }
+
+    }
+
+    formasPagamento.forEach(forma => {
+
+        forma.addEventListener("change", atualizarFormaPagamento);
+
+    });
+
+    atualizarFormaPagamento();
+
+    // FORMATAÇÃO DO CARTÃO
+
+    numeroCartao.addEventListener("input", function() {
+
+        let valor = this.value.replace(/\D/g, "").substring(0, 16);
+
+        valor = valor.replace(/(\d{4})(?=\d)/g, "$1 ");
+
+        this.value = valor;
+
+    });
+
+    // FORMATAÇÃO DA VALIDADE
+
+    validadeCartao.addEventListener("input", function() {
+
+        let valor = this.value.replace(/\D/g, "").substring(0, 4);
+
+        if (valor.length >= 3) {
+
+            valor = valor.substring(0, 2) + "/" + valor.substring(2);
+
+        }
+
+        this.value = valor;
+
+    });
+
+    // CVV SOMENTE NÚMEROS
+
+    cvvCartao.addEventListener("input", function() {
+
+        this.value = this.value.replace(/\D/g, "").substring(0, 4);
+
+    });
+
+    // VALIDAÇÃO DO PAGAMENTO
+
+    function confirmarPagamento() {
+
+        const formaPagamento = document.querySelector('input[name="Compra.FormaPagamento"]:checked');
+
+        if (!formaPagamento) {
+
+            alert("Selecione uma forma de pagamento.");
+            return false;
+
+        }
+
+        const forma = formaPagamento.value;
+
+        if (forma === "débito" || forma === "crédito") {
+
+            if (!numeroCartao.value.trim() ||
+                !nomeCartao.value.trim() ||
+                !validadeCartao.value.trim() ||
+                !cvvCartao.value.trim()) {
+
+                alert("Preencha todos os dados do cartão.");
+                return false;
+
+            }
+
+            if (numeroCartao.value.replace(/\D/g, "").length < 13) {
+
+                alert("Número do cartão inválido.");
+                return false;
+
+            }
+
+            if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(validadeCartao.value)) {
+
+                alert("A validade deve estar no formato MM/AA.");
+                return false;
+
+            }
+
+            if (cvvCartao.value.length < 3) {
+
+                alert("CVV inválido.");
+                return false;
+
+            }
+
+        }
+
+        if (forma === "crédito" && !parcelamento.value) {
+
+            alert("Selecione o parcelamento.");
+            return false;
+
+        }
+
+        if (!document.getElementById("tipoEntrega").value) {
+
+            alert("Selecione o tipo de entrega.");
+            return false;
+
+        }
+
+        return true;
+
+    }
+
+</script>

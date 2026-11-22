@@ -6,6 +6,6 @@ namespace LivrariaLegitimo.Repository.Contract
     {
         void Cadastrar(ClientePJ clientePJ);
 
-        int ObterCNPJ(int Idcli);
+        Int64 ObterCNPJ(int idCli);
     }
 }

@@ -24,50 +24,81 @@ namespace LivrariaLegitimo.Controllers
             _loginFuncionario = loginFuncionario;
         }
 
+
         [HttpGet]
         public IActionResult Carrinho()
         {
             CompraViewModel model = new CompraViewModel
             {
                 Carrinho = _cookieCarrinhoCompra.Consultar(),
-                ObterCliente = _clienteRepository.ObterCliente(_loginCliente.GetCliente().IdCli)
             };
+
             return View(model);
         }
 
-        [HttpPost]
-        public IActionResult Carrinho(CompraViewModel model)
+
+        [HttpGet]
+        public IActionResult EditarEndereco()
         {
-            if (model.EditarEndereco.CEP != null)
+            CompraViewModel model = new CompraViewModel
             {
-                if (string.IsNullOrWhiteSpace(model.EditarEndereco.CEP) || string.IsNullOrWhiteSpace(model.EditarEndereco.logradouro) || string.IsNullOrWhiteSpace(model.EditarEndereco.bairro) || string.IsNullOrWhiteSpace(model.EditarEndereco.cidade) || string.IsNullOrWhiteSpace(model.EditarEndereco.estado))
-                {
-                    ViewBag.Erro = "Preencha todos os campos obrigatórios do endereço.";
+                Carrinho = _cookieCarrinhoCompra.Consultar(),
+                ObterCliente = _clienteRepository.ObterCliente(_loginCliente.GetCliente().IdCli)
+            };
 
-                    model.Carrinho = _cookieCarrinhoCompra.Consultar();
-                    model.ObterCliente = _clienteRepository.ObterCliente(_loginCliente.GetCliente().IdCli);
+            return View(model);
+        }
 
-                    return View("Carrinho", model);
-                }
 
-                _clienteRepository.AtualizarEndereco(
-                    model.EditarEndereco.CEP,
-                    model.EditarEndereco.logradouro,
-                    model.EditarEndereco.bairro,
-                    model.EditarEndereco.cidade,
-                    model.EditarEndereco.estado,
-                    model.EditarEndereco.numeroEndereco,
-                    model.EditarEndereco.complementoEndereco
-                );
-
-                ViewBag.Sucesso = "Endereço atualizado com sucesso!";
+        [HttpPost]
+        public IActionResult EditarEndereco(CompraViewModel model)
+        {
+            if (string.IsNullOrWhiteSpace(model.EditarEndereco.CEP) ||
+                string.IsNullOrWhiteSpace(model.EditarEndereco.logradouro) ||
+                string.IsNullOrWhiteSpace(model.EditarEndereco.bairro) ||
+                string.IsNullOrWhiteSpace(model.EditarEndereco.cidade) ||
+                string.IsNullOrWhiteSpace(model.EditarEndereco.estado))
+            {
+                ViewBag.Erro = "Preencha todos os campos obrigatórios do endereço.";
 
                 model.Carrinho = _cookieCarrinhoCompra.Consultar();
                 model.ObterCliente = _clienteRepository.ObterCliente(_loginCliente.GetCliente().IdCli);
 
-                return View("Carrinho", model);
+                return View("EditarEndereco", model);
             }
 
+            _clienteRepository.AtualizarEndereco(
+                model.EditarEndereco.CEP,
+                model.EditarEndereco.logradouro,
+                model.EditarEndereco.bairro,
+                model.EditarEndereco.cidade,
+                model.EditarEndereco.estado,
+                model.EditarEndereco.numeroEndereco,
+                model.EditarEndereco.complementoEndereco
+            );
+
+            TempData["Sucesso"] = "Endereço atualizado com sucesso!";
+
+            return RedirectToAction("Comprar");
+        }
+
+
+        [HttpGet]
+        public IActionResult Comprar()
+        {
+            CompraViewModel model = new CompraViewModel
+            {
+                Carrinho = _cookieCarrinhoCompra.Consultar(),
+                ObterCliente = _clienteRepository.ObterCliente(_loginCliente.GetCliente().IdCli)
+            };
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public IActionResult Comprar(CompraViewModel model)
+        {
             if (model.Compra == null || model.Compra.Itens == null || !model.Compra.Itens.Any())
             {
                 ViewBag.Erro = "Não foi possível finalizar a compra. O carrinho está vazio.";
@@ -75,26 +106,10 @@ namespace LivrariaLegitimo.Controllers
                 model.Carrinho = _cookieCarrinhoCompra.Consultar();
                 model.ObterCliente = _clienteRepository.ObterCliente(_loginCliente.GetCliente().IdCli);
 
-                return View("Carrinho", model);
+                return View("Comprar", model);
             }
 
             _vendaRepository.Cadastrar(model.Compra);
-
-            TempData["Sucesso"] = "Compra realizada com sucesso!";
-
-            return RedirectToAction("Carrinho");
-        }
-
-        [HttpPost]
-        public IActionResult Carrinho(Venda venda)
-        {
-            if (venda == null || venda.Itens == null || !venda.Itens.Any())
-            {
-                TempData["Erro"] = "Não foi possível finalizar a compra. O carrinho está vazio.";
-                return RedirectToAction("Carrinho");
-            }
-
-            _vendaRepository.Cadastrar(venda);
 
             TempData["Sucesso"] = "Compra realizada com sucesso!";
 

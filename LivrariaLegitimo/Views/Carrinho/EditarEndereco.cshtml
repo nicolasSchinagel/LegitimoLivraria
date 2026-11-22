@@ -1,0 +1,324 @@
+﻿@model LivrariaLegitimo.ViewModels.CompraViewModel
+
+<link rel="stylesheet" href="~/css/confEndereco.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/adicionarLivro.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/checkout.css" asp-append-version="true" />
+
+<main class="main-carrinho">
+
+    <section class="main-carrinho-header">
+
+        <div class="main-carrinho-header-item">
+            <img src="~/img/KartD.png" class="main-carrinho-header-item-icon" />
+            <h2 class="main-carrinho-header-item-text carrinhos-inactive">1.Carrinho</h2>
+        </div>
+
+        <div class="main-carrinho-header-item">
+            <img src="~/img/LocalA.png" class="main-carrinho-header-item-icon" />
+            <h2 class="main-carrinho-header-item-text carrinhos-active">2.Confirmar endereço</h2>
+        </div>
+
+        <div class="main-carrinho-header-item">
+            <img src="~/img/BuyD.png" class="main-carrinho-header-item-icon" />
+            <h2 class="main-carrinho-header-item-text carrinhos-inactive">3.Confirmar pagamento</h2>
+        </div>
+
+    </section>
+
+    @if (ViewBag.Erro != null)
+    {
+        <p class="checkout-mensagem-erro">@ViewBag.Erro</p>
+    }
+
+    @if (ViewBag.Sucesso != null)
+    {
+        <p class="checkout-mensagem-sucesso">@ViewBag.Sucesso</p>
+    }
+
+    <main class="addLivro-main">
+
+        <section class="addLivro-main-form">
+
+            <header class="confirmarEndereco-header">
+
+                <div class="confirmarEndereco-header-title">
+
+                    <img src="~/img/Mapping_icon.png"
+                         class="confirmarEndereco-header-icon"
+                         alt="" />
+
+                    <h1>Antes de tudo, confirme o seu endereço</h1>
+
+                </div>
+
+                <p class="confirmarEndereco-header-subtitle">
+                    Ajuste-o caso não esteja correto
+                </p>
+
+            </header>
+
+            <form class="confirmarEndereco-content"
+                  id="formEndereco"
+                  asp-controller="Carrinho"
+                  asp-action="EditarEndereco"
+                  method="post">
+
+                <div class="confirmarEndereco-columns">
+
+                    <div class="addLivro-main-form-col-part">
+
+                        <div class="input-div-type-1">
+
+                            <div class="input-div-type-1-texts">
+                                <label for="cep" class="label-div-type-1">CEP</label>
+                                <span class="obligate-div-type-1">*</span>
+                            </div>
+
+                            <div class="input-div-type-1-block">
+                                <input type="text"
+                                       id="cep"
+                                       name="EditarEndereco.CEP"
+                                       class="input-div-type-1-block-insert"
+                                       placeholder="Digite seu CEP"
+                                       maxlength="8"
+                                       value="@Model.ObterCliente.Cep"
+                                       required />
+                            </div>
+
+                        </div>
+
+                        <div class="input-div-type-1">
+
+                            <div class="input-div-type-1-texts">
+                                <label for="uf" class="label-div-type-1">UF</label>
+                                <span class="obligate-div-type-1">*</span>
+                            </div>
+
+                            <div class="input-div-type-5-block">
+
+                                <select id="uf"
+                                        name="EditarEndereco.estado"
+                                        class="input-div-type-5-block-insert"
+                                        required>
+
+                                    <option value="" disabled>Selecione seu estado brasileiro</option>
+                                    <option value="AC" selected="@(Model.ObterCliente.Estado == "AC")">AC</option>
+                                    <option value="AL" selected="@(Model.ObterCliente.Estado == "AL")">AL</option>
+                                    <option value="AP" selected="@(Model.ObterCliente.Estado == "AP")">AP</option>
+                                    <option value="AM" selected="@(Model.ObterCliente.Estado == "AM")">AM</option>
+                                    <option value="BA" selected="@(Model.ObterCliente.Estado == "BA")">BA</option>
+                                    <option value="CE" selected="@(Model.ObterCliente.Estado == "CE")">CE</option>
+                                    <option value="DF" selected="@(Model.ObterCliente.Estado == "DF")">DF</option>
+                                    <option value="ES" selected="@(Model.ObterCliente.Estado == "ES")">ES</option>
+                                    <option value="GO" selected="@(Model.ObterCliente.Estado == "GO")">GO</option>
+                                    <option value="MA" selected="@(Model.ObterCliente.Estado == "MA")">MA</option>
+                                    <option value="MT" selected="@(Model.ObterCliente.Estado == "MT")">MT</option>
+                                    <option value="MS" selected="@(Model.ObterCliente.Estado == "MS")">MS</option>
+                                    <option value="MG" selected="@(Model.ObterCliente.Estado == "MG")">MG</option>
+                                    <option value="PA" selected="@(Model.ObterCliente.Estado == "PA")">PA</option>
+                                    <option value="PB" selected="@(Model.ObterCliente.Estado == "PB")">PB</option>
+                                    <option value="PR" selected="@(Model.ObterCliente.Estado == "PR")">PR</option>
+                                    <option value="PE" selected="@(Model.ObterCliente.Estado == "PE")">PE</option>
+                                    <option value="PI" selected="@(Model.ObterCliente.Estado == "PI")">PI</option>
+                                    <option value="RJ" selected="@(Model.ObterCliente.Estado == "RJ")">RJ</option>
+                                    <option value="RN" selected="@(Model.ObterCliente.Estado == "RN")">RN</option>
+                                    <option value="RS" selected="@(Model.ObterCliente.Estado == "RS")">RS</option>
+                                    <option value="RO" selected="@(Model.ObterCliente.Estado == "RO")">RO</option>
+                                    <option value="RR" selected="@(Model.ObterCliente.Estado == "RR")">RR</option>
+                                    <option value="SC" selected="@(Model.ObterCliente.Estado == "SC")">SC</option>
+                                    <option value="SP" selected="@(Model.ObterCliente.Estado == "SP")">SP</option>
+                                    <option value="SE" selected="@(Model.ObterCliente.Estado == "SE")">SE</option>
+                                    <option value="TO" selected="@(Model.ObterCliente.Estado == "TO")">TO</option>
+
+                                </select>
+
+                                <img src="~/img/expand_icon.png"
+                                     class="input-div-type-2-block-expand"
+                                     alt="" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="input-div-type-1">
+
+                            <div class="input-div-type-1-texts">
+                                <label for="cidade" class="label-div-type-1">Cidade</label>
+                                <span class="obligate-div-type-1">*</span>
+                            </div>
+
+                            <div class="input-div-type-1-block">
+                                <input type="text"
+                                       id="cidade"
+                                       name="EditarEndereco.cidade"
+                                       class="input-div-type-1-block-insert"
+                                       placeholder="Digite o nome da sua cidade"
+                                       value="@Model.ObterCliente.Cidade"
+                                       required />
+                            </div>
+
+                        </div>
+
+                        <div class="input-div-type-1">
+
+                            <div class="input-div-type-1-texts">
+                                <label for="bairro" class="label-div-type-1">Bairro</label>
+                                <span class="obligate-div-type-1">*</span>
+                            </div>
+
+                            <div class="input-div-type-1-block">
+                                <input type="text"
+                                       id="bairro"
+                                       name="EditarEndereco.bairro"
+                                       class="input-div-type-1-block-insert"
+                                       placeholder="Digite o nome do seu bairro"
+                                       value="@Model.ObterCliente.Bairro"
+                                       required />
+                            </div>
+
+                        </div>
+
+                        <a asp-controller="Carrinho"
+                           asp-action="Carrinho"
+                           class="confirmarEndereco-back">
+
+                            <img src="~/img/arrowAddress_icon.png"
+                                 class="back-address-icon" />
+
+                            Voltar
+
+                        </a>
+
+                    </div>
+
+                    <div class="addLivro-main-form-col-part">
+
+                        <div class="input-div-type-1">
+
+                            <div class="input-div-type-1-texts">
+                                <label for="numero" class="label-div-type-1">Número</label>
+                                <span class="obligate-div-type-1">*</span>
+                            </div>
+
+                            <div class="input-div-type-1-block">
+                                <input type="number"
+                                       id="numero"
+                                       name="EditarEndereco.numeroEndereco"
+                                       class="input-div-type-1-block-insert"
+                                       placeholder="Número do endereço"
+                                       value="@Model.ObterCliente.NumeroEndereco"
+                                       required />
+                            </div>
+
+                        </div>
+
+                        <div class="input-div-type-1">
+
+                            <div class="input-div-type-1-texts">
+                                <label for="logradouro" class="label-div-type-1">Logradouro</label>
+                                <span class="obligate-div-type-1">*</span>
+                            </div>
+
+                            <div class="input-div-type-1-block">
+                                <input type="text"
+                                       id="logradouro"
+                                       name="EditarEndereco.logradouro"
+                                       class="input-div-type-1-block-insert"
+                                       placeholder="Digite o nome do logradouro"
+                                       value="@Model.ObterCliente.Logradouro"
+                                       required />
+                            </div>
+
+                        </div>
+
+                        <div class="input-div-type-1">
+
+                            <div class="input-div-type-1-texts">
+                                <label for="complemento" class="label-div-type-1">
+                                    Complemento do endereço
+                                </label>
+                            </div>
+
+                            <div class="input-div-type-1-block-long">
+                                <textarea id="complemento"
+                                          name="EditarEndereco.complementoEndereco"
+                                          class="input-div-type-1-block-insertLong"
+                                          rows="6"
+                                          placeholder="Deixe aqui algo importante do seu endereço">@Model.ObterCliente.ComplementoEndereco</textarea>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="addLivro-main-form-footer">
+
+                    <button type="submit"
+                            class="addLivro-main-form-footer-registrar">
+
+                        <img src="~/img/correct_icon.png"
+                             alt="✓"
+                             class="confirmarEndereco-check" />
+
+                        <h2 class="addLivro-main-form-footer-registrar-title">
+                            ENDEREÇO CORRETO
+                        </h2>
+
+                    </button>
+
+                    <a asp-controller="Carrinho"
+                       asp-action="Carrinho"
+                       class="addLivro-main-form-footer-cancelar">
+
+                        <img src="~/img/closeAddress_icon.png"
+                             alt="×"
+                             class="confirmarEndereco-cancel-icon" />
+
+                        <h3 class="addLivro-main-form-footer-cancelar-text">
+                            CANCELAR
+                        </h3>
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</main>
+
+<script>
+
+    // ABERTURA DO SELECT DE ESTADO
+
+    document.querySelectorAll(".input-div-type-2-block-expand").forEach(img => {
+
+        let ativo = false;
+
+        img.addEventListener("click", function() {
+
+            const container = this.closest(".input-div-type-5-block");
+            const select = container.querySelector(".input-div-type-5-block-insert");
+
+            if (!ativo) {
+
+                select.showPicker();
+                ativo = true;
+
+            } else {
+
+                select.blur();
+                ativo = false;
+
+            }
+
+        });
+
+    });
+
+</script>

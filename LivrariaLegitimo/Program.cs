@@ -11,13 +11,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpContextAccessor();
-
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IClientePFRepository, ClientePFRepository>();
 builder.Services.AddScoped<IClientePJRepository, ClientePJRepository>();
 builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
 builder.Services.AddScoped<ILivroRepository, LivroRepository>();
 builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
+builder.Services.AddScoped<IVendaRepository, VendaRepository>();
+
+builder.Services.AddScoped<ClientePFRepository>();
+builder.Services.AddScoped<ClientePJRepository>();
+
 builder.Services.AddScoped<LivrariaLegitimo.Libraries.Sessao.Sessao>();
 builder.Services.AddScoped<LivrariaLegitimo.Libraries.Login.LoginCliente>();
 builder.Services.AddScoped<LivrariaLegitimo.Libraries.Login.LoginFuncionario>();
@@ -49,6 +53,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddScoped<LivrariaLegitimo.Cookie.Cookie>();
 builder.Services.AddScoped<LivrariaLegitimo.CarrinhoCompra.CookieCarrinhoCompra>();
 builder.Services.AddScoped<LivrariaLegitimo.Historicos.CookieHistoricoLivro>();
+
 
 
 
