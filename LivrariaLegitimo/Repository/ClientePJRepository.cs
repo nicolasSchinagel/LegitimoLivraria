@@ -44,5 +44,9 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
+        public int ObterCNPJ(int Idcli)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

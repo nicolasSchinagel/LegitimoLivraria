@@ -5,5 +5,7 @@ namespace LivrariaLegitimo.Repository.Contract
     public interface IClientePFRepository
     {
         void Cadastrar(ClientePF clientePF);
+        void ObterCPF(int IdCli);
+
     }
 }
