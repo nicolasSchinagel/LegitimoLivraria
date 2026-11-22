@@ -11,12 +11,16 @@ namespace LivrariaLegitimo.Repository
         IConfiguration _config;
         private readonly LoginCliente _loginCliente;
         private readonly LoginFuncionario _loginFuncionario;
-        public VendaRepository(LoginCliente loginCliente, LoginFuncionario loginFuncionario, IConfiguration conf)
+        private readonly ClientePFRepository _clientePFRepository;
+        private readonly ClientePJRepository _clientePJRepository;
+        public VendaRepository(LoginCliente loginCliente, LoginFuncionario loginFuncionario, ClientePFRepository clientePFRepository,ClientePJRepository clientePJRepository, IConfiguration conf)
         {
             _loginCliente = loginCliente;
             _loginFuncionario = loginFuncionario;
             _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
             _config = conf;
+            _clientePFRepository = clientePFRepository;
+            _clientePJRepository = clientePJRepository;
         }
 
         private int GerarNotaFiscal()
@@ -33,24 +37,66 @@ namespace LivrariaLegitimo.Repository
 
                 conexao.Open();
 
-                // Cadastrar venda
-                using (var cmd = new MySqlCommand(
-                    "call spCadastroVenda(@vNotaFiscal, @vCPFcliente, @vCNPJcliente, @vIdFunc, @vFormaPagamento, @vNumeroCartao, @vNomeCartao, @vValidade, @vCVV, @vNumeroParcelamentos)", conexao))
+                if (_loginCliente.GetCliente() != null)
                 {
-                    cmd.Parameters.Add("@vNotaFiscal", MySqlDbType.Int32).Value = venda.NotaFiscal;
-                    cmd.Parameters.Add("@vCPFcliente", MySqlDbType.Int64).Value = venda.CPFcliente ?? (object)DBNull.Value;
-                    cmd.Parameters.Add("@vCNPJcliente", MySqlDbType.Int64).Value = venda.CNPJcliente ?? (object)DBNull.Value;
-                    cmd.Parameters.Add("@vIdFunc", MySqlDbType.Int32).Value = funcionarioIncluso;
-                    cmd.Parameters.Add("@vFormaPagamento", MySqlDbType.VarChar).Value = venda.FormaPagamento;
-                    cmd.Parameters.Add("@vNumeroCartao", MySqlDbType.Int64).Value = venda.NumeroCartao ?? (object)DBNull.Value;
-                    cmd.Parameters.Add("@vNomeCartao", MySqlDbType.VarChar).Value = venda.NomeCartao ?? (object)DBNull.Value;
-                    cmd.Parameters.Add("@vValidade", MySqlDbType.Date).Value = venda.ValidadeCartao ?? (object)DBNull.Value;
-                    cmd.Parameters.Add("@vCVV", MySqlDbType.Int32).Value = venda.Cvv ?? (object)DBNull.Value;
-                    cmd.Parameters.Add("@vNumeroParcelamentos", MySqlDbType.Int16).Value = venda.NumeroParcelamentos;
+                    if (_clientePFRepository.ObterCPF(_loginCliente.GetCliente().IdCli) != 0) // Quando cliente for Físico
+                    {
+                        using (var cmd = new MySqlCommand(
+                        "call spCadastroVenda(@vNotaFiscal, @vCPFcliente, @vCNPJcliente, @vIdFunc, @vFormaPagamento, @vNumeroCartao, @vNomeCartao, @vValidade, @vCVV, @vNumeroParcelamentos)", conexao))
+                        {
+                            cmd.Parameters.Add("@vNotaFiscal", MySqlDbType.Int32).Value = venda.NotaFiscal;
+                            cmd.Parameters.Add("@vCPFcliente", MySqlDbType.Int64).Value = _clientePFRepository.ObterCPF(_loginCliente.GetCliente().IdCli);
+                            cmd.Parameters.Add("@vCNPJcliente", MySqlDbType.Int64).Value = venda.CNPJcliente ?? (object)DBNull.Value;
+                            cmd.Parameters.Add("@vIdFunc", MySqlDbType.Int32).Value = DBNull.Value;
+                            cmd.Parameters.Add("@vFormaPagamento", MySqlDbType.VarChar).Value = venda.FormaPagamento;
+                            cmd.Parameters.Add("@vNumeroCartao", MySqlDbType.Int64).Value = venda.NumeroCartao ?? (object)DBNull.Value;
+                            cmd.Parameters.Add("@vNomeCartao", MySqlDbType.VarChar).Value = venda.NomeCartao ?? (object)DBNull.Value;
+                            cmd.Parameters.Add("@vValidade", MySqlDbType.Date).Value = venda.ValidadeCartao ?? (object)DBNull.Value;
+                            cmd.Parameters.Add("@vCVV", MySqlDbType.Int32).Value = venda.Cvv ?? (object)DBNull.Value;
+                            cmd.Parameters.Add("@vNumeroParcelamentos", MySqlDbType.Int16).Value = venda.NumeroParcelamentos;
 
-                    cmd.ExecuteNonQuery();
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    else if (_clientePJRepository.ObterCNPJ(_loginCliente.GetCliente().IdCli) != 0) // Quando Cliente for Jurídico
+                    {
+                        using (var cmd = new MySqlCommand(
+                        "call spCadastroVenda(@vNotaFiscal, @vCPFcliente, @vCNPJcliente, @vIdFunc, @vFormaPagamento, @vNumeroCartao, @vNomeCartao, @vValidade, @vCVV, @vNumeroParcelamentos)", conexao))
+                        {
+                            cmd.Parameters.Add("@vNotaFiscal", MySqlDbType.Int32).Value = venda.NotaFiscal;
+                            cmd.Parameters.Add("@vCPFcliente", MySqlDbType.Int64).Value = venda.CPFcliente ?? (object)DBNull.Value;
+                            cmd.Parameters.Add("@vCNPJcliente", MySqlDbType.Int64).Value = _clientePJRepository.ObterCNPJ(_loginCliente.GetCliente().IdCli);
+                            cmd.Parameters.Add("@vIdFunc", MySqlDbType.Int32).Value = DBNull.Value;
+                            cmd.Parameters.Add("@vFormaPagamento", MySqlDbType.VarChar).Value = venda.FormaPagamento;
+                            cmd.Parameters.Add("@vNumeroCartao", MySqlDbType.Int64).Value = venda.NumeroCartao ?? (object)DBNull.Value;
+                            cmd.Parameters.Add("@vNomeCartao", MySqlDbType.VarChar).Value = venda.NomeCartao ?? (object)DBNull.Value;
+                            cmd.Parameters.Add("@vValidade", MySqlDbType.Date).Value = venda.ValidadeCartao ?? (object)DBNull.Value;
+                            cmd.Parameters.Add("@vCVV", MySqlDbType.Int32).Value = venda.Cvv ?? (object)DBNull.Value;
+                            cmd.Parameters.Add("@vNumeroParcelamentos", MySqlDbType.Int16).Value = venda.NumeroParcelamentos;
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
                 }
+                else
+                {
+                    using (var cmd = new MySqlCommand(
+                    "call spCadastroVenda(@vNotaFiscal, @vCPFcliente, @vCNPJcliente, @vIdFunc, @vFormaPagamento, @vNumeroCartao, @vNomeCartao, @vValidade, @vCVV, @vNumeroParcelamentos)", conexao))
+                    {
+                        cmd.Parameters.Add("@vNotaFiscal", MySqlDbType.Int32).Value = venda.NotaFiscal;
+                        cmd.Parameters.Add("@vCPFcliente", MySqlDbType.Int64).Value = venda.CPFcliente ?? (object)DBNull.Value;
+                        cmd.Parameters.Add("@vCNPJcliente", MySqlDbType.Int64).Value = venda.CNPJcliente ?? (object)DBNull.Value;
+                        cmd.Parameters.Add("@vIdFunc", MySqlDbType.Int32).Value = funcionarioIncluso;
+                        cmd.Parameters.Add("@vFormaPagamento", MySqlDbType.VarChar).Value = venda.FormaPagamento;
+                        cmd.Parameters.Add("@vNumeroCartao", MySqlDbType.Int64).Value = venda.NumeroCartao ?? (object)DBNull.Value;
+                        cmd.Parameters.Add("@vNomeCartao", MySqlDbType.VarChar).Value = venda.NomeCartao ?? (object)DBNull.Value;
+                        cmd.Parameters.Add("@vValidade", MySqlDbType.Date).Value = venda.ValidadeCartao ?? (object)DBNull.Value;
+                        cmd.Parameters.Add("@vCVV", MySqlDbType.Int32).Value = venda.Cvv ?? (object)DBNull.Value;
+                        cmd.Parameters.Add("@vNumeroParcelamentos", MySqlDbType.Int16).Value = venda.NumeroParcelamentos;
 
+                        cmd.ExecuteNonQuery();
+                    }
+                }
                 // Recuperar número da venda
                 int numeroVenda;
 
