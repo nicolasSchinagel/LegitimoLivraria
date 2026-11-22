@@ -330,7 +330,7 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
-        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> AleatorizarLivros()
+        public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> AleatorizarLivros(string? codBarras = null)
         {
             List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> listaLivro = new List<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)>();
 
@@ -339,17 +339,19 @@ namespace LivrariaLegitimo.Repository
                 conexao.Open();
 
                 MySqlCommand consulta = new MySqlCommand(
-                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(li.Tipo = 'ebook' or li.Quantidade > 0) order by RAND() limit 9",
+                    "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where(li.Tipo = 'ebook' or li.Quantidade > 0) and (@CodBarras is null or li.codBarras <> @CodBarras) order by RAND() limit 9",
                     conexao
                 );
 
                 if (_loginFuncionario.GetFuncionario() != null)
                 {
                     consulta = new MySqlCommand(
-                        "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras order by RAND() limit 9",
+                        "select li.*, vv.NumeroVendas, va.MediaAvaliacao from ViewLivro li inner join ViewLivroVendas vv on li.codBarras = vv.codBarras inner join ViewLivroAvaliacoes va on li.codBarras = va.codBarras where (@CodBarras is null or li.codBarras <> @CodBarras) order by RAND() limit 9",
                         conexao
                     );
                 }
+
+                consulta.Parameters.Add("@CodBarras", MySqlDbType.Decimal).Value = codBarras != null ? Convert.ToDecimal(codBarras) : DBNull.Value;
 
                 MySqlDataAdapter da = new MySqlDataAdapter(consulta);
                 DataTable dt = new DataTable();
