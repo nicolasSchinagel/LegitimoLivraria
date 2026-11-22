@@ -23,7 +23,22 @@ namespace LivrariaLegitimo.Repository
 
         public void AtualizarCliente(Cliente cliente)
         {
-            throw new NotImplementedException();
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("call spAtualizarCliente(@IdCli, @Senha, @NumTel, @Email, @CEP, @NumeroEndereco, @Complemento, @Logradouro, @Bairro, @Cidade, @Estado);", conexao);
+                cmd.Parameters.AddWithValue("@IdCli", cliente.IdCli);
+                cmd.Parameters.AddWithValue("@Senha", cliente.Senha);
+                cmd.Parameters.AddWithValue("@NumTel", Convert.ToInt64(cliente.Telefone));
+                cmd.Parameters.AddWithValue("@Email", cliente.Email);
+                cmd.Parameters.AddWithValue("@CEP", Convert.ToDecimal(cliente.Cep));
+                cmd.Parameters.AddWithValue("@NumeroEndereco", cliente.NumeroEndereco);
+                cmd.Parameters.AddWithValue("@Complemento", cliente.ComplementoEndereco);
+                cmd.Parameters.AddWithValue("@Logradouro", cliente.Logradouro);
+                cmd.Parameters.AddWithValue("@Bairro", cliente.Bairro);
+                cmd.Parameters.AddWithValue("@Cidade", cliente.Cidade);
+                cmd.Parameters.AddWithValue("@Estado", cliente.Estado);
+            }
         }
 
         public void AtualizarSenha(string senha)
