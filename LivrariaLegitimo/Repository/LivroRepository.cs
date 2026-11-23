@@ -585,5 +585,22 @@ namespace LivrariaLegitimo.Repository
                 );
             }
         }
+
+        public void AdicionarEstoque(List<(decimal codBarras, int quantidade)> lista)
+        {
+            using(var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                foreach(var item in lista)
+                {
+                    MySqlCommand cmd = new MySqlCommand("call spAdicionarEstoque(@CodigoBarras, @Quantidade)", conexao);
+                    cmd.Parameters.AddWithValue("@CodigoBarras", item.codBarras);
+                    cmd.Parameters.AddWithValue("@Quantidade", item.quantidade);
+                    cmd.ExecuteNonQuery();
+                }
+                conexao.Close();
+                
+            }
+        }
     }
 }

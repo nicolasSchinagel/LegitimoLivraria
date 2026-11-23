@@ -23,6 +23,8 @@ namespace LivrariaLegitimo.Repository.Contract
 
         bool EmAlta(string codBarras);
 
+        public void AdicionarEstoque(List<(decimal codBarras, int quantidade)> lista);
+
         public (int totalLivros, int romance, int aventura, int fantasia, int ficcaoCientifica, int historia, int biografia, int autoajuda, int terror, int misterio, int filosofia, int humor, int drama, int suspense, int religiao, int literaturaClassica, int literaturaInfantil, int literaturaJuvenil, int contos, int poesia, int mangas, int totalAssociacoesGeneros) ObterQuantidadeGenero();
 
     }
