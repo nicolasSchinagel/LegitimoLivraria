@@ -6,6 +6,7 @@ namespace LivrariaLegitimo.Repository.Contract
     public interface IVendaRepository
     {
         public void Cadastrar(Venda venda);
+        public (string tipo, bool existencia) ExisteVenda(int idCli, int codBarras);
         IEnumerable<ItemVenda> ObterListaPorNumero(int numeroVenad);
     }
 }

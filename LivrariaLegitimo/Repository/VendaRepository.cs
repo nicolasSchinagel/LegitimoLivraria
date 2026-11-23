@@ -2,6 +2,7 @@
 using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
 using MySql.Data.MySqlClient;
+using System.Data;
 namespace LivrariaLegitimo.Repository
 {
     public class VendaRepository : IVendaRepository
@@ -128,6 +129,30 @@ namespace LivrariaLegitimo.Repository
         public IEnumerable<ItemVenda> ObterListaPorNumero(int numeroVenda)
         {
             throw new NotImplementedException();
+        }
+
+        public (string tipo, bool existencia) ExisteVenda(int idCli, decimal codBarras)
+        {
+            using(var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                var tipo = "";
+                bool existencia = false;
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from ViewLivrosComprados where(codBarras = @CodBarras and idCli = @IdCli", conexao);
+                cmd.Parameters.AddWithValue("@CodBarras", codBarras);
+                cmd.Parameters.AddWithValue("@IdCli", idCli);
+
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (dr.Read())
+                {
+                    tipo = (string)(dr["Tipo"]);
+                    existencia = true;
+                }
+                return (tipo, existencia);
+                
+            }
         }
     }
 }
