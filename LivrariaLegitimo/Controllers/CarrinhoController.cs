@@ -106,7 +106,7 @@ namespace LivrariaLegitimo.Controllers
             _vendaRepository.Cadastrar(model.Compra);
 
             TempData["Sucesso"] = "Compra realizada com sucesso!";
-
+            _cookieCarrinhoCompra.RemoverTodos();
             return RedirectToAction("Carrinho");
         }
 
