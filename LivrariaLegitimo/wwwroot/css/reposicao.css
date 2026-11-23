@@ -1,0 +1,649 @@
+﻿
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 28px;
+    background: #f8f8f8;
+    color: #111;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.main-reposicao {
+    width: min(1200px, 100%);
+    margin: 0 auto;
+}
+
+/* Cabeçalho */
+
+.main-reposicao-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 0 6px 18px;
+}
+
+.main-reposicao-header-info h1 {
+    font-size: clamp(27px, 3.2vw, 38px);
+    margin: 0 0 3px;
+    font-weight: 700;
+}
+
+.main-reposicao-header-info p {
+    color: #555;
+    margin: 0;
+    font-size: 15px;
+}
+
+/* Estrutura principal */
+
+.main-reposicao-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, .95fr);
+    gap: 16px;
+    align-items: stretch;
+}
+
+.main-reposicao-content-pesquisa,
+.main-reposicao-content-itens {
+    min-width: 0;
+    background: #fff;
+    border: 1px solid #e9e9e9;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px #0002;
+    overflow: hidden;
+}
+
+/* Pesquisa */
+
+.main-reposicao-content-pesquisa-topo {
+    padding: 22px 20px 18px;
+    border-bottom: 1px solid #ddd;
+}
+
+    .main-reposicao-content-pesquisa-topo h2,
+    .main-reposicao-content-itens-header h2 {
+        font-size: 19px;
+        margin: 0 0 9px;
+        font-weight: 700;
+    }
+
+.main-reposicao-content-pesquisa-controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.main-reposicao-search {
+    display: flex;
+    align-items: center;
+    height: 39px;
+    min-width: 0;
+    flex: 1;
+    border: 1px solid #bcbcbc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    .main-reposicao-search input {
+        width: 100%;
+        min-width: 0;
+        border: 0;
+        outline: 0;
+        padding: 0 10px;
+        font-size: 14px;
+    }
+
+        .main-reposicao-search input::placeholder {
+            color: #aaa;
+        }
+
+.main-reposicao-search-icon {
+    width: 42px;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    border: 0;
+    background: white;
+    color: #777;
+    flex: 0 0 auto;
+}
+
+    .main-reposicao-search-icon img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+    }
+
+/* Lista de livros */
+
+.main-reposicao-lista-livros {
+    max-height: 590px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #c8c8c8 transparent;
+    padding: 0 10px 12px;
+}
+
+.main-reposicao-livro {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 102px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.main-reposicao-livro-img {
+    width: 60px;
+    height: 88px;
+    object-fit: cover;
+    flex: 0 0 60px;
+}
+
+.main-reposicao-livro-info {
+    min-width: 0;
+    flex: 1;
+}
+
+    .main-reposicao-livro-info h3 {
+        margin: 0 0 0px;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+
+    .main-reposicao-livro-info p {
+        margin: 2px 0;
+        font-size: 12px;
+        line-height: 1.3;
+    }
+
+/* Editora e avaliação */
+
+.main-reposicao-livro-avaliacao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    min-width: 0;
+}
+
+    .main-reposicao-livro-avaliacao > span {
+        font-size: 12px;
+    }
+
+/* Botão adicionar livro */
+
+.main-reposicao-livro-add {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    background: #fff;
+    flex: 0 0 44px;
+}
+
+    .main-reposicao-livro-add img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+    }
+
+    .main-reposicao-livro-add:hover {
+        background: #f5f5f5;
+        border-color: #c90008;
+    }
+
+/* Ver mais */
+
+.main-reposicao-vermais {
+    display: block;
+    margin: 17px 20px 4px;
+    padding: 8px 20px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    background: white;
+    color: #666;
+}
+
+/* Cabeçalho dos itens */
+
+.main-reposicao-content-itens-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 22px 18px 18px;
+    border-bottom: 1px solid #ddd;
+}
+
+    .main-reposicao-content-itens-header h2 {
+        margin: 0;
+    }
+
+/* Esvaziar */
+
+.main-reposicao-esvaziar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 0;
+    background: transparent;
+    color: #c90008;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px;
+}
+
+    .main-reposicao-esvaziar img {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+    }
+
+/* Lista de itens selecionados */
+
+.main-reposicao-itens-lista {
+    max-height: 440px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #c8c8c8 transparent;
+}
+
+.main-reposicao-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    padding: 10px 12px;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    min-height: 180px;
+}
+
+.main-reposicao-item-img {
+    border-radius: 5px;
+    width: 90px;
+    height: 153px;
+    object-fit: cover;
+    flex: 0 0 90px;
+}
+
+.main-reposicao-item-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    padding-right: 18px;
+}
+
+    .main-reposicao-item-info h3 {
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.25;
+        margin: 0 0 7px;
+    }
+
+/* Detalhes do livro */
+
+.main-reposicao-item-detalhes {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.main-reposicao-item-detalhes-livro,
+.main-reposicao-item-detalhes-estoque {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+    .main-reposicao-item-detalhes-livro p,
+    .main-reposicao-item-detalhes-livro span,
+    .main-reposicao-item-detalhes-estoque span {
+        font-size: 12px;
+        margin: 3px 0;
+        color: #333;
+    }
+
+    .main-reposicao-item-detalhes-livro p,
+    .main-reposicao-item-detalhes-livro span,
+    .main-reposicao-item-detalhes-estoque span {
+        min-width: 0;
+    }
+
+/* Controle de reposição */
+
+.main-reposicao-item-controle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* Quantidade */
+
+.main-reposicao-item-qtd {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    flex: 0 0 auto;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 31px;
+}
+
+    .main-reposicao-item-qtd button {
+        display: grid;
+        place-items: center;
+        width: 25px;
+        height: 100%;
+        border: 0;
+        background: #fff;
+        padding: 0;
+    }
+
+        .main-reposicao-item-qtd button img {
+            width: 13px;
+            height: 13px;
+            object-fit: contain;
+        }
+
+        .main-reposicao-item-qtd button:last-child img {
+            width: 14px;
+            height: 14px;
+        }
+
+    .main-reposicao-item-qtd input {
+        width: 40px;
+        border: 0;
+        outline: 0;
+        text-align: center;
+        font-size: 14px;
+        -moz-appearance: textfield;
+    }
+
+        .main-reposicao-item-qtd input::-webkit-inner-spin-button,
+        .main-reposicao-item-qtd input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+/* Capacidade do estoque */
+
+.main-reposicao-item-capacidade {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+    font-size: 12px;
+    color: #d00008;
+    text-align: left;
+}
+
+    .main-reposicao-item-capacidade span {
+        display: block;
+        white-space: nowrap;
+    }
+
+.main-reposicao-progress {
+    height: 10px;
+    width: 100%;
+    border: 1px solid #d00008;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 3px;
+}
+
+    .main-reposicao-progress span {
+        display: block;
+        height: 100%;
+        background: #d00008;
+        border-radius: inherit;
+    }
+
+/* Remover item */
+
+.main-reposicao-item-remover {
+    position: absolute;
+    top: 8px;
+    right: 7px;
+    border: 0;
+    background: transparent;
+    padding: 0;
+}
+
+    .main-reposicao-item-remover img {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+    }
+
+/* Resumo */
+
+.main-reposicao-resumo {
+    margin: 14px 12px 0;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #f8f8f8;
+}
+
+    .main-reposicao-resumo h2 {
+        font-size: 19px;
+        margin: 0 0 5px;
+        font-weight: 600;
+    }
+
+.main-reposicao-resumo-total {
+    margin: 0 0 7px;
+    color: #555;
+    font-size: 15px;
+}
+
+    .main-reposicao-resumo-total strong {
+        color: #111;
+        font-weight: 600;
+    }
+
+.main-reposicao-resumo ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-reposicao-resumo li {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+/* Confirmar reposição */
+
+.main-reposicao-confirmar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: min(78%, 360px);
+    min-height: 55px;
+    margin: 48px auto 30px;
+    border: 0;
+    border-radius: 9px;
+    background: #c90008;
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+    .main-reposicao-confirmar:hover {
+        background: #ae0006;
+    }
+
+    .main-reposicao-confirmar img {
+        width: 23px;
+        height: 23px;
+        object-fit: contain;
+    }
+
+/* Responsividade - tablets */
+
+@media (max-width: 900px) {
+    body {
+        padding: 16px;
+    }
+
+    .main-reposicao-content {
+        grid-template-columns: 1fr;
+    }
+
+    .main-reposicao-lista-livros {
+        max-height: 420px;
+    }
+
+    .main-reposicao-content-itens {
+        min-height: 400px;
+    }
+}
+
+/* Responsividade - celulares */
+
+@media (max-width: 520px) {
+    body {
+        padding: 10px;
+    }
+
+    .main-reposicao-header {
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .main-reposicao-header-info h1 {
+        font-size: 24px;
+    }
+
+    .main-reposicao-header-info p {
+        font-size: 12px;
+    }
+
+    .main-reposicao-content-pesquisa-topo {
+        padding: 15px 12px;
+    }
+
+    .main-reposicao-content-pesquisa-controls {
+        gap: 7px;
+    }
+
+    .main-reposicao-livro {
+        padding-left: 4px;
+        padding-right: 4px;
+        gap: 7px;
+    }
+
+    .main-reposicao-livro-img {
+        width: 48px;
+        height: 75px;
+        flex-basis: 48px;
+    }
+
+    .main-reposicao-livro-info h3 {
+        font-size: 12px;
+    }
+
+    .main-reposicao-livro-info p {
+        font-size: 10px;
+    }
+
+    .main-reposicao-livro-add {
+        width: 36px;
+        height: 38px;
+        flex-basis: 36px;
+    }
+
+        .main-reposicao-livro-add img {
+            width: 18px;
+            height: 18px;
+        }
+
+    .main-reposicao-item {
+        gap: 8px;
+        padding: 9px 8px;
+        min-height: 160px;
+    }
+
+    .main-reposicao-item-img {
+        width: 62px;
+        height: 135px;
+        flex-basis: 62px;
+    }
+
+    .main-reposicao-item-info {
+        padding-right: 10px;
+    }
+
+        .main-reposicao-item-info h3 {
+            font-size: 11px;
+        }
+
+    .main-reposicao-item-detalhes-livro p,
+    .main-reposicao-item-detalhes-livro span,
+    .main-reposicao-item-detalhes-estoque span {
+        font-size: 8px;
+    }
+
+    .main-reposicao-item-controle {
+        gap: 6px;
+    }
+
+    .main-reposicao-item-qtd {
+        height: 29px;
+    }
+
+        .main-reposicao-item-qtd button {
+            width: 23px;
+        }
+
+        .main-reposicao-item-qtd input {
+            width: 35px;
+            font-size: 12px;
+        }
+
+    .main-reposicao-item-capacidade {
+        font-size: 8px;
+    }
+
+    .main-reposicao-confirmar {
+        width: 90%;
+        font-size: 18px;
+        margin-top: 30px;
+    }
+}
+
+.main-reposicao-livro-avaliacao-estrelas {
+    width: 100%;
+    max-width: 255px;
+}
