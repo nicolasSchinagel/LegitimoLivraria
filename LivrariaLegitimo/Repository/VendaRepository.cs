@@ -32,7 +32,11 @@ namespace LivrariaLegitimo.Repository
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
-                var funcionarioIncluso = _loginFuncionario.GetFuncionario().IdFuncionario;
+                var funcionarioIncluso = 0;
+                if(_loginFuncionario.GetFuncionario() != null)
+                {
+                   funcionarioIncluso = _loginFuncionario.GetFuncionario().IdFuncionario;
+                }
                 venda.NotaFiscal = GerarNotaFiscal();
 
                 conexao.Open();
@@ -49,9 +53,9 @@ namespace LivrariaLegitimo.Repository
                             cmd.Parameters.Add("@vCNPJcliente", MySqlDbType.Int64).Value = venda.CNPJcliente ?? (object)DBNull.Value;
                             cmd.Parameters.Add("@vIdFunc", MySqlDbType.Int32).Value = DBNull.Value;
                             cmd.Parameters.Add("@vFormaPagamento", MySqlDbType.VarChar).Value = venda.FormaPagamento;
-                            cmd.Parameters.Add("@vNumeroCartao", MySqlDbType.Int64).Value = venda.NumeroCartao ?? (object)DBNull.Value;
+                            cmd.Parameters.Add("@vNumeroCartao", MySqlDbType.Int32).Value = venda.NumeroCartao ?? (object)DBNull.Value;
                             cmd.Parameters.Add("@vNomeCartao", MySqlDbType.VarChar).Value = venda.NomeCartao ?? (object)DBNull.Value;
-                            cmd.Parameters.Add("@vValidade", MySqlDbType.Date).Value = venda.ValidadeCartao ?? (object)DBNull.Value;
+                            cmd.Parameters.Add("@vValidade", MySqlDbType.Date).Value = venda.ValidadeCartao ?? (object)DBNull.Value; // arrumar conversão da data
                             cmd.Parameters.Add("@vCVV", MySqlDbType.Int32).Value = venda.Cvv ?? (object)DBNull.Value;
                             cmd.Parameters.Add("@vNumeroParcelamentos", MySqlDbType.Int16).Value = venda.NumeroParcelamentos;
 
