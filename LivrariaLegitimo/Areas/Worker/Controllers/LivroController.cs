@@ -68,5 +68,48 @@ namespace LivrariaLegitimo.Areas.Worker.Controllers
         }
 
 
+        public IActionResult AdicionarItem(string codBarras)
+        {
+            _cookieCarrinhoReposicao.Cadastrar(codBarras);
+
+            return RedirectToAction(nameof(Carrinho));
+        }
+
+
+        public IActionResult RemoverItem(string codBarras)
+        {
+            var Lista = _cookieCarrinhoReposicao.Consultar();
+            var ItemLocalizado = Lista.SingleOrDefault(a => a.livro.CodigoBarras.ToString() == codBarras);
+
+            if (ItemLocalizado.livro != null)
+            {
+                _cookieCarrinhoReposicao.Remover(ItemLocalizado.livro);
+            }
+
+            return RedirectToAction(nameof(Carrinho));
+        }
+
+        public IActionResult LimparReposicao()
+        {
+            _cookieCarrinhoReposicao.RemoverTodos();
+
+            return RedirectToAction(nameof(Carrinho));
+        }
+
+        public IActionResult AumentarQuantidade(string codBarras)
+        {
+            _cookieCarrinhoReposicao.AumentarQuantidade(codBarras);
+
+            return RedirectToAction(nameof(Carrinho));
+        }
+
+
+        public IActionResult DiminuirQuantidade(string codBarras)
+        {
+            _cookieCarrinhoReposicao.DiminuirQuantidade(codBarras);
+
+            return RedirectToAction(nameof(Carrinho));
+        }
+
     }
 }
