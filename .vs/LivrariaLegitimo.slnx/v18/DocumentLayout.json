@@ -3,6 +3,30 @@
   "WorkspaceRootPath": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\areas\\worker\\views\\livro\\reposicao.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\areas\\worker\\views\\livro\\reposicao.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\viewmodels\\cadastroviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\viewmodels\\cadastroviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\areas\\worker\\views\\livro\\adicionarlivro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\areas\\worker\\views\\livro\\adicionarlivro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\viewmodels\\livroviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\viewmodels\\livroviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\viewmodels\\compraviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\viewmodels\\compraviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\views\\livro\\listaprocura.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\views\\livro\\listaprocura.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\wwwroot\\css\\reposicao.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\wwwroot\\css\\reposicao.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
@@ -15,16 +39,8 @@
       "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\repository\\contract\\ilivrorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\viewmodels\\compraviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\viewmodels\\compraviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\viewmodels\\enderecoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\viewmodels\\enderecoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\viewmodels\\cadastroviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\viewmodels\\cadastroviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\cookie\\cookie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -71,10 +87,6 @@
       "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\repository\\avaliacaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\viewmodels\\livroviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\viewmodels\\livroviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\views\\livro\\livro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\views\\livro\\livro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -109,10 +121,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\models\\livro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\models\\livro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\areas\\worker\\views\\livro\\adicionarlivro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\areas\\worker\\views\\livro\\adicionarlivro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\wwwroot\\css\\comprar.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -239,10 +247,6 @@
       "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\wwwroot\\js\\filtrolivros.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\views\\livro\\listaprocura.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\views\\livro\\listaprocura.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\wwwroot\\css\\list.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\wwwroot\\css\\list.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
@@ -267,6 +271,84 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Reposicao.cshtml",
+              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\Reposicao.cshtml",
+              "RelativeDocumentMoniker": "LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\Reposicao.cshtml",
+              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\Reposicao.cshtml",
+              "RelativeToolTip": "LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\Reposicao.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-11-23T21:19:07.414Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CadastroViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\CadastroViewModel.cs",
+              "RelativeDocumentMoniker": "LivrariaLegitimo\\ViewModels\\CadastroViewModel.cs",
+              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\CadastroViewModel.cs",
+              "RelativeToolTip": "LivrariaLegitimo\\ViewModels\\CadastroViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-23T16:08:29.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AdicionarLivro.cshtml",
+              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\AdicionarLivro.cshtml",
+              "RelativeDocumentMoniker": "LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\AdicionarLivro.cshtml",
+              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\AdicionarLivro.cshtml",
+              "RelativeToolTip": "LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\AdicionarLivro.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-11-20T21:16:26.029Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LivroViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\LivroViewModel.cs",
+              "RelativeDocumentMoniker": "LivrariaLegitimo\\ViewModels\\LivroViewModel.cs",
+              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\LivroViewModel.cs",
+              "RelativeToolTip": "LivrariaLegitimo\\ViewModels\\LivroViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-18T08:38:48.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CompraViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\CompraViewModel.cs",
+              "RelativeDocumentMoniker": "LivrariaLegitimo\\ViewModels\\CompraViewModel.cs",
+              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\CompraViewModel.cs",
+              "RelativeToolTip": "LivrariaLegitimo\\ViewModels\\CompraViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAACLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-22T20:53:14.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ListaProcura.cshtml",
+              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Livro\\ListaProcura.cshtml",
+              "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Livro\\ListaProcura.cshtml",
+              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Livro\\ListaProcura.cshtml",
+              "RelativeToolTip": "LivrariaLegitimo\\Views\\Livro\\ListaProcura.cshtml",
+              "ViewState": "AgIAALwAAAAAAAAAAAAAAMgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-11-20T19:42:52.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "reposicao.css",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\css\\reposicao.css",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\css\\reposicao.css",
@@ -279,32 +361,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Cookie.cs",
-              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Cookie\\Cookie.cs",
-              "RelativeDocumentMoniker": "LivrariaLegitimo\\Cookie\\Cookie.cs",
-              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Cookie\\Cookie.cs",
-              "RelativeToolTip": "LivrariaLegitimo\\Cookie\\Cookie.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-20T17:49:58.485Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LivroRepository.cs",
-              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\LivroRepository.cs",
-              "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\LivroRepository.cs",
-              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\LivroRepository.cs",
-              "RelativeToolTip": "LivrariaLegitimo\\Repository\\LivroRepository.cs",
-              "ViewState": "AgIAAEYCAAAAAAAAAAAAAFkCAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-18T07:49:23.784Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "ILivroRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\Contract\\ILivroRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\Contract\\ILivroRepository.cs",
@@ -316,19 +373,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CadastroViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\CadastroViewModel.cs",
-              "RelativeDocumentMoniker": "LivrariaLegitimo\\ViewModels\\CadastroViewModel.cs",
-              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\CadastroViewModel.cs",
-              "RelativeToolTip": "LivrariaLegitimo\\ViewModels\\CadastroViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "LivroRepository.cs",
+              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\LivroRepository.cs",
+              "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\LivroRepository.cs",
+              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\LivroRepository.cs",
+              "RelativeToolTip": "LivrariaLegitimo\\Repository\\LivroRepository.cs",
+              "ViewState": "AgIAAEYCAAAAAAAAAAAAAFkCAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-23T16:08:29.231Z"
+              "WhenOpened": "2026-11-18T07:49:23.784Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
+              "Title": "Cookie.cs",
+              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Cookie\\Cookie.cs",
+              "RelativeDocumentMoniker": "LivrariaLegitimo\\Cookie\\Cookie.cs",
+              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Cookie\\Cookie.cs",
+              "RelativeToolTip": "LivrariaLegitimo\\Cookie\\Cookie.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T17:49:58.485Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "EnderecoViewModel.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\EnderecoViewModel.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\ViewModels\\EnderecoViewModel.cs",
@@ -340,19 +409,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CompraViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\CompraViewModel.cs",
-              "RelativeDocumentMoniker": "LivrariaLegitimo\\ViewModels\\CompraViewModel.cs",
-              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\CompraViewModel.cs",
-              "RelativeToolTip": "LivrariaLegitimo\\ViewModels\\CompraViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-22T20:53:14.166Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Program.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Program.cs",
@@ -364,7 +421,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "CookieCarrinhoReposicao.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\CarrinhoCompra\\CookieCarrinhoReposicao.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\CarrinhoCompra\\CookieCarrinhoReposicao.cs",
@@ -376,7 +433,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "CookieCarrinhoCompra.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\CarrinhoCompra\\CookieCarrinhoCompra.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\CarrinhoCompra\\CookieCarrinhoCompra.cs",
@@ -388,7 +445,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "Comprar.cshtml",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Carrinho\\Comprar.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Carrinho\\Comprar.cshtml",
@@ -400,7 +457,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "MenuGerenciar.cshtml",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Default\\MenuGerenciar.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Areas\\Worker\\Views\\Default\\MenuGerenciar.cshtml",
@@ -412,7 +469,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "FuncionarioRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\FuncionarioRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\FuncionarioRepository.cs",
@@ -424,7 +481,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "CarrinhoController.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Controllers\\CarrinhoController.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Controllers\\CarrinhoController.cs",
@@ -436,7 +493,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "AvaliacaoRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\AvaliacaoRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\AvaliacaoRepository.cs",
@@ -448,7 +505,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "LivroController.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Controllers\\LivroController.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Controllers\\LivroController.cs",
@@ -460,7 +517,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "Funcionario.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Models\\Funcionario.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Models\\Funcionario.cs",
@@ -472,19 +529,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "LivroViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\LivroViewModel.cs",
-              "RelativeDocumentMoniker": "LivrariaLegitimo\\ViewModels\\LivroViewModel.cs",
-              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\LivroViewModel.cs",
-              "RelativeToolTip": "LivrariaLegitimo\\ViewModels\\LivroViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-18T08:38:48.634Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "Livro.cshtml",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Livro\\Livro.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Livro\\Livro.cshtml",
@@ -496,7 +541,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\appsettings.json",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\appsettings.json",
@@ -508,7 +553,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "DefaultController.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Controllers\\DefaultController.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Areas\\Worker\\Controllers\\DefaultController.cs",
@@ -520,7 +565,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "Venda.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Models\\Venda.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Models\\Venda.cs",
@@ -532,7 +577,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": "Avaliacao.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Models\\Avaliacao.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Models\\Avaliacao.cs",
@@ -544,7 +589,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 27,
               "Title": "Carrinho.cshtml",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Carrinho\\Carrinho.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Carrinho\\Carrinho.cshtml",
@@ -556,7 +601,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 26,
               "Title": "VendaRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\VendaRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\VendaRepository.cs",
@@ -568,7 +613,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "Livro.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Models\\Livro.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Models\\Livro.cs",
@@ -580,7 +625,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "IVendaRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\Contract\\IVendaRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\Contract\\IVendaRepository.cs",
@@ -592,19 +637,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "AdicionarLivro.cshtml",
-              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\AdicionarLivro.cshtml",
-              "RelativeDocumentMoniker": "LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\AdicionarLivro.cshtml",
-              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\AdicionarLivro.cshtml",
-              "RelativeToolTip": "LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\AdicionarLivro.cshtml",
-              "ViewState": "AgIAADABAAAAAAAAAAAAAGMBAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-20T21:16:26.029Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 30,
               "Title": "comprar.css",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\css\\comprar.css",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\css\\comprar.css",
@@ -616,7 +649,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 31,
               "Title": "EditarEndereco.cshtml",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Carrinho\\EditarEndereco.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Carrinho\\EditarEndereco.cshtml",
@@ -628,7 +661,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 32,
               "Title": "Carrinho.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Models\\Carrinho.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Models\\Carrinho.cs",
@@ -640,7 +673,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 33,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Shared\\_Layout.cshtml",
@@ -652,7 +685,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 34,
               "Title": "carrinho.css",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\css\\carrinho.css",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\css\\carrinho.css",
@@ -664,7 +697,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 36,
               "Title": "IClientePJRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\Contract\\IClientePJRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\Contract\\IClientePJRepository.cs",
@@ -676,7 +709,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 35,
               "Title": "ClienteRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\ClienteRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\ClienteRepository.cs",
@@ -688,7 +721,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 37,
               "Title": "IClientePFRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\Contract\\IClientePFRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\Contract\\IClientePFRepository.cs",
@@ -700,7 +733,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 38,
               "Title": "ClientePFRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\ClientePFRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\ClientePFRepository.cs",
@@ -712,7 +745,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 39,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Default\\Index.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Default\\Index.cshtml",
@@ -724,7 +757,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 41,
               "Title": "IClienteRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\Contract\\IClienteRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\Contract\\IClienteRepository.cs",
@@ -736,7 +769,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 40,
               "Title": "DefaultController.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Controllers\\DefaultController.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Controllers\\DefaultController.cs",
@@ -748,7 +781,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 42,
               "Title": "ClientePJRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\ClientePJRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\ClientePJRepository.cs",
@@ -760,7 +793,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 43,
               "Title": "CarrinhoRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\CarrinhoRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\CarrinhoRepository.cs",
@@ -772,7 +805,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 45,
               "Title": "index.css",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\css\\index.css",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\css\\index.css",
@@ -784,7 +817,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 44,
               "Title": "Cliente.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Models\\Cliente.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Models\\Cliente.cs",
@@ -796,7 +829,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 46,
               "Title": "CookieHistoricoLivro.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Historicos\\CookieHistoricoLivro.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Historicos\\CookieHistoricoLivro.cs",
@@ -808,7 +841,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 48,
               "Title": "Sessao.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Libraries\\Sessao\\Sessao.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Libraries\\Sessao\\Sessao.cs",
@@ -820,7 +853,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 47,
               "Title": "LoginCliente.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Libraries\\Login\\LoginCliente.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Libraries\\Login\\LoginCliente.cs",
@@ -832,7 +865,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 49,
               "Title": "LoginGeral.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Models\\LoginGeral.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Models\\LoginGeral.cs",
@@ -844,7 +877,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 50,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Default\\Login.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Default\\Login.cshtml",
@@ -856,7 +889,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 51,
               "Title": "livro.css",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\css\\livro.css",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\css\\livro.css",
@@ -868,7 +901,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 52,
               "Title": "site.js",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\js\\site.js",
@@ -880,7 +913,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 53,
               "Title": "Cadastro.cshtml",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Cliente\\Cadastro.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Cliente\\Cadastro.cshtml",
@@ -892,7 +925,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 55,
               "Title": "adicionarLivro.css",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\css\\adicionarLivro.css",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\css\\adicionarLivro.css",
@@ -904,7 +937,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 54,
               "Title": "cadCli.css",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\css\\cadCli.css",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\css\\cadCli.css",
@@ -916,7 +949,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 58,
               "Title": "confEndereco.css",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\css\\confEndereco.css",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\css\\confEndereco.css",
@@ -928,19 +961,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
-              "Title": "ListaProcura.cshtml",
-              "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Livro\\ListaProcura.cshtml",
-              "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Livro\\ListaProcura.cshtml",
-              "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Livro\\ListaProcura.cshtml",
-              "RelativeToolTip": "LivrariaLegitimo\\Views\\Livro\\ListaProcura.cshtml",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAAAJAAAABnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-20T19:42:52.329Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 56,
               "Title": "ICarrinhoRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\Contract\\ICarrinhoRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\Contract\\ICarrinhoRepository.cs",
@@ -952,7 +973,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 59,
               "Title": "checkout.css",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\css\\checkout.css",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\css\\checkout.css",
@@ -964,7 +985,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 57,
               "Title": "reserva.cshtml",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Carrinho\\reserva.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Carrinho\\reserva.cshtml",
@@ -976,7 +997,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 61,
               "Title": "list.css",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\css\\list.css",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\css\\list.css",
@@ -988,7 +1009,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 60,
               "Title": "filtroLivros.js",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\js\\filtroLivros.js",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\js\\filtroLivros.js",
@@ -1000,7 +1021,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 62,
               "Title": "CookieHistoricoEbook.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Historicos\\CookieHistoricoEbook.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Historicos\\CookieHistoricoEbook.cs",
@@ -1012,7 +1033,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 63,
               "Title": "IAvaliacaoRepository.cs",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\Contract\\IAvaliacaoRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\Contract\\IAvaliacaoRepository.cs",

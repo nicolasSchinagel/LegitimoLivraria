@@ -1,0 +1,216 @@
+﻿@using System.Globalization
+@model LivrariaLegitimo.ViewModels.LivroViewModel
+<link rel="stylesheet" href="~/css/reposicao.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+<main class="main-reposicao">
+    <header class="main-reposicao-header">
+        <div class="main-reposicao-header-info">
+            <h1>Reposição de Estoque</h1>
+            <p>Fazer reposição do estoque de um livro</p>
+        </div>
+    </header>
+
+    <section class="main-reposicao-content">
+
+        <!-- Pesquisa de livros -->
+        <div class="main-reposicao-content-pesquisa">
+            <div class="main-reposicao-content-pesquisa-topo">
+                <h2>Pesquisar livro da compra</h2>
+
+                <div class="main-reposicao-content-pesquisa-controls">
+                    <label class="main-reposicao-search" for="pesquisaLivro">
+                        <input type="search" id="pesquisaLivro" placeholder="Pesquisar por título, autor, editora ou ISBN...">
+
+                        <button class="main-reposicao-search-icon" type="button" aria-label="Pesquisar">
+                            <img src="./imagens/SearchbarIcon.png" alt="Pesquisar">
+                        </button>
+                    </label>
+                </div>
+            </div>
+
+            <div class="main-reposicao-lista-livros">
+
+                @foreach(var livro in Model.TodosLivros)
+                {
+                    @if(livro.livro.TipoCapa != "ebook" && livro.livro.Quantidade < livro.livro.Capacidade)
+                    {
+                        <article class="main-reposicao-livro">
+                            <img src="@livro.arquivoImagem" class="main-reposicao-livro-img" alt="Capa de @livro.livro.Nome">
+
+                            <div class="main-reposicao-livro-info">
+                                <h3>@livro.livro.Nome</h3>
+                                <p>Capacidade: @livro.livro.Capacidade</p>
+                                <p>Quantidade atual: @livro.livro.Quantidade</p>
+                                <div class="main-reposicao-livro-avaliacao">
+                                    <span>@livro.livro.Editora</span>
+
+                                    <div class="main-reposicao-livro-avaliacao-estrelas">
+                                        <div class="estrelas">
+                                            <div class="estrelas-specifics">
+                                                <img class="estrelasimg" src="imagens/StarComb.png">
+                                                <div class="estrelas-specifics-yellowbar" style="width: @((livro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
+                                            </div>
+                                            <h3 class="avaliados-historico">(@(livro.mediaLivro))</h3>
+                                            <img class="setabaixo" src="imagens/setabaixo.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="main-reposicao-livro-add" type="button" aria-label="Adicionar @livro.livro.Nome">
+                                <img src="./imagens/plusgrey.png" alt="Adicionar">
+                            </button>
+                        </article>
+                    }
+                }
+               
+
+            </div>
+        </div>
+
+        <!-- Itens da reposição -->
+        <aside class="main-reposicao-content-itens">
+
+            <div class="main-reposicao-content-itens-header">
+                <h2>Itens da reposição</h2>
+
+                <button class="main-reposicao-esvaziar" type="button">
+                    Esvaziar
+                    <img src="./imagens/trashRed.png" alt="Esvaziar lista">
+                </button>
+            </div>
+
+            <div class="main-reposicao-itens-lista">
+
+                <!-- Sherlock Holmes -->
+                <article class="main-reposicao-item">
+                    <img src="./imagens/book7.webp" class="main-reposicao-item-img" alt="Capa de Sherlock Holmes: Um estudo em vermelho">
+
+                    <div class="main-reposicao-item-info">
+                        <h3>Sherlock Holmes: Um estudo em vermelho - Arthur Conan Doyle</h3>
+
+                        <div class="main-reposicao-item-detalhes">
+
+                            <!-- Primeira linha: autor e quantidade atual -->
+                            <div class="main-reposicao-item-detalhes-livro">
+                                <p>Arthur Conan Doyle</p>
+                                <span>Quantidade atual: 35</span>
+                            </div>
+
+                            <!-- Segunda linha: editora e capacidade máxima -->
+                            <div class="main-reposicao-item-detalhes-estoque">
+                                <span>Via Leitura</span>
+                                <span>Capacidade máxima: 50</span>
+                            </div>
+
+                        </div>
+
+                        <!-- Quantidade e capacidade lado a lado -->
+                        <div class="main-reposicao-item-controle">
+
+                            <div class="main-reposicao-item-qtd">
+                                <button type="button" aria-label="Diminuir quantidade">
+                                    <img src="./imagens/minus.png" alt="Diminuir">
+                                </button>
+
+                                <input type="number" value="10" min="1" aria-label="Quantidade a repor de Sherlock Holmes">
+
+                                <button type="button" aria-label="Aumentar quantidade">
+                                    <img src="./imagens/plus.png" alt="Aumentar">
+                                </button>
+                            </div>
+
+                            <div class="main-reposicao-item-capacidade">
+                                <span>70% da capacidade já cheia</span>
+
+                                <div class="main-reposicao-progress">
+                                    <span style="width: 70%"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button class="main-reposicao-item-remover" type="button" aria-label="Remover Sherlock Holmes">
+                        <img src="./imagens/trash.png" alt="Remover">
+                    </button>
+                </article>
+
+                <!-- Morte no Nilo -->
+                <article class="main-reposicao-item">
+                    <img src="./imagens/book10.webp" class="main-reposicao-item-img" alt="Capa de Morte no Nilo">
+
+                    <div class="main-reposicao-item-info">
+                        <h3>Morte no Nilo - Agatha Christie</h3>
+
+                        <div class="main-reposicao-item-detalhes">
+
+                            <!-- Primeira linha: autora e quantidade atual -->
+                            <div class="main-reposicao-item-detalhes-livro">
+                                <p>Agatha Christie</p>
+                                <span>Quantidade atual: 15</span>
+                            </div>
+
+                            <!-- Segunda linha: editora e capacidade máxima -->
+                            <div class="main-reposicao-item-detalhes-estoque">
+                                <span>Via Leitura</span>
+                                <span>Capacidade máxima: 30</span>
+                            </div>
+
+                        </div>
+
+                        <!-- Quantidade e capacidade lado a lado -->
+                        <div class="main-reposicao-item-controle">
+
+                            <div class="main-reposicao-item-qtd">
+                                <button type="button" aria-label="Diminuir quantidade">
+                                    <img src="./imagens/minus.png" alt="Diminuir">
+                                </button>
+
+                                <input type="number" value="15" min="1" aria-label="Quantidade a repor de Morte no Nilo">
+
+                                <button type="button" aria-label="Aumentar quantidade">
+                                    <img src="./imagens/plus.png" alt="Aumentar">
+                                </button>
+                            </div>
+
+                            <div class="main-reposicao-item-capacidade">
+                                <span>50% da capacidade já cheia</span>
+
+                                <div class="main-reposicao-progress">
+                                    <span style="width: 50%"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button class="main-reposicao-item-remover" type="button" aria-label="Remover Morte no Nilo">
+                        <img src="./imagens/trash.png" alt="Remover">
+                    </button>
+                </article>
+
+            </div>
+
+            <!-- Resumo -->
+            <section class="main-reposicao-resumo">
+                <h2>Resumo da reposição</h2>
+
+                <p class="main-reposicao-resumo-total">
+                    Total: <strong>25 livros novos no estoque</strong>
+                </p>
+
+                <ul>
+                    <li>x10 Sherlock Holmes: Um estudo em vermelho</li>
+                    <li>x15 Morte no Nilo</li>
+                </ul>
+            </section>
+
+            <button class="main-reposicao-confirmar" type="button">
+                <img src="./imagens/reposicao_icon.png" alt="">
+                FAZER REPOSIÇÃO
+            </button>
+
+        </aside>
+    </section>
+</main>

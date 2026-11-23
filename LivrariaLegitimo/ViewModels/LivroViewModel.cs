@@ -27,6 +27,6 @@ namespace LivrariaLegitimo.ViewModels
         public Avaliacao AvaliacaoLivro { get; set; }
         public IEnumerable<(Avaliacao avaliacao, string NomeCliente)> ObterTodasAvaliacoes { get; set; }
 
-
+        public List<(Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas, int quantidadeCarrinho)> CookieReposicao { get; set; }
     }
 }
