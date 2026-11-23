@@ -2,6 +2,13 @@
 @model LivrariaLegitimo.ViewModels.LivroViewModel
 <link rel="stylesheet" href="~/css/reposicao.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+@{
+    int totalReposicao = 0;
+    foreach(var livro in Model.CookieReposicao)
+    {
+        totalReposicao += livro.quantidadeCarrinho;
+    }
+}
 <main class="main-reposicao">
     <header class="main-reposicao-header">
         <div class="main-reposicao-header-info">
@@ -88,7 +95,7 @@
                         <img src="@livro.arquivoImagem" class="main-reposicao-item-img" alt="Capa de Sherlock Holmes: Um estudo em vermelho">
 
                         <div class="main-reposicao-item-info">
-                            <h3>@(livro.livro.Nome.Length > 35 ? livro.livro.Nome.Substring(0, 37) + "..." : livro.livro.Nome)</h3>
+                            <h3>@(livro.livro.Nome.Length > 35 ? livro.livro.Nome.Substring(0, 35) + "..." : livro.livro.Nome)</h3>
 
                             <div class="main-reposicao-item-detalhes">
 
@@ -149,12 +156,14 @@
                 <h2>Resumo da reposição</h2>
 
                 <p class="main-reposicao-resumo-total">
-                    Total: <strong>25 livros novos no estoque</strong>
+                    Total: <strong>@totalReposicao livros novos no estoque</strong>
                 </p>
 
                 <ul>
-                    <li>x10 Sherlock Holmes: Um estudo em vermelho</li>
-                    <li>x15 Morte no Nilo</li>
+                    @foreach(var livro in Model.CookieReposicao)
+                    {
+                        <li>x@(livro.quantidadeCarrinho) @(livro.livro.Nome.Length > 35 ? livro.livro.Nome.Substring(0, 35) + "..." : livro.livro.Nome)</li>
+                    }
                 </ul>
             </section>
 
