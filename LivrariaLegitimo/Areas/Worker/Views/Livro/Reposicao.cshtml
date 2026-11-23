@@ -87,91 +87,111 @@
                 </button>
             </div>
 
-            <div class="main-reposicao-itens-lista">
+            <form asp-area="Worker" asp-action="Reposicao" asp-controller="Livro" method="post">
 
-                @foreach(var livro in Model.CookieReposicao)
-                {
-                    <article class="main-reposicao-item">
-                        <img src="@livro.arquivoImagem" class="main-reposicao-item-img" alt="Capa de Sherlock Holmes: Um estudo em vermelho">
+                <div class="main-reposicao-itens-lista">
 
-                        <div class="main-reposicao-item-info">
-                            <h3>@(livro.livro.Nome.Length > 35 ? livro.livro.Nome.Substring(0, 35) + "..." : livro.livro.Nome)</h3>
-
-                            <div class="main-reposicao-item-detalhes">
-
-                                <!-- Primeira linha: autor e quantidade atual -->
-                                <div class="main-reposicao-item-detalhes-livro">
-                                    <p>@livro.livro.Autor</p>
-                                    <span>Quantidade atual: @livro.livro.Quantidade</span>
-                                </div>
-
-                                <!-- Segunda linha: editora e capacidade máxima -->
-                                <div class="main-reposicao-item-detalhes-estoque">
-                                    <span>@livro.livro.Editora</span>
-                                    <span>Capacidade máxima: @livro.livro.Capacidade</span>
-                                </div>
-
-                            </div>
-
-                            <!-- Quantidade e capacidade lado a lado -->
-                            <div class="main-reposicao-item-controle">
-
-                                <div class="main-reposicao-item-qtd">
-
-                                    <button type="button" aria-label="Diminuir quantidade">
-                                        <img src="./imagens/minus.png" alt="Diminuir">
-                                    </button>
-
-                                    <input type="number" min="1" aria-label="Quantidade a repor de @livro.livro.Nome" value="@livro.quantidadeCarrinho">
-
-                                    @if(livro.quantidadeCarrinho + livro.livro.Quantidade < livro.livro.Capacidade)
-                                    {
-                                        <button type="button" aria-label="Aumentar quantidade">
-                                            <img src="./imagens/plus.png" alt="Aumentar">
-                                        </button>
-                                    }
-                                </div>
-
-                                <div class="main-reposicao-item-capacidade">
-                                    <span>70% da capacidade já cheia</span>
-
-                                    <div class="main-reposicao-progress">
-                                        <span style="width: @((decimal)livro.livro.Quantidade / livro.livro.Capacidade * 100)%"></span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <button class="main-reposicao-item-remover" type="button" aria-label="Remover Sherlock Holmes">
-                            <img src="./imagens/trash.png" alt="Remover">
-                        </button>
-                    </article>
-                }
-               
-            </div>
-
-            <!-- Resumo -->
-            <section class="main-reposicao-resumo">
-                <h2>Resumo da reposição</h2>
-
-                <p class="main-reposicao-resumo-total">
-                    Total: <strong>@totalReposicao livros novos no estoque</strong>
-                </p>
-
-                <ul>
-                    @foreach(var livro in Model.CookieReposicao)
+                    @for (int i = 0; i < Model.CookieReposicao.Count; i++)
                     {
-                        <li>x@(livro.quantidadeCarrinho) @(livro.livro.Nome.Length > 35 ? livro.livro.Nome.Substring(0, 35) + "..." : livro.livro.Nome)</li>
+                        var livro = Model.CookieReposicao[i];
+
+                        <article class="main-reposicao-item">
+
+                            <input type="hidden" name="codBarras[@i]" value="@livro.livro.CodigoBarras">
+
+                            <img src="@livro.arquivoImagem" class="main-reposicao-item-img" alt="Capa de @livro.livro.Nome">
+
+                            <div class="main-reposicao-item-info">
+
+                                <h3>@(livro.livro.Nome.Length > 35 ? livro.livro.Nome.Substring(0, 35) + "..." : livro.livro.Nome)</h3>
+
+                                <div class="main-reposicao-item-detalhes">
+
+                                    
+                                    <div class="main-reposicao-item-detalhes-livro">
+                                        <p>@livro.livro.Autor</p>
+                                        <span>Quantidade atual: @livro.livro.Quantidade</span>
+                                    </div>
+
+                                    
+                                    <div class="main-reposicao-item-detalhes-estoque">
+                                        <span>@livro.livro.Editora</span>
+                                        <span>Capacidade máxima: @livro.livro.Capacidade</span>
+                                    </div>
+
+                                </div>
+
+                               
+                                <div class="main-reposicao-item-controle">
+
+                                    <div class="main-reposicao-item-qtd">
+
+                                        <button type="button" aria-label="Diminuir quantidade">
+                                            <img src="./imagens/minus.png" alt="Diminuir">
+                                        </button>
+
+                                        <input type="number"
+                                               min="1"
+                                               name="quantidade[@i]"
+                                               aria-label="Quantidade a repor de @livro.livro.Nome"
+                                               value="@livro.quantidadeCarrinho">
+
+                                        @if (livro.quantidadeCarrinho + livro.livro.Quantidade < livro.livro.Capacidade)
+                                        {
+                                            <button type="button" aria-label="Aumentar quantidade">
+                                                <img src="./imagens/plus.png" alt="Aumentar">
+                                            </button>
+                                        }
+
+                                    </div>
+
+                                    <div class="main-reposicao-item-capacidade">
+                                        <span>70% da capacidade já cheia</span>
+
+                                        <div class="main-reposicao-progress">
+                                            <span style="width: @((decimal)livro.livro.Quantidade / livro.livro.Capacidade * 100)%"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <button class="main-reposicao-item-remover" type="button" aria-label="Remover @livro.livro.Nome">
+                                <img src="./imagens/trash.png" alt="Remover">
+                            </button>
+
+                        </article>
                     }
-                </ul>
-            </section>
 
-            <button class="main-reposicao-confirmar" type="button">
-                <img src="./imagens/reposicao_icon.png" alt="">
-                FAZER REPOSIÇÃO
-            </button>
+                </div>
 
+                <!-- Resumo -->
+                <section class="main-reposicao-resumo">
+
+                    <h2>Resumo da reposição</h2>
+
+                    <p class="main-reposicao-resumo-total">
+                        Total: <strong>@totalReposicao livros novos no estoque</strong>
+                    </p>
+
+                    <ul>
+                        @foreach (var livro in Model.CookieReposicao)
+                        {
+                            <li>
+                                x@(livro.quantidadeCarrinho)
+                                @(livro.livro.Nome.Length > 35 ? livro.livro.Nome.Substring(0, 35) + "..." : livro.livro.Nome)
+                            </li>
+                        }
+                    </ul>
+
+                </section>
+
+                <button class="main-reposicao-confirmar" type="submit">
+                    <img src="./imagens/reposicao_icon.png" alt="">
+                    FAZER REPOSIÇÃO
+                </button>
+
+            </form>
         </aside>
     </section>
 </main>

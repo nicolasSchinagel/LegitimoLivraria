@@ -55,9 +55,14 @@ namespace LivrariaLegitimo.Areas.Worker.Controllers
 
         [HttpPost]
         [FuncionarioAutorizacao("administrador total", "gerente de compras")]
-        public IActionResult Reposicao(List<(decimal codBarras, int quantidade)> lista)
+        public IActionResult Reposicao(List<decimal> codBarras, List<int> quantidade)
         {
+            List<(decimal codBarras, int quantidade)> lista = codBarras
+                .Select((codigo, i) => (codigo, quantidade[i]))
+                .ToList();
+
             _livroRepository.AdicionarEstoque(lista);
+
             TempData["msg"] = "Cadastro realizado!";
             return RedirectToAction("MenuGerenciar", "Default");
         }
