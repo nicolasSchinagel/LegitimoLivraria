@@ -1,5 +1,6 @@
-﻿@model LivrariaLegitimo.ViewModels.CompraViewModel
+﻿@model LivrariaLegitimo.ViewModels.EnderecoViewModel
 
+<link rel="stylesheet" href="~/css/carrinho.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/confEndereco.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/adicionarLivro.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/checkout.css" asp-append-version="true" />
@@ -70,18 +71,18 @@
                         <div class="input-div-type-1">
 
                             <div class="input-div-type-1-texts">
-                                <label for="cep" class="label-div-type-1">CEP</label>
+                                <label for="CEP" class="label-div-type-1">CEP</label>
                                 <span class="obligate-div-type-1">*</span>
                             </div>
 
                             <div class="input-div-type-1-block">
                                 <input type="text"
-                                       id="cep"
-                                       name="EditarEndereco.CEP"
+                                       asp-for="ObterCliente.Cep"
+                                       name="CEP"
+                                       id="CEP"
                                        class="input-div-type-1-block-insert"
                                        placeholder="Digite seu CEP"
                                        maxlength="8"
-                                       value="@Model.ObterCliente.Cep"
                                        required />
                             </div>
 
@@ -90,45 +91,46 @@
                         <div class="input-div-type-1">
 
                             <div class="input-div-type-1-texts">
-                                <label for="uf" class="label-div-type-1">UF</label>
+                                <label for="estado" class="label-div-type-1">UF</label>
                                 <span class="obligate-div-type-1">*</span>
                             </div>
 
                             <div class="input-div-type-5-block">
 
-                                <select id="uf"
-                                        name="EditarEndereco.estado"
+                                <select asp-for="ObterCliente.Estado"
+                                        name="estado"
+                                        id="estado"
                                         class="input-div-type-5-block-insert"
                                         required>
 
                                     <option value="" disabled>Selecione seu estado brasileiro</option>
-                                    <option value="AC" selected="@(Model.ObterCliente.Estado == "AC")">AC</option>
-                                    <option value="AL" selected="@(Model.ObterCliente.Estado == "AL")">AL</option>
-                                    <option value="AP" selected="@(Model.ObterCliente.Estado == "AP")">AP</option>
-                                    <option value="AM" selected="@(Model.ObterCliente.Estado == "AM")">AM</option>
-                                    <option value="BA" selected="@(Model.ObterCliente.Estado == "BA")">BA</option>
-                                    <option value="CE" selected="@(Model.ObterCliente.Estado == "CE")">CE</option>
-                                    <option value="DF" selected="@(Model.ObterCliente.Estado == "DF")">DF</option>
-                                    <option value="ES" selected="@(Model.ObterCliente.Estado == "ES")">ES</option>
-                                    <option value="GO" selected="@(Model.ObterCliente.Estado == "GO")">GO</option>
-                                    <option value="MA" selected="@(Model.ObterCliente.Estado == "MA")">MA</option>
-                                    <option value="MT" selected="@(Model.ObterCliente.Estado == "MT")">MT</option>
-                                    <option value="MS" selected="@(Model.ObterCliente.Estado == "MS")">MS</option>
-                                    <option value="MG" selected="@(Model.ObterCliente.Estado == "MG")">MG</option>
-                                    <option value="PA" selected="@(Model.ObterCliente.Estado == "PA")">PA</option>
-                                    <option value="PB" selected="@(Model.ObterCliente.Estado == "PB")">PB</option>
-                                    <option value="PR" selected="@(Model.ObterCliente.Estado == "PR")">PR</option>
-                                    <option value="PE" selected="@(Model.ObterCliente.Estado == "PE")">PE</option>
-                                    <option value="PI" selected="@(Model.ObterCliente.Estado == "PI")">PI</option>
-                                    <option value="RJ" selected="@(Model.ObterCliente.Estado == "RJ")">RJ</option>
-                                    <option value="RN" selected="@(Model.ObterCliente.Estado == "RN")">RN</option>
-                                    <option value="RS" selected="@(Model.ObterCliente.Estado == "RS")">RS</option>
-                                    <option value="RO" selected="@(Model.ObterCliente.Estado == "RO")">RO</option>
-                                    <option value="RR" selected="@(Model.ObterCliente.Estado == "RR")">RR</option>
-                                    <option value="SC" selected="@(Model.ObterCliente.Estado == "SC")">SC</option>
-                                    <option value="SP" selected="@(Model.ObterCliente.Estado == "SP")">SP</option>
-                                    <option value="SE" selected="@(Model.ObterCliente.Estado == "SE")">SE</option>
-                                    <option value="TO" selected="@(Model.ObterCliente.Estado == "TO")">TO</option>
+                                    <option value="AC">AC</option>
+                                    <option value="AL">AL</option>
+                                    <option value="AP">AP</option>
+                                    <option value="AM">AM</option>
+                                    <option value="BA">BA</option>
+                                    <option value="CE">CE</option>
+                                    <option value="DF">DF</option>
+                                    <option value="ES">ES</option>
+                                    <option value="GO">GO</option>
+                                    <option value="MA">MA</option>
+                                    <option value="MT">MT</option>
+                                    <option value="MS">MS</option>
+                                    <option value="MG">MG</option>
+                                    <option value="PA">PA</option>
+                                    <option value="PB">PB</option>
+                                    <option value="PR">PR</option>
+                                    <option value="PE">PE</option>
+                                    <option value="PI">PI</option>
+                                    <option value="RJ">RJ</option>
+                                    <option value="RN">RN</option>
+                                    <option value="RS">RS</option>
+                                    <option value="RO">RO</option>
+                                    <option value="RR">RR</option>
+                                    <option value="SC">SC</option>
+                                    <option value="SP">SP</option>
+                                    <option value="SE">SE</option>
+                                    <option value="TO">TO</option>
 
                                 </select>
 
@@ -149,11 +151,11 @@
 
                             <div class="input-div-type-1-block">
                                 <input type="text"
+                                       asp-for="ObterCliente.Cidade"
+                                       name="cidade"
                                        id="cidade"
-                                       name="EditarEndereco.cidade"
                                        class="input-div-type-1-block-insert"
                                        placeholder="Digite o nome da sua cidade"
-                                       value="@Model.ObterCliente.Cidade"
                                        required />
                             </div>
 
@@ -168,11 +170,11 @@
 
                             <div class="input-div-type-1-block">
                                 <input type="text"
+                                       asp-for="ObterCliente.Bairro"
+                                       name="bairro"
                                        id="bairro"
-                                       name="EditarEndereco.bairro"
                                        class="input-div-type-1-block-insert"
                                        placeholder="Digite o nome do seu bairro"
-                                       value="@Model.ObterCliente.Bairro"
                                        required />
                             </div>
 
@@ -196,17 +198,17 @@
                         <div class="input-div-type-1">
 
                             <div class="input-div-type-1-texts">
-                                <label for="numero" class="label-div-type-1">Número</label>
+                                <label for="numeroEndereco" class="label-div-type-1">Número</label>
                                 <span class="obligate-div-type-1">*</span>
                             </div>
 
                             <div class="input-div-type-1-block">
                                 <input type="number"
-                                       id="numero"
-                                       name="EditarEndereco.numeroEndereco"
+                                       asp-for="ObterCliente.NumeroEndereco"
+                                       name="numeroEndereco"
+                                       id="numeroEndereco"
                                        class="input-div-type-1-block-insert"
                                        placeholder="Número do endereço"
-                                       value="@Model.ObterCliente.NumeroEndereco"
                                        required />
                             </div>
 
@@ -221,11 +223,11 @@
 
                             <div class="input-div-type-1-block">
                                 <input type="text"
+                                       asp-for="ObterCliente.Logradouro"
+                                       name="logradouro"
                                        id="logradouro"
-                                       name="EditarEndereco.logradouro"
                                        class="input-div-type-1-block-insert"
                                        placeholder="Digite o nome do logradouro"
-                                       value="@Model.ObterCliente.Logradouro"
                                        required />
                             </div>
 
@@ -234,17 +236,18 @@
                         <div class="input-div-type-1">
 
                             <div class="input-div-type-1-texts">
-                                <label for="complemento" class="label-div-type-1">
+                                <label for="complementoEndereco" class="label-div-type-1">
                                     Complemento do endereço
                                 </label>
                             </div>
 
                             <div class="input-div-type-1-block-long">
-                                <textarea id="complemento"
-                                          name="EditarEndereco.complementoEndereco"
+                                <textarea asp-for="ObterCliente.ComplementoEndereco"
+                                          id="complementoEndereco"
+                                          name="complementoEndereco"
                                           class="input-div-type-1-block-insertLong"
                                           rows="6"
-                                          placeholder="Deixe aqui algo importante do seu endereço">@Model.ObterCliente.ComplementoEndereco</textarea>
+                                          placeholder="Deixe aqui algo importante do seu endereço"></textarea>
                             </div>
 
                         </div>

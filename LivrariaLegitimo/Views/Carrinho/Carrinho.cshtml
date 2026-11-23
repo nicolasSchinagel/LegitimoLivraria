@@ -1,5 +1,7 @@
 ﻿@using System.Globalization
 @model LivrariaLegitimo.ViewModels.CompraViewModel
+@inject LivrariaLegitimo.Libraries.Login.LoginCliente _LoginCliente
+@inject LivrariaLegitimo.Libraries.Login.LoginFuncionario _LoginFuncionario
 
 @{
     decimal totalCompra = 0;
@@ -254,19 +256,51 @@
                 </div>
 
             </div>
+            @if(_LoginCliente.GetCliente() != null)
+            {
+                <a asp-controller="Carrinho"
+                   asp-action="EditarEndereco"
+                   class="main-carrinho-content-sobre-buttom no-underline">
 
-            <a asp-controller="Carrinho"
-               asp-action="EditarEndereco"
-               class="main-carrinho-content-sobre-buttom">
+                    <img src="~/img/cartCarrinho.png"
+                         class="main-carrinho-content-sobre-buttom-icon" />
+
+                    <h3 class="main-carrinho-content-sobre-buttom-title">
+                        Finalizar Compra
+                    </h3>
+
+                </a>
+            }
+            else @if(_LoginFuncionario.GetFuncionario() != null)
+            {
+                <a
+               class="main-carrinho-content-sobre-buttom no-underline">
 
                 <img src="~/img/cartCarrinho.png"
                      class="main-carrinho-content-sobre-buttom-icon" />
 
                 <h3 class="main-carrinho-content-sobre-buttom-title">
-                    Finalizar Compra
+                    Indisponível
                 </h3>
 
-            </a>
+              </a>
+            }
+            else
+            {
+                    <a asp-controller="Default"
+                       asp-action="Login"
+                       class="main-carrinho-content-sobre-buttom no-underline">
+
+                        <img src="~/img/cartCarrinho.png"
+                             class="main-carrinho-content-sobre-buttom-icon" />
+
+                        <h3 class="main-carrinho-content-sobre-buttom-title">
+                            Faça Login para comprar
+                        </h3>
+
+                    </a>
+            }
+            
 
         </div>
 

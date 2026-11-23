@@ -40,41 +40,35 @@ namespace LivrariaLegitimo.Controllers
         [HttpGet]
         public IActionResult EditarEndereco()
         {
-            CompraViewModel model = new CompraViewModel
+            EnderecoViewModel model = new EnderecoViewModel
             {
-                Carrinho = _cookieCarrinhoCompra.Consultar(),
                 ObterCliente = _clienteRepository.ObterCliente(_loginCliente.GetCliente().IdCli)
             };
 
             return View(model);
         }
 
-
         [HttpPost]
-        public IActionResult EditarEndereco(CompraViewModel model)
+        public IActionResult EditarEndereco(EnderecoViewModel model)
         {
-            if (string.IsNullOrWhiteSpace(model.EditarEndereco.CEP) ||
-                string.IsNullOrWhiteSpace(model.EditarEndereco.logradouro) ||
-                string.IsNullOrWhiteSpace(model.EditarEndereco.bairro) ||
-                string.IsNullOrWhiteSpace(model.EditarEndereco.cidade) ||
-                string.IsNullOrWhiteSpace(model.EditarEndereco.estado))
+            if (string.IsNullOrWhiteSpace(model.CEP) ||
+                string.IsNullOrWhiteSpace(model.logradouro) ||
+                string.IsNullOrWhiteSpace(model.bairro) ||
+                string.IsNullOrWhiteSpace(model.cidade) ||
+                string.IsNullOrWhiteSpace(model.estado))
             {
                 ViewBag.Erro = "Preencha todos os campos obrigatórios do endereço.";
-
-                model.Carrinho = _cookieCarrinhoCompra.Consultar();
-                model.ObterCliente = _clienteRepository.ObterCliente(_loginCliente.GetCliente().IdCli);
-
-                return View("EditarEndereco", model);
+                return RedirectToAction("EditarEndereco");
             }
 
             _clienteRepository.AtualizarEndereco(
-                model.EditarEndereco.CEP,
-                model.EditarEndereco.logradouro,
-                model.EditarEndereco.bairro,
-                model.EditarEndereco.cidade,
-                model.EditarEndereco.estado,
-                model.EditarEndereco.numeroEndereco,
-                model.EditarEndereco.complementoEndereco
+                model.CEP,
+                model.logradouro,
+                model.bairro,
+                model.cidade,
+                model.estado,
+                model.numeroEndereco,
+                model.complementoEndereco
             );
 
             TempData["Sucesso"] = "Endereço atualizado com sucesso!";
