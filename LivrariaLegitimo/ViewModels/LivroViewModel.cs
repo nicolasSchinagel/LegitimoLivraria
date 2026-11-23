@@ -24,6 +24,7 @@ namespace LivrariaLegitimo.ViewModels
 
         public (int quantidadeG, int nota0, int nota1, int nota2, int nota3, int nota4, int nota5) ObterQuantidadesAvaliacaoLivro { get; set; }
 
+        public Avaliacao AvaliacaoLivro { get; set; }
         public IEnumerable<(Avaliacao avaliacao, string NomeCliente)> ObterTodasAvaliacoes { get; set; }
 
 

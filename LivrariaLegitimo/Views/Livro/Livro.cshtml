@@ -14,7 +14,7 @@
 <div class="background-avaliacao">
 </div>
 <div class="supercard">
-    <div class="supercard-avaliacao">
+    <form class="supercard-avaliacao" method="post" asp-controller="Livro" asp-action="Livro">
         <h1 class="supercard-avaliacao-title"><span>AVALIE</span> ESTE LIVRO</h1>
         <div class="supercard-avaliacao-topdetails">
             <div class="supercard-avaliacao-topdetails-info">
@@ -22,6 +22,7 @@
                 <h2 class="supercard-avaliacao-topdetails-info-editora">Editora: @Model.ObterLivro.livro.Editora</h2>
                 <h2 class="supercard-avaliacao-topdetails-info-tipo">Tipo: @Model.ObterLivro.livro.TipoCapa</h2>
                 <h2 class="supercard-avaliacao-topdetails-info-isbn">ISBN: @Model.ObterLivro.livro.ISBN</h2>
+                <input type="hidden" asp-for="AvaliacaoLivro.CodigoBarras" value="@Model.ObterLivro.livro.CodigoBarras" />
             </div>
             <div class="supercard-avaliacao-topdetails-avaliacao">
                 <h3 class="supercard-avaliacao-topdetails-avaliacao-media">Média geral</h3>
@@ -36,51 +37,78 @@
         <div class="supercard-avaliacao-midInformation">
             <div class="supercard-avaliacao-midInformation-input-title">
                 <div class="supercard-avaliacao-midInformation-input-descriptions">
-                    <label class="supercard-avaliacao-midInformation-input-descriptions-text">Título da Avaliação</label>
+                    <label asp-for="AvaliacaoLivro.TituloAvaliacao"
+                         class="supercard-avaliacao-midInformation-input-descriptions-text">
+                        Título da Avaliação
+                    </label>
                     <span class="supercard-avaliacao-midInformation-input-descriptions-span">*</span>
                 </div>
                 <div class="supercard-avaliacao-midInformation-input-block">
-                    <input type="text" class="supercard-avaliacao-midInformation-input-block-itself" placeholder="Ex: Muito bom, simplesmente sensacional" />
+                    <input type="text"
+                           asp-for="AvaliacaoLivro.TituloAvaliacao"
+                           class="supercard-avaliacao-midInformation-input-block-itself"
+                           placeholder="Ex: Muito bom, simplesmente sensacional"
+                           required />
                 </div>
             </div>
+
             <div class="supercard-avaliacao-midInformation-input-nota">
                 <div class="supercard-avaliacao-midInformation-input-descriptions">
-                    <label class="supercard-avaliacao-midInformation-input-descriptions-text">Nota do Livro</label>
+                    <label asp-for="AvaliacaoLivro.NotaLivro"
+                           class="supercard-avaliacao-midInformation-input-descriptions-text">
+                        Nota do Livro
+                    </label>
                     <span class="supercard-avaliacao-midInformation-input-descriptions-span">*</span>
                 </div>
                 <div class="supercard-avaliacao-midInformation-input-block">
-                    <select name="estrelas..." class="supercard-avaliacao-midInformation-input-block-itself" placeholder="Ex: Muito bom, simplesmente sensacional">
-                        <option value="1" class="supercard-avaliacao-midInformation-Input-block-option">1 estrela</option>
-                        <option value="2" class="supercard-avaliacao-midInformation-Input-block-option">2 estrelas</option>
-                        <option value="3" class="supercard-avaliacao-midInformation-Input-block-option">3 estrelas</option>
-                        <option value="4" class="supercard-avaliacao-midInformation-Input-block-option">4 estrelas</option>
-                        <option value="5" class="supercard-avaliacao-midInformation-Input-block-option">5 estrelas</option>
+                    <select asp-for="AvaliacaoLivro.NotaLivro"
+                            class="supercard-avaliacao-midInformation-input-block-itself"
+                            required>
+                        <option value="1">0 estrelas</option>
+                        <option value="1">1 estrela</option>
+                        <option value="2">2 estrelas</option>
+                        <option value="3">3 estrelas</option>
+                        <option value="4">4 estrelas</option>
+                        <option value="5">5 estrelas</option>
                     </select>
                 </div>
             </div>
         </div>
+
         <div class="supercard-avaliacao-midTextArea">
             <div class="supercard-avaliacao-midInformation-input-textarea">
                 <div class="supercard-avaliacao-midInformation-input-descriptions">
-                    <label class="supercard-avaliacao-midInformation-input-descriptions-text">Conteúdo da avaliação</label>
+                    <label asp-for="AvaliacaoLivro.Comentario"
+                           class="supercard-avaliacao-midInformation-input-descriptions-text">
+                        Conteúdo da avaliação
+                    </label>
                     <span class="supercard-avaliacao-midInformation-input-descriptions-span">*</span>
                 </div>
                 <div class="supercard-avaliacao-midInformation-input-block">
-                    <textarea class="supercard-avaliacao-midInformation-input-block-itself" rows="7" cols="50" placeholder="Escreva sobre a qualidade do produto e o que achou do livro..."></textarea>
+                    <textarea asp-for="AvaliacaoLivro.Comentario"
+                              class="supercard-avaliacao-midInformation-input-block-itself"
+                              rows="7"
+                              cols="50"
+                              placeholder="Escreva sobre a qualidade do produto e o que achou do livro..."
+                              required></textarea>
                 </div>
             </div>
         </div>
+
         <div class="supercard-avaliacao-bottomButton">
             <a class="supercard-avaliacao-bottomButton-back">
-                <img src="~/img/icon_backAvaliation.png" class="supercard-avaliacao-bottomButton-back-symbol" />
+                <img src="~/img/icon_backAvaliation.png"
+                     class="supercard-avaliacao-bottomButton-back-symbol" />
                 <h3 class="supercard-avaliacao-bottomButton-back-title">Voltar</h3>
             </a>
-            <button class="supercard-avaliacao-bottomButton-button">
-                <img src="~/img/icon_avaliation.png" class="supercard-avaliacao-bottomButton-button-icon" />
+
+            <button type="submit" class="supercard-avaliacao-bottomButton-button">
+                <img src="~/img/icon_avaliation.png"
+                     class="supercard-avaliacao-bottomButton-button-icon" />
                 <h3 class="supercard-avaliacao-bottomButton-button-title">AVALIAR</h3>
             </button>
         </div>
-    </div>
+    </form>
 </div>
 <div class="genre-list">
     @if (Model.ObterLivro.livro.Generos.Contains("Fantasia"))
