@@ -51,6 +51,6 @@ namespace LivrariaLegitimo.Models
         public string? ComplementoEndereco { get; set; }
 
         [Display(Name = "Fim do Contrato")]
-        public DateTime FimContrato { get; set; }
+        public DateTime? FimContrato { get; set; }
     }
 }

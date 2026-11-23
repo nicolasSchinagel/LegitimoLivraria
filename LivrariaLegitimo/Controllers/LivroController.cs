@@ -58,19 +58,8 @@ namespace LivrariaLegitimo.Controllers
         public IActionResult Livro(LivroViewModel model)
         {
             _avaliacaoRepository.FazerAvaliacao(model.AvaliacaoLivro, _loginCliente.GetCliente().IdCli);
-            return View();
-        }
 
-        [HttpGet]
-        public IActionResult ListaProcura(string pesquisa)
-        {
-            var livro = _livroRepository.ObterTodosLivros(pesquisa);
-            var model = new LivroViewModel
-            {
-                TodosLivros = livro
-            };
-
-            return View(model);
+            return RedirectToAction("Livro", new { codBarras = model.AvaliacaoLivro.CodigoBarras });
         }
 
         [HttpGet]
