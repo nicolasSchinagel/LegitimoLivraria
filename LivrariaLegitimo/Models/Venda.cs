@@ -29,7 +29,7 @@ namespace LivrariaLegitimo.Models
         public string? NomeCartao { get; set; }
 
         [Display(Name = "Validade")]
-        public DateTime? ValidadeCartao { get; set; }
+        public string? ValidadeCartao { get; set; }
 
         [Display(Name = "CVV")]
         public int? Cvv { get; set; }

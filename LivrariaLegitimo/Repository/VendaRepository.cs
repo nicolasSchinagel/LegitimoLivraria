@@ -59,7 +59,7 @@ namespace LivrariaLegitimo.Repository
                             cmd.Parameters.Add("@vValidade", MySqlDbType.Date).Value = venda.ValidadeCartao ?? (object)DBNull.Value; // arrumar conversão da data
                             cmd.Parameters.Add("@vCVV", MySqlDbType.Int32).Value = venda.Cvv ?? (object)DBNull.Value;
                             cmd.Parameters.Add("@vNumeroParcelamentos", MySqlDbType.Int16).Value = venda.NumeroParcelamentos;
-
+    
                             cmd.ExecuteNonQuery();
                         }
                     }

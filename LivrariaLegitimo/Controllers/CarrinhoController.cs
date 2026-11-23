@@ -4,6 +4,7 @@ using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
 using LivrariaLegitimo.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace LivrariaLegitimo.Controllers
 {
@@ -93,6 +94,16 @@ namespace LivrariaLegitimo.Controllers
         [HttpPost]
         public IActionResult Comprar(CompraViewModel model)
         {
+            DateTime? validade = null;
+
+            if (!string.IsNullOrWhiteSpace(model.Compra.ValidadeCartao))
+            {
+                validade = DateTime.ParseExact(
+                    model.Compra.ValidadeCartao,
+                    "MM/yy",
+                    CultureInfo.InvariantCulture
+                );
+            }
             if (model.Compra == null || model.Compra.Itens == null || !model.Compra.Itens.Any())
             {
                 ViewBag.Erro = "Não foi possível finalizar a compra. O carrinho está vazio.";
