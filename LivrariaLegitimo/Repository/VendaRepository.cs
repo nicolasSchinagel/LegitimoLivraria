@@ -138,7 +138,7 @@ namespace LivrariaLegitimo.Repository
                 var tipo = "";
                 bool existencia = false;
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from ViewLivrosComprados where(codBarras = @CodBarras and idCli = @IdCli", conexao);
+                MySqlCommand cmd = new MySqlCommand("select * from ViewLivrosComprados where(codBarras = @CodBarras and idCli = @IdCli)", conexao);
                 cmd.Parameters.AddWithValue("@CodBarras", codBarras);
                 cmd.Parameters.AddWithValue("@IdCli", idCli);
 

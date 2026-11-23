@@ -2,6 +2,7 @@
 @inject LivrariaLegitimo.Libraries.Login.LoginCliente _LoginCliente
 @inject LivrariaLegitimo.Libraries.Login.LoginFuncionario _LoginFuncionario
 @inject LivrariaLegitimo.Repository.LivroRepository _livroRepository
+@inject LivrariaLegitimo.Repository.VendaRepository _vendaRepository
 @model LivrariaLegitimo.ViewModels.LivroViewModel
 @{
     DateTime dataMais2Dias = DateTime.Today.AddDays(2);
@@ -343,10 +344,36 @@
                     }
                 </h4>
                 <div class="section-descriptions-top-prices-tagCamada">
-                    <div class="section-descriptions-top-prices-addcartretangulo">
-                        <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
-                        <h2>Comprar agora</h2>
-                    </div>
+                    @if(_LoginCliente.GetCliente() != null)
+                    {
+                        @if (_vendaRepository.ExisteVenda(_LoginCliente.GetCliente().IdCli, Model.ObterLivro.livro.CodigoBarras).tipo == "ebook")
+                        {
+                            <div class="section-descriptions-top-prices-addcartretangulo">
+                                <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
+                                <h2>Já obtido</h2>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="section-descriptions-top-prices-addcartretangulo">
+                                <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
+                                <h2>Comprar agora</h2>
+                            </div>
+                        }
+                    }
+                    else @if(_LoginFuncionario.GetFuncionario() != null){
+                        <div class="section-descriptions-top-prices-addcartretangulo">
+                            <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
+                            <h2>Indisponível</h2>
+                        </div>
+                    }
+                    else{
+                        <div class="section-descriptions-top-prices-addcartretangulo">
+                            <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
+                            <h2>Faça login</h2>
+                        </div>
+                    }
+                  
                 </div>
             </div>
         </div>
@@ -499,16 +526,25 @@
         @if (_LoginCliente.GetCliente() != null)
         {
             <h2 class="total-view-section-avalieText">Avalie este livro</h2>
-            @if (!Model.ExisteAvaliacaoConta)
+            @if(_vendaRepository.ExisteVenda(_LoginCliente.GetCliente().IdCli, Model.ObterLivro.livro.CodigoBarras).existencia)
             {
-                <h3 class="total-view-section-compartilhar">Avaliação disponível</h3>
-                <a class="total-view-section-avaliar">Vamos avaliar!</a>
+                @if (!Model.ExisteAvaliacaoConta)
+                {
+                    <h3 class="total-view-section-compartilhar">Avaliação disponível</h3>
+                    <a class="total-view-section-avaliar">Vamos avaliar!</a>
+                }
+                else
+                {
+                    <h3 class="total-view-section-compartilhar">Produto já avaliado!</h3>
+                    <a class="total-view-section-avaliar"></a>
+                }
             }
             else
             {
-                <h3 class="total-view-section-compartilhar">Produto já avaliado!</h3>
+                <h3 class="total-view-section-compartilhar">Compre para avaliar</h3>
                 <a class="total-view-section-avaliar"></a>
             }
+
         }
         @if (_LoginCliente.GetCliente() == null)
         {
