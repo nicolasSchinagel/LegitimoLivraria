@@ -82,114 +82,66 @@
 
             <div class="main-reposicao-itens-lista">
 
-                <!-- Sherlock Holmes -->
-                <article class="main-reposicao-item">
-                    <img src="./imagens/book7.webp" class="main-reposicao-item-img" alt="Capa de Sherlock Holmes: Um estudo em vermelho">
+                @foreach(var livro in Model.CookieReposicao)
+                {
+                    <article class="main-reposicao-item">
+                        <img src="@livro.arquivoImagem" class="main-reposicao-item-img" alt="Capa de Sherlock Holmes: Um estudo em vermelho">
 
-                    <div class="main-reposicao-item-info">
-                        <h3>Sherlock Holmes: Um estudo em vermelho - Arthur Conan Doyle</h3>
+                        <div class="main-reposicao-item-info">
+                            <h3>@(livro.livro.Nome.Length > 35 ? livro.livro.Nome.Substring(0, 37) + "..." : livro.livro.Nome)</h3>
 
-                        <div class="main-reposicao-item-detalhes">
+                            <div class="main-reposicao-item-detalhes">
 
-                            <!-- Primeira linha: autor e quantidade atual -->
-                            <div class="main-reposicao-item-detalhes-livro">
-                                <p>Arthur Conan Doyle</p>
-                                <span>Quantidade atual: 35</span>
-                            </div>
-
-                            <!-- Segunda linha: editora e capacidade máxima -->
-                            <div class="main-reposicao-item-detalhes-estoque">
-                                <span>Via Leitura</span>
-                                <span>Capacidade máxima: 50</span>
-                            </div>
-
-                        </div>
-
-                        <!-- Quantidade e capacidade lado a lado -->
-                        <div class="main-reposicao-item-controle">
-
-                            <div class="main-reposicao-item-qtd">
-                                <button type="button" aria-label="Diminuir quantidade">
-                                    <img src="./imagens/minus.png" alt="Diminuir">
-                                </button>
-
-                                <input type="number" value="10" min="1" aria-label="Quantidade a repor de Sherlock Holmes">
-
-                                <button type="button" aria-label="Aumentar quantidade">
-                                    <img src="./imagens/plus.png" alt="Aumentar">
-                                </button>
-                            </div>
-
-                            <div class="main-reposicao-item-capacidade">
-                                <span>70% da capacidade já cheia</span>
-
-                                <div class="main-reposicao-progress">
-                                    <span style="width: 70%"></span>
+                                <!-- Primeira linha: autor e quantidade atual -->
+                                <div class="main-reposicao-item-detalhes-livro">
+                                    <p>@livro.livro.Autor</p>
+                                    <span>Quantidade atual: @livro.livro.Quantidade</span>
                                 </div>
-                            </div>
 
-                        </div>
-                    </div>
-
-                    <button class="main-reposicao-item-remover" type="button" aria-label="Remover Sherlock Holmes">
-                        <img src="./imagens/trash.png" alt="Remover">
-                    </button>
-                </article>
-
-                <!-- Morte no Nilo -->
-                <article class="main-reposicao-item">
-                    <img src="./imagens/book10.webp" class="main-reposicao-item-img" alt="Capa de Morte no Nilo">
-
-                    <div class="main-reposicao-item-info">
-                        <h3>Morte no Nilo - Agatha Christie</h3>
-
-                        <div class="main-reposicao-item-detalhes">
-
-                            <!-- Primeira linha: autora e quantidade atual -->
-                            <div class="main-reposicao-item-detalhes-livro">
-                                <p>Agatha Christie</p>
-                                <span>Quantidade atual: 15</span>
-                            </div>
-
-                            <!-- Segunda linha: editora e capacidade máxima -->
-                            <div class="main-reposicao-item-detalhes-estoque">
-                                <span>Via Leitura</span>
-                                <span>Capacidade máxima: 30</span>
-                            </div>
-
-                        </div>
-
-                        <!-- Quantidade e capacidade lado a lado -->
-                        <div class="main-reposicao-item-controle">
-
-                            <div class="main-reposicao-item-qtd">
-                                <button type="button" aria-label="Diminuir quantidade">
-                                    <img src="./imagens/minus.png" alt="Diminuir">
-                                </button>
-
-                                <input type="number" value="15" min="1" aria-label="Quantidade a repor de Morte no Nilo">
-
-                                <button type="button" aria-label="Aumentar quantidade">
-                                    <img src="./imagens/plus.png" alt="Aumentar">
-                                </button>
-                            </div>
-
-                            <div class="main-reposicao-item-capacidade">
-                                <span>50% da capacidade já cheia</span>
-
-                                <div class="main-reposicao-progress">
-                                    <span style="width: 50%"></span>
+                                <!-- Segunda linha: editora e capacidade máxima -->
+                                <div class="main-reposicao-item-detalhes-estoque">
+                                    <span>@livro.livro.Editora</span>
+                                    <span>Capacidade máxima: @livro.livro.Capacidade</span>
                                 </div>
+
                             </div>
 
+                            <!-- Quantidade e capacidade lado a lado -->
+                            <div class="main-reposicao-item-controle">
+
+                                <div class="main-reposicao-item-qtd">
+
+                                    <button type="button" aria-label="Diminuir quantidade">
+                                        <img src="./imagens/minus.png" alt="Diminuir">
+                                    </button>
+
+                                    <input type="number" min="1" aria-label="Quantidade a repor de @livro.livro.Nome" value="@livro.quantidadeCarrinho">
+
+                                    @if(livro.quantidadeCarrinho + livro.livro.Quantidade < livro.livro.Capacidade)
+                                    {
+                                        <button type="button" aria-label="Aumentar quantidade">
+                                            <img src="./imagens/plus.png" alt="Aumentar">
+                                        </button>
+                                    }
+                                </div>
+
+                                <div class="main-reposicao-item-capacidade">
+                                    <span>70% da capacidade já cheia</span>
+
+                                    <div class="main-reposicao-progress">
+                                        <span style="width: @((decimal)livro.livro.Quantidade / livro.livro.Capacidade * 100)%"></span>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
 
-                    <button class="main-reposicao-item-remover" type="button" aria-label="Remover Morte no Nilo">
-                        <img src="./imagens/trash.png" alt="Remover">
-                    </button>
-                </article>
-
+                        <button class="main-reposicao-item-remover" type="button" aria-label="Remover Sherlock Holmes">
+                            <img src="./imagens/trash.png" alt="Remover">
+                        </button>
+                    </article>
+                }
+               
             </div>
 
             <!-- Resumo -->
