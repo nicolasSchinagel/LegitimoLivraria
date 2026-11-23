@@ -355,6 +355,11 @@ button {
     border-radius: 8px;
     overflow: hidden;
     height: 31px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.main-reposicao-item-qtd img{
+    height: 12px;
 }
 
     .main-reposicao-item-qtd button {
@@ -413,7 +418,6 @@ button {
 
 .main-reposicao-progress {
     height: 10px;
-    width: 100%;
     border: 1px solid #d00008;
     border-radius: 10px;
     overflow: hidden;

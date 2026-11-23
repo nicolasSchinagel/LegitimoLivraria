@@ -24,15 +24,15 @@
             <div class="main-reposicao-content-pesquisa-topo">
                 <h2>Pesquisar livro da compra</h2>
 
-                <div class="main-reposicao-content-pesquisa-controls">
+                <form class="main-reposicao-content-pesquisa-controls no-underline" method="get" asp-area="Worker" asp-controller="Livro" asp-action="Reposicao">
                     <label class="main-reposicao-search" for="pesquisaLivro">
-                        <input type="search" id="pesquisaLivro" placeholder="Pesquisar por título, autor, editora ou ISBN...">
+                        <input type="search" id="pesquisaLivro" name="pesquisa" placeholder="Pesquisar por título, autor, editora ou ISBN...">
 
-                        <button class="main-reposicao-search-icon" type="button" aria-label="Pesquisar">
-                            <img src="./imagens/SearchbarIcon.png" alt="Pesquisar">
+                        <button class="main-reposicao-search-icon" type="submit" aria-label="Pesquisar">
+                            <img src="~/img/SearchbarIcon.png" alt="Pesquisar">
                         </button>
                     </label>
-                </div>
+                </form>
             </div>
 
             <div class="main-reposicao-lista-livros">
@@ -54,19 +54,19 @@
                                     <div class="main-reposicao-livro-avaliacao-estrelas">
                                         <div class="estrelas">
                                             <div class="estrelas-specifics">
-                                                <img class="estrelasimg" src="imagens/StarComb.png">
+                                                <img class="estrelasimg" src="~/img/StarComb.png">
                                                 <div class="estrelas-specifics-yellowbar" style="width: @((livro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
                                             </div>
                                             <h3 class="avaliados-historico">(@(livro.mediaLivro))</h3>
-                                            <img class="setabaixo" src="imagens/setabaixo.png">
+                                            <img class="setabaixo" src="~/img/setabaixo.png">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <button class="main-reposicao-livro-add" type="button" aria-label="Adicionar @livro.livro.Nome">
-                                <img src="./imagens/plusgrey.png" alt="Adicionar">
-                            </button>
+                            <a class="main-reposicao-livro-add" type="button" aria-label="Adicionar @livro.livro.Nome" asp-area="Worker" asp-controller="Livro" asp-action="AdicionarItem" asp-route-codBarras="@livro.livro.CodigoBarras">
+                                <img src="~/img/plusgrey.png" alt="Adicionar">
+                            </a>
                         </article>
                     }
                 }
@@ -81,9 +81,9 @@
             <div class="main-reposicao-content-itens-header">
                 <h2>Itens da reposição</h2>
 
-                <button class="main-reposicao-esvaziar" type="button">
+                <button class="main-reposicao-esvaziar" type="button" asp-controller="Livro" asp-area="Worker" asp-action="LimparReposicao">
                     Esvaziar
-                    <img src="./imagens/trashRed.png" alt="Esvaziar lista">
+                    <img src="~/img/trashRed.png" alt="Esvaziar lista">
                 </button>
             </div>
 
@@ -126,9 +126,9 @@
 
                                     <div class="main-reposicao-item-qtd">
 
-                                        <button type="button" aria-label="Diminuir quantidade">
-                                            <img src="./imagens/minus.png" alt="Diminuir">
-                                        </button>
+                                        <a type="button" aria-label="Diminuir quantidade" asp-area="Worker" asp-controller="Livro" asp-action="DiminuirQuantidade" asp-route-codBarras="@livro.livro.CodigoBarras">
+                                            <img src="~/img/minus.png" alt="Diminuir">
+                                        </a>
 
                                         <input type="number"
                                                min="1"
@@ -138,27 +138,27 @@
 
                                         @if (livro.quantidadeCarrinho + livro.livro.Quantidade < livro.livro.Capacidade)
                                         {
-                                            <button type="button" aria-label="Aumentar quantidade">
-                                                <img src="./imagens/plus.png" alt="Aumentar">
-                                            </button>
+                                            <a type="button" aria-label="Aumentar quantidade" asp-controller="Livro" asp-area="Worker" asp-action="AumentarQuantidade" asp-route-codBarras="@livro.livro.CodigoBarras">
+                                                <img src="~/img/plus.png" alt="Aumentar">
+                                            </a>
                                         }
 
                                     </div>
 
                                     <div class="main-reposicao-item-capacidade">
-                                        <span>70% da capacidade já cheia</span>
+                                        <span>@Math.Round((decimal)livro.livro.Quantidade / livro.livro.Capacidade * 100)% da capacidade já cheia</span>
 
                                         <div class="main-reposicao-progress">
-                                            <span style="width: @((decimal)livro.livro.Quantidade / livro.livro.Capacidade * 100)%"></span>
+                                            <span style="width: @(((decimal)livro.livro.Quantidade / livro.livro.Capacidade * 100).ToString(CultureInfo.InvariantCulture))%"></span>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
 
-                            <button class="main-reposicao-item-remover" type="button" aria-label="Remover @livro.livro.Nome">
-                                <img src="./imagens/trash.png" alt="Remover">
-                            </button>
+                            <a class="main-reposicao-item-remover" type="button" aria-label="Remover @livro.livro.Nome" asp-area="Worker" asp-controller="Livro" asp-action="RemoverItem" asp-route-codBarras="@livro.livro.CodigoBarras">
+                                <img src="~/img/trash.png" alt="Remover">
+                            </a>
 
                         </article>
                     }
@@ -187,7 +187,7 @@
                 </section>
 
                 <button class="main-reposicao-confirmar" type="submit">
-                    <img src="./imagens/reposicao_icon.png" alt="">
+                    <img src="~/img/reposicao_icon.png" alt="">
                     FAZER REPOSIÇÃO
                 </button>
 

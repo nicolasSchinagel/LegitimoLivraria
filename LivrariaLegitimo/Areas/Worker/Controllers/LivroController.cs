@@ -62,7 +62,7 @@ namespace LivrariaLegitimo.Areas.Worker.Controllers
                 .ToList();
 
             _livroRepository.AdicionarEstoque(lista);
-
+            _cookieCarrinhoReposicao.RemoverTodos();
             TempData["msg"] = "Cadastro realizado!";
             return RedirectToAction("MenuGerenciar", "Default");
         }
@@ -72,7 +72,7 @@ namespace LivrariaLegitimo.Areas.Worker.Controllers
         {
             _cookieCarrinhoReposicao.Cadastrar(codBarras);
 
-            return RedirectToAction(nameof(Carrinho));
+            return RedirectToAction("Reposicao", "Livro");
         }
 
 
@@ -86,21 +86,21 @@ namespace LivrariaLegitimo.Areas.Worker.Controllers
                 _cookieCarrinhoReposicao.Remover(ItemLocalizado.livro);
             }
 
-            return RedirectToAction(nameof(Carrinho));
+            return RedirectToAction("Reposicao", "Livro");
         }
 
         public IActionResult LimparReposicao()
         {
             _cookieCarrinhoReposicao.RemoverTodos();
 
-            return RedirectToAction(nameof(Carrinho));
+            return RedirectToAction("Reposicao", "Livro");
         }
 
         public IActionResult AumentarQuantidade(string codBarras)
         {
             _cookieCarrinhoReposicao.AumentarQuantidade(codBarras);
 
-            return RedirectToAction(nameof(Carrinho));
+            return RedirectToAction("Reposicao", "Livro");
         }
 
 
@@ -108,7 +108,7 @@ namespace LivrariaLegitimo.Areas.Worker.Controllers
         {
             _cookieCarrinhoReposicao.DiminuirQuantidade(codBarras);
 
-            return RedirectToAction(nameof(Carrinho));
+            return RedirectToAction("Reposicao", "Livro");
         }
 
     }
