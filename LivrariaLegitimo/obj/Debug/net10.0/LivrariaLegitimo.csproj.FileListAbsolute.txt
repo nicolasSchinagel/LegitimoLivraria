@@ -178,7 +178,6 @@ C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\Livrari
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\scopedcss\bundle\LivrariaLegitimo.styles.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\scopedcss\projectbundle\LivrariaLegitimo.bundle.scp.css
-C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\tqcg5acgrf-{0}-avrgml1cxd-avrgml1cxd.gz
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\fbexubh0qy-{0}-pw7f3vx4os-pw7f3vx4os.gz
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\87jzxysxcn-{0}-ampmj0wvl0-ampmj0wvl0.gz
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\mgu1jkue4g-{0}-gebkrd10ry-gebkrd10ry.gz
@@ -195,7 +194,6 @@ C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\Livrari
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\xmzvthkrj4-{0}-mbsx9r95gm-mbsx9r95gm.gz
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\m4816spjad-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\kshfzkk4yv-{0}-bwdeyyl35j-bwdeyyl35j.gz
-C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\nb6irways3-{0}-gfbb2sj3cr-gfbb2sj3cr.gz
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\uf1qt083nb-{0}-t1cqhe9u97-t1cqhe9u97.gz
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\0ecyf1kjdd-{0}-c2jlpeoesf-c2jlpeoesf.gz
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\oaczsr5zdp-{0}-sejl45xvog-sejl45xvog.gz
@@ -272,3 +270,5 @@ C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\Livrari
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\ref\LivrariaLegitimo.dll
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\yl7w6vu2oj-{0}-6lr29hnoy7-6lr29hnoy7.gz
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\brqr5w91hs-{0}-fw8qrfffsx-fw8qrfffsx.gz
+C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\tqcg5acgrf-{0}-zj9fxcfs1n-zj9fxcfs1n.gz
+C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\obj\Debug\net10.0\compressed\nb6irways3-{0}-mmqo9oiu5q-mmqo9oiu5q.gz

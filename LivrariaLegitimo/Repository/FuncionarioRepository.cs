@@ -28,8 +28,8 @@ namespace LivrariaLegitimo.Repository
                 cmd.Parameters.Add("@Nome", MySqlDbType.VarChar).Value = funcionario.Nome;
                 cmd.Parameters.Add("@DataAdmissao", MySqlDbType.DateTime).Value = funcionario.DataAdmissao.ToString("yyyy/MM/dd");
                 cmd.Parameters.Add("@FimContrato", MySqlDbType.Date).Value = funcionario.FimContrato.HasValue ? funcionario.FimContrato.Value.ToString("yyyy-MM-dd") : DBNull.Value;
-                cmd.Parameters.Add("@CPF", MySqlDbType.Int32).Value = Convert.ToInt32(funcionario.Cpf.Replace("-", "").Replace(".", ""));
-                cmd.Parameters.Add("@Telefone", MySqlDbType.Int32).Value = Convert.ToInt32(funcionario.Telefone.Replace("(", "").Replace(")", "").Replace("-", ""));
+                cmd.Parameters.Add("@CPF", MySqlDbType.Int64).Value = Convert.ToInt64(funcionario.Cpf.Replace("-", "").Replace(".", ""));
+                cmd.Parameters.Add("@Telefone", MySqlDbType.Int64).Value = Convert.ToInt64(funcionario.Telefone.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", ""));
                 cmd.Parameters.Add("@Email", MySqlDbType.VarChar).Value = funcionario.Email;
                 cmd.Parameters.Add("@Senha", MySqlDbType.VarChar).Value = funcionario.Senha;
                 cmd.Parameters.Add("@CEP", MySqlDbType.Decimal).Value = Convert.ToDecimal(funcionario.Cep.Replace("-", ""));

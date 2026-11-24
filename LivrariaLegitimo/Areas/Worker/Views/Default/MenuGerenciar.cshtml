@@ -71,7 +71,7 @@
             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de contratação")
             {
 
-                <a href="#" class="opcao-gerenciamento">
+                <a class="opcao-gerenciamento no-underline" asp-area="Worker" asp-controller="Funcionario" asp-action="Cadastro">
                 <div class="icone-opcao">
                     <img src="~/img/funcionario.icon.png" alt="Cadastrar funcionário">
                 </div>

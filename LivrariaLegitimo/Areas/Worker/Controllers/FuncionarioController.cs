@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LivrariaLegitimo.Areas.Worker.Controllers
 {
+    [Area("Worker")]
     public class FuncionarioController : Controller
     {
         private IFuncionarioRepository _funcionarioRepository;
@@ -13,7 +14,6 @@ namespace LivrariaLegitimo.Areas.Worker.Controllers
         {
             _funcionarioRepository = funcionarioRepository;
         }
-        [Area("Worker")]
         public IActionResult Index()
         {
             return View();

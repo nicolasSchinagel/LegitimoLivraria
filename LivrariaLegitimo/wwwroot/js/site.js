@@ -13,6 +13,7 @@ $(document).ready(function () {
     $('.Telefone').mask('(00) 00000-0000');
     $('.Nascimento').mask("00/00/0000", { placeholder: "__/__/____" });
     $('.ISBN').mask("000-00-0000-000-0", { reverse: true });
+    $('.SenhaFunc').mask("SS00000000SSSSSS");
 })
 
 

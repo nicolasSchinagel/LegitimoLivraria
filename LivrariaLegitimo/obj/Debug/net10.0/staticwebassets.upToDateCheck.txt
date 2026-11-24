@@ -207,6 +207,7 @@ wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\lib\mask\jquery.mask.min.js
 wwwroot\img\precoEmblema.png
+wwwroot\img\funcionarioEmblema.png
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\jquery\dist\jquery.slim.min.js
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\cadCli.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\footer.css
@@ -221,7 +222,7 @@ C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\Livrari
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\reposicao.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\favicon.ico
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\js\filtroLivros.js
-C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\js\site.js
+C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\adicionarLivro.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -280,7 +281,7 @@ C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\Livrari
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\confEndereco.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\inputs.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\list.css
-C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\adicionarLivro.css
+C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\js\site.js
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\jquery-validation\LICENSE.md
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\checkout.css

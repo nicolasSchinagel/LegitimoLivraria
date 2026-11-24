@@ -77,7 +77,7 @@
                         <span class="message-div-type-1" asp-validation-for="Senha"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="password" id="senha" name="Senha" class="input-div-type-1-block-insert" placeholder="Senha de pelo menos 8 caracteres" minlength="8" required asp-for="Senha"/>
+                        <input type="password" id="senha" name="Senha" class="input-div-type-1-block-insert SenhaFunc" placeholder="Senha de pelo menos 16 caracteres" minlength="8" required asp-for="Senha" />
                     </div>
                 </div>
 
@@ -88,7 +88,7 @@
                         <span class="message-div-type-1" asp-validation-for="ConfirmacaoSenha"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="password" id="confirmarSenha" asp-for="ConfirmacaoSenha" name="ConfirmacaoSenha" class="input-div-type-1-block-insert" placeholder="Confirme a sua senha" required />
+                        <input type="password" id="confirmarSenha" asp-for="ConfirmacaoSenha" name="ConfirmacaoSenha" class="input-div-type-1-block-insert SenhaFunc" placeholder="Confirme a sua senha" required />
                     </div>
                 </div>
 
