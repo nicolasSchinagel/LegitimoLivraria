@@ -4,691 +4,704 @@
 @inject LivrariaLegitimo.Repository.LivroRepository _livroRepository
 @inject LivrariaLegitimo.Repository.VendaRepository _vendaRepository
 @model LivrariaLegitimo.ViewModels.LivroViewModel
+
 @{
     DateTime dataMais2Dias = DateTime.Today.AddDays(2);
     DateTime dataMais3Dias = DateTime.Today.AddDays(3);
+
+    var livroSelecionado = Model.ObterLivro;
 }
+
 <link rel="stylesheet" href="~/css/livro.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
 
-<div class="background-avaliacao">
-</div>
-<div class="supercard">
-    <form class="supercard-avaliacao" method="post" asp-controller="Livro" asp-action="Livro">
-        <h1 class="supercard-avaliacao-title"><span>AVALIE</span> ESTE LIVRO</h1>
-        <div class="supercard-avaliacao-topdetails">
-            <div class="supercard-avaliacao-topdetails-info">
-                <h2 class="supercard-avaliacao-topdetails-info-nome">@Model.ObterLivro.livro.Nome</h2>
-                <h2 class="supercard-avaliacao-topdetails-info-editora">Editora: @Model.ObterLivro.livro.Editora</h2>
-                <h2 class="supercard-avaliacao-topdetails-info-tipo">Tipo: @Model.ObterLivro.livro.TipoCapa</h2>
-                <h2 class="supercard-avaliacao-topdetails-info-isbn">ISBN: @Model.ObterLivro.livro.ISBN</h2>
-                <input type="hidden" asp-for="AvaliacaoLivro.CodigoBarras" value="@Model.ObterLivro.livro.CodigoBarras" />
-            </div>
-            <div class="supercard-avaliacao-topdetails-avaliacao">
-                <h3 class="supercard-avaliacao-topdetails-avaliacao-media">Média geral</h3>
-                <div class="supercard-avaliacao-topdetails-avaliacao-stars">
-                    <div class="supercard-avaliacao-topdetails-avaliacao-stars-yellowbar"></div>
-                    <img class="supercard-avaliacao-topdetails-avaliacao-stars-barimageStar" src="~/img/StarComb.png">
+@if (livroSelecionado.HasValue)
+{
+    var livro = livroSelecionado.Value;
+
+    <div class="background-avaliacao"></div>
+
+    <div class="supercard">
+        <form class="supercard-avaliacao" method="post" asp-controller="Livro" asp-action="Livro">
+            <h1 class="supercard-avaliacao-title"><span>AVALIE</span> ESTE LIVRO</h1>
+
+            <div class="supercard-avaliacao-topdetails">
+                <div class="supercard-avaliacao-topdetails-info">
+                    <h2 class="supercard-avaliacao-topdetails-info-nome">@livro.livro.Nome</h2>
+                    <h2 class="supercard-avaliacao-topdetails-info-editora">Editora: @livro.livro.Editora</h2>
+                    <h2 class="supercard-avaliacao-topdetails-info-tipo">Tipo: @livro.livro.TipoCapa</h2>
+                    <h2 class="supercard-avaliacao-topdetails-info-isbn">ISBN: @livro.livro.ISBN</h2>
+                    <input type="hidden" asp-for="AvaliacaoLivro.CodigoBarras" value="@livro.livro.CodigoBarras" />
                 </div>
-                <h2 class="supercard-avaliacao-topdetails-avaliacao-limites"><span>@Model.ObterLivro.mediaLivro</span> de <span>5</span></h2>
-                <h3 class="supercard-avaliacao-topdetails-avaliacao-quantidade">267 avaliações feitas</h3>
-            </div>
-        </div>
-        <div class="supercard-avaliacao-midInformation">
-            <div class="supercard-avaliacao-midInformation-input-title">
-                <div class="supercard-avaliacao-midInformation-input-descriptions">
-                    <label asp-for="AvaliacaoLivro.TituloAvaliacao"
-                         class="supercard-avaliacao-midInformation-input-descriptions-text">
-                        Título da Avaliação
-                    </label>
-                    <span class="supercard-avaliacao-midInformation-input-descriptions-span">*</span>
-                </div>
-                <div class="supercard-avaliacao-midInformation-input-block">
-                    <input type="text"
-                           asp-for="AvaliacaoLivro.TituloAvaliacao"
-                           class="supercard-avaliacao-midInformation-input-block-itself"
-                           placeholder="Ex: Muito bom, simplesmente sensacional"
-                           required />
+
+                <div class="supercard-avaliacao-topdetails-avaliacao">
+                    <h3 class="supercard-avaliacao-topdetails-avaliacao-media">Média geral</h3>
+                    <div class="supercard-avaliacao-topdetails-avaliacao-stars">
+                        <div class="supercard-avaliacao-topdetails-avaliacao-stars-yellowbar"></div>
+                        <img class="supercard-avaliacao-topdetails-avaliacao-stars-barimageStar" src="~/img/StarComb.png">
+                    </div>
+                    <h2 class="supercard-avaliacao-topdetails-avaliacao-limites"><span>@livro.mediaLivro</span> de <span>5</span></h2>
+                    <h3 class="supercard-avaliacao-topdetails-avaliacao-quantidade">267 avaliações feitas</h3>
                 </div>
             </div>
 
-            <div class="supercard-avaliacao-midInformation-input-nota">
-                <div class="supercard-avaliacao-midInformation-input-descriptions">
-                    <label asp-for="AvaliacaoLivro.NotaLivro"
-                           class="supercard-avaliacao-midInformation-input-descriptions-text">
-                        Nota do Livro
-                    </label>
-                    <span class="supercard-avaliacao-midInformation-input-descriptions-span">*</span>
+            <div class="supercard-avaliacao-midInformation">
+                <div class="supercard-avaliacao-midInformation-input-title">
+                    <div class="supercard-avaliacao-midInformation-input-descriptions">
+                        <label asp-for="AvaliacaoLivro.TituloAvaliacao" class="supercard-avaliacao-midInformation-input-descriptions-text">
+                            Título da Avaliação
+                        </label>
+                        <span class="supercard-avaliacao-midInformation-input-descriptions-span">*</span>
+                    </div>
+                    <div class="supercard-avaliacao-midInformation-input-block">
+                        <input type="text"
+                               asp-for="AvaliacaoLivro.TituloAvaliacao"
+                               class="supercard-avaliacao-midInformation-input-block-itself"
+                               placeholder="Ex: Muito bom, simplesmente sensacional"
+                               required />
+                    </div>
                 </div>
-                <div class="supercard-avaliacao-midInformation-input-block">
-                    <select asp-for="AvaliacaoLivro.NotaLivro"
-                            class="supercard-avaliacao-midInformation-input-block-itself"
-                            required>
-                        <option value="1">0 estrelas</option>
-                        <option value="1">1 estrela</option>
-                        <option value="2">2 estrelas</option>
-                        <option value="3">3 estrelas</option>
-                        <option value="4">4 estrelas</option>
-                        <option value="5">5 estrelas</option>
-                    </select>
+
+                <div class="supercard-avaliacao-midInformation-input-nota">
+                    <div class="supercard-avaliacao-midInformation-input-descriptions">
+                        <label asp-for="AvaliacaoLivro.NotaLivro" class="supercard-avaliacao-midInformation-input-descriptions-text">
+                            Nota do Livro
+                        </label>
+                        <span class="supercard-avaliacao-midInformation-input-descriptions-span">*</span>
+                    </div>
+                    <div class="supercard-avaliacao-midInformation-input-block">
+                        <select asp-for="AvaliacaoLivro.NotaLivro"
+                                class="supercard-avaliacao-midInformation-input-block-itself"
+                                required>
+                            <option value="1">0 estrelas</option>
+                            <option value="1">1 estrela</option>
+                            <option value="2">2 estrelas</option>
+                            <option value="3">3 estrelas</option>
+                            <option value="4">4 estrelas</option>
+                            <option value="5">5 estrelas</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="supercard-avaliacao-midTextArea">
-            <div class="supercard-avaliacao-midInformation-input-textarea">
-                <div class="supercard-avaliacao-midInformation-input-descriptions">
-                    <label asp-for="AvaliacaoLivro.Comentario"
-                           class="supercard-avaliacao-midInformation-input-descriptions-text">
-                        Conteúdo da avaliação
-                    </label>
-                    <span class="supercard-avaliacao-midInformation-input-descriptions-span">*</span>
-                </div>
-                <div class="supercard-avaliacao-midInformation-input-block">
-                    <textarea asp-for="AvaliacaoLivro.Comentario"
-                              class="supercard-avaliacao-midInformation-input-block-itself"
-                              rows="7"
-                              cols="50"
-                              placeholder="Escreva sobre a qualidade do produto e o que achou do livro..."
-                              required></textarea>
+            <div class="supercard-avaliacao-midTextArea">
+                <div class="supercard-avaliacao-midInformation-input-textarea">
+                    <div class="supercard-avaliacao-midInformation-input-descriptions">
+                        <label asp-for="AvaliacaoLivro.Comentario" class="supercard-avaliacao-midInformation-input-descriptions-text">
+                            Conteúdo da avaliação
+                        </label>
+                        <span class="supercard-avaliacao-midInformation-input-descriptions-span">*</span>
+                    </div>
+                    <div class="supercard-avaliacao-midInformation-input-block">
+                        <textarea asp-for="AvaliacaoLivro.Comentario"
+                                  class="supercard-avaliacao-midInformation-input-block-itself"
+                                  rows="7"
+                                  cols="50"
+                                  placeholder="Escreva sobre a qualidade do produto e o que achou do livro..."
+                                  required></textarea>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="supercard-avaliacao-bottomButton">
-            <a class="supercard-avaliacao-bottomButton-back">
-                <img src="~/img/icon_backAvaliation.png"
-                     class="supercard-avaliacao-bottomButton-back-symbol" />
-                <h3 class="supercard-avaliacao-bottomButton-back-title">Voltar</h3>
-            </a>
+            <div class="supercard-avaliacao-bottomButton">
+                <a class="supercard-avaliacao-bottomButton-back">
+                    <img src="~/img/icon_backAvaliation.png" class="supercard-avaliacao-bottomButton-back-symbol" />
+                    <h3 class="supercard-avaliacao-bottomButton-back-title">Voltar</h3>
+                </a>
 
-            <button type="submit" class="supercard-avaliacao-bottomButton-button">
-                <img src="~/img/icon_avaliation.png"
-                     class="supercard-avaliacao-bottomButton-button-icon" />
-                <h3 class="supercard-avaliacao-bottomButton-button-title">AVALIAR</h3>
-            </button>
-        </div>
-    </form>
-</div>
-<div class="genre-list">
-    @if (Model.ObterLivro.livro.Generos.Contains("Fantasia"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/fantasia-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Fantasia</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Aventura"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/aventura-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Aventura</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Ficção Científica"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/scifi-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Ficção Científica</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Romance"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/romance-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Romance</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("História"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/historia-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">História</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Biografia"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/biografia-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Biografia</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Autoajuda"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/autoajuda-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Autoajuda</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Terror"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/terror-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Terror</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Mistério"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/misterio-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Mistério</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Filosofia"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/filosofia-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Filosofia</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Humor"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/humor-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Humor</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Drama"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/drama-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Drama</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Suspense"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/suspense-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Suspense</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Religião"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/religiao-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Religião</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Literatura Clássica"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/literatura_classica-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Literatura Clássica</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Literatura Infantil"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/literatura_infantil-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Literatura Infantil</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Literatura Juvenil"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/literatura_juvenil-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Literatura Juvenil</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Contos"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/contos-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Contos</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Poesia"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/poesia-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Poesia</h3>
-            </section>
-        </div>
-    }
-    @if (Model.ObterLivro.livro.Generos.Contains("Mangás"))
-    {
-        <div class="card-genero-genre-list">
-            <img src="~/img/manga-icon-gender.png" class="card-genero-icon">
-            <section class="card-genero-info">
-                <h3 class="card-genero-title-genre-list">Mangás</h3>
-            </section>
-        </div>
-    }
-</div>
-<div class="main-book">
-    <section class="cover-section">
-        <img src="@Model.ObterLivro.arquivoImagem" class="cover-section-image" />
-        <h3 class="cover-section-more">Mais sobre o autor</h3>
-        <h2 class="cover-section-author">@Model.ObterLivro.livro.Autor</h2>
-    </section>
-    <section class="section-descriptions">
-        <div class="section-descriptions-top">
-            <div class="section-descriptions-top-names">
-                <h1 class="section-descriptions-nomeLivro">@Model.ObterLivro.livro.Nome</h1>
-                <div class="section-descriptions-top-names-caracteristicas">
-                    <h3 class="section-descriptions-top-names-atribute-1">Edição: <span>@Model.ObterLivro.livro.Idioma</span></h3>
-                    <h4 class="section-descriptions-top-names-divisor">|</h4>
-                    <h3 class="section-descriptions-top-names-atribute-1">Tipo: <span>@Model.ObterLivro.livro.TipoCapa</span></h3>
-                    <h4 class="section-descriptions-top-names-divisor">|</h4>
-                    <h3 class="section-descriptions-top-names-atribute-1">Editora: <span>@Model.ObterLivro.livro.Editora</span></h3>
-                </div>
-                <div class="section-descriptions-estrelas-paginalivro">
-                    <div class="section-descriptions-estrelas-paginalivro-parteEstrela">
-                        <img class="section-descriptions-estrelasimg-paginalivro" src="~/img/starComb.png">
-                        <div class="section-descriptions-yellowbar-paginalivro" style="width: @((Model.ObterLivro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
-                    </div>
-                    <h3 class="section-descriptions-avaliados-paginalivro">(@Model.ObterLivro.mediaLivro)</h3>
-                    <img class="section-descriptions-setabaixo-paginalivro" src="~/img/setabaixo.png">
-                    <h4 class="section-descriptions-qtd-avaliation">(@Model.ObterQuantidadesAvaliacaoLivro.quantidadeG)</h4>
-                </div>
-                <p class="section-descriptions-text">@Model.ObterLivro.livro.Sinopse</p>
-                <h4 class="section-descriptions-relato">Relatar um problema</h4>
-                <div class="section-descriptions-divisor"></div>
+                <button type="submit" class="supercard-avaliacao-bottomButton-button">
+                    <img src="~/img/icon_avaliation.png" class="supercard-avaliacao-bottomButton-button-icon" />
+                    <h3 class="supercard-avaliacao-bottomButton-button-title">AVALIAR</h3>
+                </button>
             </div>
-            <div class="section-descriptions-top-prices">
-                <h2 class="section-descriptions-top-prices-title">Preço</h2>
-                @if(Model.ObterLivro.livro.PromocaoPorcentagem <= 0)
-                {
-                    <h3 class="section-descriptions-top-prices-original-price"></h3>
-                    <h1 class="section-descriptions-top-prices-final-price">R$ <span>@Model.ObterLivro.livro.Preco</span></h1>
-                }
-                else
-                {
-                    <h3 class="section-descriptions-top-prices-original-price">R$ @Model.ObterLivro.livro.Preco</h3>
-                    <h1 class="section-descriptions-top-prices-final-price">R$ <span>@(Math.Round(decimal.Parse(Model.ObterLivro.livro.Preco, new CultureInfo("pt-BR")) * (1 - Model.ObterLivro.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))</span></h1>
-                }
-                
-                <div class="section-descriptions-top-prices-cartCamada">
-                    <div class="section-descriptions-top-prices-addcartretangulo">
-                        <img class="section-descriptions-top-prices-carrinho" src="~/img/cart.png">
-                        <h2>Adicionar ao carrinho</h2>
-                    </div>
-                </div>
-                @if (DateTime.Now.TimeOfDay < new TimeSpan(15, 0, 0))
-                {
-                    <h3 class="section-descriptions-top-prices-dataentrega">ENTREGA GRÁTIS, <span>quarta-feira, @dataMais2Dias.ToString("dd/MM/yyyy")</span></h3>
-                    <div class="section-descriptions-top-prices-condicional">
-                        <h3 class="section-descriptions-top-prices-condicional-text">Se pedir até às: <span>15:00</span></h3>
-                        <a class="section-descriptions-top-prices-condicional-sabermais"> Saber mais</a>
-                    </div>
-                }
-                else
-                {
-                    <h3 class="section-descriptions-top-prices-dataentrega">ENTREGA GRÁTIS, <span>quarta-feira, @dataMais3Dias.ToString("dd/MM/yyyy")</span></h3>
-                    <div class="section-descriptions-top-prices-condicional">
-                        <h3 class="section-descriptions-top-prices-condicional-text">Se pedir até às: <span>00:00</span></h3>
-                        <a class="section-descriptions-top-prices-condicional-sabermais"> Saber mais</a>
-                    </div>
-                }
+        </form>
+    </div>
 
-                <div class="section-descriptions-top-prices-quantidade">
-                    <h2 class="section-descriptions-top-prices-quantidade-text">Quantidade:</h2>
-                    <div class="section-descriptions-top-prices-quantidade-block">
-                        <input type="number" class="section-descriptions-top-prices-quantidade-block-input" />
+    <div class="genre-list">
+        @if (livro.livro.Generos.Contains("Fantasia"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/fantasia-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Fantasia</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Aventura"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/aventura-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Aventura</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Ficção Científica"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/scifi-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Ficção Científica</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Romance"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/romance-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Romance</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("História"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/historia-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">História</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Biografia"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/biografia-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Biografia</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Autoajuda"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/autoajuda-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Autoajuda</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Terror"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/terror-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Terror</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Mistério"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/misterio-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Mistério</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Filosofia"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/filosofia-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Filosofia</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Humor"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/humor-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Humor</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Drama"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/drama-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Drama</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Suspense"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/suspense-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Suspense</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Religião"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/religiao-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Religião</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Literatura Clássica"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/literatura_classica-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Literatura Clássica</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Literatura Infantil"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/literatura_infantil-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Literatura Infantil</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Literatura Juvenil"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/literatura_juvenil-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Literatura Juvenil</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Contos"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/contos-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Contos</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Poesia"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/poesia-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Poesia</h3>
+                </section>
+            </div>
+        }
+
+        @if (livro.livro.Generos.Contains("Mangás"))
+        {
+            <div class="card-genero-genre-list">
+                <img src="~/img/manga-icon-gender.png" class="card-genero-icon">
+                <section class="card-genero-info">
+                    <h3 class="card-genero-title-genre-list">Mangás</h3>
+                </section>
+            </div>
+        }
+    </div>
+
+    <div class="main-book">
+        <section class="cover-section">
+            <img src="@livro.arquivoImagem" class="cover-section-image" />
+            <h3 class="cover-section-more">Mais sobre o autor</h3>
+            <h2 class="cover-section-author">@livro.livro.Autor</h2>
+        </section>
+
+        <section class="section-descriptions">
+            <div class="section-descriptions-top">
+                <div class="section-descriptions-top-names">
+                    <h1 class="section-descriptions-nomeLivro">@livro.livro.Nome</h1>
+
+                    <div class="section-descriptions-top-names-caracteristicas">
+                        <h3 class="section-descriptions-top-names-atribute-1">Edição: <span>@livro.livro.Idioma</span></h3>
+                        <h4 class="section-descriptions-top-names-divisor">|</h4>
+                        <h3 class="section-descriptions-top-names-atribute-1">Tipo: <span>@livro.livro.TipoCapa</span></h3>
+                        <h4 class="section-descriptions-top-names-divisor">|</h4>
+                        <h3 class="section-descriptions-top-names-atribute-1">Editora: <span>@livro.livro.Editora</span></h3>
                     </div>
+
+                    <div class="section-descriptions-estrelas-paginalivro">
+                        <div class="section-descriptions-estrelas-paginalivro-parteEstrela">
+                            <img class="section-descriptions-estrelasimg-paginalivro" src="~/img/starComb.png">
+                            <div class="section-descriptions-yellowbar-paginalivro" style="width: @((livro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
+                        </div>
+                        <h3 class="section-descriptions-avaliados-paginalivro">(@livro.mediaLivro)</h3>
+                        <img class="section-descriptions-setabaixo-paginalivro" src="~/img/setabaixo.png">
+                        <h4 class="section-descriptions-qtd-avaliation">(@Model.ObterQuantidadesAvaliacaoLivro.quantidadeG)</h4>
+                    </div>
+
+                    <p class="section-descriptions-text">@livro.livro.Sinopse</p>
+                    <h4 class="section-descriptions-relato">Relatar um problema</h4>
+                    <div class="section-descriptions-divisor"></div>
                 </div>
-                <h4 class="section-descriptions-top-prices-envio">Envio gerenciado pela livraria Legítimo</h4>
-                <h4 class="section-descriptions-top-prices-exemplares">
-                    @if (Model.ObterLivro.livro.Quantidade <= 20)
+
+                <div class="section-descriptions-top-prices">
+                    <h2 class="section-descriptions-top-prices-title">Preço</h2>
+
+                    @if (livro.livro.PromocaoPorcentagem <= 0)
                     {
-                        <span> Últimos exemplares disponíveis: @Model.ObterLivro.livro.Quantidade</span>            
+                        <h3 class="section-descriptions-top-prices-original-price"></h3>
+                        <h1 class="section-descriptions-top-prices-final-price">R$ <span>@livro.livro.Preco</span></h1>
                     }
-                </h4>
-                <div class="section-descriptions-top-prices-tagCamada">
-                    @if(_LoginCliente.GetCliente() != null)
+                    else
                     {
-                        @if (_vendaRepository.ExisteVenda(_LoginCliente.GetCliente().IdCli, Model.ObterLivro.livro.CodigoBarras).tipo == "ebook")
+                        <h3 class="section-descriptions-top-prices-original-price">R$ @livro.livro.Preco</h3>
+                        <h1 class="section-descriptions-top-prices-final-price">R$ <span>@(Math.Round(decimal.Parse(livro.livro.Preco, new CultureInfo("pt-BR")) * (1 - livro.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))</span></h1>
+                    }
+
+                    <div class="section-descriptions-top-prices-cartCamada">
+                        <div class="section-descriptions-top-prices-addcartretangulo">
+                            <img class="section-descriptions-top-prices-carrinho" src="~/img/cart.png">
+                            <h2>Adicionar ao carrinho</h2>
+                        </div>
+                    </div>
+
+                    @if (DateTime.Now.TimeOfDay < new TimeSpan(15, 0, 0))
+                    {
+                        <h3 class="section-descriptions-top-prices-dataentrega">ENTREGA GRÁTIS, <span>quarta-feira, @dataMais2Dias.ToString("dd/MM/yyyy")</span></h3>
+                        <div class="section-descriptions-top-prices-condicional">
+                            <h3 class="section-descriptions-top-prices-condicional-text">Se pedir até às: <span>15:00</span></h3>
+                            <a class="section-descriptions-top-prices-condicional-sabermais"> Saber mais</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <h3 class="section-descriptions-top-prices-dataentrega">ENTREGA GRÁTIS, <span>quarta-feira, @dataMais3Dias.ToString("dd/MM/yyyy")</span></h3>
+                        <div class="section-descriptions-top-prices-condicional">
+                            <h3 class="section-descriptions-top-prices-condicional-text">Se pedir até às: <span>00:00</span></h3>
+                            <a class="section-descriptions-top-prices-condicional-sabermais"> Saber mais</a>
+                        </div>
+                    }
+
+                    <div class="section-descriptions-top-prices-quantidade">
+                        <h2 class="section-descriptions-top-prices-quantidade-text">Quantidade:</h2>
+                        <div class="section-descriptions-top-prices-quantidade-block">
+                            <input type="number" class="section-descriptions-top-prices-quantidade-block-input" />
+                        </div>
+                    </div>
+
+                    <h4 class="section-descriptions-top-prices-envio">Envio gerenciado pela livraria Legítimo</h4>
+
+                    <h4 class="section-descriptions-top-prices-exemplares">
+                        @if (livro.livro.Quantidade <= 20)
+                        {
+                            <span> Últimos exemplares disponíveis: @livro.livro.Quantidade</span>
+                        }
+                    </h4>
+
+                    <div class="section-descriptions-top-prices-tagCamada">
+                        @if (_LoginCliente.GetCliente() != null)
+                        {
+                            @if (_vendaRepository.ExisteVenda(_LoginCliente.GetCliente().IdCli, livro.livro.CodigoBarras).tipo == "ebook")
+                            {
+                                <div class="section-descriptions-top-prices-addcartretangulo">
+                                    <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
+                                    <h2>Já obtido</h2>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="section-descriptions-top-prices-addcartretangulo">
+                                    <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
+                                    <h2>Comprar agora</h2>
+                                </div>
+                            }
+                        }
+                        else if (_LoginFuncionario.GetFuncionario() != null)
                         {
                             <div class="section-descriptions-top-prices-addcartretangulo">
                                 <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
-                                <h2>Já obtido</h2>
+                                <h2>Indisponível</h2>
                             </div>
                         }
                         else
                         {
                             <div class="section-descriptions-top-prices-addcartretangulo">
                                 <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
-                                <h2>Comprar agora</h2>
+                                <h2>Faça login</h2>
                             </div>
                         }
-                    }
-                    else @if(_LoginFuncionario.GetFuncionario() != null){
-                        <div class="section-descriptions-top-prices-addcartretangulo">
-                            <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
-                            <h2>Indisponível</h2>
-                        </div>
-                    }
-                    else{
-                        <div class="section-descriptions-top-prices-addcartretangulo">
-                            <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
-                            <h2>Faça login</h2>
-                        </div>
-                    }
-                  
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="section-descriptions-plusinformations">
-            <h2 class="section-descriptions-plusinformations-title">Informações úteis:</h2>
-            <section class="section-descriptions-plusinformations-list">
-                <div class="section-descriptions-plusinformations-list-part">
-                    <img src="~/img/icon_size.png" class="section-descriptions-plusinformations-list-part-image" />
-                    <div class="section-descriptions-plusinformations-list-part-texts">
-                        <h3 class="section-descriptions-plusinformations-list-part-texts-title">Tamanho do livro</h3>
-                        <h4 class="section-descriptions-plusinformations-list-part-texts-value">@Model.ObterLivro.livro.Tamanho</h4>
-                    </div>
-                </div>
-                <div class="section-descriptions-plusinformations-list-part">
-                    <img src="~/img/icon_published.png" class="section-descriptions-plusinformations-list-part-image" />
-                    <div class="section-descriptions-plusinformations-list-part-texts">
-                        <h3 class="section-descriptions-plusinformations-list-part-texts-title">Data de publicação</h3>
-                        <h4 class="section-descriptions-plusinformations-list-part-texts-value">@Model.ObterLivro.livro.DataPubli</h4>
-                    </div>
-                </div>
-                <div class="section-descriptions-plusinformations-list-part">
-                    <img src="~/img/icon_codBarras.png" class="section-descriptions-plusinformations-list-part-image" />
-                    <div class="section-descriptions-plusinformations-list-part-texts">
-                        <h3 class="section-descriptions-plusinformations-list-part-texts-title">ISBN-13</h3>
-                        <h4 class="section-descriptions-plusinformations-list-part-texts-value">@Model.ObterLivro.livro.ISBN</h4>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <a class="section-descriptions-wishes">
-            <h4 class="section-descriptions-wishes-about">Adicionar à lista de desejos</h4>
-        </a>
-    </section>
-</div>
-<div class="main-avaliations">
-    <section class="total-view-section">
-        <div class="total-view-section-stars">
-            <div class="yellowbar" style="width: @((Model.ObterLivro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
-            <img class="barimageStar" src="~/img/starComb.png">
-        </div>
-        <h3 class="total-view-section-points"><span>@Model.ObterLivro.mediaLivro</span> de <span>5</span></h3>
-        <h4 class="total-view-section-avaliacoes-feitas">@Model.ObterQuantidadesAvaliacaoLivro.quantidadeG avaliações feitas</h4>
-        <div class="total-view-section-avaliacoes-por-star">
 
-            @if (Model.ObterQuantidadesAvaliacaoLivro.quantidadeG > 0)
-            {
-                <div class="total-view-section-avaliacoes-por-star-block">
-                    <h3 class="total-view-section-avaliacoes-por-star-title">5 estrelas</h3>
-                    <div class="total-view-section-avaliacoes-por-star-barra">
-                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota5 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="five"></div>
-                    </div>
-                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota5 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
-                </div>
+            <div class="section-descriptions-plusinformations">
+                <h2 class="section-descriptions-plusinformations-title">Informações úteis:</h2>
 
-                <div class="total-view-section-avaliacoes-por-star-block">
-                    <h3 class="total-view-section-avaliacoes-por-star-title">4 estrelas</h3>
-                    <div class="total-view-section-avaliacoes-por-star-barra">
-                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota4 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="four"></div>
+                <section class="section-descriptions-plusinformations-list">
+                    <div class="section-descriptions-plusinformations-list-part">
+                        <img src="~/img/icon_size.png" class="section-descriptions-plusinformations-list-part-image" />
+                        <div class="section-descriptions-plusinformations-list-part-texts">
+                            <h3 class="section-descriptions-plusinformations-list-part-texts-title">Tamanho do livro</h3>
+                            <h4 class="section-descriptions-plusinformations-list-part-texts-value">@livro.livro.Tamanho</h4>
+                        </div>
                     </div>
-                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota4 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
-                </div>
 
-                <div class="total-view-section-avaliacoes-por-star-block">
-                    <h3 class="total-view-section-avaliacoes-por-star-title">3 estrelas</h3>
-                    <div class="total-view-section-avaliacoes-por-star-barra">
-                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota3 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="three"></div>
+                    <div class="section-descriptions-plusinformations-list-part">
+                        <img src="~/img/icon_published.png" class="section-descriptions-plusinformations-list-part-image" />
+                        <div class="section-descriptions-plusinformations-list-part-texts">
+                            <h3 class="section-descriptions-plusinformations-list-part-texts-title">Data de publicação</h3>
+                            <h4 class="section-descriptions-plusinformations-list-part-texts-value">@livro.livro.DataPubli</h4>
+                        </div>
                     </div>
-                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota3 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
-                </div>
 
-                <div class="total-view-section-avaliacoes-por-star-block">
-                    <h3 class="total-view-section-avaliacoes-por-star-title">2 estrelas</h3>
-                    <div class="total-view-section-avaliacoes-por-star-barra">
-                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota2 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="two"></div>
+                    <div class="section-descriptions-plusinformations-list-part">
+                        <img src="~/img/icon_codBarras.png" class="section-descriptions-plusinformations-list-part-image" />
+                        <div class="section-descriptions-plusinformations-list-part-texts">
+                            <h3 class="section-descriptions-plusinformations-list-part-texts-title">ISBN-13</h3>
+                            <h4 class="section-descriptions-plusinformations-list-part-texts-value">@livro.livro.ISBN</h4>
+                        </div>
                     </div>
-                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota2 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
-                </div>
+                </section>
+            </div>
 
-                <div class="total-view-section-avaliacoes-por-star-block">
-                    <h3 class="total-view-section-avaliacoes-por-star-title">1 estrela</h3>
-                    <div class="total-view-section-avaliacoes-por-star-barra">
-                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota1 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="one"></div>
-                    </div>
-                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota1 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
-                </div>
+            <a class="section-descriptions-wishes">
+                <h4 class="section-descriptions-wishes-about">Adicionar à lista de desejos</h4>
+            </a>
+        </section>
+    </div>
 
-                <div class="total-view-section-avaliacoes-por-star-block">
-                    <h3 class="total-view-section-avaliacoes-por-star-title">0 estrelas</h3>
-                    <div class="total-view-section-avaliacoes-por-star-barra">
-                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota0 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="zero"></div>
-                    </div>
-                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota0 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
-                </div>
-            }
-            else
-            {
-                <div class="total-view-section-avaliacoes-por-star-block">
-                    <h3 class="total-view-section-avaliacoes-por-star-title">5 estrelas</h3>
-                    <div class="total-view-section-avaliacoes-por-star-barra">
-                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: 0%;" id="five"></div>
-                    </div>
-                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">0 %</h3>
-                </div>
+    <div class="main-avaliations">
+        <section class="total-view-section">
+            <div class="total-view-section-stars">
+                <div class="yellowbar" style="width: @((livro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
+                <img class="barimageStar" src="~/img/starComb.png">
+            </div>
 
-                <div class="total-view-section-avaliacoes-por-star-block">
-                    <h3 class="total-view-section-avaliacoes-por-star-title">4 estrelas</h3>
-                    <div class="total-view-section-avaliacoes-por-star-barra">
-                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: 0%;" id="four"></div>
-                    </div>
-                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">0 %</h3>
-                </div>
+            <h3 class="total-view-section-points"><span>@livro.mediaLivro</span> de <span>5</span></h3>
+            <h4 class="total-view-section-avaliacoes-feitas">@Model.ObterQuantidadesAvaliacaoLivro.quantidadeG avaliações feitas</h4>
 
-                <div class="total-view-section-avaliacoes-por-star-block">
-                    <h3 class="total-view-section-avaliacoes-por-star-title">3 estrelas</h3>
-                    <div class="total-view-section-avaliacoes-por-star-barra">
-                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: 0%;" id="three"></div>
-                    </div>
-                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">0 %</h3>
-                </div>
-
-                <div class="total-view-section-avaliacoes-por-star-block">
-                    <h3 class="total-view-section-avaliacoes-por-star-title">2 estrelas</h3>
-                    <div class="total-view-section-avaliacoes-por-star-barra">
-                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: 0%;" id="two"></div>
-                    </div>
-                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">0 %</h3>
-                </div>
-
-                <div class="total-view-section-avaliacoes-por-star-block">
-                    <h3 class="total-view-section-avaliacoes-por-star-title">1 estrela</h3>
-                    <div class="total-view-section-avaliacoes-por-star-barra">
-                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: 0%;" id="one"></div>
-                    </div>
-                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">0 %</h3>
-                </div>
-
-                <div class="total-view-section-avaliacoes-por-star-block">
-                    <h3 class="total-view-section-avaliacoes-por-star-title">0 estrelas</h3>
-                    <div class="total-view-section-avaliacoes-por-star-barra">
-                        <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: 0%;" id="zero"></div>
-                    </div>
-                    <h3 class="total-view-section-avaliacoes-por-star-porcentagem">0 %</h3>
-                </div>
-            }
-
-        </div>
-        <h2 class="total-view-section-como">Como funciona as avaliações?</h2>
-        <a class="total-view-section-saibamais">saiba mais...</a>
-        <div class="total-view-section-divisor"></div>
-        @if (_LoginCliente.GetCliente() != null)
-        {
-            <h2 class="total-view-section-avalieText">Avalie este livro</h2>
-            @if(_vendaRepository.ExisteVenda(_LoginCliente.GetCliente().IdCli, Model.ObterLivro.livro.CodigoBarras).existencia)
-            {
-                @if (!Model.ExisteAvaliacaoConta)
+            <div class="total-view-section-avaliacoes-por-star">
+                @if (Model.ObterQuantidadesAvaliacaoLivro.quantidadeG > 0)
                 {
-                    <h3 class="total-view-section-compartilhar">Avaliação disponível</h3>
-                    <a class="total-view-section-avaliar">Vamos avaliar!</a>
+                    <div class="total-view-section-avaliacoes-por-star-block">
+                        <h3 class="total-view-section-avaliacoes-por-star-title">5 estrelas</h3>
+                        <div class="total-view-section-avaliacoes-por-star-barra">
+                            <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota5 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="five"></div>
+                        </div>
+                        <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota5 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
+                    </div>
+
+                    <div class="total-view-section-avaliacoes-por-star-block">
+                        <h3 class="total-view-section-avaliacoes-por-star-title">4 estrelas</h3>
+                        <div class="total-view-section-avaliacoes-por-star-barra">
+                            <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota4 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="four"></div>
+                        </div>
+                        <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota4 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
+                    </div>
+
+                    <div class="total-view-section-avaliacoes-por-star-block">
+                        <h3 class="total-view-section-avaliacoes-por-star-title">3 estrelas</h3>
+                        <div class="total-view-section-avaliacoes-por-star-barra">
+                            <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota3 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="three"></div>
+                        </div>
+                        <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota3 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
+                    </div>
+
+                    <div class="total-view-section-avaliacoes-por-star-block">
+                        <h3 class="total-view-section-avaliacoes-por-star-title">2 estrelas</h3>
+                        <div class="total-view-section-avaliacoes-por-star-barra">
+                            <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota2 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="two"></div>
+                        </div>
+                        <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota2 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
+                    </div>
+
+                    <div class="total-view-section-avaliacoes-por-star-block">
+                        <h3 class="total-view-section-avaliacoes-por-star-title">1 estrela</h3>
+                        <div class="total-view-section-avaliacoes-por-star-barra">
+                            <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota1 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="one"></div>
+                        </div>
+                        <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota1 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
+                    </div>
+
+                    <div class="total-view-section-avaliacoes-por-star-block">
+                        <h3 class="total-view-section-avaliacoes-por-star-title">0 estrelas</h3>
+                        <div class="total-view-section-avaliacoes-por-star-barra">
+                            <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: @(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota0 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString(CultureInfo.InvariantCulture))%;" id="zero"></div>
+                        </div>
+                        <h3 class="total-view-section-avaliacoes-por-star-porcentagem">@(((decimal)Model.ObterQuantidadesAvaliacaoLivro.nota0 / Model.ObterQuantidadesAvaliacaoLivro.quantidadeG * 100).ToString("0.##")) %</h3>
+                    </div>
                 }
                 else
                 {
-                    <h3 class="total-view-section-compartilhar">Produto já avaliado!</h3>
+                    @foreach (var nota in new[] { "5", "4", "3", "2", "1", "0" })
+                    {
+                        <div class="total-view-section-avaliacoes-por-star-block">
+                            <h3 class="total-view-section-avaliacoes-por-star-title">@nota estrelas</h3>
+                            <div class="total-view-section-avaliacoes-por-star-barra">
+                                <div class="total-view-section-avaliacoes-por-star-barra-preencher" style="width: 0%;" id="@(nota == "5" ? "five" : nota == "4" ? "four" : nota == "3" ? "three" : nota == "2" ? "two" : nota == "1" ? "one" : "zero")"></div>
+                            </div>
+                            <h3 class="total-view-section-avaliacoes-por-star-porcentagem">0 %</h3>
+                        </div>
+                    }
+                }
+            </div>
+
+            <h2 class="total-view-section-como">Como funciona as avaliações?</h2>
+            <a class="total-view-section-saibamais">saiba mais...</a>
+            <div class="total-view-section-divisor"></div>
+
+            @if (_LoginCliente.GetCliente() != null)
+            {
+                <h2 class="total-view-section-avalieText">Avalie este livro</h2>
+
+                @if (_vendaRepository.ExisteVenda(_LoginCliente.GetCliente().IdCli, livro.livro.CodigoBarras).existencia)
+                {
+                    @if (!Model.ExisteAvaliacaoConta)
+                    {
+                        <h3 class="total-view-section-compartilhar">Avaliação disponível</h3>
+                        <a class="total-view-section-avaliar">Vamos avaliar!</a>
+                    }
+                    else
+                    {
+                        <h3 class="total-view-section-compartilhar">Produto já avaliado!</h3>
+                        <a class="total-view-section-avaliar"></a>
+                    }
+                }
+                else
+                {
+                    <h3 class="total-view-section-compartilhar">Compre para avaliar</h3>
                     <a class="total-view-section-avaliar"></a>
                 }
             }
-            else
+
+            @if (_LoginCliente.GetCliente() == null)
             {
-                <h3 class="total-view-section-compartilhar">Compre para avaliar</h3>
+                <h2 class="total-view-section-avalieText">Quer avaliar?</h2>
+                <h3 class="total-view-section-compartilhar">Faça o login do cliente e compre o livro para avaliar</h3>
                 <a class="total-view-section-avaliar"></a>
             }
-
-        }
-        @if (_LoginCliente.GetCliente() == null)
-        {
-            <h2 class="total-view-section-avalieText">Quer avaliar?</h2>
-            <h3 class="total-view-section-compartilhar">Faça o login do cliente e compre o livro para avaliar</h3>
-            <a class="total-view-section-avaliar"></a>
-        }
-    </section>
-    <section class="list-view-section">
-        <h1 class="list-view-section-title">Avaliações dos clientes</h1>
-
-        @foreach(var avaliacao in Model.ObterTodasAvaliacoes)
-        {
-            <div class="list-view-section-index">
-                <div class="list-view-section-index-header">
-                    <img src="~/img/icon_UserCo.png" class="list-view-section-index-header-icon">
-                    <h2 class="list-view-section-index-header-name">@avaliacao.NomeCliente</h2>
-                </div>
-                <div class="list-view-section-index-avaliacao-sobre">
-                    <h3 class="list-view-section-index-avaliacao-sobre-text">"@avaliacao.avaliacao.TituloAvaliacao"</h3>
-                    <div class="list-view-section-index-avaliacao-sobre-section-stars">
-                        <div class="yellowbar-comment" style="width: @((avaliacao.avaliacao.NotaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
-                        <img class="barimageStar-comment" src="~/img/starComb.png">
-                    </div>
-                </div>
-                <h3 class="list-view-section-index-date">Data da avaliação: @avaliacao.avaliacao.DataAvaliacao</h3>
-                <h4 class="list-view-section-index-compraVerificada">Compra verificada</h4>
-                <p class="list-view-section-index-textabout">
-                    @avaliacao.avaliacao.Comentario
-                </p>
-                <div class="list-view-section-index-divisor"></div>
-            </div>
-        }
-
-       
-    </section>
-</div>
-<div class="div-cards-carousel">
-    <div class="top-bar-cards">
-        <h2 class="top-bar-cards-title">Talvez você goste</h2>
-        <section class="parts-card">
         </section>
-        <h4 class="top-bar-cards-pages">página <span class="start-page-top-bar-4-1">1</span> de <span class="total-pages-top-bar-4-2">5</span></h4>
-    </div>
-    <div class="div-cards-carousel-static">
-        <div class="arrows-carousel-div">
-            <img src="~/img/arrow-carousel.png" class="arrow-carousel-left-4">
-            <img src="~/img/arrow-carousel.png" class="arrow-carousel-right-4">
-        </div>
-        <div class="div-cards-carousel-total-4">
-            @foreach(var grupo in Model.Aleatorios.Chunk(3))
+
+        <section class="list-view-section">
+            <h1 class="list-view-section-title">Avaliações dos clientes</h1>
+
+            @foreach (var avaliacao in Model.ObterTodasAvaliacoes)
             {
-                <div class="div-cards-carousel-index-4">
-                    @foreach(var livro in grupo)
-                    {
-                        <div class="banner2">
-                            @if(livro.livro.DataPubli.Year == DateTime.Now.Year)
-                            {
-                                <div class="retangulocimaNovo-historico">
-                                    <img class="imgetiqueta" src="~/img/novo.png">
-                                    <p class="novo">NOVO</p>
-                                </div>
-                            }
-                            else if (_livroRepository.EmAlta(livro.livro.CodigoBarras.ToString()))
-                            {
-                                <div class="retangulocima-historico">
-                                    <img class="imgetiqueta" src="~/img/iconefogo.png">
-                                    <p class="alta">EM ALTA</p>
-                                </div>
-                            }
-                            else if (Convert.ToDouble(livro.mediaLivro) >= 4.0)
-                            {
-                                <div class="retangulocimaBemavaliado-historico">
-                                    <img class="imgetiqueta" src="~/img/bemavaliado.png">
-                                    <p class="bemavaliado">BEM AVALIADO</p>
-                                </div>
-                            }
-                      
-                            <img class="livro-historico" src="@livro.arquivoImagem">
-                            <div class="partelateral-historico">
-                                <h1 class="titulo-historico">@(livro.livro.Nome.Length > 37 ? livro.livro.Nome.Substring(0, 37) + "..." : livro.livro.Nome)</h1>
-                                <h2 class="autor-historico">Por @livro.livro.Autor</h2>
-                                <h2 class="editor-historico">@livro.livro.Editora</h2>
+                <div class="list-view-section-index">
+                    <div class="list-view-section-index-header">
+                        <img src="~/img/icon_UserCo.png" class="list-view-section-index-header-icon">
+                        <h2 class="list-view-section-index-header-name">@avaliacao.NomeCliente</h2>
+                    </div>
 
-                                <div class="estrelas-historico">
-                                    <div class="estrelas-historico-specifics">
-                                        <img class="estrelasimg-historico" src="~/img/StarComb.png">
-                                        <div class="estrelas-specifics-yellowbar" style="width: @((livro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
+                    <div class="list-view-section-index-avaliacao-sobre">
+                        <h3 class="list-view-section-index-avaliacao-sobre-text">"@avaliacao.avaliacao.TituloAvaliacao"</h3>
+                        <div class="list-view-section-index-avaliacao-sobre-section-stars">
+                            <div class="yellowbar-comment" style="width: @((avaliacao.avaliacao.NotaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
+                            <img class="barimageStar-comment" src="~/img/starComb.png">
+                        </div>
+                    </div>
+
+                    <h3 class="list-view-section-index-date">Data da avaliação: @avaliacao.avaliacao.DataAvaliacao</h3>
+                    <h4 class="list-view-section-index-compraVerificada">Compra verificada</h4>
+                    <p class="list-view-section-index-textabout">@avaliacao.avaliacao.Comentario</p>
+                    <div class="list-view-section-index-divisor"></div>
+                </div>
+            }
+        </section>
+    </div>
+
+    <div class="div-cards-carousel">
+        <div class="top-bar-cards">
+            <h2 class="top-bar-cards-title">Talvez você goste</h2>
+            <section class="parts-card"></section>
+            <h4 class="top-bar-cards-pages">página <span class="start-page-top-bar-4-1">1</span> de <span class="total-pages-top-bar-4-2">5</span></h4>
+        </div>
+
+        <div class="div-cards-carousel-static">
+            <div class="arrows-carousel-div">
+                <img src="~/img/arrow-carousel.png" class="arrow-carousel-left-4">
+                <img src="~/img/arrow-carousel.png" class="arrow-carousel-right-4">
+            </div>
+
+            <div class="div-cards-carousel-total-4">
+                @foreach (var grupo in Model.Aleatorios.Chunk(3))
+                {
+                    <div class="div-cards-carousel-index-4">
+                        @foreach (var livroAleatorio in grupo)
+                        {
+                            <div class="banner2">
+                                @if (livroAleatorio.livro.DataPubli.Year == DateTime.Now.Year)
+                                {
+                                    <div class="retangulocimaNovo-historico">
+                                        <img class="imgetiqueta" src="~/img/novo.png">
+                                        <p class="novo">NOVO</p>
                                     </div>
+                                }
+                                else if (_livroRepository.EmAlta(livroAleatorio.livro.CodigoBarras.ToString()))
+                                {
+                                    <div class="retangulocima-historico">
+                                        <img class="imgetiqueta" src="~/img/iconefogo.png">
+                                        <p class="alta">EM ALTA</p>
+                                    </div>
+                                }
+                                else if (Convert.ToDouble(livroAleatorio.mediaLivro) >= 4.0)
+                                {
+                                    <div class="retangulocimaBemavaliado-historico">
+                                        <img class="imgetiqueta" src="~/img/bemavaliado.png">
+                                        <p class="bemavaliado">BEM AVALIADO</p>
+                                    </div>
+                                }
 
-                                    <h3 class="avaliados-historico">( @livro.mediaLivro )</h3>
-                                    <img class="setabaixo-historico" src="~/img/setabaixo.png">
-                                </div>
+                                <img class="livro-historico" src="@livroAleatorio.arquivoImagem">
 
-                                <div class="partedebaixo-historico">
+                                <div class="partelateral-historico">
+                                    <h1 class="titulo-historico">@(livroAleatorio.livro.Nome.Length > 37 ? livroAleatorio.livro.Nome.Substring(0, 37) + "..." : livroAleatorio.livro.Nome)</h1>
+                                    <h2 class="autor-historico">Por @livroAleatorio.livro.Autor</h2>
+                                    <h2 class="editor-historico">@livroAleatorio.livro.Editora</h2>
 
-                                    <h1 class="preco-historico">R$@livro.livro.Preco</h1>
-
-                                    <div class="quadradosred-historico">
-                                        <div class="cartfundo-historico">
-                                            <img class="cart-historico" src="~/img/cart.png">
+                                    <div class="estrelas-historico">
+                                        <div class="estrelas-historico-specifics">
+                                            <img class="estrelasimg-historico" src="~/img/StarComb.png">
+                                            <div class="estrelas-specifics-yellowbar" style="width: @((livroAleatorio.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
                                         </div>
 
-                                        <div class="heartfundo-historico">
-                                            <img class="heart-historico" src="~/img/coracaored.png">
+                                        <h3 class="avaliados-historico">( @livroAleatorio.mediaLivro )</h3>
+                                        <img class="setabaixo-historico" src="~/img/setabaixo.png">
+                                    </div>
+
+                                    <div class="partedebaixo-historico">
+                                        <h1 class="preco-historico">R$@livroAleatorio.livro.Preco</h1>
+
+                                        <div class="quadradosred-historico">
+                                            <div class="cartfundo-historico">
+                                                <img class="cart-historico" src="~/img/cart.png">
+                                            </div>
+
+                                            <div class="heartfundo-historico">
+                                                <img class="heart-historico" src="~/img/coracaored.png">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    }
-                </div>
-            }
+                        }
+                    </div>
+                }
+            </div>
         </div>
     </div>
-</div>
+}
+
 <script>
     const totalList4 = document.querySelector(".div-cards-carousel-total-4");
     const listCards4 = document.querySelectorAll(".div-cards-carousel-index-4");
@@ -697,8 +710,6 @@
     const valueMin4 = document.querySelector(".start-page-top-bar-4-1");
     const valueMax4 = document.querySelector(".total-pages-top-bar-4-2");
     const divPartsCard = document.querySelector(".parts-card");
-
-
 
     const lateralBar = document.querySelector('.lateral-bar');
     const lateralBarLeave = document.querySelector('.lateral-bar-userDiv-leave');
@@ -709,89 +720,98 @@
     const backAva = document.querySelector('.supercard-avaliacao-bottomButton-back');
     const vamosAva = document.querySelector('.total-view-section-avaliar');
 
-
     let indicePage4 = 0;
     let posicaoPage4 = 0;
 
-    lateralBarLeave.addEventListener('click', () => {
-        lateralBar.style.left = '-35%';
-    });
-    headerMenu.addEventListener('click', () => {
-        lateralBar.style.left = '0%';
-    });
-    vamosAva.addEventListener('click', () => {
-        console.log("clicou ava");
-        menuAva.style.right = '0%';
-        backMenuAva.style.display = 'flex';
-    });
-    console.log(backAva);
-    backAva.addEventListener('click', () => {
-        menuAva.style.right = '100%';
-        backMenuAva.style.display = 'none';
-    });
+    if (lateralBarLeave && lateralBar && headerMenu) {
+        lateralBarLeave.addEventListener('click', () => {
+            lateralBar.style.left = '-35%';
+        });
 
-
-
-    for (let i = 1; i <= listCards4.length; i++) {
-        const pinsindices = document.createElement("div");
-        pinsindices.classList.add("part-cards");
-        divPartsCard.appendChild(pinsindices);
-        console.log("rodado");
-    }
-    const pinsindices = document.querySelectorAll(".part-cards");
-
-    function atualizarPins() {
-        pinsindices.forEach((pin, index) => {
-            if (index === indicePage4) {
-                pin.classList.add("selected-part");
-            }
-            else {
-                pin.classList.remove("selected-part");
-            }
-        })
+        headerMenu.addEventListener('click', () => {
+            lateralBar.style.left = '0%';
+        });
     }
 
-    function atualizarPagina4() {
-        console.log('ativado');
-        if (indicePage4 >= listCards4.length - 1) {
-            nextlist4.style.visibility = 'hidden';
-        } else {
-            nextlist4.style.visibility = 'visible';
-            console.log(listCards4.length);
+    if (vamosAva && menuAva && backMenuAva && backAva) {
+        vamosAva.addEventListener('click', () => {
+            console.log("clicou ava");
+            menuAva.style.right = '0%';
+            backMenuAva.style.display = 'flex';
+        });
+
+        backAva.addEventListener('click', () => {
+            menuAva.style.right = '100%';
+            backMenuAva.style.display = 'none';
+        });
+    }
+
+    if (divPartsCard && totalList4 && prevlist4 && nextlist4 && valueMax4 && valueMin4) {
+        for (let i = 1; i <= listCards4.length; i++) {
+            const pinsindices = document.createElement("div");
+            pinsindices.classList.add("part-cards");
+            divPartsCard.appendChild(pinsindices);
         }
 
-      
-        if (indicePage4 <= 0) {
-            prevlist4.style.visibility = 'hidden';
-            console.log('ativado prev');
-        } else {
-            prevlist4.style.visibility = 'visible';
-        }
-        atualizarPins();
-        valueMax4.textContent = listCards4.length;
-        valueMin4.textContent = indicePage4 + 1;
-    }
+        const pinsindices = document.querySelectorAll(".part-cards");
 
-    atualizarPagina4();
-    prevlist4.addEventListener("click", () => {
-        indicePage4 = indicePage4 - 1;
-        posicaoPage4 = posicaoPage4 - 100;
-        totalList4.style.right = posicaoPage4 + '%';
-        atualizarPagina4();
-    });
-    nextlist4.addEventListener("click", () => {
-        indicePage4 = indicePage4 + 1;
-        posicaoPage4 = posicaoPage4 + 100;
-        totalList4.style.right = posicaoPage4 + '%';
-        atualizarPagina4();
-    });
-    pinsindices.forEach((elemento, index) => {
-        elemento.addEventListener("click", () => {
-            indicePage4 = index;
-            posicaoPage4 = 100 * index;
-            totalList4.style.right = posicaoPage4 + '%';
+        function atualizarPins() {
+            pinsindices.forEach((pin, index) => {
+                if (index === indicePage4) {
+                    pin.classList.add("selected-part");
+                } else {
+                    pin.classList.remove("selected-part");
+                }
+            });
+        }
+
+        function atualizarPagina4() {
+            if (indicePage4 >= listCards4.length - 1) {
+                nextlist4.style.visibility = 'hidden';
+            } else {
+                nextlist4.style.visibility = 'visible';
+            }
+
+            if (indicePage4 <= 0) {
+                prevlist4.style.visibility = 'hidden';
+            } else {
+                prevlist4.style.visibility = 'visible';
+            }
+
+            atualizarPins();
+            valueMax4.textContent = listCards4.length;
+            valueMin4.textContent = indicePage4 + 1;
+        }
+
+        if (listCards4.length > 0) {
             atualizarPagina4();
-            console.log("clicado");
-        })
-    });
+
+            prevlist4.addEventListener("click", () => {
+                if (indicePage4 > 0) {
+                    indicePage4--;
+                    posicaoPage4 -= 100;
+                    totalList4.style.right = posicaoPage4 + '%';
+                    atualizarPagina4();
+                }
+            });
+
+            nextlist4.addEventListener("click", () => {
+                if (indicePage4 < listCards4.length - 1) {
+                    indicePage4++;
+                    posicaoPage4 += 100;
+                    totalList4.style.right = posicaoPage4 + '%';
+                    atualizarPagina4();
+                }
+            });
+
+            pinsindices.forEach((elemento, index) => {
+                elemento.addEventListener("click", () => {
+                    indicePage4 = index;
+                    posicaoPage4 = 100 * index;
+                    totalList4.style.right = posicaoPage4 + '%';
+                    atualizarPagina4();
+                });
+            });
+        }
+    }
 </script>

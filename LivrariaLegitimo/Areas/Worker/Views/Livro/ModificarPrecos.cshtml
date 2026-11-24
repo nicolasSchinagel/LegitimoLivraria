@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="~/css/modificarPrecos.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/adicionarLivro.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/reposicao.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
 <div class="precos-pagina">
 
     <section class="addLivro-main-header">
@@ -32,7 +33,7 @@
                 <div class="resultado-livro">
                     <img class="resultado-capa" src="@livro.arquivoImagem">
                     <div class="resultado-info">
-                        <h4 class="resultado-titulo">@livro.livro.Nome</h4>
+                        <h4 class="resultado-titulo">@(livro.livro.Nome.Length > 35 ? livro.livro.Nome.Substring(0, 35) + "..." : livro.livro.Nome)</h4>
                         <p class="resultado-autor">@livro.livro.Autor</p>
                         <p class="resultado-isbn">ISBN: @livro.livro.ISBN</p>
                         <p class="resultado-editora">@livro.livro.Editora</p>
@@ -73,59 +74,65 @@
 
         <h3 class="precos-secao-label">LIVRO SELECIONADO</h3>
 
-        <div class="precos-selecionado-painel">
-            <div class="precos-selecionado-textos">
-                <h2 class="precos-selecionado-titulo">@Model.ObterLivro.livro.Nome</h2>
-                <p class="precos-selecionado-autor">@Model.ObterLivro.livro.Autor</p>
-                <p class="precos-selecionado-isbn">Código de Barras: @Model.ObterLivro.livro.CodigoBarras</p>
-                <p class="precos-selecionado-editora">@Model.ObterLivro.livro.Editora</p>
-                <div class="main-reposicao-livro-avaliacao-estrelas">
-                    <div class="estrelas">
-                        <div class="estrelas-specifics">
-                            <img class="estrelasimg" src="~/img/StarComb.png">
-                            <div class="estrelas-specifics-yellowbar" style="width: @((Model.ObterLivro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
+        @if (Model.ObterLivro.HasValue)
+        {
+            <h3 class="precos-secao-label">LIVRO SELECIONADO</h3>
+
+            <div class="precos-selecionado-painel">
+                <div class="precos-selecionado-textos">
+                    <h2 class="precos-selecionado-titulo">@Model.ObterLivro.Value.livro.Nome</h2>
+                    <p class="precos-selecionado-autor">@Model.ObterLivro.Value.livro.Autor</p>
+                    <p class="precos-selecionado-isbn">Código de Barras: @Model.ObterLivro.Value.livro.CodigoBarras</p>
+                    <p class="precos-selecionado-editora">@Model.ObterLivro.Value.livro.Editora</p>
+
+                    <div class="main-reposicao-livro-avaliacao-estrelas">
+                        <div class="estrelas-historico">
+                            <div class="estrelas-historico-specifics">
+                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
+                                <div class="estrelas-specifics-yellowbar" style="width: @((@Model.ObterLivro.Value.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
+                            </div>
+                            <h3 class="avaliados-historico">(@(Model.ObterLivro.Value.mediaLivro))</h3>
+                            <img class="setabaixo-historico" src="~/img/setabaixo.png">
                         </div>
-                        <h3 class="avaliados-historico">(@(Model.ObterLivro.mediaLivro))</h3>
-                        <img class="setabaixo" src="~/img/setabaixo.png">
                     </div>
                 </div>
+
+                <form class="precos-inputs" method="post" asp-controller="Livro" asp-action="ModificarPrecos">
+                    <div class="precos-input-linha">
+                        <div class="precos-input-grupo">
+                            <label for="precoOriginal">Preço original</label>
+                            <div class="precos-input-com-prefixo">
+                                <span>R$</span>
+                                <input type="text" name="preco" value="@Model.ObterLivro.Value.livro.Preco" id="precoOriginal" inputmode="decimal">
+                            </div>
+                        </div>
+
+                        <div class="precos-input-grupo">
+                            <label for="precoFinal">Preço final</label>
+                            <div class="precos-input-com-prefixo">
+                                <span>R$</span>
+                                <input type="text" id="precoFinal" inputmode="decimal" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="precos-input-grupo">
+                        <label for="taxaDesconto">Taxa de desconto</label>
+                        <div class="precos-input-com-prefixo">
+                            <input type="text" name="promocao" value="@Model.ObterLivro.Value.livro.PromocaoPorcentagem" id="taxaDesconto" inputmode="decimal">
+                            <span>%</span>
+                        </div>
+                    </div>
+
+                    <input type="text" name="codBarras" value="@Model.ObterLivro.Value.livro.CodigoBarras" hidden>
+                    <input type="text" name="nome" value="@Model.ObterLivro.Value.livro.Nome" hidden>
+
+                    <button class="precos-confirmar-btn" type="submit">CONFIRMAR ALTERAÇÕES</button>
+                </form>
+
+                <img class="precos-selecionado-capa" src="@Model.ObterLivro.Value.arquivoImagem">
             </div>
-
-            <form class="precos-inputs" methpd="post" asp-controller="Livro" asp-action="ModificarPrecos">
-                <div class="precos-input-linha">
-                    <div class="precos-input-grupo">
-                        <label for="precoOriginal">Preço original</label>
-                        <div class="precos-input-com-prefixo">
-                            <span>R$</span>
-                            <input type="text" asp-for="ObterLivro.livro.Preco" name="preco" id="precoOriginal" inputmode="decimal">
-                        </div>
-                    </div>
-                    <div class="precos-input-grupo">
-                        <label for="precoFinal">Preço final</label>
-                        <div class="precos-input-com-prefixo">
-                            <span>R$</span>
-                            <input type="text" id="precoFinal" inputmode="decimal" readonly>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="precos-input-grupo">
-                    <label for="taxaDesconto">Taxa de desconto</label>
-                    <div class="precos-input-com-prefixo">
-                        <input type="text" asp-for="ObterLivro.livro.PromocaoPorcentagem" name="promocao" id="taxaDesconto" inputmode="decimal">
-                        <span>%</span>
-                    </div>
-                </div>
-                <input type="text" name="codBarras" value="@Model.ObterLivro.livro.CodigoBarras" inputmode="decimal" hidden>
-                <input type="text" name="nome" value="@Model.ObterLivro.livro.Nome" inputmode="decimal" hidden>
-
-                <button class="precos-confirmar-btn" type="submit">CONFIRMAR ALTERAÇÕES</button>
-            </form>
-
-            <img class="precos-selecionado-capa" src="@Model.ObterLivro.arquivoImagem">
-        </div>
-
-    </div>
+        }
 </div>
 <script>
     const precoOriginal = document.getElementById("precoOriginal");
@@ -182,3 +189,4 @@
 
     taxaDesconto.addEventListener("input", calcularPrecoFinal);
 </script>
+</div>
