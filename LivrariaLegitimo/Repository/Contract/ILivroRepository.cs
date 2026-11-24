@@ -6,7 +6,7 @@ namespace LivrariaLegitimo.Repository.Contract
     public interface ILivroRepository
     {
         public void Cadastrar(Livro livro);
-        public void ModificarPreco(int promocao, decimal preco, decimal codBarras);
+        public void ModificarPreco(int promocao, decimal preco, decimal codBarras, string nome);
 
         public (Livro livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas) ObterLivro(string codBarras);
 

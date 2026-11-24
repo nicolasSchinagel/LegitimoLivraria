@@ -5,6 +5,7 @@ using LivrariaLegitimo.Repository;
 using Microsoft.AspNetCore.Mvc;
 using LivrariaLegitimo.CarrinhoCompra;
 using LivrariaLegitimo.ViewModels;
+using Org.BouncyCastle.Bcpg;
 
 namespace LivrariaLegitimo.Areas.Worker.Controllers
 {
@@ -67,6 +68,29 @@ namespace LivrariaLegitimo.Areas.Worker.Controllers
             return RedirectToAction("MenuGerenciar", "Default");
         }
 
+        [HttpGet]
+        [FuncionarioAutorizacao("administrador total", "gerente comercial")]
+        public IActionResult ModificarPrecos(string? codBarras, string? pesquisa)
+        {
+            codBarras ??= "";
+            pesquisa ??= "";
+
+            LivroViewModel model = new LivroViewModel
+            {
+                TodosLivros = _livroRepository.ObterTodosLivros(pesquisa),
+                ObterLivro = codBarras != "" ? _livroRepository.ObterLivro(codBarras) : null
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        [FuncionarioAutorizacao("administrador total", "gerente comercial")]
+        public IActionResult ModificarPrecos(int promocao, decimal preco, decimal codBarras, string nome)
+        {
+            _livroRepository.ModificarPreco(promocao, preco, codBarras, nome);
+            TempData["msg"] = "Cadastro realizado!";
+            return RedirectToAction("MenuGerenciar", "Default");
+        }
 
         public IActionResult AdicionarItem(string codBarras)
         {

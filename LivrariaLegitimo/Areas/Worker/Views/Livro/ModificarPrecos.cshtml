@@ -1,7 +1,9 @@
-﻿
+﻿@using System.Globalization
+@model LivrariaLegitimo.ViewModels.LivroViewModel
 
 <link rel="stylesheet" href="~/css/modificarPrecos.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/adicionarLivro.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/reposicao.css" asp-append-version="true" />
 <div class="precos-pagina">
 
     <section class="addLivro-main-header">
@@ -15,178 +17,57 @@
     <div class="precos-card">
 
         <h2 class="precos-busca-label">Pesquisar um livro para alterar</h2>
-        <div class="precos-busca-input-wrap">
+        <form class="precos-busca-input-wrap" method="get" asp-area="Worker" asp-controller="Livro" asp-action="ModificarPrecos">
+            <button class="main-reposicao-search-icon" type="submit" aria-label="Pesquisar">
             <img class="precos-busca-icone" src="./imagens/SearchbarIcon.png">
-            <input type="text" class="precos-busca-input" placeholder="Pesquisar por título, autor, editora ou ISBN...">
-        </div>
+            </button>
+            <input type="text" class="precos-busca-input" name="pesquisa" placeholder="Pesquisar por título, autor, editora ou ISBN...">
+        </form>
 
         <h3 class="precos-secao-label">SELECIONE um livro</h3>
 
         <div class="precos-resultados-grid">
+            @foreach(var livro in Model.TodosLivros)
+            {
+                <div class="resultado-livro">
+                    <img class="resultado-capa" src="@livro.arquivoImagem">
+                    <div class="resultado-info">
+                        <h4 class="resultado-titulo">@livro.livro.Nome</h4>
+                        <p class="resultado-autor">@livro.livro.Autor</p>
+                        <p class="resultado-isbn">ISBN: @livro.livro.ISBN</p>
+                        <p class="resultado-editora">@livro.livro.Editora</p>
+                        @if (livro.livro.PromocaoPorcentagem == 0)
+                        {
+                            <div class="resultado-precolinha">
+                                <span class="resultado-precoog"></span>
+                                <span class="resultado-off"></span>
+                            </div>
+                            <span class="resultado-precofinal">R$ @livro.livro.Preco</span>
+                        }
+                        else
+                        {
+                            <div class="resultado-precolinha">
+                                <span class="resultado-precoog">R$ @livro.livro.Preco</span>
+                                <span class="resultado-off">23% OFF</span>
+                            </div>
+                            <span class="resultado-precofinal">R$ @(Math.Round(decimal.Parse(livro.livro.Preco, new CultureInfo("pt-BR")) * (1 - livro.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))</span>
 
-            <div class="resultado-livro"
-                 data-titulo="Alice no País das Maravilhas"
-                 data-autor="Lewis Carroll"
-                 data-isbn="9781619654280"
-                 data-editora="Montecristo Editora"
-                 data-capa="./imagens/livroalice.png"
-                 data-rating="4.1"
-                 data-original="44,00"
-                 data-final="36,00">
-                <img class="resultado-capa" src="./imagens/livroalice.png">
-                <div class="resultado-info">
-                    <h4 class="resultado-titulo">Alice no País das Maravilhas</h4>
-                    <p class="resultado-autor">Lewis Carroll</p>
-                    <p class="resultado-isbn">ISBN: 9781619654280</p>
-                    <p class="resultado-editora">Montecristo Editora</p>
-                    <div class="resultado-precolinha">
-                        <span class="resultado-precoog">R$ 44,00</span>
-                        <span class="resultado-off">23% OFF</span>
-                    </div>
-                    <span class="resultado-precofinal">R$ 36,00</span>
-                    <div class="resultado-estrelas">
-                        <img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png">
-                        <span>(4.1)</span>
+                        }
+                        <div class="main-reposicao-livro-avaliacao-estrelas">
+                            <div class="estrelas">
+                                <div class="estrelas-specifics">
+                                    <img class="estrelasimg" src="~/img/StarComb.png">
+                                    <div class="estrelas-specifics-yellowbar" style="width: @((livro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
+                                </div>
+                                <h3 class="avaliados-historico">(@(livro.mediaLivro))</h3>
+                                <img class="setabaixo" src="~/img/setabaixo.png">
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="resultado-livro"
-                 data-titulo="O Guarani"
-                 data-autor="José de Alencar"
-                 data-isbn="9788525410541"
-                 data-editora="Editora Ática"
-                 data-capa="./imagens/livroguarani.png"
-                 data-rating="4.3"
-                 data-original="39,90"
-                 data-final="31,90">
-                <img class="resultado-capa" src="./imagens/livroguarani.png">
-                <div class="resultado-info">
-                    <h4 class="resultado-titulo">O Guarani</h4>
-                    <p class="resultado-autor">José de Alencar</p>
-                    <p class="resultado-isbn">ISBN: 9788525410541</p>
-                    <p class="resultado-editora">Editora Ática</p>
-                    <div class="resultado-precolinha">
-                        <span class="resultado-precoog">R$ 39,90</span>
-                        <span class="resultado-off">20% OFF</span>
-                    </div>
-                    <span class="resultado-precofinal">R$ 31,90</span>
-                    <div class="resultado-estrelas">
-                        <img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png">
-                        <span>(4.3)</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="resultado-livro"
-                 data-titulo="Ensaio sobre a Cegueira"
-                 data-autor="José Saramago"
-                 data-isbn="9788535902779"
-                 data-editora="Companhia das Letras"
-                 data-capa="./imagens/esaniolivro.png"
-                 data-rating="4.6"
-                 data-original="54,90"
-                 data-final="46,90">
-                <img class="resultado-capa" src="./imagens/esaniolivro.png">
-                <div class="resultado-info">
-                    <h4 class="resultado-titulo">Ensaio sobre a Cegueira</h4>
-                    <p class="resultado-autor">José Saramago</p>
-                    <p class="resultado-isbn">ISBN: 9788535902779</p>
-                    <p class="resultado-editora">Companhia das Letras</p>
-                    <div class="resultado-precolinha">
-                        <span class="resultado-precoog">R$ 54,90</span>
-                        <span class="resultado-off">15% OFF</span>
-                    </div>
-                    <span class="resultado-precofinal">R$ 46,90</span>
-                    <div class="resultado-estrelas">
-                        <img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png">
-                        <span>(4.6)</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="resultado-livro"
-                 data-titulo="1984"
-                 data-autor="George Orwell"
-                 data-isbn="9788535914849"
-                 data-editora="Pomodoro Books"
-                 data-capa="./imagens/1984livro.png"
-                 data-rating="4.8"
-                 data-original="42,90"
-                 data-final="34,90">
-                <img class="resultado-capa" src="./imagens/1984livro.png">
-                <div class="resultado-info">
-                    <h4 class="resultado-titulo">1984</h4>
-                    <p class="resultado-autor">George Orwell</p>
-                    <p class="resultado-isbn">ISBN: 9788535914849</p>
-                    <p class="resultado-editora">Pomodoro Books</p>
-                    <div class="resultado-precolinha">
-                        <span class="resultado-precoog">R$ 42,90</span>
-                        <span class="resultado-off">19% OFF</span>
-                    </div>
-                    <span class="resultado-precofinal">R$ 34,90</span>
-                    <div class="resultado-estrelas">
-                        <img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png">
-                        <span>(4.8)</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="resultado-livro"
-                 data-titulo="Pense duas vezes (Myron Bolitar)"
-                 data-autor="Harlan Coben"
-                 data-isbn="9786555650000"
-                 data-editora="Pomodoro Books"
-                 data-capa="./imagens/bolitarlivro.png"
-                 data-rating="4.2"
-                 data-original="49,90"
-                 data-final="39,90">
-                <img class="resultado-capa" src="./imagens/bolitarlivro.png">
-                <div class="resultado-info">
-                    <h4 class="resultado-titulo">Pense duas vezes (Myron Bolitar)</h4>
-                    <p class="resultado-autor">Harlan Coben</p>
-                    <p class="resultado-isbn">ISBN: 9786555650000</p>
-                    <p class="resultado-editora">Pomodoro Books</p>
-                    <div class="resultado-precolinha">
-                        <span class="resultado-precoog">R$ 49,90</span>
-                        <span class="resultado-off">20% OFF</span>
-                    </div>
-                    <span class="resultado-precofinal">R$ 39,90</span>
-                    <div class="resultado-estrelas">
-                        <img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png">
-                        <span>(4.2)</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="resultado-livro"
-                 data-titulo="O Morro dos Ventos Uivantes"
-                 data-autor="Emily Brontë"
-                 data-isbn="9788572325181"
-                 data-editora="Camelot Editora"
-                 data-capa="./imagens/morroimg.jpg"
-                 data-rating="4.3"
-                 data-original="24,90"
-                 data-final="21,90">
-                <img class="resultado-capa" src="./imagens/morroimg.jpg">
-                <div class="resultado-info">
-                    <h4 class="resultado-titulo">O Morro dos Ventos Uivantes</h4>
-                    <p class="resultado-autor">Emily Brontë</p>
-                    <p class="resultado-isbn">ISBN: 9788572325181</p>
-                    <p class="resultado-editora">Camelot Editora</p>
-                    <div class="resultado-precolinha">
-                        <span class="resultado-precoog">R$ 24,90</span>
-                        <span class="resultado-off">12% OFF</span>
-                    </div>
-                    <span class="resultado-precofinal">R$ 21,90</span>
-                    <div class="resultado-estrelas">
-                        <img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png">
-                        <span>(4.3)</span>
-                    </div>
-                </div>
-            </div>
-
+            }
         </div>
+
 
         <p class="precos-sem-resultado">Nenhum livro encontrado.</p>
 
@@ -194,23 +75,29 @@
 
         <div class="precos-selecionado-painel">
             <div class="precos-selecionado-textos">
-                <h2 class="precos-selecionado-titulo">Alice no País das Maravilhas</h2>
-                <p class="precos-selecionado-autor">Lewis Carroll</p>
-                <p class="precos-selecionado-isbn">Código de Barras: 9781619654280</p>
-                <p class="precos-selecionado-editora">Montecristo Editora</p>
-                <div class="precos-selecionado-estrelas">
-                    <img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png"><img src="./imagens/estrela img.png">
-                    <span>(4.1)</span>
+                <h2 class="precos-selecionado-titulo">@Model.ObterLivro.livro.Nome</h2>
+                <p class="precos-selecionado-autor">@Model.ObterLivro.livro.Autor</p>
+                <p class="precos-selecionado-isbn">Código de Barras: @Model.ObterLivro.livro.CodigoBarras</p>
+                <p class="precos-selecionado-editora">@Model.ObterLivro.livro.Editora</p>
+                <div class="main-reposicao-livro-avaliacao-estrelas">
+                    <div class="estrelas">
+                        <div class="estrelas-specifics">
+                            <img class="estrelasimg" src="~/img/StarComb.png">
+                            <div class="estrelas-specifics-yellowbar" style="width: @((Model.ObterLivro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
+                        </div>
+                        <h3 class="avaliados-historico">(@(Model.ObterLivro.mediaLivro))</h3>
+                        <img class="setabaixo" src="~/img/setabaixo.png">
+                    </div>
                 </div>
             </div>
 
-            <div class="precos-inputs">
+            <form class="precos-inputs" methpd="post" asp-controller="Livro" asp-action="ModificarPrecos">
                 <div class="precos-input-linha">
                     <div class="precos-input-grupo">
                         <label for="precoOriginal">Preço original</label>
                         <div class="precos-input-com-prefixo">
                             <span>R$</span>
-                            <input type="text" id="precoOriginal" inputmode="decimal">
+                            <input type="text" asp-for="ObterLivro.livro.Preco" name="preco" id="precoOriginal" inputmode="decimal">
                         </div>
                     </div>
                     <div class="precos-input-grupo">
@@ -225,15 +112,17 @@
                 <div class="precos-input-grupo">
                     <label for="taxaDesconto">Taxa de desconto</label>
                     <div class="precos-input-com-prefixo">
-                        <input type="text" id="taxaDesconto" inputmode="decimal">
+                        <input type="text" asp-for="ObterLivro.livro.PromocaoPorcentagem" name="promocao" id="taxaDesconto" inputmode="decimal">
                         <span>%</span>
                     </div>
                 </div>
+                <input type="text" name="codBarras" value="@Model.ObterLivro.livro.CodigoBarras" inputmode="decimal" hidden>
+                <input type="text" name="nome" value="@Model.ObterLivro.livro.Nome" inputmode="decimal" hidden>
 
-                <button class="precos-confirmar-btn">CONFIRMAR ALTERAÇÕES</button>
-            </div>
+                <button class="precos-confirmar-btn" type="submit">CONFIRMAR ALTERAÇÕES</button>
+            </form>
 
-            <img class="precos-selecionado-capa" src="./imagens/livroalice.png">
+            <img class="precos-selecionado-capa" src="@Model.ObterLivro.arquivoImagem">
         </div>
 
     </div>
