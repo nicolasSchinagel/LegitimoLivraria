@@ -24,14 +24,14 @@ wwwroot\css\comprar.css
 wwwroot\css\confEndereco.css
 wwwroot\css\footer.css
 wwwroot\css\header.css
-wwwroot\css\modificarPrecos.css
+wwwroot\css\index.css
 wwwroot\css\inputs.css
 wwwroot\css\lateralMenu.css
 wwwroot\css\list.css
 wwwroot\css\livro.css
 wwwroot\css\login.css
 wwwroot\css\menuGerenciar.css
-wwwroot\css\index.css
+wwwroot\css\modificarPrecos.css
 wwwroot\css\reposicao.css
 wwwroot\favicon.ico
 wwwroot\img\addEmblema.png
@@ -81,6 +81,7 @@ wwwroot\img\file_icon.png
 wwwroot\img\filosofia-icon-gender.png
 wwwroot\img\filters_icon.png
 wwwroot\img\funcionario.icon.png
+wwwroot\img\funcionarioEmblema.png
 wwwroot\img\funcionario_iconbar.png
 wwwroot\img\historia-icon-gender.png
 wwwroot\img\humor-icon-gender.png
@@ -124,6 +125,7 @@ wwwroot\img\pix_icon.png
 wwwroot\img\plus.png
 wwwroot\img\plusgrey.png
 wwwroot\img\poesia-icon-gender.png
+wwwroot\img\precoEmblema.png
 wwwroot\img\redHand.png
 wwwroot\img\religiao-icon-gender.png
 wwwroot\img\reposicaoEmblema.png
@@ -206,8 +208,6 @@ wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\lib\mask\jquery.mask.min.js
-wwwroot\img\precoEmblema.png
-wwwroot\img\funcionarioEmblema.png
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\jquery\dist\jquery.slim.min.js
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\cadCli.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\footer.css

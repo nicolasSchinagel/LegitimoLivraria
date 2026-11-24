@@ -47,6 +47,22 @@
                     </div>
                 </div>
 
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label asp-for="Cargo" class="label-div-type-1"></label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span asp-validation-for="Cargo" class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-5-block">
+                        <select asp-for="Cargo" class="input-div-type-5-block-insert">
+                            <option value="gerente de compras">Gerente de compras</option>
+                            <option value="gerente de contratação">Gerente de contratação</option>
+                            <option value="gerente comercial">Gerente comercial</option>
+                            <option value="caixa">Caixa</option>
+                        </select>
+                        <img src="~/img/expand_icon.png" class="input-div-type-2-block-expand" />
+                    </div>
+                </div>
 
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
@@ -258,3 +274,21 @@
     </form>
 
 </main>
+<script>
+    document.querySelectorAll(".input-div-type-2-block-expand").forEach(img => {
+    let ativo = false;
+
+    img.addEventListener("click", function() {
+    const container = this.closest(".input-div-type-5-block");
+    const select = container.querySelector(".input-div-type-5-block-insert");
+
+    if (!ativo) {
+    select.showPicker();
+    ativo = true;
+    } else {
+    select.blur();
+    ativo = false;
+    }
+    });
+    });
+</script>
