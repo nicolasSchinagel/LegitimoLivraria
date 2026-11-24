@@ -22,7 +22,7 @@
     <header>
         <section class="uper-header">
             <img src="~/img/logoLivraria.png" class="logo-header">
-            <form class="search-bar-header" asp-controller="Livro" asp-action="ListaProcura" method="get">
+            <form class="search-bar-header" asp-area="" asp-controller="Livro" asp-action="ListaProcura" method="get">
                 <button class="icon-search-bar-font" type="submit"><img src="~/img/SearchbarIcon.png" class="icon-search-bar"></button>
                 <input type="text" name="pesquisa" class="input-search-bar" placeholder="Digite livros, autores ou editoras"/>
             </form>

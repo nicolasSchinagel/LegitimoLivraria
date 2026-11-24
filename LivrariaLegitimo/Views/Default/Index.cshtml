@@ -121,7 +121,7 @@
         @foreach(var livro in Model.BemAvaliados)
         {
             <div class="card1 no-underline">
-                <a class="no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
+                <a class="no-underline a-livro" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
                 <div class="containerlivro">
                     <img class="book" src="@livro.arquivoImagem">
 
@@ -202,7 +202,7 @@
                     @foreach(var livro in grupo)
                     {
                         <div class="card1 no-underline">
-                            <a class="no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
+                            <a class="no-underline a-livro" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
                             <div class="containerlivro">
                                 <img class="book" src="@livro.arquivoImagem">
 

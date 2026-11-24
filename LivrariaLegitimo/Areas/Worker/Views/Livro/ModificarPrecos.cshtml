@@ -8,7 +8,7 @@
 <div class="precos-pagina">
 
     <section class="addLivro-main-header">
-        <img src="./imagens/precoEmblema.png" class="addLivro-main-header-img" />
+        <img src="~/img/precoEmblema.png" class="addLivro-main-header-img" />
         <div class="addLivro-main-header-texts">
             <h1 class="addLivro-main-header-title">Modificar Preços</h1>
             <h3 class="addLivro-main-header-subtitle">Altere preços e adicione promoções para aumentar as vendas de livros</h3>
@@ -20,7 +20,7 @@
         <h2 class="precos-busca-label">Pesquisar um livro para alterar</h2>
         <form class="precos-busca-input-wrap" method="get" asp-area="Worker" asp-controller="Livro" asp-action="ModificarPrecos">
             <button class="main-reposicao-search-icon" type="submit" aria-label="Pesquisar">
-            <img class="precos-busca-icone" src="./imagens/SearchbarIcon.png">
+            <img class="precos-busca-icone" src="~/img/SearchbarIcon.png">
             </button>
             <input type="text" class="precos-busca-input" name="pesquisa" placeholder="Pesquisar por título, autor, editora ou ISBN...">
         </form>
@@ -30,7 +30,7 @@
         <div class="precos-resultados-grid">
             @foreach(var livro in Model.TodosLivros)
             {
-                <a class="resultado-livro" asp-area="Worker" asp-controller="Livro" asp-action="ModificarPrecos" asp-route-codBarras="@livro.livro.CodigoBarras">
+                <a class="resultado-livro no-underline" asp-area="Worker" asp-controller="Livro" asp-action="ModificarPrecos" asp-route-codBarras="@livro.livro.CodigoBarras">
                     <img class="resultado-capa" src="@livro.arquivoImagem">
                     <div class="resultado-info">
                         <h4 class="resultado-titulo">@(livro.livro.Nome.Length > 35 ? livro.livro.Nome.Substring(0, 35) + "..." : livro.livro.Nome)</h4>
@@ -54,7 +54,7 @@
                             <span class="resultado-precofinal">R$ @(Math.Round(decimal.Parse(livro.livro.Preco, new CultureInfo("pt-BR")) * (1 - livro.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))</span>
 
                         }
-                        <div class="main-reposicao-livro-avaliacao-estrelas">
+                        <div class="main-mp-livro-avaliacao-estrelas">
                             <div class="estrelas">
                                 <div class="estrelas-specifics">
                                     <img class="estrelasimg" src="~/img/StarComb.png">
@@ -85,7 +85,7 @@
                     <p class="precos-selecionado-isbn">Código de Barras: @Model.ObterLivro.Value.livro.CodigoBarras</p>
                     <p class="precos-selecionado-editora">@Model.ObterLivro.Value.livro.Editora</p>
 
-                    <div class="main-reposicao-livro-avaliacao-estrelas">
+                    <div class="main-reposicao-livro-avaliacao-estrelass">
                         <div class="estrelas-historico">
                             <div class="estrelas-historico-specifics">
                                 <img class="estrelasimg-historico" src="~/img/StarComb.png">
