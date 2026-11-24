@@ -125,6 +125,7 @@ wwwroot\img\plusgrey.png
 wwwroot\img\poesia-icon-gender.png
 wwwroot\img\redHand.png
 wwwroot\img\religiao-icon-gender.png
+wwwroot\img\reposicaoEmblema.png
 wwwroot\img\reposicao_icon.png
 wwwroot\img\romance-icon-gender.png
 wwwroot\img\scifi-icon-gender.png

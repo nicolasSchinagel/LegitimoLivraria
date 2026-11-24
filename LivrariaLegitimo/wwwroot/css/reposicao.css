@@ -25,6 +25,11 @@ button {
 .main-reposicao {
     width: min(1200px, 100%);
     margin: 0 auto;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    padding-bottom: 40px;
 }
 
 /* Cabeçalho */

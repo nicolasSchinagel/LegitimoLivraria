@@ -2,6 +2,7 @@
 @model LivrariaLegitimo.ViewModels.LivroViewModel
 <link rel="stylesheet" href="~/css/reposicao.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/adicionarLivro.css" asp-append-version="true" />
 @{
     int totalReposicao = 0;
     foreach(var livro in Model.CookieReposicao)
@@ -10,12 +11,13 @@
     }
 }
 <main class="main-reposicao">
-    <header class="main-reposicao-header">
-        <div class="main-reposicao-header-info">
-            <h1>Reposição de Estoque</h1>
-            <p>Fazer reposição do estoque de um livro</p>
+    <section class="addLivro-main-header">
+        <img src="~/img/reposicaoEmblema.png" class="addLivro-main-header-img" />
+        <div class="addLivro-main-header-texts">
+            <h1 class="addLivro-main-header-title">Reposição do Estoque</h1>
+            <h3 class="addLivro-main-header-subtitle">Fazer reposição do estoque de um livro</h3>
         </div>
-    </header>
+    </section>
 
     <section class="main-reposicao-content">
 
@@ -81,10 +83,10 @@
             <div class="main-reposicao-content-itens-header">
                 <h2>Itens da reposição</h2>
 
-                <button class="main-reposicao-esvaziar" type="button" asp-controller="Livro" asp-area="Worker" asp-action="LimparReposicao">
+                <a class="main-reposicao-esvaziar no-underline" type="button" asp-controller="Livro" asp-area="Worker" asp-action="LimparReposicao">
                     Esvaziar
                     <img src="~/img/trashRed.png" alt="Esvaziar lista">
-                </button>
+                </a>
             </div>
 
             <form asp-area="Worker" asp-action="Reposicao" asp-controller="Livro" method="post">

@@ -99,7 +99,7 @@
                             }
                             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de compras")
                             {
-                                <a class="lateral-bar-content-block-list-item no-underline">Fazer Reposição</a>  
+                                <a class="lateral-bar-content-block-list-item no-underline" asp-area="Worker" asp-controller="Livro" asp-action="Reposicao">Fazer Reposição</a>  
                             }
                             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de contratação")
                             {
