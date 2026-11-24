@@ -54,7 +54,13 @@ namespace LivrariaLegitimo.Models
 
         [Display(Name = "Senha")]
         [Required(ErrorMessage = "Senha é obrigatória")]
+        [DataType(DataType.Password)]
         public string Senha { get; set; }
+
+        [DataType(DataType.Password)]
+        [Compare("Senha", ErrorMessage = "As senhas não coincidem")]
+        [Display(Name = "Confirmação da senha")]
+        public string ConfirmacaoSenha { get; set; }
 
         [Display(Name = "Número do Endereço")]
         [Required(ErrorMessage = "Número do endereço é obrigatório")]

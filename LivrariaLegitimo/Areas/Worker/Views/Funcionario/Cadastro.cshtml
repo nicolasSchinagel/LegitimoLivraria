@@ -1,0 +1,272 @@
+﻿@model LivrariaLegitimo.Models.Funcionario
+
+<link rel="stylesheet" href="~/css/adicionarLivro.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/cadCli.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/list.css" asp-append-version="true" />
+
+<main class="addLivro-main">
+
+    <section class="addLivro-main-header">
+        <img src="~/img/funcionarioEmblema.png" class="addLivro-main-header-img" />
+        <div class="addLivro-main-header-texts">
+            <h1 class="addLivro-main-header-title">Cadastro do Funcionário</h1>
+            <h3 class="addLivro-main-header-subtitle">Cadastre um funcionário da empresa</h3>
+        </div>
+    </section>
+
+    <form method="post" asp-action="Cadastro" class="addLivro-main-form">
+
+        <div class="addLivro-main-form-col">
+
+            <div class="addLivro-main-form-col-part">
+
+                <div class="addLivro-main-form-col-part-title">
+                    <img src="~/img/Basics_icon.png" class="addLivro-main-form-col-part-title-icon" />
+                    <h2 class="addLivro-main-form-col-part-title-text">Informações básicas</h2>
+                </div>
+
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="nome">Nome do funcionário</label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input type="text" id="nome" name="Nome" class="input-div-type-1-block-insert" placeholder="Digite o nome completo" required />
+                    </div>
+                </div>
+
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="cpf">CPF</label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input type="text" id="cpf" name="Cpf" class="input-div-type-1-block-insert CPF" placeholder="Digite o seu CPF" required />
+                    </div>
+                </div>
+
+
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="email">Email do cliente</label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input type="email" id="email" name="Email" class="input-div-type-1-block-insert" placeholder="Ex: cliente@mail.com" required />
+                    </div>
+                </div>
+
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="telefone">Telefone</label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input type="tel" id="telefone" name="Telefone" class="input-div-type-1-block-insert Telefone" placeholder="+55   XX XXXXX XXXX" required />
+                    </div>
+                </div>
+
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="senha">Senha</label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input type="password" id="senha" name="Senha" class="input-div-type-1-block-insert" placeholder="Senha de pelo menos 8 caracteres" minlength="8" required />
+                    </div>
+                </div>
+
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="confirmarSenha">Confirmação da senha</label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input type="password" id="confirmarSenha" name="ConfirmacaoSenha" class="input-div-type-1-block-insert" placeholder="Confirme a sua senha" required />
+                    </div>
+                </div>
+
+                <div id="campoDataNasc" class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="dataNasc">Data de Nascimento</label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block-conjunto">
+                        <img src="~/img/date_icon.png" class="input-div-type-1-block-icon-conjunto" />
+                        <div class="input-div-type-3-block-divisor"></div>
+                        <input type="date" id="dataNasc" name="DataNasc" class="input-div-type-3-block-insert" placeholder="Selecione a data" />
+                    </div>
+                </div>
+
+                <div class="addLivro-main-form-col-part-title">
+                    <img src="~/img/Description_icon.png" class="addLivro-main-form-col-part-title-icon" />
+                    <h2 class="addLivro-main-form-col-part-title-text">Endereço</h2>
+                </div>
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="dataNasc">Data de Admissão</label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block-conjunto">
+                        <img src="~/img/date_icon.png" class="input-div-type-1-block-icon-conjunto" />
+                        <div class="input-div-type-3-block-divisor"></div>
+                        <input type="date" id="dataNasc" name="DataNasc" class="input-div-type-3-block-insert" placeholder="Selecione a data de admissão" />
+                    </div>
+                </div>
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="dataNasc">Data de fim do contrato</label>
+                        <span class="obligate-div-type-1"></span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block-conjunto">
+                        <img src="~/img/date_icon.png" class="input-div-type-1-block-icon-conjunto" />
+                        <div class="input-div-type-3-block-divisor"></div>
+                        <input type="date" name="DataNasc" class="input-div-type-3-block-insert" placeholder="Selecione a data do término" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="addLivro-main-form-col-part">
+
+                <div class="addLivro-main-form-col-part-title">
+                    <img src="~/img/Description_icon.png" class="addLivro-main-form-col-part-title-icon" />
+                    <h2 class="addLivro-main-form-col-part-title-text">Endereço</h2>
+                </div>
+
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="cep">CEP</label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input type="text" id="cep" name="Cep" class="input-div-type-1-block-insert CEP" placeholder="Digite seu CEP" required />
+                    </div>
+                </div>
+
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="uf">UF</label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-5-block">
+                        <select id="uf" name="Estado" class="input-div-type-5-block-insert" required>
+                            <option value="" disabled selected>Selecione seu estado brasileiro</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                        <img src="~/img/expand_icon.png" class="input-div-type-2-block-expand" />
+                    </div>
+                </div>
+
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="cidade">Cidade</label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input type="text" id="cidade" name="Cidade" class="input-div-type-1-block-insert" placeholder="Digite o nome da sua cidade" required />
+                    </div>
+                </div>
+
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="bairro">Bairro</label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input type="text" id="bairro" name="Bairro" class="input-div-type-1-block-insert" placeholder="Digite o nome do seu bairro" required />
+                    </div>
+                </div>
+
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="logradouro">Logradouro</label>
+                        <span class="obligate-div-type-1">*</span>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block">
+                        <input type="text" id="logradouro" name="Logradouro" class="input-div-type-1-block-insert" placeholder="Digite o nome do seu logradouro" required />
+                    </div>
+                </div>
+
+                <div class="input-double-line">
+
+                    <div class="input-div-type-1">
+                        <div class="input-div-type-1-texts">
+                            <label class="label-div-type-1" for="numero">Número</label>
+                            <span class="obligate-div-type-1">*</span>
+                            <span class="message-div-type-1"></span>
+                        </div>
+                        <div class="input-div-type-1-block">
+                            <input type="number" id="numero" name="NumeroEndereco" class="input-div-type-1-block-insert" placeholder="Digite o seu número de endereço" min="1" required />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="input-div-type-1">
+                    <div class="input-div-type-1-texts">
+                        <label class="label-div-type-1" for="complemento">Complemento do endereço</label>
+                        <span class="message-div-type-1"></span>
+                    </div>
+                    <div class="input-div-type-1-block-long">
+                        <textarea id="complemento" name="ComplementoEndereco" class="input-div-type-1-block-insertLong" rows="5" cols="50" placeholder="Deixe aqui algo importante do seu endereço que não pedimos acima..."></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="addLivro-main-form-footer">
+            <a href="#" class="addLivro-main-form-footer-cancelar no-underline">
+                <h3 class="addLivro-main-form-footer-cancelar-text">Cancelar</h3>
+            </a>
+
+            <button type="submit" class="addLivro-main-form-footer-registrar">
+                <img src="~/img/file_icon.png" class="addLivro-main-form-footer-registrar-icon" />
+                <h2 class="addLivro-main-form-footer-registrar-title">REGISTRAR</h2>
+            </button>
+        </div>
+
+    </form>
+
+</main>
