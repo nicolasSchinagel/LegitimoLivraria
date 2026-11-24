@@ -92,9 +92,5 @@ namespace LivrariaLegitimo.Repository
             throw new NotImplementedException();
         }
 
-        public IPagedList<Funcionario> ObterTodosFuncionarios(int? pagina, string pesquisa)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

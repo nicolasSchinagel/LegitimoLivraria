@@ -10,6 +10,5 @@ namespace LivrariaLegitimo.Repository.Contract
         void Cadastrar(Funcionario funcionario);
         void Atualizar(Funcionario funcionario);
         IEnumerable<Funcionario> ObterTodosFuncionarios();
-        IPagedList<Funcionario> ObterTodosFuncionarios(int? pagina, string pesquisa);
     }
 }
