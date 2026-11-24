@@ -30,7 +30,7 @@
         <div class="precos-resultados-grid">
             @foreach(var livro in Model.TodosLivros)
             {
-                <div class="resultado-livro">
+                <a class="resultado-livro" asp-area="Worker" asp-controller="Livro" asp-action="ModificarPrecos" asp-route-codBarras="@livro.livro.CodigoBarras">
                     <img class="resultado-capa" src="@livro.arquivoImagem">
                     <div class="resultado-info">
                         <h4 class="resultado-titulo">@(livro.livro.Nome.Length > 35 ? livro.livro.Nome.Substring(0, 35) + "..." : livro.livro.Nome)</h4>
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             }
         </div>
 

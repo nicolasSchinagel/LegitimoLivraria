@@ -31,8 +31,6 @@ wwwroot\css\list.css
 wwwroot\css\livro.css
 wwwroot\css\login.css
 wwwroot\css\menuGerenciar.css
-wwwroot\css\modificarPrecos.css
-wwwroot\css\reposicao.css
 wwwroot\favicon.ico
 wwwroot\img\addEmblema.png
 wwwroot\img\arrow-carousel.png
@@ -122,12 +120,9 @@ wwwroot\img\outros_icon.png
 wwwroot\img\pagar_icon.png
 wwwroot\img\pix_icon.png
 wwwroot\img\plus.png
-wwwroot\img\plusgrey.png
 wwwroot\img\poesia-icon-gender.png
 wwwroot\img\redHand.png
 wwwroot\img\religiao-icon-gender.png
-wwwroot\img\reposicaoEmblema.png
-wwwroot\img\reposicao_icon.png
 wwwroot\img\romance-icon-gender.png
 wwwroot\img\scifi-icon-gender.png
 wwwroot\img\SearchbarIcon.png
@@ -141,7 +136,6 @@ wwwroot\img\suspense-icon-gender.png
 wwwroot\img\tabela.icon.png
 wwwroot\img\terror-icon-gender.png
 wwwroot\img\trash.png
-wwwroot\img\trashRed.png
 wwwroot\img\verTodos.png
 wwwroot\js\filtroLivros.js
 wwwroot\js\site.js
@@ -206,6 +200,12 @@ wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\lib\mask\jquery.mask.min.js
+wwwroot\css\reposicao.css
+wwwroot\img\plusgrey.png
+wwwroot\img\reposicao_icon.png
+wwwroot\img\trashRed.png
+wwwroot\img\reposicaoEmblema.png
+wwwroot\css\modificarPrecos.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\confEndereco.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\jquery\dist\jquery.slim.min.js
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\carrinho.css
