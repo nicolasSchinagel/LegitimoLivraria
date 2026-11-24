@@ -14,7 +14,7 @@
         </div>
     </section>
 
-    <form method="post" asp-action="Cadastro" class="addLivro-main-form">
+    <form method="post" asp-controller="Funcionario" asp-action="Cadastro" class="addLivro-main-form">
 
         <div class="addLivro-main-form-col">
 
@@ -27,83 +27,71 @@
 
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="nome">Nome do funcionário</label>
+                        <label class="label-div-type-1" asp-for="Nome">Nome do funcionário</label>
                         <span class="obligate-div-type-1">*</span>
-                        <span class="message-div-type-1"></span>
+                        <span class="message-div-type-1" asp-validation-for="Nome"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="text" id="nome" name="Nome" class="input-div-type-1-block-insert" placeholder="Digite o nome completo" required />
+                        <input type="text" id="nome" name="Nome" class="input-div-type-1-block-insert" placeholder="Digite o nome completo" required asp-for="Nome"/>
                     </div>
                 </div>
 
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="cpf">CPF</label>
+                        <label class="label-div-type-1" asp-for="Cpf">CPF</label>
                         <span class="obligate-div-type-1">*</span>
-                        <span class="message-div-type-1"></span>
+                        <span class="message-div-type-1" asp-validation-for="Cpf"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="text" id="cpf" name="Cpf" class="input-div-type-1-block-insert CPF" placeholder="Digite o seu CPF" required />
+                        <input type="text" id="cpf" name="Cpf" asp-for="Cpf" class="input-div-type-1-block-insert CPF" placeholder="Digite o seu CPF" required />
                     </div>
                 </div>
 
 
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="email">Email do cliente</label>
+                        <label class="label-div-type-1" asp-for="Email" for="email">Email do cliente</label>
                         <span class="obligate-div-type-1">*</span>
-                        <span class="message-div-type-1"></span>
+                        <span class="message-div-type-1" asp-validation-for="Email"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="email" id="email" name="Email" class="input-div-type-1-block-insert" placeholder="Ex: cliente@mail.com" required />
+                        <input type="email" asp-for="Email" id="email" name="Email" class="input-div-type-1-block-insert" placeholder="Ex: cliente@mail.com" required />
                     </div>
                 </div>
 
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="telefone">Telefone</label>
+                        <label class="label-div-type-1" for="telefone" asp-for="Telefone">Telefone</label>
                         <span class="obligate-div-type-1">*</span>
-                        <span class="message-div-type-1"></span>
+                        <span class="message-div-type-1" asp-validation-for="Telefone"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="tel" id="telefone" name="Telefone" class="input-div-type-1-block-insert Telefone" placeholder="+55   XX XXXXX XXXX" required />
+                        <input type="tel" id="telefone" name="Telefone" class="input-div-type-1-block-insert Telefone" placeholder="+55   XX XXXXX XXXX" required asp-for="Telefone"/>
                     </div>
                 </div>
 
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="senha">Senha</label>
+                        <label class="label-div-type-1" for="senha" asp-for="Senha">Senha</label>
                         <span class="obligate-div-type-1">*</span>
-                        <span class="message-div-type-1"></span>
+                        <span class="message-div-type-1" asp-validation-for="Senha"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="password" id="senha" name="Senha" class="input-div-type-1-block-insert" placeholder="Senha de pelo menos 8 caracteres" minlength="8" required />
+                        <input type="password" id="senha" name="Senha" class="input-div-type-1-block-insert" placeholder="Senha de pelo menos 8 caracteres" minlength="8" required asp-for="Senha"/>
                     </div>
                 </div>
 
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="confirmarSenha">Confirmação da senha</label>
+                        <label class="label-div-type-1" asp-for="ConfirmacaoSenha">Confirmação da senha</label>
                         <span class="obligate-div-type-1">*</span>
-                        <span class="message-div-type-1"></span>
+                        <span class="message-div-type-1" asp-validation-for="ConfirmacaoSenha"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="password" id="confirmarSenha" name="ConfirmacaoSenha" class="input-div-type-1-block-insert" placeholder="Confirme a sua senha" required />
+                        <input type="password" id="confirmarSenha" asp-for="ConfirmacaoSenha" name="ConfirmacaoSenha" class="input-div-type-1-block-insert" placeholder="Confirme a sua senha" required />
                     </div>
                 </div>
 
-                <div id="campoDataNasc" class="input-div-type-1">
-                    <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="dataNasc">Data de Nascimento</label>
-                        <span class="obligate-div-type-1">*</span>
-                        <span class="message-div-type-1"></span>
-                    </div>
-                    <div class="input-div-type-1-block-conjunto">
-                        <img src="~/img/date_icon.png" class="input-div-type-1-block-icon-conjunto" />
-                        <div class="input-div-type-3-block-divisor"></div>
-                        <input type="date" id="dataNasc" name="DataNasc" class="input-div-type-3-block-insert" placeholder="Selecione a data" />
-                    </div>
-                </div>
 
                 <div class="addLivro-main-form-col-part-title">
                     <img src="~/img/Description_icon.png" class="addLivro-main-form-col-part-title-icon" />
@@ -111,26 +99,26 @@
                 </div>
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="dataNasc">Data de Admissão</label>
+                        <label class="label-div-type-1" asp-for="DataAdmissao">Data de Admissão</label>
                         <span class="obligate-div-type-1">*</span>
-                        <span class="message-div-type-1"></span>
+                        <span class="message-div-type-1" asp-validation-for="DataAdmissao"></span>
                     </div>
                     <div class="input-div-type-1-block-conjunto">
                         <img src="~/img/date_icon.png" class="input-div-type-1-block-icon-conjunto" />
                         <div class="input-div-type-3-block-divisor"></div>
-                        <input type="date" id="dataNasc" name="DataNasc" class="input-div-type-3-block-insert" placeholder="Selecione a data de admissão" />
+                        <input type="date" id="dataNasc" asp-for="DataAdmissao" name="DataNasc" class="input-div-type-3-block-insert" placeholder="Selecione a data de admissão" />
                     </div>
                 </div>
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="dataNasc">Data de fim do contrato</label>
+                        <label class="label-div-type-1" asp-for="FimContrato" for="dataNasc">Data de fim do contrato</label>
                         <span class="obligate-div-type-1"></span>
-                        <span class="message-div-type-1"></span>
+                        <span class="message-div-type-1" asp-validation-for="FimContrato"></span>
                     </div>
                     <div class="input-div-type-1-block-conjunto">
                         <img src="~/img/date_icon.png" class="input-div-type-1-block-icon-conjunto" />
                         <div class="input-div-type-3-block-divisor"></div>
-                        <input type="date" name="DataNasc" class="input-div-type-3-block-insert" placeholder="Selecione a data do término" />
+                        <input type="date" name="DataNasc" asp-for="FimContrato" class="input-div-type-3-block-insert" placeholder="Selecione a data do término" />
                     </div>
                 </div>
             </div>
@@ -144,23 +132,23 @@
 
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="cep">CEP</label>
+                        <label class="label-div-type-1" asp-for="Cep">CEP</label>
                         <span class="obligate-div-type-1">*</span>
-                        <span class="message-div-type-1"></span>
+                        <span class="message-div-type-1" asp-validation-for="Cep"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="text" id="cep" name="Cep" class="input-div-type-1-block-insert CEP" placeholder="Digite seu CEP" required />
+                        <input type="text" id="cep" name="Cep" asp-for="Cep" class="input-div-type-1-block-insert CEP" placeholder="Digite seu CEP" required />
                     </div>
                 </div>
 
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="uf">UF</label>
+                        <label class="label-div-type-1" asp-for="Estado">UF</label>
                         <span class="obligate-div-type-1">*</span>
-                        <span class="message-div-type-1"></span>
+                        <span class="message-div-type-1" asp-validation-for="Estado"></span>
                     </div>
                     <div class="input-div-type-5-block">
-                        <select id="uf" name="Estado" class="input-div-type-5-block-insert" required>
+                        <select id="uf" name="Estado" asp-for="Estado" class="input-div-type-5-block-insert" required>
                             <option value="" disabled selected>Selecione seu estado brasileiro</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
@@ -196,34 +184,34 @@
 
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="cidade">Cidade</label>
+                        <label class="label-div-type-1" asp-for="Cidade">Cidade</label>
                         <span class="obligate-div-type-1">*</span>
-                        <span class="message-div-type-1"></span>
+                        <span class="message-div-type-1" asp-validation-for="Cidade"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="text" id="cidade" name="Cidade" class="input-div-type-1-block-insert" placeholder="Digite o nome da sua cidade" required />
+                        <input type="text" id="cidade" name="Cidade" asp-for="Cidade" class="input-div-type-1-block-insert" placeholder="Digite o nome da sua cidade" required />
                     </div>
                 </div>
 
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="bairro">Bairro</label>
+                        <label class="label-div-type-1" asp-for="Bairro">Bairro</label>
                         <span class="obligate-div-type-1">*</span>
-                        <span class="message-div-type-1"></span>
+                        <span class="message-div-type-1" asp-validation-for="Bairro"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="text" id="bairro" name="Bairro" class="input-div-type-1-block-insert" placeholder="Digite o nome do seu bairro" required />
+                        <input type="text" id="bairro" name="Bairro" asp-for="Bairro" class="input-div-type-1-block-insert" placeholder="Digite o nome do seu bairro" required />
                     </div>
                 </div>
 
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="logradouro">Logradouro</label>
+                        <label class="label-div-type-1" asp-for="Logradouro">Logradouro</label>
                         <span class="obligate-div-type-1">*</span>
-                        <span class="message-div-type-1"></span>
+                        <span class="message-div-type-1" asp-validation-for="Logradouro"></span>
                     </div>
                     <div class="input-div-type-1-block">
-                        <input type="text" id="logradouro" name="Logradouro" class="input-div-type-1-block-insert" placeholder="Digite o nome do seu logradouro" required />
+                        <input type="text" id="logradouro" asp-for="Logradouro" name="Logradouro" class="input-div-type-1-block-insert" placeholder="Digite o nome do seu logradouro" required />
                     </div>
                 </div>
 
@@ -231,12 +219,12 @@
 
                     <div class="input-div-type-1">
                         <div class="input-div-type-1-texts">
-                            <label class="label-div-type-1" for="numero">Número</label>
+                            <label class="label-div-type-1" asp-for="NumeroEndereco">Número</label>
                             <span class="obligate-div-type-1">*</span>
-                            <span class="message-div-type-1"></span>
+                            <span class="message-div-type-1" asp-validation-for="NumeroEndereco"></span>
                         </div>
                         <div class="input-div-type-1-block">
-                            <input type="number" id="numero" name="NumeroEndereco" class="input-div-type-1-block-insert" placeholder="Digite o seu número de endereço" min="1" required />
+                            <input type="number" id="numero" asp-for="NumeroEndereco" name="NumeroEndereco" class="input-div-type-1-block-insert" placeholder="Digite o seu número de endereço" min="1" required />
                         </div>
                     </div>
 
@@ -244,11 +232,11 @@
 
                 <div class="input-div-type-1">
                     <div class="input-div-type-1-texts">
-                        <label class="label-div-type-1" for="complemento">Complemento do endereço</label>
-                        <span class="message-div-type-1"></span>
+                        <label class="label-div-type-1" asp-for="ComplementoEndereco">Complemento do endereço</label>
+                        <span class="message-div-type-1" asp-validation-for="ComplementoEndereco"></span>
                     </div>
                     <div class="input-div-type-1-block-long">
-                        <textarea id="complemento" name="ComplementoEndereco" class="input-div-type-1-block-insertLong" rows="5" cols="50" placeholder="Deixe aqui algo importante do seu endereço que não pedimos acima..."></textarea>
+                        <textarea id="complemento" name="ComplementoEndereco" asp-for="ComplementoEndereco" class="input-div-type-1-block-insertLong" rows="5" cols="50" placeholder="Deixe aqui algo importante do seu endereço que não pedimos acima..."></textarea>
                     </div>
                 </div>
 
