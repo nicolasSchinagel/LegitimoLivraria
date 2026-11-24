@@ -10,6 +10,7 @@ using System.Text;
 using X.PagedList;
 using X.PagedList.Extensions;
 using System.Text;
+using System.Security.Cryptography;
 
 namespace LivrariaLegitimo.Repository
 {
@@ -265,7 +266,21 @@ namespace LivrariaLegitimo.Repository
                 conexao.Close();
             }
         }
-        public void ModificarPreco(int promocao, decimal preco) { throw new NotImplementedException(); }
+
+        // último método a ser feito, depois dele livros na teoria não tem mais métodos
+        public void ModificarPreco(int promocao, decimal preco, decimal codBarras, string nome) {
+            using(var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("call spChangePrice(@CodigoBarras, @Nome, @Preco, @PromocaoPorcentagem, @IdFunc)", conexao);
+                cmd.Parameters.AddWithValue("@CodigoBarras", codBarras);
+                cmd.Parameters.AddWithValue("@Nome", nome);
+                cmd.Parameters.AddWithValue("@Preco", preco);
+                cmd.Parameters.AddWithValue("@PromocaoPorcentagem", promocao);
+                cmd.Parameters.AddWithValue("@IdFunc", _loginFuncionario.GetFuncionario().IdFuncionario);
+                cmd.ExecuteNonQuery();
+            }
+        }
 
 
         public IEnumerable<(Livro, string arquivoImagem, string arquivoEbook, decimal mediaLivro, int numeroVendas)> ObterMelhoresAvaliados()
