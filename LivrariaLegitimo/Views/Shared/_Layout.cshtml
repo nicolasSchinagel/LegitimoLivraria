@@ -103,14 +103,14 @@
                             }
                             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente de contratação")
                             {
-                                <a class="lateral-bar-content-block-list-item no-underline">Cadastrar Funcionário</a>
+                                <a class="lateral-bar-content-block-list-item no-underline" asp-area="Worker" asp-controller="Funcionario" asp-action="Cadastro">Cadastrar Funcionário</a>
                             }
                             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial")
                             {
                                 <a class="lateral-bar-content-block-list-item no-underline" asp-area="Worker" asp-controller="Livro" asp-action="ModificarPrecos">Modificar Preços</a>
                             }
                             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial" || _LoginFuncionario.GetFuncionario().Cargo == "caixa"){
-                                <a class="lateral-bar-content-block-list-item no-underline">Cadastrar Cliente</a>
+                                <a class="lateral-bar-content-block-list-item no-underline" asp-area="" asp-controller="Cliente" asp-action="Cadastro">Cadastrar Cliente</a>
                             }
                         
                     </div>

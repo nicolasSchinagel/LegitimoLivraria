@@ -102,7 +102,7 @@
             }
             @if (_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial" || _LoginFuncionario.GetFuncionario().Cargo == "caixa")
             {
-                <a href="#" class="opcao-gerenciamento">
+                <a asp-area="" asp-controller="Cliente" asp-action="Cadastro" class="opcao-gerenciamento">
                     <div class="icone-opcao">
                         <img src="~/img/cliente.icon.png" alt="Cadastrar cliente">
                     </div>
