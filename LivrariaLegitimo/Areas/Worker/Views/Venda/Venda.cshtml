@@ -1,5 +1,728 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using System.Globalization
+@model LivrariaLegitimo.ViewModels.CompraViewModel
+
 @{
+    var cultura = new CultureInfo("pt-BR");
+
+    decimal subtotalCompra = 0;
+    decimal totalCompra = 0;
+
+    foreach (var item in Model.Carrinho)
+    {
+        decimal preco = decimal.Parse(item.livro.Preco, cultura);
+
+        subtotalCompra += preco * item.quantidadeCarrinho;
+
+        if (item.livro.PromocaoPorcentagem > 0)
+        {
+            preco = Math.Round(
+                preco * (1 - item.livro.PromocaoPorcentagem / 100m),
+                2
+            );
+        }
+
+        totalCompra += preco * item.quantidadeCarrinho;
+    }
+
+    int totalItens = Model.Carrinho.Sum(x => x.quantidadeCarrinho);
 }
+
+<link rel="stylesheet" href="~/css/registrarVenda.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/reposicao.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/adicionarLivro.css" asp-append-version="true" />
+
+<main class="main-venda">
+
+    <!-- CABEÇALHO -->
+
+    <section class="addLivro-main-header">
+
+        <img src="~/img/vendaEmblema.png"
+             class="addLivro-main-header-img"
+             alt="Registrar venda">
+
+        <div class="addLivro-main-header-texts">
+            <h1 class="addLivro-main-header-title">Registrar Venda</h1>
+            <h3 class="addLivro-main-header-subtitle">
+                Registrar vendas feitas na loja física
+            </h3>
+        </div>
+
+    </section>
+
+    @if (ViewBag.Erro != null)
+    {
+        <p class="venda-mensagem venda-erro">@ViewBag.Erro</p>
+    }
+
+    @if (ViewBag.Sucesso != null)
+    {
+        <p class="venda-mensagem venda-sucesso">@ViewBag.Sucesso</p>
+    }
+
+    <section class="main-venda-content">
+
+        <!-- COLUNA ESQUERDA -->
+
+        <div class="main-venda-pesquisa">
+
+            <!-- CPF DO CLIENTE -->
+
+            <div class="main-venda-cliente">
+
+                <label for="cpfCliente">CPF do cliente <span>*</span></label>
+
+                <input type="text"
+                       id="cpfCliente"
+                       name="Compra.CpfCliente"
+                       form="formRegistrarVenda"
+                       placeholder="Digite o CPF do Cliente"
+                       maxlength="14"
+                       required>
+
+            </div>
+
+            <!-- PESQUISA DE LIVROS -->
+
+            <div class="main-venda-pesquisa-header">
+
+                <h2>Adicionar livros à venda</h2>
+
+                <form class="main-venda-pesquisa-form"
+                      method="get"
+                      asp-area="Worker"
+                      asp-controller="Venda"
+                      asp-action="RegistrarVenda">
+
+                    <label class="main-reposicao-search" for="pesquisaLivro">
+
+                        <input type="search"
+                               id="pesquisaLivro"
+                               name="pesquisa"
+                               value="@ViewBag.Pesquisa"
+                               placeholder="Pesquisar por título, autor, editora ou ISBN...">
+
+                        <button class="main-reposicao-search-icon"
+                                type="submit"
+                                aria-label="Pesquisar">
+
+                            <img src="~/img/SearchbarIcon.png" alt="Pesquisar">
+
+                        </button>
+
+                    </label>
+
+                </form>
+
+            </div>
+
+            <!-- RESULTADOS DA PESQUISA -->
+
+            <div class="main-venda-livros">
+
+                @if (ViewBag.TodosLivros != null)
+                {
+                    @foreach (var livro in ViewBag.TodosLivros)
+                    {
+                        @if (livro.livro.TipoCapa != "ebook")
+                        {
+                            decimal precoOriginal = decimal.Parse(
+                                livro.livro.Preco,
+                                cultura
+                            );
+
+                            decimal precoFinal = precoOriginal;
+
+                            if (livro.livro.PromocaoPorcentagem > 0)
+                            {
+                                precoFinal = Math.Round(
+                                    precoOriginal *
+                                    (1 - livro.livro.PromocaoPorcentagem / 100m),
+                                    2
+                                );
+                            }
+
+                            <article class="main-venda-livro">
+
+                                <img src="@livro.arquivoImagem"
+                                     class="main-reposicao-livro-img"
+                                     alt="Capa de @livro.livro.Nome">
+
+                                <div class="main-reposicao-livro-info">
+
+                                    <h3>@livro.livro.Nome</h3>
+
+                                    <p>@livro.livro.Autor</p>
+
+                                    <p>
+                                        ISBN: @livro.livro.CodigoBarras
+                                    </p>
+
+                                    <span>@livro.livro.Editora</span>
+
+                                    <div class="main-venda-avaliacao">
+
+                                        <div class="estrelas">
+
+                                            <div class="estrelas-specifics">
+
+                                                <img class="estrelasimg"
+                                                     src="~/img/StarComb.png">
+
+                                                <div class="estrelas-specifics-yellowbar"
+                                                     style="width: @((livro.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;">
+                                                </div>
+
+                                            </div>
+
+                                            <h3 class="avaliados-historico">
+                                                (@livro.mediaLivro)
+                                            </h3>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="main-venda-livro-preco">
+
+                                    @if (livro.livro.PromocaoPorcentagem > 0)
+                                    {
+                                        <span class="main-venda-preco-antigo">
+                                            @precoOriginal.ToString("C", cultura)
+                                        </span>
+
+                                        <span class="main-venda-desconto">
+                                            @livro.livro.PromocaoPorcentagem% OFF
+                                        </span>
+                                    }
+
+                                    <strong>
+                                        @precoFinal.ToString("C", cultura)
+                                    </strong>
+
+                                    <a asp-area="Worker"
+                                       asp-controller="Venda"
+                                       asp-action="AdicionarItem"
+                                       asp-route-codBarras="@livro.livro.CodigoBarras"
+                                       class="main-venda-adicionar"
+                                       aria-label="Adicionar @livro.livro.Nome">
+
+                                        <img src="~/img/plusgrey.png" alt="Adicionar">
+
+                                    </a>
+
+                                </div>
+
+                            </article>
+                        }
+                    }
+                }
+
+            </div>
+
+        </div>
+
+        <!-- COLUNA DIREITA -->
+
+        <aside class="main-venda-itens">
+
+            <div class="main-venda-itens-header">
+
+                <h2>Itens da venda</h2>
+
+                <a asp-area="Worker"
+                   asp-controller="Venda"
+                   asp-action="LimparVenda"
+                   class="main-reposicao-esvaziar no-underline">
+
+                    Esvaziar
+
+                    <img src="~/img/trashRed.png" alt="Esvaziar">
+
+                </a>
+
+            </div>
+
+            <form id="formRegistrarVenda"
+                  asp-area="Worker"
+                  asp-controller="Venda"
+                  asp-action="RegistrarVenda"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <!-- ITENS DO CARRINHO -->
+
+                <div class="main-venda-itens-lista">
+
+                    @for (int i = 0; i < Model.Carrinho.Count; i++)
+                    {
+                        var item = Model.Carrinho[i];
+
+                        decimal precoOriginal = decimal.Parse(
+                            item.livro.Preco,
+                            cultura
+                        );
+
+                        decimal precoFinal = precoOriginal;
+
+                        if (item.livro.PromocaoPorcentagem > 0)
+                        {
+                            precoFinal = Math.Round(
+                                precoOriginal *
+                                (1 - item.livro.PromocaoPorcentagem / 100m),
+                                2
+                            );
+                        }
+
+                        <article class="main-venda-item">
+
+                            <input type="hidden"
+                                   name="Compra.Itens[@i].CodBarras"
+                                   value="@item.livro.CodigoBarras">
+
+                            <input type="hidden"
+                                   name="Compra.Itens[@i].QtdItem"
+                                   value="@item.quantidadeCarrinho">
+
+                            <img src="@item.arquivoImagem"
+                                 class="main-venda-item-img"
+                                 alt="Capa de @item.livro.Nome">
+
+                            <div class="main-venda-item-info">
+
+                                <h3>@item.livro.Nome</h3>
+
+                                <p>@item.livro.Autor</p>
+
+                                <span>@item.livro.Editora</span>
+
+                                <div class="main-venda-item-detalhes">
+
+                                    @if (item.livro.PromocaoPorcentagem > 0)
+                                    {
+                                        <span class="main-venda-desconto">
+                                            @item.livro.PromocaoPorcentagem% OFF
+                                        </span>
+
+                                        <span class="main-venda-preco-antigo">
+                                            @precoOriginal.ToString("C", cultura)
+                                        </span>
+                                    }
+
+                                    <strong>
+                                        @precoFinal.ToString("C", cultura)
+                                    </strong>
+
+                                </div>
+
+                                <div class="main-venda-item-qtd">
+
+                                    <a asp-area="Worker"
+                                       asp-controller="Venda"
+                                       asp-action="DiminuirQuantidade"
+                                       asp-route-codBarras="@item.livro.CodigoBarras"
+                                       aria-label="Diminuir quantidade">
+
+                                        <img src="~/img/minus.png" alt="Diminuir">
+
+                                    </a>
+
+                                    <span>@item.quantidadeCarrinho</span>
+
+                                    <a asp-area="Worker"
+                                       asp-controller="Venda"
+                                       asp-action="AumentarQuantidade"
+                                       asp-route-codBarras="@item.livro.CodigoBarras"
+                                       aria-label="Aumentar quantidade">
+
+                                        <img src="~/img/plus.png" alt="Aumentar">
+
+                                    </a>
+
+                                    <strong>
+                                        @((precoFinal * item.quantidadeCarrinho).ToString("C", cultura))
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                            <a class="main-venda-remover"
+                               asp-area="Worker"
+                               asp-controller="Venda"
+                               asp-action="RemoverItem"
+                               asp-route-codBarras="@item.livro.CodigoBarras"
+                               aria-label="Remover @item.livro.Nome">
+
+                                <img src="~/img/trash.png" alt="Remover">
+
+                            </a>
+
+                        </article>
+                    }
+
+                </div>
+
+                <!-- RESUMO -->
+
+                <section class="main-venda-resumo">
+
+                    <h2>Resumo da compra</h2>
+
+                    <div class="main-venda-resumo-linha">
+
+                        <span>Subtotal (@totalItens itens)</span>
+
+                        <strong>
+                            @subtotalCompra.ToString("C", cultura)
+                        </strong>
+
+                    </div>
+
+                    <div class="main-venda-resumo-linha">
+
+                        <span>Total Geral</span>
+
+                        <strong>
+                            @totalCompra.ToString("C", cultura)
+                        </strong>
+
+                    </div>
+
+                </section>
+
+                <!-- PAGAMENTO -->
+
+                <section class="main-venda-pagamento">
+
+                    <h2>Forma de pagamento</h2>
+
+                    <div class="main-venda-formas">
+
+                        <label class="main-venda-forma">
+
+                            <input type="radio"
+                                   name="Compra.FormaPagamento"
+                                   value="débito"
+                                   required>
+
+                            <img src="~/img/debito_icon.png" alt="Débito">
+
+                            <span>Débito</span>
+
+                        </label>
+
+                        <label class="main-venda-forma">
+
+                            <input type="radio"
+                                   name="Compra.FormaPagamento"
+                                   value="crédito">
+
+                            <img src="~/img/credito_icon.png" alt="Crédito">
+
+                            <span>Crédito</span>
+
+                        </label>
+
+                        <label class="main-venda-forma">
+
+                            <input type="radio"
+                                   name="Compra.FormaPagamento"
+                                   value="pix">
+
+                            <img src="~/img/pix_icon.png" alt="Pix">
+
+                            <span>Pix</span>
+
+                        </label>
+
+                        <label class="main-venda-forma">
+
+                            <input type="radio"
+                                   name="Compra.FormaPagamento"
+                                   value="Outro">
+
+                            <img src="~/img/outros_icon.png" alt="Outros">
+
+                            <span>Outros</span>
+
+                        </label>
+
+                    </div>
+
+                    <!-- DADOS DO CARTÃO -->
+
+                    <div class="main-venda-cartao" id="camposCartao">
+
+                        <div class="main-venda-cartao-numero">
+
+                            <label for="numeroCartao">Número do cartão</label>
+
+                            <input type="text"
+                                   id="numeroCartao"
+                                   name="Compra.NumeroCartao"
+                                   placeholder="Digite o número do cartão..."
+                                   maxlength="19">
+
+                        </div>
+
+                        <div class="main-venda-cartao-dados">
+
+                            <div>
+
+                                <label for="validadeCartao">Validade</label>
+
+                                <input type="text"
+                                       id="validadeCartao"
+                                       name="Compra.ValidadeCartao"
+                                       placeholder="MM/AA"
+                                       maxlength="5">
+
+                            </div>
+
+                            <div>
+
+                                <label for="nomeCartao">Nome do Cartão</label>
+
+                                <input type="text"
+                                       id="nomeCartao"
+                                       name="Compra.NomeCartao"
+                                       placeholder="Nome do cartão...">
+
+                            </div>
+
+                            <div>
+
+                                <label for="cvvCartao">CVV</label>
+
+                                <input type="text"
+                                       id="cvvCartao"
+                                       name="Compra.Cvv"
+                                       placeholder="3-4 dígitos"
+                                       maxlength="4">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- PARCELAMENTO -->
+
+                    <div class="main-venda-parcelamento" id="campoParcelamento">
+
+                        <label for="parcelamento">Parcelamento</label>
+
+                        <select id="parcelamento"
+                                name="Compra.NumeroParcelamentos">
+
+                            <option value="1">1x sem juros</option>
+                            <option value="2">2x sem juros</option>
+                            <option value="3">3x sem juros</option>
+                            <option value="4">4x sem juros</option>
+                            <option value="5">5x sem juros</option>
+
+                        </select>
+
+                    </div>
+
+                </section>
+
+                <!-- REGISTRAR -->
+
+                <button class="main-venda-confirmar"
+                        type="submit"
+                        onclick="return confirmarVenda()">
+
+                    <img src="~/img/reposicao_icon.png" alt="">
+
+                    REGISTRAR VENDA
+
+                </button>
+
+            </form>
+
+        </aside>
+
+    </section>
+
+</main>
+
+<script>
+
+    // FORMAS DE PAGAMENTO
+
+    const formasPagamento = document.querySelectorAll(
+        'input[name="Compra.FormaPagamento"]'
+    );
+
+    const camposCartao = document.getElementById("camposCartao");
+    const campoParcelamento = document.getElementById("campoParcelamento");
+
+    const numeroCartao = document.getElementById("numeroCartao");
+    const nomeCartao = document.getElementById("nomeCartao");
+    const validadeCartao = document.getElementById("validadeCartao");
+    const cvvCartao = document.getElementById("cvvCartao");
+    const parcelamento = document.getElementById("parcelamento");
+
+    function atualizarFormaPagamento() {
+
+        const selecionado = document.querySelector(
+            'input[name="Compra.FormaPagamento"]:checked'
+        );
+
+        const forma = selecionado ? selecionado.value : "";
+
+        const precisaCartao = forma === "débito" || forma === "crédito";
+        const precisaParcelamento = forma === "crédito";
+
+        camposCartao.style.display = precisaCartao ? "" : "none";
+        campoParcelamento.style.display = precisaParcelamento ? "" : "none";
+
+        numeroCartao.required = precisaCartao;
+        nomeCartao.required = precisaCartao;
+        validadeCartao.required = precisaCartao;
+        cvvCartao.required = precisaCartao;
+
+        parcelamento.required = precisaParcelamento;
+
+        if (!precisaCartao) {
+
+            numeroCartao.value = "";
+            nomeCartao.value = "";
+            validadeCartao.value = "";
+            cvvCartao.value = "";
+
+        }
+
+        if (!precisaParcelamento) {
+            parcelamento.value = "1";
+        }
+
+    }
+
+    formasPagamento.forEach(forma => {
+        forma.addEventListener("change", atualizarFormaPagamento);
+    });
+
+    atualizarFormaPagamento();
+
+
+    // CPF
+
+    document.getElementById("cpfCliente").addEventListener("input", function () {
+
+        let valor = this.value.replace(/\D/g, "").substring(0, 11);
+
+        valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+        valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+        valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+        this.value = valor;
+
+    });
+
+
+    // FORMATAÇÃO DO CARTÃO
+
+    numeroCartao.addEventListener("input", function () {
+
+        let valor = this.value.replace(/\D/g, "").substring(0, 16);
+
+        valor = valor.replace(/(\d{4})(?=\d)/g, "$1 ");
+
+        this.value = valor;
+
+    });
+
+
+    // VALIDADE
+
+    validadeCartao.addEventListener("input", function () {
+
+        let valor = this.value.replace(/\D/g, "").substring(0, 4);
+
+        if (valor.length >= 3) {
+            valor = valor.substring(0, 2) + "/" + valor.substring(2);
+        }
+
+        this.value = valor;
+
+    });
+
+
+    // CVV
+
+    cvvCartao.addEventListener("input", function () {
+
+        this.value = this.value.replace(/\D/g, "").substring(0, 4);
+
+    });
+
+
+    // VALIDAÇÃO
+
+    function confirmarVenda() {
+
+        if (!document.getElementById("cpfCliente").value.trim()) {
+
+            alert("Informe o CPF do cliente.");
+            return false;
+
+        }
+
+        const formaPagamento = document.querySelector(
+            'input[name="Compra.FormaPagamento"]:checked'
+        );
+
+        if (!formaPagamento) {
+
+            alert("Selecione uma forma de pagamento.");
+            return false;
+
+        }
+
+        if (formaPagamento.value === "débito" ||
+            formaPagamento.value === "crédito") {
+
+            if (!numeroCartao.value.trim() ||
+                !nomeCartao.value.trim() ||
+                !validadeCartao.value.trim() ||
+                !cvvCartao.value.trim()) {
+
+                alert("Preencha todos os dados do cartão.");
+                return false;
+
+            }
+
+            if (numeroCartao.value.replace(/\D/g, "").length < 13) {
+
+                alert("Número do cartão inválido.");
+                return false;
+
+            }
+
+            if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(validadeCartao.value)) {
+
+                alert("A validade deve estar no formato MM/AA.");
+                return false;
+
+            }
+
+            if (cvvCartao.value.length < 3) {
+
+                alert("CVV inválido.");
+                return false;
+
+            }
+
+        }
+
+        return true;
+
+    }
+
+</script>
