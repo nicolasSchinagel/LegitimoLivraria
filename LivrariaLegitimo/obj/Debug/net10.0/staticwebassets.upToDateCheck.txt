@@ -22,6 +22,7 @@ wwwroot\css\carrinho.css
 wwwroot\css\checkout.css
 wwwroot\css\comprar.css
 wwwroot\css\confEndereco.css
+wwwroot\css\dados.css
 wwwroot\css\footer.css
 wwwroot\css\header.css
 wwwroot\css\index.css
@@ -291,3 +292,4 @@ C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\Livrari
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\carrinho.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\venda.css
+C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\dados.css

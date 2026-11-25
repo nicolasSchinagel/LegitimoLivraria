@@ -94,7 +94,7 @@ namespace LivrariaLegitimo.Repository
             {
                 conexao.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from ViewFuncionario where(idFuncionario = @IdFuncionario);", conexao);
-                cmd.Parameters.AddWithValue("@IdCli", idFuncionario);
+                cmd.Parameters.AddWithValue("@IdFuncionario", idFuncionario);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 MySqlDataReader dr;
 
@@ -103,7 +103,7 @@ namespace LivrariaLegitimo.Repository
                 while (dr.Read())
                 {
                     funcionario.Nome = dr["Nome"].ToString();
-                    funcionario.Telefone = dr["Telefone"].ToString();
+                    funcionario.Telefone = dr["NumTel"].ToString();
                     funcionario.Email = dr["Email"].ToString();
                     funcionario.Cep = dr["Cep"].ToString();
                     funcionario.NumeroEndereco = Convert.ToInt32(dr["NumeroEndereco"]);

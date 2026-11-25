@@ -1,7 +1,9 @@
 ﻿@inject LivrariaLegitimo.Libraries.Login.LoginCliente _LoginCliente
 @inject LivrariaLegitimo.Libraries.Login.LoginFuncionario _LoginFuncionario
 @inject LivrariaLegitimo.CarrinhoCompra.CookieCarrinhoCompra Carrinho
-
+@inject LivrariaLegitimo.Repository.FuncionarioRepository _funcionarioRepository;
+@inject LivrariaLegitimo.Repository.ClientePFRepository _clientePFRepository;
+@inject LivrariaLegitimo.Repository.ClientePJRepository _clientePJRepository;
 @{
     var quantidade = Carrinho.Consultar().Count;
 }
@@ -36,11 +38,19 @@
             <div class="entry-header">
                 @if(_LoginCliente.GetCliente() != null)
                 {
-                  <a class="tittle-login-header no-underline">@_LoginCliente.GetCliente().Nome</a>      
+                        @if(_clientePFRepository.ObterCPF(_LoginCliente.GetCliente().IdCli) != 0)
+                        {
+                            <a class="tittle-login-header no-underline" asp-area="" asp-action="DadosPF" asp-controller="Cliente">@_LoginCliente.GetCliente().Nome</a>
+                        }
+                        @if(_clientePJRepository.ObterCNPJ(_LoginCliente.GetCliente().IdCli) != 0)
+                        {
+                        <a class="tittle-login-header no-underline" asp-area="" asp-action="DadosPJ" asp-controller="Cliente">@_LoginCliente.GetCliente().Nome</a>
+                        }
+                          
                 }
                 else @if(_LoginFuncionario.GetFuncionario() != null)
                 {
-                  <a class="tittle-login-header no-underline">@_LoginFuncionario.GetFuncionario().Nome</a>
+                  <a class="tittle-login-header no-underline" asp-area="Worker" asp-controller="Funcionario" asp-action="Dados">@_LoginFuncionario.GetFuncionario().Nome</a>
                 }
                 else
                 {

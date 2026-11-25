@@ -80,7 +80,7 @@ namespace LivrariaLegitimo.Repository
                 while (dr.Read())
                 {
                     clientePF.Nome = dr["Nome"].ToString();
-                    clientePF.Telefone = dr["Telefone"].ToString();
+                    clientePF.Telefone = dr["NumTel"].ToString();
                     clientePF.Email = dr["Email"].ToString();
                     clientePF.Cep = dr["Cep"].ToString();
                     clientePF.NumeroEndereco = Convert.ToInt32(dr["NumeroEndereco"]);

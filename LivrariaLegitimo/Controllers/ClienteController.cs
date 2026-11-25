@@ -32,6 +32,18 @@ namespace LivrariaLegitimo.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult DadosPF()
+        {
+            ClientePF clientePF = _clientePFRepository.ObterCliente(_loginCliente.GetCliente().IdCli);
+            return View(clientePF);
+        }
+        [HttpGet]
+        public IActionResult DadosPJ()
+        {
+            ClientePJ clientePJ = _clientePJRepository.ObterCliente(_loginCliente.GetCliente().IdCli);
+            return View(clientePJ);
+        }
 
         [HttpPost]
         public IActionResult Cadastro(CadastroViewModel model)
