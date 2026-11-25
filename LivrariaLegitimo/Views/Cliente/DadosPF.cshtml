@@ -1,0 +1,94 @@
+﻿@model LivrariaLegitimo.Models.ClientePF;
+<main class="conta-main">
+
+    <section class="conta-dados">
+
+        <header class="conta-header">
+            <h1>Dados da Conta</h1>
+        </header>
+
+        <div class="conta-senha">
+            <span>Está com problemas na senha?</span>
+            <a href="#">Edite as informações</a>
+        </div>
+
+        <div class="conta-informacoes">
+
+            <div class="conta-linha">
+                <span class="conta-label">Nome do Cliente</span>
+                <span class="conta-valor">@Model.Nome</span>
+            </div>
+
+            <div class="conta-linha">
+                <span class="conta-label">Telefone</span>
+                <span class="conta-valor">
+                    @System.Text.RegularExpressions.Regex.Replace(
+                        Model.Telefone,
+                        @"(\d{2})(\d{5})(\d{4})",
+                        "($1) $2-$3"
+                    )
+                </span>
+            </div>
+
+            <div class="conta-linha">
+                <span class="conta-label">Email</span>
+                <span class="conta-valor">@Model.Email</span>
+            </div>
+
+            <div class="conta-linha">
+                <span class="conta-label">CEP</span>
+                <span class="conta-valor">
+                    @System.Text.RegularExpressions.Regex.Replace(Model.Cep, @"(\d{5})(\d{3})", "$1-$2")
+                </span>
+            </div>
+
+            <div class="conta-linha">
+                <span class="conta-label">Número do endereço</span>
+                <span class="conta-valor">@Model.NumeroEndereco</span>
+            </div>
+
+            <div class="conta-linha">
+                <span class="conta-label">Complemento do endereço</span>
+                <span class="conta-valor">@Model.ComplementoEndereco</span>
+            </div>
+
+            <div class="conta-linha">
+                <span class="conta-label">Logradouro</span>
+                <span class="conta-valor">@Model.Logradouro</span>
+            </div>
+
+            <div class="conta-linha">
+                <span class="conta-label">Bairro</span>
+                <span class="conta-valor">@Model.Bairro</span>
+            </div>
+
+            <div class="conta-linha">
+                <span class="conta-label">Cidade</span>
+                <span class="conta-valor">@Model.Cidade</span>
+            </div>
+
+            <div class="conta-linha">
+                <span class="conta-label">Estado</span>
+                <span class="conta-valor">@Model.Estado</span>
+            </div>
+
+            <div class="conta-linha">
+                <span class="conta-label">CPF</span>
+                <span class="conta-valor">
+                    @System.Text.RegularExpressions.Regex.Replace(Model.Cpf, @"(\d{3})(\d{3})(\d{3})(\d{2})", "$1.$2.$3-$4")
+                </span>
+            </div>
+
+            <div class="conta-linha">
+                <span class="conta-label">Data de nascimento</span>
+                <span class="conta-valor">@Model.DataNasc</span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <aside class="conta-lateral">
+    </aside>
+
+</main>
