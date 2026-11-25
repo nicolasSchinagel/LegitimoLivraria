@@ -7,5 +7,7 @@ namespace LivrariaLegitimo.Repository.Contract
         void Cadastrar(ClientePF clientePF);
         Int64 ObterCPF(int idCli);
 
+        ClientePF ObterCliente(int idCli);
+
     }
 }

@@ -64,5 +64,38 @@ namespace LivrariaLegitimo.Repository
                 return cpf;
             }
         }
+
+        public ClientePF ObterCliente(int idCli)
+        {
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from tbClientePFG where(idCli = @IdCli);", conexao);
+                cmd.Parameters.AddWithValue("@IdCli", idCli);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+
+                ClientePF clientePF = new ClientePF();
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (dr.Read())
+                {
+                    clientePF.Nome = dr["Nome"].ToString();
+                    clientePF.Telefone = dr["Telefone"].ToString();
+                    clientePF.Email = dr["Email"].ToString();
+                    clientePF.Cep = dr["Cep"].ToString();
+                    clientePF.NumeroEndereco = Convert.ToInt32(dr["NumeroEndereco"]);
+                    clientePF.ComplementoEndereco = dr["ComplementoEndereco"] == DBNull.Value ? null : dr["ComplementoEndereco"].ToString();
+                    clientePF.Logradouro = dr["Logradouro"].ToString();
+                    clientePF.Bairro = dr["Bairro"].ToString();
+                    clientePF.Cidade = dr["Cidade"].ToString();
+                    clientePF.Estado = dr["Estado"].ToString();
+                    clientePF.Cpf = dr["Cpf"].ToString();
+                    clientePF.DataNasc = Convert.ToDateTime(dr["DataNasc"]);
+                }
+
+                dr.Close();
+                return clientePF;
+            }
+        }
     }
 }

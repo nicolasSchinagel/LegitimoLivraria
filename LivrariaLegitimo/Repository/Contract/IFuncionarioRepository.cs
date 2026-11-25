@@ -9,6 +9,8 @@ namespace LivrariaLegitimo.Repository.Contract
 
         void Cadastrar(Funcionario funcionario);
         void Atualizar(Funcionario funcionario);
+
+        Funcionario ObterFuncionario(int idFuncionario);
         IEnumerable<Funcionario> ObterTodosFuncionarios();
     }
 }

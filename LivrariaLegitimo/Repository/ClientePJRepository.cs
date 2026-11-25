@@ -64,5 +64,37 @@ namespace LivrariaLegitimo.Repository
                 return cnpj;
             }
         }
+
+        public ClientePJ ObterCliente(int idCli)
+        {
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from tbClientePJG where(idCli = @IdCli);", conexao);
+                cmd.Parameters.AddWithValue("@IdCli", idCli);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+
+                ClientePJ clientePJ = new ClientePJ();
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (dr.Read())
+                {
+                    clientePJ.Nome = dr["Nome"].ToString();
+                    clientePJ.Telefone = dr["Telefone"].ToString();
+                    clientePJ.Email = dr["Email"].ToString();
+                    clientePJ.Cep = dr["Cep"].ToString();
+                    clientePJ.NumeroEndereco = Convert.ToInt32(dr["NumeroEndereco"]);
+                    clientePJ.ComplementoEndereco = dr["ComplementoEndereco"] == DBNull.Value ? null : dr["ComplementoEndereco"].ToString();
+                    clientePJ.Logradouro = dr["Logradouro"].ToString();
+                    clientePJ.Bairro = dr["Bairro"].ToString();
+                    clientePJ.Cidade = dr["Cidade"].ToString();
+                    clientePJ.Estado = dr["Estado"].ToString();
+                    clientePJ.Cnpj = dr["Cnpj"].ToString();
+                }
+
+                dr.Close();
+                return clientePJ;
+            }
+        }
     }
 }
