@@ -89,8 +89,8 @@ namespace LivrariaLegitimo.Repository
                     "call spCadastroVenda(@vNotaFiscal, @vCPFcliente, @vCNPJcliente, @vIdFunc, @vFormaPagamento, @vNumeroCartao, @vNomeCartao, @vValidade, @vCVV, @vNumeroParcelamentos)", conexao))
                     {
                         cmd.Parameters.Add("@vNotaFiscal", MySqlDbType.Int32).Value = venda.NotaFiscal;
-                        cmd.Parameters.Add("@vCPFcliente", MySqlDbType.Int64).Value = venda.CPFcliente ?? (object)DBNull.Value;
-                        cmd.Parameters.Add("@vCNPJcliente", MySqlDbType.Int64).Value = venda.CNPJcliente ?? (object)DBNull.Value;
+                        cmd.Parameters.Add("@vCPFcliente", MySqlDbType.Int64).Value = Convert.ToInt64( venda.CPFcliente.Replace("-", "").Replace(".", "") ?? (object)DBNull.Value);
+                        cmd.Parameters.Add("@vCNPJcliente", MySqlDbType.Int64).Value = DBNull.Value;
                         cmd.Parameters.Add("@vIdFunc", MySqlDbType.Int32).Value = funcionarioIncluso;
                         cmd.Parameters.Add("@vFormaPagamento", MySqlDbType.VarChar).Value = venda.FormaPagamento;
                         cmd.Parameters.Add("@vNumeroCartao", MySqlDbType.Int64).Value = venda.NumeroCartao ?? (object)DBNull.Value;

@@ -33,6 +33,7 @@ wwwroot\css\login.css
 wwwroot\css\menuGerenciar.css
 wwwroot\css\modificarPrecos.css
 wwwroot\css\reposicao.css
+wwwroot\css\venda.css
 wwwroot\favicon.ico
 wwwroot\img\addEmblema.png
 wwwroot\img\arrow-carousel.png
@@ -144,6 +145,7 @@ wwwroot\img\tabela.icon.png
 wwwroot\img\terror-icon-gender.png
 wwwroot\img\trash.png
 wwwroot\img\trashRed.png
+wwwroot\img\vendaEmblema.png
 wwwroot\img\verTodos.png
 wwwroot\js\filtroLivros.js
 wwwroot\js\site.js
@@ -288,3 +290,4 @@ C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\Livrari
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\jquery\dist\jquery.slim.min.map
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\carrinho.css
+C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\venda.css

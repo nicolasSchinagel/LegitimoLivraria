@@ -31,11 +31,14 @@ namespace LivrariaLegitimo.Areas.Worker.Controllers
 
         [FuncionarioAutorizacao("administrador total", "gerente comercial", "caixa")]
         [HttpGet]
-        public IActionResult Venda()
+        public IActionResult Venda(string? pesquisa)
         {
+            pesquisa ??= "";
+
             CompraViewModel model = new CompraViewModel
             {
                 Carrinho = _cookieCarrinhoCompra.Consultar(),
+                TodosLivros = _livroRepository.ObterTodosLivros(pesquisa)
             };
 
             return View(model);
@@ -68,9 +71,53 @@ namespace LivrariaLegitimo.Areas.Worker.Controllers
 
             _vendaRepository.Cadastrar(model.Compra);
 
-            TempData["Sucesso"] = "Compra realizada com sucesso!";
             _cookieCarrinhoCompra.RemoverTodos();
-            return RedirectToAction("Carrinho");
+            TempData["msg"] = "Cadastro realizado!";
+            return RedirectToAction("MenuGerenciar", "Default");
+        }
+
+
+        public IActionResult AdicionarItem(string codBarras)
+        {
+            _cookieCarrinhoCompra.Cadastrar(codBarras);
+
+            return RedirectToAction(nameof(Venda));
+        }
+
+
+        public IActionResult RemoverItem(string codBarras)
+        {
+            var Lista = _cookieCarrinhoCompra.Consultar();
+            var ItemLocalizado = Lista.SingleOrDefault(a => a.livro.CodigoBarras.ToString() == codBarras);
+
+            if (ItemLocalizado.livro != null)
+            {
+                _cookieCarrinhoCompra.Remover(ItemLocalizado.livro);
+            }
+
+            return RedirectToAction(nameof(Venda));
+        }
+
+        public IActionResult LimparCarrinho()
+        {
+            _cookieCarrinhoCompra.RemoverTodos();
+
+            return RedirectToAction(nameof(Venda));
+        }
+
+        public IActionResult AumentarQuantidade(string codBarras)
+        {
+            _cookieCarrinhoCompra.AumentarQuantidade(codBarras);
+
+            return RedirectToAction(nameof(Venda));
+        }
+
+
+        public IActionResult DiminuirQuantidade(string codBarras)
+        {
+            _cookieCarrinhoCompra.DiminuirQuantidade(codBarras);
+
+            return RedirectToAction(nameof(Venda));
         }
     }
 }

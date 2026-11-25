@@ -38,10 +38,10 @@ namespace LivrariaLegitimo.Models
         public short NumeroParcelamentos { get; set; }
 
         [Display(Name = "CPF Cliente")]
-        public long? CPFcliente { get; set; }
+        public string CPFcliente { get; set; }
 
         [Display(Name = "CNPJ Cliente")]
-        public long? CNPJcliente { get; set; }
+        public string CNPJcliente { get; set; }
 
         public List<ItemVenda> Itens { get; set; } = new List<ItemVenda>();
     }

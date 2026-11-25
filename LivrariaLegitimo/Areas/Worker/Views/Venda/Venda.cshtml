@@ -9,17 +9,7 @@
 
     foreach (var item in Model.Carrinho)
     {
-        decimal preco = decimal.Parse(item.livro.Preco, cultura);
-
-        subtotalCompra += preco * item.quantidadeCarrinho;
-
-        if (item.livro.PromocaoPorcentagem > 0)
-        {
-            preco = Math.Round(
-                preco * (1 - item.livro.PromocaoPorcentagem / 100m),
-                2
-            );
-        }
+        decimal preco = Math.Round(decimal.Parse(item.livro.Preco, cultura) * (1 - item.livro.PromocaoPorcentagem / 100m), 2);
 
         totalCompra += preco * item.quantidadeCarrinho;
     }
@@ -27,9 +17,10 @@
     int totalItens = Model.Carrinho.Sum(x => x.quantidadeCarrinho);
 }
 
-<link rel="stylesheet" href="~/css/registrarVenda.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/venda.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/reposicao.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/adicionarLivro.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
 
 <main class="main-venda">
 
@@ -92,7 +83,7 @@
                       method="get"
                       asp-area="Worker"
                       asp-controller="Venda"
-                      asp-action="RegistrarVenda">
+                      asp-action="Venda">
 
                     <label class="main-reposicao-search" for="pesquisaLivro">
 
@@ -120,11 +111,11 @@
 
             <div class="main-venda-livros">
 
-                @if (ViewBag.TodosLivros != null)
+                @if (Model.TodosLivros != null)
                 {
-                    @foreach (var livro in ViewBag.TodosLivros)
+                    @foreach (var livro in Model.TodosLivros)
                     {
-                        @if (livro.livro.TipoCapa != "ebook")
+                        @if (livro.livro.TipoCapa != "ebook" && livro.livro.Quantidade > 0)
                         {
                             decimal precoOriginal = decimal.Parse(
                                 livro.livro.Preco,
@@ -234,7 +225,7 @@
 
                 <a asp-area="Worker"
                    asp-controller="Venda"
-                   asp-action="LimparVenda"
+                   asp-action="LimparCarrinho"
                    class="main-reposicao-esvaziar no-underline">
 
                     Esvaziar
@@ -248,7 +239,7 @@
             <form id="formRegistrarVenda"
                   asp-area="Worker"
                   asp-controller="Venda"
-                  asp-action="RegistrarVenda"
+                  asp-action="Venda"
                   method="post">
 
                 @Html.AntiForgeryToken()
@@ -331,16 +322,19 @@
                                     </a>
 
                                     <span>@item.quantidadeCarrinho</span>
+                                        @if(item.livro.Quantidade > item.quantidadeCarrinho)
+                                        {
+                                        <a asp-area="Worker"
+                                           asp-controller="Venda"
+                                           asp-action="AumentarQuantidade"
+                                           asp-route-codBarras="@item.livro.CodigoBarras"
+                                           aria-label="Aumentar quantidade">
 
-                                    <a asp-area="Worker"
-                                       asp-controller="Venda"
-                                       asp-action="AumentarQuantidade"
-                                       asp-route-codBarras="@item.livro.CodigoBarras"
-                                       aria-label="Aumentar quantidade">
+                                            <img src="~/img/plus.png" alt="Aumentar">
 
-                                        <img src="~/img/plus.png" alt="Aumentar">
-
-                                    </a>
+                                        </a>
+                                        }
+                                       
 
                                     <strong>
                                         @((precoFinal * item.quantidadeCarrinho).ToString("C", cultura))
@@ -371,16 +365,6 @@
                 <section class="main-venda-resumo">
 
                     <h2>Resumo da compra</h2>
-
-                    <div class="main-venda-resumo-linha">
-
-                        <span>Subtotal (@totalItens itens)</span>
-
-                        <strong>
-                            @subtotalCompra.ToString("C", cultura)
-                        </strong>
-
-                    </div>
 
                     <div class="main-venda-resumo-linha">
 

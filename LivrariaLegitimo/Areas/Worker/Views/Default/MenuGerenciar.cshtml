@@ -38,7 +38,7 @@
             @if(_LoginFuncionario.GetFuncionario().Cargo == "administrador total" || _LoginFuncionario.GetFuncionario().Cargo == "gerente comercial" || _LoginFuncionario.GetFuncionario().Cargo == "caixa")
             {
                 
-            <a href="#" class="opcao-gerenciamento">
+            <a asp-area="Worker" asp-controller="Venda" asp-action="Venda" class="opcao-gerenciamento">
                 <div class="icone-opcao">
                     <img src="~/img/redHand.png" alt="Registrar venda">
                 </div>
