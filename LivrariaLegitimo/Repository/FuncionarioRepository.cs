@@ -1,6 +1,7 @@
 ﻿using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
 using MySql.Data.MySqlClient;
+using System.Data;
 using X.PagedList;
 namespace LivrariaLegitimo.Repository
 {
@@ -87,6 +88,38 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
+        public Funcionario ObterFuncionario(int idFuncionario)
+        {
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from ViewFuncionario where(idFuncionario = @IdFuncionario);", conexao);
+                cmd.Parameters.AddWithValue("@IdCli", idFuncionario);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+
+                Funcionario funcionario = new Funcionario();
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (dr.Read())
+                {
+                    funcionario.Nome = dr["Nome"].ToString();
+                    funcionario.Telefone = dr["Telefone"].ToString();
+                    funcionario.Email = dr["Email"].ToString();
+                    funcionario.Cep = dr["Cep"].ToString();
+                    funcionario.NumeroEndereco = Convert.ToInt32(dr["NumeroEndereco"]);
+                    funcionario.ComplementoEndereco = dr["ComplementoEndereco"] == DBNull.Value ? null : dr["ComplementoEndereco"].ToString();
+                    funcionario.Logradouro = dr["Logradouro"].ToString();
+                    funcionario.Bairro = dr["Bairro"].ToString();
+                    funcionario.Cidade = dr["Cidade"].ToString();
+                    funcionario.Estado = dr["Estado"].ToString();
+                    funcionario.Cpf = dr["Cpf"].ToString();
+                    funcionario.Cargo = dr["Cargo"].ToString();
+                }
+
+                dr.Close();
+                return funcionario;
+            }
+        }
         public IEnumerable<Funcionario> ObterTodosFuncionarios()
         {
             throw new NotImplementedException();
