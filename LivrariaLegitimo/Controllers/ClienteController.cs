@@ -127,5 +127,18 @@ namespace LivrariaLegitimo.Controllers
             return RedirectToAction("Cadastro");
         }
 
+        [HttpGet]
+        public IActionResult Atualizar()
+        {
+            Cliente cliente = _clienteRepository.ObterCliente(_loginCliente.GetCliente().IdCli);
+            return View(cliente);
+        }
+        [HttpPost]
+        public IActionResult Atualizar(Cliente cliente)
+        {
+            _clienteRepository.AtualizarCliente(cliente);
+            TempData["msg"] = "Cadastro realizado!";
+            return RedirectToAction("Index", "Default");
+        }
     }
 }

@@ -28,8 +28,8 @@ namespace LivrariaLegitimo.Repository
                 conexao.Open();
                 MySqlCommand cmd = new MySqlCommand("call spAtualizarCliente(@IdCli, @Senha, @NumTel, @Email, @CEP, @NumeroEndereco, @Complemento, @Logradouro, @Bairro, @Cidade, @Estado);", conexao);
                 cmd.Parameters.AddWithValue("@IdCli", cliente.IdCli);
-                cmd.Parameters.AddWithValue("@Senha", cliente.Senha);
-                cmd.Parameters.AddWithValue("@NumTel", Convert.ToInt64(cliente.Telefone));
+                cmd.Parameters.AddWithValue("@Senha", string.IsNullOrWhiteSpace(cliente.Senha) ? DBNull.Value : cliente.Senha);
+                cmd.Parameters.AddWithValue("@NumTel", Convert.ToInt64(cliente.Telefone.Replace("-", "").Replace(" ", "").Replace("(", "").Replace(")", "")));
                 cmd.Parameters.AddWithValue("@Email", cliente.Email);
                 cmd.Parameters.AddWithValue("@CEP", cliente.Cep.Replace("-", ""));
                 cmd.Parameters.AddWithValue("@NumeroEndereco", cliente.NumeroEndereco);

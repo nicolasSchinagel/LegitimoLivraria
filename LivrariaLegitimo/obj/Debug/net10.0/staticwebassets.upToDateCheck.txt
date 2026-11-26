@@ -79,6 +79,7 @@ wwwroot\img\debito_icon.png
 wwwroot\img\Description_icon.png
 wwwroot\img\drama-icon-gender.png
 wwwroot\img\ebook_icon.png
+wwwroot\img\editarEmblema.png
 wwwroot\img\etiqueta.icon.png
 wwwroot\img\expand_icon.png
 wwwroot\img\fantasia-icon-gender.png
