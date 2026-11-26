@@ -12,121 +12,129 @@ build_property.EntryPointFilePath =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = LivrariaLegitimo
 build_property.RootNamespace = LivrariaLegitimo
-build_property.ProjectDir = C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\
+build_property.ProjectDir = C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 10.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo
+build_property.MSBuildProjectDirectory = C:\Users\3MTEC\Downloads\LegitimoLivraria\LivrariaLegitimo
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Default/MenuGerenciar.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Default/MenuGerenciar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcV29ya2VyXFZpZXdzXERlZmF1bHRcTWVudUdlcmVuY2lhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Funcionario/Cadastro.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Funcionario/Atualizar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcV29ya2VyXFZpZXdzXEZ1bmNpb25hcmlvXEF0dWFsaXphci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Funcionario/Cadastro.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcV29ya2VyXFZpZXdzXEZ1bmNpb25hcmlvXENhZGFzdHJvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Funcionario/Dados.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Funcionario/Dados.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcV29ya2VyXFZpZXdzXEZ1bmNpb25hcmlvXERhZG9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Funcionario/Index.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Funcionario/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcV29ya2VyXFZpZXdzXEZ1bmNpb25hcmlvXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Livro/AdicionarLivro.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Livro/AdicionarLivro.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcV29ya2VyXFZpZXdzXExpdnJvXEFkaWNpb25hckxpdnJvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Livro/ModificarPrecos.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Livro/ModificarPrecos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcV29ya2VyXFZpZXdzXExpdnJvXE1vZGlmaWNhclByZWNvcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Livro/Reposicao.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Livro/Reposicao.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcV29ya2VyXFZpZXdzXExpdnJvXFJlcG9zaWNhby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Venda/Venda.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/Venda/Venda.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcV29ya2VyXFZpZXdzXFZlbmRhXFZlbmRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/_ViewImports.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcV29ya2VyXFZpZXdzXF9WaWV3SW1wb3J0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/_ViewStart.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Areas/Worker/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcV29ya2VyXFZpZXdzXF9WaWV3U3RhcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Carrinho/Carrinho.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Carrinho/Carrinho.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FycmluaG9cQ2FycmluaG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Carrinho/Comprar.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Carrinho/Comprar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FycmluaG9cQ29tcHJhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Carrinho/EditarEndereco.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Carrinho/EditarEndereco.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FycmluaG9cRWRpdGFyRW5kZXJlY28uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Carrinho/reserva.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Carrinho/reserva.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FycmluaG9ccmVzZXJ2YS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Cliente/Cadastro.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Cliente/Atualizar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxBdHVhbGl6YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Cliente/Cadastro.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDYWRhc3Ryby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Cliente/DadosPF.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Cliente/DadosPF.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxEYWRvc1BGLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Cliente/DadosPJ.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Cliente/DadosPJ.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxEYWRvc1BKLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Default/Index.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Default/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVmYXVsdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Default/Login.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Default/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVmYXVsdFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Default/Privacy.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Default/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVmYXVsdFxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Livro/ListaProcura.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Livro/ListaProcura.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGl2cm9cTGlzdGFQcm9jdXJhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Livro/Livro.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Livro/Livro.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGl2cm9cTGl2cm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Shared/Error.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/_ViewImports.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/_ViewStart.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Shared/_Layout.cshtml]
+[C:/Users/3MTEC/Downloads/LegitimoLivraria/LivrariaLegitimo/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-806kwflfkm
