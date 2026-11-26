@@ -24,6 +24,7 @@ wwwroot\css\comprar.css
 wwwroot\css\confEndereco.css
 wwwroot\css\dados.css
 wwwroot\css\footer.css
+wwwroot\css\funcionarios.css
 wwwroot\css\header.css
 wwwroot\css\index.css
 wwwroot\css\inputs.css
@@ -293,3 +294,4 @@ C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\Livrari
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\carrinho.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\venda.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\dados.css
+C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\funcionarios.css

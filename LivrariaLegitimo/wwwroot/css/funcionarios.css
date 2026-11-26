@@ -131,6 +131,7 @@ body {
     font-size: 16px;
     font-weight: 400;
     transition: color 0.2s ease;
+    cursor: pointer;
 }
 
     .funcionarios-acao a:hover {

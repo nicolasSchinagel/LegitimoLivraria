@@ -122,7 +122,26 @@ namespace LivrariaLegitimo.Repository
         }
         public IEnumerable<Funcionario> ObterTodosFuncionarios()
         {
-            throw new NotImplementedException();
+            string admin = "administrador total";
+            using(var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from ViewFuncionario where(cargo <> @Cargo);", conexao);
+                cmd.Parameters.AddWithValue("@Cargo", admin);
+                MySqlDataReader dr = cmd.ExecuteReader();
+                List<Funcionario> funcionarios = new();
+                while (dr.Read())
+                {
+                    Funcionario funcionario = new Funcionario();
+                    funcionario.Nome = (string)(dr["Nome"]);
+                    funcionario.IdFuncionario = (Int32)(dr["IdFuncionario"]);
+                    funcionario.Cpf = dr["Cpf"].ToString();
+                    funcionario.Cargo = (string)(dr["Cargo"]);
+                    funcionarios.Add(funcionario);
+                }
+                dr.Close();
+                return funcionarios;
+            }
         }
 
     }

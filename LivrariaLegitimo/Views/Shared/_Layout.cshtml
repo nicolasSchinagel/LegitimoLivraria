@@ -130,7 +130,11 @@
                     <h2 class="lateral-bar-content-block-title">Configurações</h2>
                     <div class="lateral-bar-content-block-list">
                         <a class="lateral-bar-content-block-list-item no-underline" href="/Default/LogoutFuncionario">Sair</a>
-                        <a class="lateral-bar-content-block-list-item">Dados</a>
+                            @if(_LoginFuncionario.GetFuncionario().Cargo == "administrador total")
+                            {
+                                <a class="lateral-bar-content-block-list-item no-underline" asp-area="Worker" asp-controller="Funcionario" asp-action="Index">Index</a>
+                            }
+                        <a class="lateral-bar-content-block-list-item no-underline" asp-area="Worker" asp-controller="Funcionario" asp-action="Dados" >Dados</a>
                         <a class="lateral-bar-content-block-list-item">Editar Informações</a>
                     </div>
                 </div>

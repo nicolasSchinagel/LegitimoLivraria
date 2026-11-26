@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<LivrariaLegitimo.Models.Funcionario>;
+
 <link rel="stylesheet" href="~/css/funcionarios.css" asp-append-version="true" />
 <main class="funcionarios-container">
 
@@ -20,86 +21,18 @@
 
         <div class="funcionarios-tabela-corpo">
 
-            <div class="funcionarios-linha">
-                <div class="funcionarios-nome">Cicrano Quizano</div>
-                <div class="funcionarios-cpf">0000000...</div>
-                <div class="funcionarios-cargo">Gerente de Compras</div>
-                <div class="funcionarios-acao">
-                    <a href="#">Editar</a>
+            
+            @foreach(var funcionario in Model)
+            {
+                <div class="funcionarios-linha">
+                    <div class="funcionarios-nome">@funcionario.Nome</div>
+                    <div class="funcionarios-cpf">@funcionario.Cpf</div>
+                    <div class="funcionarios-cargo">@funcionario.Cargo</div>
+                    <div class="funcionarios-acao">
+                        <a class="no-underline">Editar</a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="funcionarios-linha">
-                <div class="funcionarios-nome">Cicrano Quizano</div>
-                <div class="funcionarios-cpf">0000000...</div>
-                <div class="funcionarios-cargo">Gerente Comercial</div>
-                <div class="funcionarios-acao">
-                    <a href="#">Editar</a>
-                </div>
-            </div>
-
-            <div class="funcionarios-linha">
-                <div class="funcionarios-nome">Cicrano Quizano</div>
-                <div class="funcionarios-cpf">0000000...</div>
-                <div class="funcionarios-cargo">Caixa</div>
-                <div class="funcionarios-acao">
-                    <a href="#">Editar</a>
-                </div>
-            </div>
-
-            <div class="funcionarios-linha">
-                <div class="funcionarios-nome">Cicrano Quizano</div>
-                <div class="funcionarios-cpf">0000000...</div>
-                <div class="funcionarios-cargo">Caixa</div>
-                <div class="funcionarios-acao">
-                    <a href="#">Editar</a>
-                </div>
-            </div>
-
-            <div class="funcionarios-linha">
-                <div class="funcionarios-nome">Cicrano Quizano</div>
-                <div class="funcionarios-cpf">0000000...</div>
-                <div class="funcionarios-cargo">Administrador Geral</div>
-                <div class="funcionarios-acao">
-                    <a href="#">Editar</a>
-                </div>
-            </div>
-
-            <div class="funcionarios-linha">
-                <div class="funcionarios-nome">Cicrano Quizano</div>
-                <div class="funcionarios-cpf">0000000...</div>
-                <div class="funcionarios-cargo">Gerente</div>
-                <div class="funcionarios-acao">
-                    <a href="#">Editar</a>
-                </div>
-            </div>
-
-            <div class="funcionarios-linha">
-                <div class="funcionarios-nome">Cicrano Quizano</div>
-                <div class="funcionarios-cpf">0000000...</div>
-                <div class="funcionarios-cargo">Gerente de Contratação</div>
-                <div class="funcionarios-acao">
-                    <a href="#">Editar</a>
-                </div>
-            </div>
-
-            <div class="funcionarios-linha">
-                <div class="funcionarios-nome">Cicrano Quizano</div>
-                <div class="funcionarios-cpf">0000000...</div>
-                <div class="funcionarios-cargo">Gerente de Compras</div>
-                <div class="funcionarios-acao">
-                    <a href="#">Editar</a>
-                </div>
-            </div>
-
-            <div class="funcionarios-linha">
-                <div class="funcionarios-nome">Cicrano Quizano</div>
-                <div class="funcionarios-cpf">0000000...</div>
-                <div class="funcionarios-cargo">Gerente de Compras</div>
-                <div class="funcionarios-acao">
-                    <a href="#">Editar</a>
-                </div>
-            </div>
+            }
 
         </div>
 

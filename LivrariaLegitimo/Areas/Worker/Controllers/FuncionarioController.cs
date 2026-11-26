@@ -19,9 +19,12 @@ namespace LivrariaLegitimo.Areas.Worker.Controllers
             _loginCliente = loginCliente;
             _loginFuncionario = loginFuncionario;
         }
+        [HttpGet]
+        [FuncionarioAutorizacao("administrador total")]
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Funcionario> funcionarios = _funcionarioRepository.ObterTodosFuncionarios();
+            return View(funcionarios);
         }
 
         [HttpGet]
