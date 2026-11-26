@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\areas\\worker\\views\\funcionario\\atualizar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\3mtec\\downloads\\legitimolivraria\\livrarialegitimo\\areas\\worker\\views\\funcionario\\cadastro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\areas\\worker\\views\\funcionario\\cadastro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\3mtec\\downloads\\legitimolivraria\\livrarialegitimo\\views\\cliente\\atualizar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\views\\cliente\\atualizar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -89,10 +93,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\3mtec\\downloads\\legitimolivraria\\livrarialegitimo\\areas\\worker\\views\\livro\\reposicao.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\areas\\worker\\views\\livro\\reposicao.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\3mtec\\downloads\\legitimolivraria\\livrarialegitimo\\areas\\worker\\views\\funcionario\\cadastro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\areas\\worker\\views\\funcionario\\cadastro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\3mtec\\downloads\\legitimolivraria\\livrarialegitimo\\areas\\worker\\views\\default\\menugerenciar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -348,27 +348,14 @@
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Atualizar.cshtml",
               "ToolTip": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Atualizar.cshtml",
               "RelativeToolTip": "LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Atualizar.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-11-26T10:39:46.544Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Atualizar.cshtml",
-              "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Cliente\\Atualizar.cshtml",
-              "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Cliente\\Atualizar.cshtml",
-              "ToolTip": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Cliente\\Atualizar.cshtml",
-              "RelativeToolTip": "LivrariaLegitimo\\Views\\Cliente\\Atualizar.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-26T10:39:07.037Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Dados.cshtml",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Dados.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Dados.cshtml",
@@ -380,7 +367,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "FuncionarioController.cs",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Controllers\\FuncionarioController.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Areas\\Worker\\Controllers\\FuncionarioController.cs",
@@ -392,7 +379,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Shared\\_Layout.cshtml",
@@ -400,12 +387,11 @@
               "RelativeToolTip": "LivrariaLegitimo\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAHUAAAAAAAAAAAAAAJAAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-20T14:08:39.847Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-20T14:08:39.847Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "AvaliacaoRepository.cs",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\AvaliacaoRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\AvaliacaoRepository.cs",
@@ -417,7 +403,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "LivroViewModel.cs",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\ViewModels\\LivroViewModel.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\ViewModels\\LivroViewModel.cs",
@@ -429,7 +415,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "Livro.cshtml",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Livro\\Livro.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Livro\\Livro.cshtml",
@@ -441,7 +427,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "LivroRepository.cs",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\LivroRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\LivroRepository.cs",
@@ -449,12 +435,36 @@
               "RelativeToolTip": "LivrariaLegitimo\\Repository\\LivroRepository.cs",
               "ViewState": "AgIAAM0BAAAAAAAAAAAAAN8BAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-24T00:13:07.523Z",
+              "WhenOpened": "2026-11-24T00:13:07.523Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Cadastro.cshtml",
+              "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Cadastro.cshtml",
+              "RelativeDocumentMoniker": "LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Cadastro.cshtml",
+              "ToolTip": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Cadastro.cshtml",
+              "RelativeToolTip": "LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Cadastro.cshtml",
+              "ViewState": "AgIAAAIBAAAAAAAAAAAAAB4BAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-11-24T20:29:55.334Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
+              "Title": "Atualizar.cshtml",
+              "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Cliente\\Atualizar.cshtml",
+              "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Cliente\\Atualizar.cshtml",
+              "ToolTip": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Cliente\\Atualizar.cshtml",
+              "RelativeToolTip": "LivrariaLegitimo\\Views\\Cliente\\Atualizar.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-11-26T10:39:07.037Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Program.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Program.cs",
@@ -462,12 +472,11 @@
               "RelativeToolTip": "LivrariaLegitimo\\Program.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAAACYAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-18T13:50:46.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T13:50:46.047Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\appsettings.json",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\appsettings.json",
@@ -475,12 +484,11 @@
               "RelativeToolTip": "LivrariaLegitimo\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-11-18T11:08:38.934Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T11:08:38.934Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Index.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Index.cshtml",
@@ -492,7 +500,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "FuncionarioRepository.cs",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\FuncionarioRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\FuncionarioRepository.cs",
@@ -504,7 +512,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "funcionarios.css",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\css\\funcionarios.css",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\css\\funcionarios.css",
@@ -516,7 +524,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "ClientePJRepository.cs",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\ClientePJRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\ClientePJRepository.cs",
@@ -528,7 +536,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "ClientePFRepository.cs",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\ClientePFRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\ClientePFRepository.cs",
@@ -540,7 +548,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "CarrinhoRepository.cs",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Repository\\CarrinhoRepository.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Repository\\CarrinhoRepository.cs",
@@ -552,7 +560,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "DadosPJ.cshtml",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Cliente\\DadosPJ.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Cliente\\DadosPJ.cshtml",
@@ -564,7 +572,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "DadosPF.cshtml",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Cliente\\DadosPF.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Cliente\\DadosPF.cshtml",
@@ -576,7 +584,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "Cadastro.cshtml",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Cliente\\Cadastro.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Cliente\\Cadastro.cshtml",
@@ -588,7 +596,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "ClienteController.cs",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Controllers\\ClienteController.cs",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Controllers\\ClienteController.cs",
@@ -600,7 +608,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "Reposicao.cshtml",
               "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\Reposicao.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Areas\\Worker\\Views\\Livro\\Reposicao.cshtml",
@@ -609,18 +617,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-11-23T21:19:07.414Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Cadastro.cshtml",
-              "DocumentMoniker": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Cadastro.cshtml",
-              "RelativeDocumentMoniker": "LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Cadastro.cshtml",
-              "ToolTip": "C:\\Users\\3MTEC\\Downloads\\LegitimoLivraria\\LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Cadastro.cshtml",
-              "RelativeToolTip": "LivrariaLegitimo\\Areas\\Worker\\Views\\Funcionario\\Cadastro.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMBAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-24T20:29:55.334Z"
             },
             {
               "$type": "Document",
