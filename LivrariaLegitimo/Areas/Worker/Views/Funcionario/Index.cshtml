@@ -29,7 +29,7 @@
                     <div class="funcionarios-cpf">@funcionario.Cpf</div>
                     <div class="funcionarios-cargo">@funcionario.Cargo</div>
                     <div class="funcionarios-acao">
-                        <a class="no-underline">Editar</a>
+                        <a class="no-underline" asp-area="Worker" asp-controller="Funcionario" asp-action="Atualizar" asp-route-idFunc="@funcionario.IdFuncionario">Editar</a>
                     </div>
                 </div>
             }

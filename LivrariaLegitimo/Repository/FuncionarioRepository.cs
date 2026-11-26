@@ -1,7 +1,9 @@
 ﻿using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
+using LivrariaLegitimo.ViewModels;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Text.RegularExpressions;
 using X.PagedList;
 namespace LivrariaLegitimo.Repository
 {
@@ -14,10 +16,42 @@ namespace LivrariaLegitimo.Repository
             _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
             _config = conf;
         }
-        public void Atualizar(Funcionario funcionario)
+
+        public void Atualizar(FuncionarioEditarViewModel funcionario)
         {
-            throw new NotImplementedException();
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+
+                string telefone = Regex.Replace(funcionario.Telefone ?? "", @"\D", "");
+                string cep = Regex.Replace(funcionario.Cep ?? "", @"\D", "");
+
+                if (!long.TryParse(telefone, out long numTel))
+                {
+                    throw new ArgumentException("Telefone inválido.");
+                }
+
+                MySqlCommand cmd = new MySqlCommand("call spAtualizarFuncionario(@IdFuncionario, @Senha, @Telefone, @Email, @Cargo, @FimContrato, @CEP, @Estado, @Cidade, @Bairro, @Logradouro, @Numero, @Complemento);", conexao);
+
+                cmd.Parameters.AddWithValue("@IdFuncionario", funcionario.IdFuncionario);
+                cmd.Parameters.AddWithValue("@Senha", string.IsNullOrWhiteSpace(funcionario.Senha) ? DBNull.Value : funcionario.Senha);
+                cmd.Parameters.AddWithValue("@Telefone", numTel);
+                cmd.Parameters.AddWithValue("@Email", funcionario.Email);
+                cmd.Parameters.AddWithValue("@Cargo", funcionario.Cargo);
+                cmd.Parameters.AddWithValue("@FimContrato", funcionario.FimContrato.HasValue ? funcionario.FimContrato.Value : DBNull.Value);
+                cmd.Parameters.AddWithValue("@CEP", cep);
+                cmd.Parameters.AddWithValue("@Estado", funcionario.Estado);
+                cmd.Parameters.AddWithValue("@Cidade", funcionario.Cidade);
+                cmd.Parameters.AddWithValue("@Bairro", funcionario.Bairro);
+                cmd.Parameters.AddWithValue("@Logradouro", funcionario.Logradouro);
+                cmd.Parameters.AddWithValue("@Numero", funcionario.NumeroEndereco);
+                cmd.Parameters.AddWithValue("@Complemento", funcionario.ComplementoEndereco ?? (object)DBNull.Value);
+
+                cmd.ExecuteNonQuery();
+                conexao.Close();
+            }
         }
+
 
         public void Cadastrar(Funcionario funcionario)
         {

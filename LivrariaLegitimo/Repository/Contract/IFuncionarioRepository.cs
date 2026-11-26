@@ -1,4 +1,5 @@
 ﻿using LivrariaLegitimo.Models;
+using LivrariaLegitimo.ViewModels;
 using X.PagedList;
 
 namespace LivrariaLegitimo.Repository.Contract
@@ -8,7 +9,7 @@ namespace LivrariaLegitimo.Repository.Contract
         Funcionario Login(string Email, string Senha);
 
         void Cadastrar(Funcionario funcionario);
-        void Atualizar(Funcionario funcionario);
+        void Atualizar(FuncionarioEditarViewModel funcionario);
 
         Funcionario ObterFuncionario(int idFuncionario);
         IEnumerable<Funcionario> ObterTodosFuncionarios();
