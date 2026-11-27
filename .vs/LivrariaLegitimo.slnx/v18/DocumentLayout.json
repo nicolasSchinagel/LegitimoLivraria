@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\wwwroot\\css\\ebook.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\wwwroot\\css\\ebook.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\views\\livro\\ebook.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\views\\livro\\ebook.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\wwwroot\\css\\ebook.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|solutionrelative:livrarialegitimo\\wwwroot\\css\\ebook.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{480F0D68-DF4A-728B-F217-6B07181BA678}|LivrariaLegitimo\\LivrariaLegitimo.csproj|c:\\users\\lizsc\\onedrive\\pictures\\nic\\tcc\\testeslegitimo\\legitimolivraria\\livrarialegitimo\\repository\\livrorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -362,7 +362,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -375,18 +375,17 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-11-18T11:08:38.934Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Ebook.cshtml",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Livro\\Ebook.cshtml",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\Views\\Livro\\Ebook.cshtml",
               "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\Views\\Livro\\Ebook.cshtml",
               "RelativeToolTip": "LivrariaLegitimo\\Views\\Livro\\Ebook.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-11-26T23:50:24.87Z",
               "EditorCaption": ""
@@ -401,8 +400,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\ViewModels\\LivroViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAACKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-24T03:09:05.032Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-24T03:09:05.032Z"
             },
             {
               "$type": "Document",
@@ -414,8 +412,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Areas\\Worker\\Controllers\\LivroController.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAAAFwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-23T22:07:36.482Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-23T22:07:36.482Z"
             },
             {
               "$type": "Document",
@@ -427,18 +424,17 @@
               "RelativeToolTip": "LivrariaLegitimo\\Repository\\LivroRepository.cs",
               "ViewState": "AgIAADEAAAAAAAAAAAAAAEAAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-24T00:13:07.523Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-24T00:13:07.523Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ebook.css",
               "DocumentMoniker": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\css\\ebook.css",
               "RelativeDocumentMoniker": "LivrariaLegitimo\\wwwroot\\css\\ebook.css",
               "ToolTip": "C:\\Users\\lizsc\\OneDrive\\Pictures\\Nic\\TCC\\testesLegitimo\\LegitimoLivraria\\LivrariaLegitimo\\wwwroot\\css\\ebook.css",
               "RelativeToolTip": "LivrariaLegitimo\\wwwroot\\css\\ebook.css",
-              "ViewState": "AgIAAOoAAAAAAAAAAAAUwP4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2026-11-26T23:51:10.454Z",
               "EditorCaption": ""
@@ -453,8 +449,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Controllers\\LivroController.cs",
               "ViewState": "AgIAAGUAAAAAAAAAAAAAAHoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-18T11:59:53.125Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T11:59:53.125Z"
             },
             {
               "$type": "Document",
@@ -466,8 +461,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Views\\Livro\\ListaProcura.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-24T18:42:41.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-24T18:42:41.184Z"
             },
             {
               "$type": "Document",
@@ -479,8 +473,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Views\\Livro\\Livro.cshtml",
               "ViewState": "AgIAADADAAAAAAAAAAAAADADAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-18T12:19:13.036Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T12:19:13.036Z"
             },
             {
               "$type": "Document",
@@ -492,8 +485,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Views\\Carrinho\\MinhasCompras.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-26T22:32:43.511Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-26T22:32:43.511Z"
             },
             {
               "$type": "Document",
@@ -505,8 +497,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Repository\\Contract\\IVendaRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-18T12:20:29.271Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T12:20:29.271Z"
             },
             {
               "$type": "Document",
@@ -518,8 +509,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Program.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAAABkAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-18T13:50:46.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T13:50:46.047Z"
             },
             {
               "$type": "Document",
@@ -531,8 +521,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\wwwroot\\css\\minhasCompras.css",
               "ViewState": "AgIAAFYAAAAAAAAAAAAAAGsAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-11-26T22:39:11.772Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-26T22:39:11.772Z"
             },
             {
               "$type": "Document",
@@ -544,8 +533,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\wwwroot\\css\\livro.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-11-18T14:26:57.05Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T14:26:57.05Z"
             },
             {
               "$type": "Document",
@@ -557,8 +545,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Repository\\VendaRepository.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAAAwAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-22T18:49:50.905Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-22T18:49:50.905Z"
             },
             {
               "$type": "Document",
@@ -570,8 +557,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAIoAAAAAAAAAAAAAAJwAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-20T14:08:39.847Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-20T14:08:39.847Z"
             },
             {
               "$type": "Document",
@@ -583,8 +569,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Controllers\\CarrinhoController.cs",
               "ViewState": "AgIAAJcAAAAAAAAAAAAAAKoAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-18T11:20:07.179Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T11:20:07.179Z"
             },
             {
               "$type": "Document",
@@ -596,8 +581,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Repository\\AvaliacaoRepository.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAG0AAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-20T13:59:54.509Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-20T13:59:54.509Z"
             },
             {
               "$type": "Document",
@@ -609,8 +593,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Models\\Venda.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-22T18:28:18.805Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-22T18:28:18.805Z"
             },
             {
               "$type": "Document",
@@ -622,8 +605,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\ViewModels\\MinhaCompraViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-26T22:56:29.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-26T22:56:29.745Z"
             },
             {
               "$type": "Document",
@@ -635,8 +617,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Views\\Cliente\\Atualizar.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-26T10:39:07.037Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-26T10:39:07.037Z"
             },
             {
               "$type": "Document",
@@ -648,8 +629,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Repository\\ClienteRepository.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAAACkAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-26T20:59:53.253Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-26T20:59:53.253Z"
             },
             {
               "$type": "Document",
@@ -661,8 +641,7 @@
               "RelativeToolTip": "LivrariaLegitimo\\Views\\Carrinho\\EditarEndereco.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-22T22:41:29.582Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-22T22:41:29.582Z"
             },
             {
               "$type": "Document",

@@ -183,12 +183,13 @@ button {
     flex: 1;
     min-width: 0;
     min-height: 0;
-    height: 0;
     display: block;
     padding: 30px;
     background: #eaeaea;
     overflow-y: auto;
     overflow-x: hidden;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
 }
 
 /* CONTAINER DAS PÁGINAS */
@@ -207,7 +208,7 @@ button {
     flex-direction: column;
     align-items: center;
     gap: 25px;
-    padding-bottom: 40px;
+    padding-bottom: 60px;
 }
 
 /* PÁGINAS DO PDF */
@@ -265,3 +266,4 @@ button {
         font-size: 14px;
     }
 }
+
