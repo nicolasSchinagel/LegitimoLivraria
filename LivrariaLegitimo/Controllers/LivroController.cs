@@ -20,6 +20,7 @@ namespace LivrariaLegitimo.Controllers
         private ILivroRepository _livroRepository;
         private IAvaliacaoRepository _avaliacaoRepository;
         private CookieHistoricoLivro _cookieHistoricoLivro;
+        private CookieHistoricoEbook _cookieHistoricoEbook;
         public LivroController(CookieHistoricoLivro cookieHistoricoLivro, IClienteRepository clienteRepository, IFuncionarioRepository funcionarioRepository, LoginFuncionario loginFuncionario, LoginCliente loginCliente, ILivroRepository livroRepository, IAvaliacaoRepository avaliacaoRepository)
         {
             _funcionarioRepository = funcionarioRepository;
@@ -118,6 +119,9 @@ namespace LivrariaLegitimo.Controllers
                 ExisteAvaliacaoConta = existeAvaliacao,
                 Aleatorios = aleatorios,
             };
+
+            _cookieHistoricoEbook.Cadastrar(codBarras, 1, 1);
+
             return View(model);
         }
     }
