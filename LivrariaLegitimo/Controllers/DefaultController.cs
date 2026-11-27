@@ -18,7 +18,8 @@ namespace LivrariaLegitimo.Controllers
         private LoginCliente _loginCliente;
         private ILivroRepository _livroRepository;
         private CookieHistoricoLivro _cookieHistoricoLivro;
-        public DefaultController(CookieHistoricoLivro cookieHistoricoLivro, IFuncionarioRepository funcionarioRepository, IClienteRepository clienteRepository, LoginFuncionario loginFuncionario, LoginCliente loginCliente, ILivroRepository livroRepository)
+        private CookieHistoricoEbook _cookieHistoricoEbook;
+        public DefaultController(CookieHistoricoLivro cookieHistoricoLivro,CookieHistoricoEbook cookieHistoricoEbook, IFuncionarioRepository funcionarioRepository, IClienteRepository clienteRepository, LoginFuncionario loginFuncionario, LoginCliente loginCliente, ILivroRepository livroRepository)
         {
             _funcionarioRepository = funcionarioRepository;
             _clienteRepository = clienteRepository;
@@ -26,6 +27,7 @@ namespace LivrariaLegitimo.Controllers
             _loginCliente = loginCliente;
             _livroRepository = livroRepository;
             _cookieHistoricoLivro = cookieHistoricoLivro;
+            _cookieHistoricoEbook = cookieHistoricoEbook;
         }
 
         [HttpGet]
@@ -38,6 +40,7 @@ namespace LivrariaLegitimo.Controllers
                 Aleatorios = _livroRepository.AleatorizarLivros(),
                 MaioresOfertas = _livroRepository.ObterMaioresOfertas(),
                 HistoricoG = _cookieHistoricoLivro.Consultar()
+                HistoricoE = _cookieHistoricoEbook.Consultar(),
             };
 
             return View(model);

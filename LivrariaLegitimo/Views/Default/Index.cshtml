@@ -466,50 +466,58 @@
             <img src="~/img/arrow-carousel.png" class="arrow-carousel-right-3">
         </div>
         <div class="div-cards-carousel-total-3">
-            <div class="div-cards-carousel-index-3">
+            @{
+    var historico = Model.HistoricoE.ToList();
+}
+
+@if (historico.Count == 0)
+{
+    <div class="div-cards-carousel-index-3">
+        <div class="formato-banner-ebook bannerprocurar">
+            <div class="wrapperprocurar">
+                <img class="mais" src="~/img/simbolomais.png">
+                <div class="textsmais">
+                    <h1 class="procurarebookstext">Procurar e-books</h1>
+                    <p class="aumentarleitura">Aumente sua leitura digital</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    @foreach (var grupo in historico.Chunk(3))
+    {
+        <div class="div-cards-carousel-index-3">
+
+            @foreach (var item in grupo)
+            {
                 <div class="formato-banner-ebook banner1">
                     <img class="livro-e" src="~/capas/1984livro.png">
 
                     <div class="partelateral-e">
-                        <h1 class="titulo-e">1984</h1>
-                        <h2 class="autor-e">Por George Orwell</h2>
-                        <h2 class="editor-e">Pomodoro Books</h2>
+                        <h1 class="titulo-e">@item.livro.Nome</h1>
+                        <h2 class="autor-e">@item.livro.Autor</h2>
+                        <h2 class="editor-e">@item.livro.Editora</h2>
 
                         <div class="barraprogresso">
                             <div class="barraprogresso2"></div>
                         </div>
 
-                        <h2 class="porcentagemtext">50% lido</h2>
+                        <h2 class="porcentagemtext">
+                            @((item.paginaAtual / item.paginaTotal) * 100)% lido
+                        </h2>
 
                         <div class="continarlendo">
-                            <img class="livrolendo" src="~/img/livrozinlogo.png">
+                            <img class="livrolendo" src="@item.arquivoImagem">
                             <h2 class="continuarlendotext">Continuar lendo</h2>
                         </div>
                     </div>
                 </div>
+            }
 
-                <!-- Banner 2 - Myron Bolitar -->
-                <div class="formato-banner-ebook banner1">
-                    <img class="livro-e" src="~/capas/bolitarlivro.png">
-                    <div class="partelateral-e">
-                        <h1 class="titulo-e">Pense duas vezes (Myron Bolitar)</h1>
-                        <h2 class="autor-e">Por Harlan Coben</h2>
-                        <h2 class="editor-e">Pomodoro Books</h2>
-
-                        <div class="barraprogresso">
-                            <div class="barraprogresso2"></div>
-                        </div>
-
-                        <h2 class="porcentagemtext">50% lido</h2>
-
-                        <div class="continarlendo">
-                            <img class="livrolendo" src="~/img/livrozinlogo.png">
-                            <h2 class="continuarlendotext">Continuar lendo</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Banner Procurar -->
+            @if (grupo.Count() < 3)
+            {
                 <div class="formato-banner-ebook bannerprocurar">
                     <div class="wrapperprocurar">
                         <img class="mais" src="~/img/simbolomais.png">
@@ -519,8 +527,12 @@
                         </div>
                     </div>
                 </div>
+            }
 
-            </div>
+        </div>
+    }
+}
+            
 
         </div>
     </div>
