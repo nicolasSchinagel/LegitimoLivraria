@@ -1,5 +1,4 @@
-﻿
-@using System.Globalization
+﻿@using System.Globalization
 @model LivrariaLegitimo.ViewModels.CompraViewModel
 
 @{
@@ -177,6 +176,18 @@
 
                 </div>
 
+                <div class="compra-main-pagamento-form-parcelamento"
+                     id="QrCode"
+                     style="display: none;">
+
+                    <label>Escaneie o QR Code para pagar via Pix</label>
+
+                    <img src="~/img/qrCode.jfif"
+                         class="qrcode"
+                         alt="QR Code para pagamento via Pix" />
+
+                </div>
+
                 <div class="compra-main-resumo-entrega">
 
                     <label for="tipoEntrega">Entrega:</label>
@@ -289,6 +300,7 @@
     const camposCartao = document.getElementById("camposCartao");
     const dadosCartao = document.getElementById("dadosCartao");
     const campoParcelamento = document.getElementById("campoParcelamento");
+    const qrCode = document.getElementById("QrCode");
 
     const numeroCartao = document.getElementById("numeroCartao");
     const nomeCartao = document.getElementById("nomeCartao");
@@ -304,10 +316,12 @@
 
         const precisaCartao = forma === "débito" || forma === "crédito";
         const precisaParcelamento = forma === "crédito";
+        const precisaPix = forma === "pix";
 
         camposCartao.style.display = precisaCartao ? "" : "none";
         dadosCartao.style.display = precisaCartao ? "" : "none";
         campoParcelamento.style.display = precisaParcelamento ? "" : "none";
+        qrCode.style.display = precisaPix ? "" : "none";
 
         numeroCartao.required = precisaCartao;
         nomeCartao.required = precisaCartao;
@@ -340,6 +354,7 @@
 
     atualizarFormaPagamento();
 
+
     // FORMATAÇÃO DO CARTÃO
 
     numeroCartao.addEventListener("input", function() {
@@ -351,6 +366,7 @@
         this.value = valor;
 
     });
+
 
     // FORMATAÇÃO DA VALIDADE
 
@@ -368,6 +384,7 @@
 
     });
 
+
     // CVV SOMENTE NÚMEROS
 
     cvvCartao.addEventListener("input", function() {
@@ -375,6 +392,7 @@
         this.value = this.value.replace(/\D/g, "").substring(0, 4);
 
     });
+
 
     // VALIDAÇÃO DO PAGAMENTO
 

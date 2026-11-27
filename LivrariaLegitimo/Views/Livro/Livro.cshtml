@@ -368,13 +368,6 @@
                         <h1 class="section-descriptions-top-prices-final-price">R$ <span>@(Math.Round(decimal.Parse(livro.livro.Preco, new CultureInfo("pt-BR")) * (1 - livro.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))</span></h1>
                     }
 
-                    <div class="section-descriptions-top-prices-cartCamada">
-                        <div class="section-descriptions-top-prices-addcartretangulo">
-                            <img class="section-descriptions-top-prices-carrinho" src="~/img/cart.png">
-                            <h2>Adicionar ao carrinho</h2>
-                        </div>
-                    </div>
-
                     @if (DateTime.Now.TimeOfDay < new TimeSpan(15, 0, 0))
                     {
                         <h3 class="section-descriptions-top-prices-dataentrega">ENTREGA GRÁTIS, <span>quarta-feira, @dataMais2Dias.ToString("dd/MM/yyyy")</span></h3>
@@ -391,13 +384,6 @@
                             <a class="section-descriptions-top-prices-condicional-sabermais"> Saber mais</a>
                         </div>
                     }
-
-                    <div class="section-descriptions-top-prices-quantidade">
-                        <h2 class="section-descriptions-top-prices-quantidade-text">Quantidade:</h2>
-                        <div class="section-descriptions-top-prices-quantidade-block">
-                            <input type="number" class="section-descriptions-top-prices-quantidade-block-input" />
-                        </div>
-                    </div>
 
                     <h4 class="section-descriptions-top-prices-envio">Envio gerenciado pela livraria Legítimo</h4>
 
@@ -428,17 +414,21 @@
                         }
                         else if (_LoginFuncionario.GetFuncionario() != null)
                         {
-                            <div class="section-descriptions-top-prices-addcartretangulo">
-                                <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
-                                <h2>Indisponível</h2>
-                            </div>
+                            <a class="section-descriptions-top-prices-cartCamada">
+                                <div class="section-descriptions-top-prices-addcartretangulo">
+                                    <img class="section-descriptions-top-prices-carrinho" src="~/img/cart.png">
+                                    <h2>Indisponível</h2>
+                                </div>
+                            </a>
                         }
                         else
                         {
-                            <div class="section-descriptions-top-prices-addcartretangulo">
-                                <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
-                                <h2>Faça login</h2>
-                            </div>
+                            <a class="section-descriptions-top-prices-cartCamada" asp-controller="Carrinho" asp-action="AdicionarItem" asp-route-codBarras="@livro.livro.CodigoBarras">
+                                <div class="section-descriptions-top-prices-addcartretangulo">
+                                    <img class="section-descriptions-top-prices-carrinho" src="~/img/cart.png">
+                                    <h2>Adicionar ao carrinho</h2>
+                                </div>
+                            </a>
                         }
                     </div>
                 </div>

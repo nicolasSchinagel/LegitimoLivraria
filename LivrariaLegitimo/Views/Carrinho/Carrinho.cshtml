@@ -135,13 +135,17 @@
                                                value="@item.quantidadeCarrinho"
                                                readonly />
 
-                                        <a asp-controller="Carrinho"
-                                           asp-action="AumentarQuantidade"
-                                           asp-route-codBarras="@item.livro.CodigoBarras">
+                                        @if(item.quantidadeCarrinho < item.livro.Quantidade)
+                                        {
+                                            <a asp-controller="Carrinho"
+                                               asp-action="AumentarQuantidade"
+                                               asp-route-codBarras="@item.livro.CodigoBarras">
 
-                                            <img class="qtd-block-plus" src="~/img/plus.png" />
+                                                <img class="qtd-block-plus" src="~/img/plus.png" />
 
-                                        </a>
+                                            </a>
+                                        }
+                                        
                                     }
 
                                 </div>
@@ -206,7 +210,7 @@
                 </h4>
 
                 <h4 class="main-carrinho-content-sobre-infos-datas">
-                    De segunda-feira até quinta-feira
+                    Variando conforme horário
                 </h4>
 
             </div>

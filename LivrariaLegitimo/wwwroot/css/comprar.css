@@ -428,6 +428,10 @@ body {
         color: #c90000;
         font-size: 27px;
     }
+.qrcode {
+    width: 200px;
+    height: 200px;
+}
 
 /* Responsividade */
 
@@ -512,4 +516,5 @@ body {
     .compra-main-resumo-total strong {
         font-size: 23px;
     }
+   
 }

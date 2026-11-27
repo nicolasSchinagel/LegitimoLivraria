@@ -1,4 +1,6 @@
 ﻿@inject LivrariaLegitimo.Repository.LivroRepository _livroRepository
+@inject LivrariaLegitimo.Libraries.Login.LoginCliente _LoginCliente
+@inject LivrariaLegitimo.Libraries.Login.LoginFuncionario _LoginFuncionario
 @model LivrariaLegitimo.ViewModels.LivroViewModel
 @{
     ViewData["Title"] = "Home Page";
@@ -6,36 +8,36 @@
 }
 <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
 <div class="div-menu">
-    <div class="space-index-banner">
+    <div class="space-index-banner" id="ofertas">
         <div class="track">
             <div class="outside active">
-                <div class="banner-livraria">
+                <a class="banner-livraria" asp-controller="Livro" asp-action="ObterPorGenero" asp-route-genero="Fantasia">
                     <img src="~/img/bi-1.webp" alt="Banner 1" class="banner-image">
-                </div>
+                </a>
             </div>
             <div class="outside">
-                <div class="banner-livraria">
+                <a class="banner-livraria" asp-controller="Livro" asp-action="ObterPorGenero" asp-route-genero="Mangás">
                     <img src="~/img/bi-2.webp" alt="Banner 2" class="banner-image">
 
-                </div>
+                </a>
             </div>
             <div class="outside">
-                <div class="banner-livraria">
+                <a class="banner-livraria" asp-controller="Livro" asp-action="ObterPorGenero" asp-route-genero="Ficção Científica">
                     <img src="~/img/bi-3.webp" alt="Banner 3" class="banner-image">
 
-                </div>
+                </a>
             </div>
             <div class="outside">
-                <div class="banner-livraria">
+                <a class="banner-livraria" asp-controller="Livro" asp-action="ObterPorGenero" asp-route-genero="Romance">
                     <img src="~/img/bi-4.webp" alt="Banner 4" class="banner-image">
 
-                </div>
+                </a>
             </div>
             <div class="outside">
-                <div class="banner-livraria">
+                <a class="banner-livraria" asp-controller="Livro" asp-action="ObterPorGenero" asp-route-genero="Autoajuda">
                     <img src="~/img/bi-5.webp" alt="Banner 5" class="banner-image">
 
-                </div>
+                </a>
             </div>
         </div>
         <div class="arrows">
@@ -97,7 +99,7 @@
             {
                 <a class="book-card-init no-underline" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
                     <img src="@livro.arquivoImagem" class="image-book-card-init">
-                    <h4 class="title-book-card-init">@livro.livro.Nome</h4>
+                    <h4 class="title-book-card-init">@(livro.livro.Nome.Length > 37 ? livro.livro.Nome.Substring(0, 37) + "..." : livro.livro.Nome)</h4>
                     <h5 class="discount-book-card-init"><span class="discount-book-card-init-span">@livro.livro.PromocaoPorcentagem %</span> de desconto</h5>
                 </a>
             }
@@ -117,7 +119,7 @@
         </section>
     </div>
 
-    <div class="div-cards-carousel-index-0">
+    <div class="div-cards-carousel-index-0" id="bemAvaliados">
         @foreach(var livro in Model.BemAvaliados)
         {
             <div class="card1 no-underline">
@@ -135,9 +137,6 @@
                 <div class="partebaixo">
                     <div class="tituloeheart">
                         <h2 class="titulolivro">@(livro.livro.Nome.Length > 37 ? livro.livro.Nome.Substring(0, 37) + "..." : livro.livro.Nome)</h2>
-                        <div class="heartfundo">
-                            <img class="heart" src="~/img/coracaored.png">
-                        </div>
                     </div>
                     <p class="autor">Por @livro.livro.Autor</p>
                     <p class="editor">@livro.livro.Editora</p>
@@ -172,17 +171,30 @@
                     </div>
                 </div>
                 </a>
-                <a class="cartCamada no-underline" asp-controller="Carrinho" asp-action="AdicionarItem" asp-route-codBarras="@livro.livro.CodigoBarras">
-                    <div class="addcartretangulo">
-                        <img class="carrinho" src="~/img/cart.png">
-                        <h2>Adicionar ao carrinho</h2>
-                    </div>
-                </a>
+                    @if(_LoginFuncionario.GetFuncionario() == null)
+                {
+                    <a class="cartCamada no-underline" asp-controller="Carrinho" asp-action="AdicionarItem" asp-route-codBarras="@livro.livro.CodigoBarras">
+                        <div class="addcartretangulo">
+                            <img class="carrinho" src="~/img/cart.png">
+                            <h2>Adicionar ao carrinho</h2>
+                        </div>
+                    </a>
+                }
+                else
+                {
+                    <a class="cartCamada no-underline">
+                        <div class="addcartretangulo">
+                            <img class="carrinho" src="~/img/cart.png">
+                            <h2>Indisponível</h2>
+                        </div>
+                    </a>
+                }
+                
             </div>
         }
     </div>
 </div>
-<div class="div-cards-carousel">
+<div class="div-cards-carousel" id="destaques">
     <div class="top-bar-cards">
         <h2 class="top-bar-cards-title">Mais vendidos</h2>
         <section class="ver-todos-top-bar-cards">
@@ -219,9 +231,6 @@
                             <div class="partebaixo">
                                 <div class="tituloeheart">
                                     <h2 class="titulolivro">@(livro.livro.Nome.Length > 37 ? livro.livro.Nome.Substring(0, 37) + "..." : livro.livro.Nome)</h2>
-                                    <div class="heartfundo">
-                                        <img class="heart" src="~/img/coracaored.png">
-                                    </div>
                                 </div>
 
                                 <p class="autor">Por @livro.livro.Autor</p>
@@ -258,12 +267,25 @@
                                 </div>
                             </div>
                             </a>
-                            <a class="cartCamada no-underline" asp-controller="Carrinho" asp-action="AdicionarItem" asp-route-codBarras="@livro.livro.CodigoBarras">
-                                <div class="addcartretangulo no-underline">
-                                    <img class="carrinho" src="~/img/cart.png">
-                                    <h2>Adicionar ao carrinho</h2>
-                                </div>
-                            </a>
+                                @if(_LoginFuncionario.GetFuncionario() == null)
+                            {
+                                <a class="cartCamada no-underline" asp-controller="Carrinho" asp-action="AdicionarItem" asp-route-codBarras="@livro.livro.CodigoBarras">
+                                    <div class="addcartretangulo no-underline">
+                                        <img class="carrinho" src="~/img/cart.png">
+                                        <h2>Adicionar ao carrinho</h2>
+                                    </div>
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="cartCamada no-underline">
+                                    <div class="addcartretangulo no-underline">
+                                        <img class="carrinho" src="~/img/cart.png">
+                                        <h2>Indisponível</h2>
+                                    </div>
+                                </a>
+                            }
+                            
                         </div>
                         indiceLivro++;
                     }
@@ -435,7 +457,7 @@
         </div>
     </div>
 </div>
-<div class="div-menu">
+<div class="div-menu" id="literaturas">
     <div class="div-banner-lit">
         <img src="~/img/back_literatura.png" class="div-banner-lit-back">
         <div class="div-banner-lit-items">
@@ -492,33 +514,45 @@ else
 
             @foreach (var item in grupo)
             {
-                <div class="formato-banner-ebook banner1">
-                    <img class="livro-e" src="~/capas/1984livro.png">
+                                          int porcentagem = item.paginaTotal > 0
+                                                            ? (int)Math.Round((double)item.paginaAtual / item.paginaTotal * 100)
+                                                            : 0;
 
-                    <div class="partelateral-e">
-                        <h1 class="titulo-e">@item.livro.Nome</h1>
-                        <h2 class="autor-e">@item.livro.Autor</h2>
-                        <h2 class="editor-e">@item.livro.Editora</h2>
+                            porcentagem = Math.Clamp(porcentagem, 0, 100);
 
-                        <div class="barraprogresso">
-                            <div class="barraprogresso2"></div>
-                        </div>
+            <a class="formato-banner-ebook no-underline banner1 text-black"
+               asp-controller="Livro"
+               asp-action="Ebook"
+               asp-route-codBarras="@item.livro.CodigoBarras">
 
-                        <h2 class="porcentagemtext">
-                            @((item.paginaAtual / item.paginaTotal) * 100)% lido
-                        </h2>
+                <img class="livro-e" src="@item.arquivoImagem">
 
-                        <div class="continarlendo">
-                            <img class="livrolendo" src="@item.arquivoImagem">
-                            <h2 class="continuarlendotext">Continuar lendo</h2>
+                <div class="partelateral-e">
+                    <h1 class="titulo-e">@item.livro.Nome</h1>
+                    <h2 class="autor-e">@item.livro.Autor</h2>
+                    <h2 class="editor-e">@item.livro.Editora </h2>
+
+                    <div class="barraprogresso">
+                        <div class="barraprogresso2"
+                             style="width: @(porcentagem)%;">
                         </div>
                     </div>
+
+                    <h2 class="porcentagemtext">
+                        @(porcentagem)% lido
+                    </h2>
+
+                    <div class="continarlendo">
+                        <img class="livrolendo" src="~/img/livrozinlogo.png">
+                        <h2 class="continuarlendotext">Continuar lendo</h2>
+                    </div>
                 </div>
+            </a>
             }
 
             @if (grupo.Count() < 3)
             {
-                <div class="formato-banner-ebook bannerprocurar">
+                <a class="formato-banner-ebook bannerprocurar no-underline text-black" href="#pesquisaTag">
                     <div class="wrapperprocurar">
                         <img class="mais" src="~/img/simbolomais.png">
                         <div class="textsmais">
@@ -526,7 +560,7 @@ else
                             <p class="aumentarleitura">Aumente sua leitura digital</p>
                         </div>
                     </div>
-                </div>
+                </a>
             }
 
         </div>
@@ -579,6 +613,7 @@ else
                             }
                             <img class="livro-historico" src="@livro.arquivoImagem">
                             <div class="partelateral-historico">
+                                <a class="no-underline text-black" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@(livro.livro.CodigoBarras)">
                                 <h1 class="titulo-historico">@(livro.livro.Nome.Length > 37 ? livro.livro.Nome.Substring(0, 37) + "..." : livro.livro.Nome)</h1>
                                 <h2 class="autor-historico">Por @livro.livro.Autor</h2>
                                 <h2 class="editor-historico">@livro.livro.Editora</h2>
@@ -591,19 +626,28 @@ else
                                     <h3 class="avaliados-historico">(@(livro.mediaLivro))</h3>
                                     <img class="setabaixo-historico" src="~/img/setabaixo.png">
                                 </div>
-
+                                </a>
                                 <div class="partedebaixo-historico">
-                                    <h1 class="preco-historico">R$ @livro.livro.Preco</h1>
+                                    <a class="no-underline text-black" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@(livro.livro.CodigoBarras)">
+                                        @if(livro.livro.PromocaoPorcentagem == 0)
+                                            {
+                                            <h1 class="preco-historico">R$ @livro.livro.Preco</h1>
+                                            }
+                                            else
+                                            {
+                                            <h1 class="preco-historico">*R$ @(Math.Round(decimal.Parse(livro.livro.Preco, new CultureInfo("pt-BR")) * (1 - livro.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))</h1>
+                                            }
 
-                                    <div class="quadradosred-historico">
-                                        <div class="cartfundo-historico">
-                                            <img class="cart-historico" src="~/img/cart.png">
-                                        </div>
-
-                                        <div class="heartfundo-historico">
-                                            <img class="heart-historico" src="~/img/coracaored.png">
-                                        </div>
-                                    </div>
+                                    </a>
+                                    @if(_LoginFuncionario.GetFuncionario() == null)
+                                    {
+                                        <a class="quadradosred-historico" asp-controller="Carrinho" asp-action="AdicionarItem" asp-route-codBarras="@livro.livro.CodigoBarras">
+                                            <div class="cartfundo-historico">
+                                                <img class="cart-historico" src="~/img/cart.png">
+                                            </div>
+                                        </a>
+                                    }
+                                    
                                 </div>
                             </div>
                         </div>

@@ -39,7 +39,7 @@ namespace LivrariaLegitimo.Controllers
                 BemAvaliados = _livroRepository.ObterMelhoresAvaliados(),
                 Aleatorios = _livroRepository.AleatorizarLivros(),
                 MaioresOfertas = _livroRepository.ObterMaioresOfertas(),
-                HistoricoG = _cookieHistoricoLivro.Consultar()
+                HistoricoG = _cookieHistoricoLivro.Consultar(),
                 HistoricoE = _cookieHistoricoEbook.Consultar(),
             };
 

@@ -20,7 +20,8 @@ namespace LivrariaLegitimo.Controllers
         private ILivroRepository _livroRepository;
         private IAvaliacaoRepository _avaliacaoRepository;
         private CookieHistoricoLivro _cookieHistoricoLivro;
-        public LivroController(CookieHistoricoLivro cookieHistoricoLivro, IClienteRepository clienteRepository, IFuncionarioRepository funcionarioRepository, LoginFuncionario loginFuncionario, LoginCliente loginCliente, ILivroRepository livroRepository, IAvaliacaoRepository avaliacaoRepository)
+        private CookieHistoricoEbook _cookieHistoricoEbook;
+        public LivroController(CookieHistoricoLivro cookieHistoricoLivro, CookieHistoricoEbook cookieHistoricoEbook, IClienteRepository clienteRepository, IFuncionarioRepository funcionarioRepository, LoginFuncionario loginFuncionario, LoginCliente loginCliente, ILivroRepository livroRepository, IAvaliacaoRepository avaliacaoRepository)
         {
             _funcionarioRepository = funcionarioRepository;
             _clienteRepository = clienteRepository;
@@ -29,6 +30,7 @@ namespace LivrariaLegitimo.Controllers
             _livroRepository = livroRepository;
             _avaliacaoRepository = avaliacaoRepository;
             _cookieHistoricoLivro = cookieHistoricoLivro;
+            _cookieHistoricoEbook = cookieHistoricoEbook;
         }
 
         [HttpGet]
@@ -110,6 +112,13 @@ namespace LivrariaLegitimo.Controllers
             var existeAvaliacao = _avaliacaoRepository.ExisteAvaliacaoConta(codBarras);
             var aleatorios = _livroRepository.AleatorizarLivros(codBarras);
 
+            var historico = _cookieHistoricoEbook.Consultar()
+                .FirstOrDefault(x => x.livro != null &&
+                                     x.livro.CodigoBarras.ToString() == codBarras);
+
+            int paginaAtual = historico.livro != null ? historico.paginaAtual : 1;
+            int paginaTotal = historico.livro != null ? historico.paginaTotal : 1;
+
             var model = new LivroViewModel
             {
                 ObterLivro = livro,
@@ -117,11 +126,45 @@ namespace LivrariaLegitimo.Controllers
                 ObterTodasAvaliacoes = avaliacoes,
                 ExisteAvaliacaoConta = existeAvaliacao,
                 Aleatorios = aleatorios,
+
+                HistoricoE = new List<(Livro livro, string arquivoImagem, string arquivoEbook, int paginaAtual, int paginaTotal)>
+        {
+            (livro.livro, livro.arquivoImagem, livro.arquivoEbook, paginaAtual, paginaTotal)
+        }
             };
 
-            _cookieHistoricoEbook.Cadastrar(codBarras, 1, 1);
+            // Garante que o livro exista no histórico.
+            // Os valores reais serão atualizados assim que o PDF carregar.
+            if (historico.livro == null)
+            {
+                _cookieHistoricoEbook.Cadastrar(codBarras, 1, 1);
+            }
 
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult AtualizarProgressoEbook([FromBody] ProgressoEbookViewModel dados)
+        {
+            if (dados == null ||
+                string.IsNullOrWhiteSpace(dados.CodBarras) ||
+                dados.PaginaAtual < 1 ||
+                dados.PaginaTotal < 1 ||
+                dados.PaginaAtual > dados.PaginaTotal)
+            {
+                return BadRequest();
+            }
+
+            bool atualizado = _cookieHistoricoEbook.AtualizarProgresso(
+                dados.CodBarras,
+                dados.PaginaAtual,
+                dados.PaginaTotal
+            );
+
+            if (!atualizado)
+                return NotFound();
+
+            return Ok();
         }
     }
 }

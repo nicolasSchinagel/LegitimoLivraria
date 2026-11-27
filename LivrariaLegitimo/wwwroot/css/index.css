@@ -313,6 +313,7 @@ h1, h2, h3, h4, h5, h6, p {
     justify-content: center;
     width: 100%;
     height: 36px;
+    margin-top: 15px;
 }
 
 .addcartretangulo {
@@ -1320,4 +1321,973 @@ h1, h2, h3, h4, h5, h6, p {
 
 .a-livro {
     height: 93%;
+}
+
+.text-black{
+    color: black;
+}
+
+
+
+
+
+
+/*Teste para responsividade*/
+
+/* =========================================
+   RESPONSIVIDADE MOBILE
+   ========================================= */
+
+/* TABLETS E CELULARES GRANDES */
+@media (max-width: 900px) {
+
+    /* CONFIGURAÇÕES GERAIS */
+
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .div-menu {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .div-cards-carousel {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        gap: 10px;
+    }
+
+    .top-bar-cards {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    .top-bar-cards-title {
+        font-size: clamp(18px, 3vw, 28px);
+        width: auto;
+    }
+
+    .top-bar-cards-pages {
+        font-size: 13px;
+    }
+
+
+    /* BANNER PRINCIPAL */
+
+    .space-index-banner {
+        width: 96%;
+        border-radius: 18px;
+    }
+
+    .banner-image {
+        object-fit: contain;
+    }
+
+    .banner-next,
+    .banner-prev {
+        width: 35px;
+        height: 35px;
+    }
+
+    .ball {
+        width: 15px;
+        height: 15px;
+    }
+
+    .balls {
+        gap: 7px;
+        margin-bottom: 15px;
+    }
+
+
+    /* CARDS INICIAIS */
+
+    .div-cards-init {
+        padding-left: 10px;
+        padding-right: 10px;
+        gap: 10px;
+    }
+
+    .card-init {
+        width: 33.33%;
+        padding: 10px 5px 35px;
+        gap: 8px;
+    }
+
+    .card-init-title {
+        font-size: clamp(13px, 2vw, 20px);
+    }
+
+    .books-card-init {
+        width: 95%;
+        gap: 5px;
+    }
+
+    .book-card-init {
+        width: 48%;
+        gap: 5px;
+    }
+
+    .title-book-card-init {
+        font-size: clamp(10px, 1.5vw, 15px);
+    }
+
+    .discount-book-card-init {
+        font-size: 11px;
+    }
+
+    .discount-book-card-init-span {
+        font-size: 13px;
+    }
+
+    .ver-todos-card-init {
+        padding: 5px;
+    }
+
+    .ver-todos-card-init-text {
+        font-size: 11px;
+    }
+
+
+    /* CARDS DE LIVROS */
+
+    .div-cards-carousel-index-0,
+    .div-cards-carousel-index-1 {
+        padding-left: 4%;
+        padding-right: 4%;
+        gap: 2%;
+    }
+
+    .card1 {
+        border-radius: 12px;
+    }
+
+    .partebaixo {
+        padding: 7px 8px 0;
+    }
+
+    .titulolivro {
+        font-size: 13px;
+    }
+
+    .autor,
+    .editor {
+        font-size: 11px;
+    }
+
+    .avaliados {
+        font-size: 10px;
+    }
+
+    .preco {
+        font-size: 15px;
+    }
+
+    .precoog {
+        font-size: 12px;
+    }
+
+    .off {
+        font-size: 12px;
+        margin-right: 3px;
+    }
+
+    .addcartretangulo {
+        gap: 4px;
+        font-size: 0.55em;
+    }
+
+    .cartCamada {
+        margin-top: 8px;
+        height: 30px;
+    }
+
+    .retangulocima,
+    .retangulocimaNovo,
+    .retangulocimaBemavaliado {
+        gap: 3px;
+    }
+
+    .alta,
+    .novo {
+        font-size: 0.65em;
+    }
+
+    .bemavaliado {
+        font-size: 0.6em;
+    }
+
+
+    /* CARROSSEL DE CATEGORIAS */
+
+    .div-cards-carousel-index-2 {
+        padding-left: 4%;
+        padding-right: 4%;
+        gap: 2%;
+    }
+
+    .card-genero {
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    .card-genero-title {
+        font-size: clamp(10px, 1.7vw, 16px);
+    }
+
+    .card-genero-qtd {
+        font-size: clamp(8px, 1.4vw, 13px);
+    }
+
+    .card-genero-info {
+        padding: 3px;
+    }
+
+
+    /* BANNER DE LITERATURA */
+
+    .div-banner-lit {
+        width: 96%;
+        border-radius: 10px;
+    }
+
+    .div-banner-lit-item {
+        width: 35%;
+        gap: 8px;
+    }
+
+    .title-lit-item {
+        font-size: clamp(16px, 3vw, 25px);
+    }
+
+    .div-banner-lit-blanket {
+        font-size: clamp(10px, 2vw, 20px);
+        border-radius: 10px;
+    }
+
+
+    /* E-BOOKS */
+
+    .div-cards-carousel-index-3 {
+        padding-left: 4%;
+        padding-right: 4%;
+        gap: 2%;
+    }
+
+    .formato-banner-ebook {
+        width: 49%;
+        aspect-ratio: 270 / 180;
+        border-radius: 10px;
+    }
+
+    .livro-e {
+        width: 30%;
+        height: 80%;
+        margin-right: 8px;
+    }
+
+    .partelateral-e {
+        width: 68%;
+        height: 90%;
+        gap: 3px;
+    }
+
+    .titulo-e {
+        font-size: 17px;
+        height: 55px;
+    }
+
+    .autor-e,
+    .editor-e {
+        font-size: 12px;
+    }
+
+    .barraprogresso {
+        height: 7px;
+        margin-top: 4px;
+    }
+
+    .porcentagemtext {
+        font-size: 11px;
+    }
+
+    .continarlendo {
+        width: 95%;
+        height: 25px;
+        gap: 5px;
+    }
+
+    .continuarlendotext {
+        font-size: 12px;
+    }
+
+    .livrolendo {
+        height: 65%;
+    }
+
+    .wrapperprocurar {
+        gap: 8px;
+    }
+
+    .procurarebookstext {
+        font-size: 20px;
+    }
+
+    .aumentarleitura {
+        font-size: 13px;
+    }
+
+
+    /* HISTÓRICO GERAL */
+
+    .div-cards-carousel-index-4 {
+        padding-left: 4%;
+        padding-right: 4%;
+        gap: 2%;
+    }
+
+    .banner2 {
+        width: 49%;
+        aspect-ratio: 460 / 220;
+        padding: 6px;
+    }
+
+    .livro-historico {
+        width: 30%;
+        margin-right: 8px;
+    }
+
+    .partelateral-historico {
+        width: 68%;
+        gap: 3px;
+    }
+
+    .titulo-historico {
+        font-size: 16px;
+        height: 50px;
+    }
+
+    .autor-historico,
+    .editor-historico {
+        font-size: 11px;
+    }
+
+    .preco-historico {
+        font-size: 15px;
+    }
+
+    .cartfundo-historico,
+    .heartfundo-historico {
+        width: 27px;
+        height: 27px;
+    }
+
+    .retangulocima-historico,
+    .retangulocimaNovo-historico,
+    .retangulocimaBemavaliado-historico {
+        gap: 3px;
+    }
+
+    .retangulocima-historico {
+        width: 35%;
+    }
+
+    .retangulocimaNovo-historico {
+        width: 30%;
+    }
+
+    .retangulocimaBemavaliado-historico {
+        width: 43%;
+    }
+
+        .retangulocima-historico .alta,
+        .retangulocimaNovo-historico .novo,
+        .retangulocimaBemavaliado-historico .bemavaliado {
+            font-size: 0.55em;
+        }
+
+
+    /* SETAS DOS CARROSSÉIS */
+
+    .arrow-carousel-left-1,
+    .arrow-carousel-left-2,
+    .arrow-carousel-left-3,
+    .arrow-carousel-left-4,
+    .arrow-carousel-right-1,
+    .arrow-carousel-right-2,
+    .arrow-carousel-right-3,
+    .arrow-carousel-right-4 {
+        width: 5%;
+    }
+}
+
+
+/* CELULARES */
+@media (max-width: 600px) {
+
+    /* CONFIGURAÇÕES GERAIS */
+
+    .div-menu {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .div-cards-carousel {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        gap: 12px;
+    }
+
+    .top-bar-cards {
+        padding-left: 5%;
+        padding-right: 5%;
+        gap: 5px;
+    }
+
+    .top-bar-cards-title {
+        font-size: 19px;
+        width: auto;
+    }
+
+    .top-bar-cards-pages {
+        font-size: 11px;
+        width: auto;
+    }
+
+
+    /* BANNER PRINCIPAL */
+
+    .space-index-banner {
+        width: 96%;
+        border-radius: 10px;
+    }
+
+    .banner-next,
+    .banner-prev {
+        width: 25px;
+        height: 25px;
+        margin: 3px;
+    }
+
+    .ball {
+        width: 10px;
+        height: 10px;
+    }
+
+    .balls {
+        gap: 5px;
+        margin-bottom: 8px;
+    }
+
+
+    /* CARDS INICIAIS */
+
+    .div-cards-init {
+        display: flex;
+        flex-direction: column;
+        padding: 0 10px 20px;
+        gap: 12px;
+    }
+
+    .card-init {
+        width: 100%;
+        padding: 12px 10px 35px;
+        gap: 10px;
+    }
+
+    .card-init-title {
+        font-size: 19px;
+    }
+
+    .books-card-init {
+        width: 85%;
+        justify-content: space-around;
+    }
+
+    .book-card-init {
+        width: 43%;
+        gap: 7px;
+    }
+
+    .image-book-card-init {
+        width: 100%;
+        aspect-ratio: 185 / 260;
+    }
+
+    .title-book-card-init {
+        font-size: 13px;
+        height: auto;
+        min-height: 35px;
+    }
+
+    .discount-book-card-init {
+        font-size: 12px;
+    }
+
+    .discount-book-card-init-span {
+        font-size: 14px;
+    }
+
+    .ver-todos-card-init-text {
+        font-size: 12px;
+    }
+
+    .ver-todos-icon {
+        width: 15px;
+    }
+
+
+    /* CARDS DE LIVROS */
+
+    .div-cards-carousel-index-0,
+    .div-cards-carousel-index-1 {
+        padding-left: 5%;
+        padding-right: 5%;
+        gap: 3%;
+        flex-wrap: wrap;
+        row-gap: 12px;
+    }
+
+    .card1 {
+        width: 48%;
+        aspect-ratio: 253 / 440;
+        border-radius: 10px;
+        gap: 3px;
+        padding-bottom: 5px;
+    }
+
+    .book {
+        width: 65%;
+        margin-top: 8px;
+    }
+
+    .partebaixo {
+        height: 40%;
+        padding: 7px 7px 0;
+        gap: 3px;
+    }
+
+    .tituloeheart {
+        height: auto;
+        min-height: 30px;
+    }
+
+    .titulolivro {
+        font-size: 13px;
+        width: 100%;
+    }
+
+    .autor,
+    .editor {
+        font-size: 11px;
+    }
+
+    .estrelas {
+        margin-top: 1px;
+    }
+
+    .estrelas-specifics {
+        width: 38%;
+    }
+
+    .avaliados {
+        font-size: 10px;
+    }
+
+    .setabaixo {
+        width: 10px;
+    }
+
+    .precoog {
+        font-size: 11px;
+        margin-top: 1px;
+    }
+
+    .preco {
+        font-size: 15px;
+    }
+
+    .off {
+        font-size: 11px;
+        margin-right: 0;
+    }
+
+    .cartCamada {
+        height: 27px;
+        margin-top: 5px;
+    }
+
+    .addcartretangulo {
+        width: 92%;
+        height: 27px;
+        aspect-ratio: auto;
+        gap: 4px;
+        font-size: 0.55em;
+        border-radius: 5px;
+    }
+
+    .carrinho {
+        width: 15%;
+    }
+
+    .retangulocima,
+    .retangulocimaNovo,
+    .retangulocimaBemavaliado {
+        gap: 2px;
+    }
+
+    .alta,
+    .novo {
+        font-size: 0.55em;
+    }
+
+    .bemavaliado {
+        font-size: 0.5em;
+    }
+
+    .card-1-enumerado {
+        border-radius: 5px;
+    }
+
+
+    /* CARROSSEL DE CATEGORIAS */
+
+    .div-cards-carousel-index-2 {
+        padding-left: 5%;
+        padding-right: 5%;
+        gap: 3%;
+        flex-wrap: wrap;
+        row-gap: 10px;
+    }
+
+    .card-genero {
+        width: 48%;
+        border-radius: 8px;
+        padding: 5px;
+        min-height: 75px;
+    }
+
+    .card-genero-icon {
+        width: 30%;
+        object-fit: contain;
+    }
+
+    .card-genero-info {
+        width: 70%;
+        padding: 3px;
+    }
+
+    .card-genero-title {
+        font-size: 12px;
+    }
+
+    .card-genero-qtd {
+        font-size: 10px;
+    }
+
+
+    /* BANNER DE LITERATURA */
+
+    .div-banner-lit {
+        width: 96%;
+        border-radius: 8px;
+    }
+
+    .div-banner-lit-items {
+        justify-content: space-around;
+    }
+
+    .div-banner-lit-item {
+        width: 35%;
+        padding: 3px;
+        gap: 5px;
+    }
+
+    .icon-lit-item {
+        width: 30%;
+    }
+
+    .title-lit-item {
+        font-size: 16px;
+    }
+
+    .div-banner-lit-blanket {
+        width: 30%;
+        font-size: 10px;
+        border-radius: 6px;
+        padding: 4px;
+    }
+
+
+    /* E-BOOKS */
+
+    .div-cards-carousel-index-3 {
+        padding-left: 5%;
+        padding-right: 5%;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .formato-banner-ebook {
+        width: 100%;
+        aspect-ratio: 270 / 180;
+        min-height: 155px;
+        border-radius: 9px;
+    }
+
+    .banner1 {
+        padding: 8px;
+    }
+
+    .livro-e {
+        width: 30%;
+        height: 85%;
+        margin-right: 10px;
+    }
+
+    .partelateral-e {
+        width: 68%;
+        height: 90%;
+        gap: 4px;
+    }
+
+    .titulo-e {
+        font-size: 19px;
+        height: 55px;
+    }
+
+    .autor-e,
+    .editor-e {
+        font-size: 12px;
+    }
+
+    .barraprogresso {
+        width: 90%;
+        height: 8px;
+        margin-top: 5px;
+    }
+
+    .porcentagemtext {
+        font-size: 12px;
+    }
+
+    .continarlendo {
+        width: 95%;
+        height: 30px;
+        border-radius: 5px;
+        gap: 6px;
+    }
+
+    .continuarlendotext {
+        font-size: 14px;
+    }
+
+    .livrolendo {
+        height: 65%;
+    }
+
+    .bannerprocurar {
+        min-height: 155px;
+    }
+
+    .wrapperprocurar {
+        gap: 8px;
+    }
+
+    .mais {
+        width: 17%;
+    }
+
+    .procurarebookstext {
+        font-size: 22px;
+    }
+
+    .aumentarleitura {
+        font-size: 13px;
+    }
+
+
+    /* HISTÓRICO GERAL */
+
+    .div-cards-carousel-index-4 {
+        padding-left: 5%;
+        padding-right: 5%;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .banner2 {
+        width: 100%;
+        aspect-ratio: 460 / 200;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    .livro-historico {
+        width: 30%;
+        height: 90%;
+        margin-right: 10px;
+    }
+
+    .partelateral-historico {
+        width: 68%;
+        height: 95%;
+        gap: 3px;
+    }
+
+    .titulo-historico {
+        font-size: 18px;
+        height: 50px;
+    }
+
+    .autor-historico,
+    .editor-historico {
+        font-size: 12px;
+    }
+
+    .estrelas-historico-specifics {
+        width: 30%;
+    }
+
+    .avaliados-historico {
+        font-size: 11px;
+    }
+
+    .preco-historico {
+        font-size: 17px;
+    }
+
+    .cartfundo-historico,
+    .heartfundo-historico {
+        width: 30px;
+        height: 30px;
+    }
+
+    .retangulocima-historico,
+    .retangulocimaNovo-historico,
+    .retangulocimaBemavaliado-historico {
+        right: 3%;
+        top: -8%;
+        gap: 3px;
+    }
+
+    .retangulocima-historico {
+        width: 30%;
+    }
+
+    .retangulocimaNovo-historico {
+        width: 25%;
+    }
+
+    .retangulocimaBemavaliado-historico {
+        width: 38%;
+    }
+
+        .retangulocima-historico .alta,
+        .retangulocimaNovo-historico .novo,
+        .retangulocimaBemavaliado-historico .bemavaliado {
+            font-size: 0.55em;
+        }
+
+
+    /* CONTROLES DOS CARROSSÉIS */
+
+    .arrows-carousel-div {
+        pointer-events: none;
+    }
+
+    .arrow-carousel-left-1,
+    .arrow-carousel-left-2,
+    .arrow-carousel-left-3,
+    .arrow-carousel-left-4,
+    .arrow-carousel-right-1,
+    .arrow-carousel-right-2,
+    .arrow-carousel-right-3,
+    .arrow-carousel-right-4 {
+        width: 7%;
+        padding-right: 3px;
+    }
+
+    .parts-card {
+        gap: 5px;
+    }
+
+    .part-cards {
+        width: 25px;
+        height: 5px;
+    }
+}
+
+
+/* CELULARES PEQUENOS */
+@media (max-width: 380px) {
+
+    .top-bar-cards-title {
+        font-size: 16px;
+    }
+
+    .card-init-title {
+        font-size: 16px;
+    }
+
+    .card1 {
+        aspect-ratio: 253 / 460;
+    }
+
+    .titulolivro {
+        font-size: 11px;
+    }
+
+    .autor,
+    .editor {
+        font-size: 10px;
+    }
+
+    .preco {
+        font-size: 13px;
+    }
+
+    .off {
+        font-size: 9px;
+    }
+
+    .addcartretangulo {
+        font-size: 0.48em;
+    }
+
+    .card-genero-title {
+        font-size: 10px;
+    }
+
+    .card-genero-qtd {
+        font-size: 9px;
+    }
+
+    .titulo-e {
+        font-size: 16px;
+        height: 45px;
+    }
+
+    .continuarlendotext {
+        font-size: 12px;
+    }
+
+    .titulo-historico {
+        font-size: 15px;
+        height: 42px;
+    }
+
+    .preco-historico {
+        font-size: 14px;
+    }
+
+    .procurarebookstext {
+        font-size: 18px;
+    }
+
+    .aumentarleitura {
+        font-size: 11px;
+    }
 }

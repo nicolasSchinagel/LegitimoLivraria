@@ -57,6 +57,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddScoped<LivrariaLegitimo.Cookie.Cookie>();
 builder.Services.AddScoped<LivrariaLegitimo.CarrinhoCompra.CookieCarrinhoCompra>();
 builder.Services.AddScoped<LivrariaLegitimo.Historicos.CookieHistoricoLivro>();
+builder.Services.AddScoped<LivrariaLegitimo.Historicos.CookieHistoricoEbook>();
 builder.Services.AddScoped<LivrariaLegitimo.CarrinhoCompra.CookieCarrinhoReposicao>();
 
 

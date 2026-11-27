@@ -191,3 +191,251 @@ header {
 .caixa-certeira{
     width: 100%;
 }
+
+
+
+
+
+
+
+
+
+
+/* ============================= */
+/* RESPONSIVIDADE - TABLETS */
+/* ============================= */
+
+@media (max-width: 900px) {
+
+    header {
+        height: auto;
+        min-height: 150px;
+    }
+
+    .uper-header {
+        min-height: 100px;
+        height: auto;
+        padding: 10px 15px;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .logo-header {
+        height: 65px;
+        width: auto;
+    }
+
+    .search-bar-header {
+        width: 45%;
+        min-width: 220px;
+        height: 42px;
+        gap: 10px;
+        padding: 5px 12px;
+    }
+
+    .input-search-bar,
+    .input-search-bar::placeholder {
+        font-size: 14px;
+    }
+
+    .icon-search-bar {
+        height: 22px;
+    }
+
+    .tittle-carrinho-header {
+        font-size: 15px;
+        width: 90px;
+    }
+
+    .image-icon-carrinho-header {
+        width: 50px;
+    }
+
+    .number-carrinho-header {
+        font-size: 16px;
+        margin-bottom: 7px;
+    }
+
+    .tittle-login-header {
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .deeper-header {
+        min-height: 48px;
+        height: auto;
+        padding: 8px 15px;
+        gap: 15px;
+    }
+
+    .deeper-header-menu-icon {
+        height: 25px;
+    }
+
+    .main-items-deeper {
+        width: 55%;
+        gap: 12px;
+    }
+
+    .main-items-deeper-text {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .deeper-header-bonus {
+        font-size: 15px;
+        text-align: center;
+    }
+}
+
+
+/* ============================= */
+/* RESPONSIVIDADE - CELULARES */
+/* ============================= */
+
+@media (max-width: 600px) {
+
+    header {
+        height: auto;
+    }
+
+    .uper-header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "logo carrinho"
+            "pesquisa pesquisa"
+            "login login";
+        gap: 12px;
+        padding: 12px 15px;
+    }
+
+    .logo-header {
+        grid-area: logo;
+        height: 55px;
+        width: auto;
+        justify-self: start;
+    }
+
+    .search-bar-header {
+        grid-area: pesquisa;
+        width: 100%;
+        min-width: 0;
+        height: 42px;
+        gap: 10px;
+        padding: 5px 12px;
+    }
+
+    .icon-search-bar {
+        height: 22px;
+    }
+
+    .input-search-bar,
+    .input-search-bar::placeholder {
+        font-size: 14px;
+    }
+
+    .carrinho-header {
+        grid-area: carrinho;
+        justify-self: end;
+        gap: 0;
+    }
+
+    .tittle-carrinho-header {
+        display: none;
+    }
+
+    .image-icon-carrinho-header {
+        width: 45px;
+    }
+
+    .number-carrinho-header {
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+
+    .entry-header {
+        grid-area: login;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    .tittle-login-header {
+        font-size: 14px;
+    }
+
+    .deeper-header {
+        min-height: 48px;
+        height: auto;
+        padding: 8px 15px;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .font-deeper-header-menu {
+        flex-shrink: 0;
+    }
+
+    .deeper-header-menu-icon {
+        height: 25px;
+    }
+
+    .main-items-deeper {
+        display: none;
+    }
+
+    .deeper-header-bonus {
+        font-size: 13px;
+        text-align: right;
+    }
+}
+
+
+/* ============================= */
+/* RESPONSIVIDADE - CELULARES PEQUENOS */
+/* ============================= */
+
+@media (max-width: 380px) {
+
+    .uper-header {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .logo-header {
+        height: 45px;
+    }
+
+    .search-bar-header {
+        height: 38px;
+    }
+
+    .input-search-bar,
+    .input-search-bar::placeholder {
+        font-size: 12px;
+    }
+
+    .image-icon-carrinho-header {
+        width: 38px;
+    }
+
+    .number-carrinho-header {
+        font-size: 13px;
+    }
+
+    .tittle-login-header {
+        font-size: 12px;
+    }
+
+    .deeper-header {
+        padding: 7px 10px;
+    }
+
+    .deeper-header-menu-icon {
+        height: 22px;
+    }
+
+    .deeper-header-bonus {
+        font-size: 11px;
+    }
+}

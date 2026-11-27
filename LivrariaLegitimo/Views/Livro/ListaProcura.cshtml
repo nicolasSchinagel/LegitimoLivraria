@@ -1,4 +1,6 @@
-﻿@using System.Globalization
+﻿@inject LivrariaLegitimo.Libraries.Login.LoginCliente _LoginCliente
+@inject LivrariaLegitimo.Libraries.Login.LoginFuncionario _LoginFuncionario
+@using System.Globalization
 <link rel="stylesheet" href="~/css/list.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
 @model LivrariaLegitimo.ViewModels.LivroViewModel
@@ -174,6 +176,7 @@
                  data-codigo-barras="@livro.livro.CodigoBarras"
                  data-tamanho="@livro.livro.Tamanho"
                  data-vendas="@livro.numeroVendas">
+                <a class="no-underline a-livro" asp-area="" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@livro.livro.CodigoBarras">
                 <div class="containerlivro">
                     <img class="book" src="@livro.arquivoImagem">
 
@@ -225,12 +228,24 @@
                         }
                     </div>
                 </div>
-                <div class="cartCamada">
+                </a>
+                @if(_LoginFuncionario.GetFuncionario() == null)
+                 {    
+                <a class="cartCamada no-underline" asp-controller="Carrinho" asp-action="AdicionarItem" asp-route-codBarras="@livro.livro.CodigoBarras">
                     <div class="addcartretangulo">
                         <img class="carrinho" src="~/img/cart.png">
                         <h2>Adicionar ao carrinho</h2>
                     </div>
-                </div>
+                </a>
+                    }
+                    else{
+                <a class="cartCamada no-underline">
+                    <div class="addcartretangulo">
+                        <img class="carrinho" src="~/img/cart.png">
+                        <h2>Indisponível</h2>
+                    </div>
+                </a>
+                    }
             </div>
         }
 

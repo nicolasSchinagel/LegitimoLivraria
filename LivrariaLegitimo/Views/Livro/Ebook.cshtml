@@ -1,7 +1,32 @@
-﻿@model LivrariaLegitimo.ViewModels.LivroViewModel
+﻿
+@model LivrariaLegitimo.ViewModels.LivroViewModel
+
 @{
     var livro = Model.ObterLivro.Value;
     Layout = null;
+
+    int paginaInicial = 1;
+    int paginaTotalInicial = 1;
+
+    if (Model.HistoricoE != null)
+    {
+        var historico = Model.HistoricoE.FirstOrDefault(
+            x => x.livro != null &&
+                 x.livro.CodigoBarras.ToString() == livro.livro.CodigoBarras.ToString()
+        );
+
+        if (historico.livro != null)
+        {
+            paginaInicial = historico.paginaAtual;
+            paginaTotalInicial = historico.paginaTotal;
+        }
+    }
+
+    int porcentagemInicial = paginaTotalInicial > 0
+        ? (int)Math.Round((double)paginaInicial / paginaTotalInicial * 100)
+        : 0;
+
+    porcentagemInicial = Math.Clamp(porcentagemInicial, 0, 100);
 }
 
 <link rel="stylesheet" href="~/css/ebook.css" asp-append-version="true" />
@@ -40,16 +65,18 @@
 
                 <div class="progresso-info">
                     <span>Seu progresso</span>
-                    <strong id="progresso-porcentagem">0%</strong>
+                    <strong id="progresso-porcentagem">@porcentagemInicial%</strong>
                 </div>
 
                 <div class="progresso-barra">
-                    <div class="progresso-atual" id="progresso-atual">
+                    <div class="progresso-atual"
+                         id="progresso-atual"
+                         style="width: @(porcentagemInicial)%;">
                     </div>
                 </div>
 
                 <p id="progresso-paginas">
-                    Página 1 de 1
+                    Página @paginaInicial de @paginaTotalInicial
                 </p>
 
             </div>
@@ -110,18 +137,74 @@
     /* CONFIGURAÇÕES */
     const pdfUrl = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Url.Content(livro.arquivoEbook)));
 
+    const codBarras = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(livro.livro.CodigoBarras.ToString()));
+
+    const paginaInicial = @paginaInicial;
+
     let pdfDocument = null;
-    let observer = null;
     let renderVersion = 0;
     let renderTasks = [];
 
-    let paginaAtual = 1;
+    let paginaAtual = paginaInicial;
+    let ultimaPaginaEnviada = '';
     let redimensionamento;
+    let verificandoPagina = false;
+
+    /* SALVAR PROGRESSO NO HISTÓRICO */
+    async function salvarProgresso() {
+
+        if (!pdfDocument) return;
+
+        const dados = {
+            codBarras: codBarras,
+            paginaAtual: paginaAtual,
+            paginaTotal: pdfDocument.numPages
+        };
+
+        const identificador =
+            `${dados.paginaAtual}-${dados.paginaTotal}`;
+
+        if (identificador === ultimaPaginaEnviada) {
+            return;
+        }
+
+        try {
+
+            const resposta = await fetch('/Livro/AtualizarProgressoEbook', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dados)
+            });
+
+            if (!resposta.ok) {
+                throw new Error(
+                    `Erro ao salvar progresso. Status: ${resposta.status}`
+                );
+            }
+
+            ultimaPaginaEnviada = identificador;
+
+            console.log('Progresso salvo:', dados);
+
+        }
+        catch (erro) {
+
+            console.error('Erro ao salvar progresso:', erro);
+
+        }
+    }
 
     /* ATUALIZAR PROGRESSO */
     function atualizarProgresso(numeroPagina) {
 
         if (!pdfDocument) return;
+
+        numeroPagina = Math.min(
+            Math.max(numeroPagina, 1),
+            pdfDocument.numPages
+        );
 
         paginaAtual = numeroPagina;
 
@@ -131,58 +214,70 @@
             (numeroPagina / totalPaginas) * 100
         );
 
-        progressoAtual.style.width = `${porcentagem}%`;
+        /* PORCENTAGEM */
         progressoPorcentagem.textContent = `${porcentagem}%`;
 
+        /* LARGURA DA BARRA */
+        progressoAtual.style.width = `${porcentagem}%`;
+
+        /* PÁGINAS */
         progressoPaginas.textContent =
             `Página ${numeroPagina} de ${totalPaginas}`;
+
+        /* SALVAR HISTÓRICO */
+        salvarProgresso();
     }
 
-    /* OBSERVAR PÁGINAS VISÍVEIS */
-    function configurarObservador() {
+    /* IDENTIFICAR A PÁGINA VISÍVEL */
+    function verificarPaginaVisivel() {
 
-        if (observer) {
-            observer.disconnect();
-        }
+        if (!pdfDocument || verificandoPagina) return;
 
-        observer = new IntersectionObserver((entries) => {
+        verificandoPagina = true;
 
-            const paginasVisiveis = entries.filter(
-                entry => entry.isIntersecting
+        const area = areaLeitura.getBoundingClientRect();
+
+        const centroArea = area.top + area.height / 2;
+
+        const paginas = pdfPages.querySelectorAll('.pdf-page');
+
+        let paginaMaisProxima = null;
+        let menorDistancia = Infinity;
+
+        paginas.forEach(canvas => {
+
+            const retangulo = canvas.getBoundingClientRect();
+
+            /* VERIFICAR SE A PÁGINA ESTÁ VISÍVEL */
+            const visivel =
+                retangulo.bottom > area.top &&
+                retangulo.top < area.bottom;
+
+            if (!visivel) return;
+
+            /* CALCULAR A DISTÂNCIA ATÉ O CENTRO DA ÁREA */
+            const centroPagina =
+                retangulo.top + retangulo.height / 2;
+
+            const distancia = Math.abs(
+                centroPagina - centroArea
             );
 
-            if (paginasVisiveis.length === 0) return;
+            if (distancia < menorDistancia) {
 
-            const centroArea =
-                areaLeitura.getBoundingClientRect().top +
-                areaLeitura.clientHeight / 2;
+                menorDistancia = distancia;
 
-            paginasVisiveis.sort((a, b) => {
+                paginaMaisProxima = Number(canvas.dataset.page);
 
-                const centroA =
-                    a.boundingClientRect.top +
-                    a.boundingClientRect.height / 2;
+            }
 
-                const centroB =
-                    b.boundingClientRect.top +
-                    b.boundingClientRect.height / 2;
-
-                return Math.abs(centroA - centroArea) -
-                    Math.abs(centroB - centroArea);
-
-            });
-
-            const numeroPagina = Number(
-                paginasVisiveis[0].target.dataset.page
-            );
-
-            atualizarProgresso(numeroPagina);
-
-        }, {
-            root: areaLeitura,
-            threshold: [0, 0.25, 0.5, 0.75, 1]
         });
 
+        if (paginaMaisProxima !== null) {
+            atualizarProgresso(paginaMaisProxima);
+        }
+
+        verificandoPagina = false;
     }
 
     /* RENDERIZAR PDF */
@@ -192,19 +287,17 @@
 
         const versaoAtual = ++renderVersion;
 
+        /* CANCELAR RENDERIZAÇÕES ANTERIORES */
         renderTasks.forEach(task => {
             task.cancel();
         });
 
         renderTasks = [];
 
-        if (observer) {
-            observer.disconnect();
-        }
+        /* GUARDAR A PÁGINA ATUAL */
+        const paginaRestaurar = paginaAtual;
 
         pdfPages.innerHTML = '';
-
-        configurarObservador();
 
         const larguraDisponivel = Math.max(
             areaLeitura.clientWidth - 60,
@@ -286,13 +379,32 @@
 
                 if (versaoAtual !== renderVersion) return;
 
-                observer.observe(canvas);
+            }
+
+            /* RECUPERAR A PÁGINA SALVA */
+            const paginaDestino = Math.min(
+                Math.max(paginaRestaurar, 1),
+                pdfDocument.numPages
+            );
+
+            const canvasDestino = pdfPages.querySelector(
+                `[data-page="${paginaDestino}"]`
+            );
+
+            if (canvasDestino) {
+
+                areaLeitura.scrollTop +=
+                    canvasDestino.getBoundingClientRect().top -
+                    areaLeitura.getBoundingClientRect().top;
 
             }
 
-            atualizarProgresso(1);
+            /* ATUALIZAR PROGRESSO E SALVAR TOTAL REAL */
+            atualizarProgresso(paginaDestino);
 
             console.log('Todas as páginas foram renderizadas!');
+            console.log('Página inicial:', paginaDestino);
+            console.log('Total de páginas:', pdfDocument.numPages);
 
         }
         catch (erro) {
@@ -347,6 +459,13 @@
             console.log('PDF carregado com sucesso!');
             console.log('Total de páginas:', pdfDocument.numPages);
 
+            /* VALIDAR PÁGINA SALVA */
+            paginaAtual = Math.min(
+                Math.max(paginaInicial, 1),
+                pdfDocument.numPages
+            );
+
+            /* RENDERIZAR E SALVAR O TOTAL REAL */
             await renderizarPDF();
 
         }
@@ -363,6 +482,15 @@
         }
 
     }
+
+    /* IDENTIFICAR A PÁGINA DURANTE A ROLAGEM */
+    areaLeitura.addEventListener('scroll', () => {
+
+        requestAnimationFrame(() => {
+            verificarPaginaVisivel();
+        });
+
+    });
 
     /* REAJUSTAR QUANDO A TELA MUDAR DE TAMANHO */
     window.addEventListener('resize', () => {
