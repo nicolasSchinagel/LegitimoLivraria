@@ -1,0 +1,267 @@
+﻿
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f3f3f3;
+    color: #252525;
+    overflow: hidden;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+/* CONTAINER PRINCIPAL */
+
+.leitor-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* BARRA SUPERIOR */
+
+.leitor-header {
+    height: 85px;
+    min-height: 85px;
+    background: #fff;
+    border-bottom: 1px solid #e7e7e7;
+    display: flex;
+    align-items: center;
+    padding: 0 35px;
+    gap: 30px;
+}
+
+.voltar-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: #555;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+    .voltar-btn span {
+        font-size: 23px;
+    }
+
+.livro-info {
+    flex: 1;
+}
+
+    .livro-info h1 {
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    .livro-info p {
+        font-size: 12px;
+        color: #888;
+        margin-top: 5px;
+    }
+
+/* CONTEÚDO */
+
+.leitor-content {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* LATERAL */
+
+.leitor-sidebar {
+    width: 265px;
+    min-width: 265px;
+    background: #fff;
+    border-right: 1px solid #e7e7e7;
+    padding: 30px 22px;
+    overflow-y: auto;
+}
+
+/* CAPA */
+
+.livro-capa {
+    width: 150px;
+    height: 210px;
+    margin: 0 auto 30px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px #0002;
+}
+
+    .livro-capa img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+/* PROGRESSO */
+
+.progresso-container {
+    margin-bottom: 30px;
+}
+
+.progresso-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+    .progresso-info strong {
+        color: #a47b40;
+    }
+
+.progresso-barra {
+    width: 100%;
+    height: 6px;
+    background: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progresso-atual {
+    width: 0%;
+    height: 100%;
+    background: #a47b40;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.progresso-container p {
+    font-size: 11px;
+    color: #999;
+    margin-top: 9px;
+}
+
+/* DETALHES DO LIVRO */
+
+.livro-detalhes {
+    border-top: 1px solid #eee;
+    padding-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.detalhe-item {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+    .detalhe-item span {
+        font-size: 11px;
+        color: #999;
+        font-weight: 500;
+    }
+
+    .detalhe-item strong {
+        font-size: 13px;
+        color: #333;
+        font-weight: 600;
+        line-height: 1.5;
+    }
+
+/* ÁREA DE LEITURA */
+
+.area-leitura {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    height: 0;
+    display: block;
+    padding: 30px;
+    background: #eaeaea;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* CONTAINER DAS PÁGINAS */
+
+.pdf-container {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#pdf-pages {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding-bottom: 40px;
+}
+
+/* PÁGINAS DO PDF */
+
+.pdf-page {
+    display: block;
+    flex-shrink: 0;
+    max-width: 100%;
+    height: auto;
+    background: #fff;
+    box-shadow: 0 3px 15px #00000015;
+}
+
+/* CARREGAMENTO */
+
+.pdf-loading {
+    margin-top: 50px;
+    font-size: 14px;
+    color: #888;
+}
+
+/* ERRO */
+
+.pdf-error {
+    margin-top: 50px;
+    color: #b33;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 768px) {
+
+    .leitor-header {
+        height: 70px;
+        min-height: 70px;
+        padding: 0 15px;
+        gap: 15px;
+    }
+
+    .leitor-sidebar {
+        display: none;
+    }
+
+    .area-leitura {
+        padding: 15px 10px;
+    }
+
+    #pdf-pages {
+        gap: 15px;
+    }
+
+    .livro-info h1 {
+        font-size: 14px;
+    }
+}

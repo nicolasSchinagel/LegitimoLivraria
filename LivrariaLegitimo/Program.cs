@@ -28,6 +28,7 @@ builder.Services.AddScoped<LivrariaLegitimo.Libraries.Login.LoginFuncionario>();
 builder.Services.AddScoped<LivrariaLegitimo.Repository.LivroRepository>();
 builder.Services.AddScoped<VendaRepository>();
 builder.Services.AddScoped<FuncionarioRepository>();
+builder.Services.AddScoped<AvaliacaoRepository>();
 
 
 // colocar outros serviços aqui depois

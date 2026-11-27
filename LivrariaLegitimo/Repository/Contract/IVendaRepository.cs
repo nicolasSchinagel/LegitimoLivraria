@@ -1,4 +1,5 @@
 ﻿using LivrariaLegitimo.Models;
+using LivrariaLegitimo.ViewModels;
 using X.PagedList;
 
 namespace LivrariaLegitimo.Repository.Contract
@@ -7,6 +8,6 @@ namespace LivrariaLegitimo.Repository.Contract
     {
         public void Cadastrar(Venda venda);
         public (string tipo, bool existencia) ExisteVenda(int idCli, decimal codBarras);
-        IEnumerable<ItemVenda> ObterListaPorNumero(int numeroVenad);
+        IEnumerable<MinhaCompraViewModel> ObterItensVenda(int idCli);
     }
 }

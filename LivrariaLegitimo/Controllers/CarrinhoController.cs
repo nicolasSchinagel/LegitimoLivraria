@@ -165,5 +165,14 @@ namespace LivrariaLegitimo.Controllers
 
             return RedirectToAction(nameof(Carrinho));
         }
+
+        public IActionResult MinhasCompras()
+        {
+            int idCli = _loginCliente.GetCliente().IdCli;
+
+            IEnumerable<MinhaCompraViewModel> compras = (IEnumerable<MinhaCompraViewModel>)_vendaRepository.ObterItensVenda(idCli);
+
+            return View(compras);
+        }
     }
 }

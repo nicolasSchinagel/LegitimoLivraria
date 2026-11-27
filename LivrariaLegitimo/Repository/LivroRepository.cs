@@ -36,7 +36,7 @@ namespace LivrariaLegitimo.Repository
             {
                 conexao.Open();
                 string caminhoImagem = "";
-                string caminhoEbook = "";
+                string? caminhoEbook = null;
                 decimal mediaLivro = 0;
                 int numeroVendas = 0;
                 MySqlCommand cmd = new MySqlCommand("select li.*, va.MediaAvaliacao, vv.NumeroVendas from ViewLivro li left join ViewLivroAvaliacoes va on li.codBarras = va.codBarras left join ViewLivroVendas vv on li.codBarras = vv.codBarras where(li.CodBarras = @CodBarras)", conexao);
@@ -63,6 +63,7 @@ namespace LivrariaLegitimo.Repository
                     livro.Literatura = (string)(dr["Literatura"]);
                     livro.Tamanho = (string)(dr["Tamanho"]);
                     caminhoImagem = (string)(dr["Imagem"]);
+                    caminhoEbook = dr["ArquivoEbook"] == DBNull.Value ? null : (string)dr["ArquivoEbook"];
                     livro.Quantidade = (int)(dr["Quantidade"]);
                     livro.PromocaoPorcentagem = (int)(dr["PromocaoPorcentagem"]);
                     livro.Capacidade = (int)(dr["capacidadeEstoque"]);

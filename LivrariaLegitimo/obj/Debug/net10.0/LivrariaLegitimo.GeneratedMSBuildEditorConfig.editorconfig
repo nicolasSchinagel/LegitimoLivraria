@@ -83,8 +83,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FycmluaG9cRWRpdGFyRW5kZXJlY28uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Carrinho/reserva.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FycmluaG9ccmVzZXJ2YS5jc2h0bWw=
+[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Carrinho/MinhasCompras.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FycmluaG9cTWluaGFzQ29tcHJhcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Cliente/Atualizar.cshtml]
@@ -113,6 +113,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Default/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVmYXVsdFxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Livro/Ebook.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGl2cm9cRWJvb2suY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lizsc/OneDrive/Pictures/Nic/TCC/testesLegitimo/LegitimoLivraria/LivrariaLegitimo/Views/Livro/ListaProcura.cshtml]

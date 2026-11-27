@@ -48,7 +48,7 @@ namespace LivrariaLegitimo.Models
     public class ItemVenda
     {
         [Display(Name = "Número da Venda")]
-        public int NumVenda { get; set; }
+        public int? NumVenda { get; set; }
 
         [Display(Name = "Valor do Item")]
         public decimal ValorItem { get; set; }

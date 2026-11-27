@@ -1,0 +1,52 @@
+﻿@model IEnumerable<LivrariaLegitimo.ViewModels.MinhaCompraViewModel>
+@inject LivrariaLegitimo.Repository.AvaliacaoRepository _avaliacaoRepository
+<link rel="stylesheet" href="~/css/minhasCompras.css" asp-append-version="true" />
+<main class="compras-main">
+
+    <h1 class="compras-titulo">Minhas Compras</h1>
+
+    <section class="compras-lista">
+        @foreach(var item in Model)
+        {
+            <a class="compra-card no-underline" asp-area="" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@item.ISBN.ToString()">
+
+                <img src="@item.ImagemPri" class="compra-card-capa" alt="Capa do livro Drácula">
+
+                <div class="compra-card-livro">
+                    <h2 class="compra-card-livro-titulo">@item.Nome</h2>
+
+                    <div class="compra-card-livro-informacoes">
+                        <p>@item.Autor</p>
+                        <p>ISBN: @item.ISBN</p>
+                        <p>@item.Editora</p>
+                    </div>
+                </div>
+
+                <div class="compra-card-dados">
+                    <p>Nota fiscal: @item.NotaFiscal</p>
+                    <p>R$@(item.PrecoPago) cada</p>
+                    <p>@item.DataCompra</p>
+                    <p>@item.Quantidade unidades</p>
+                </div>
+
+                @if (_avaliacaoRepository.ExisteAvaliacaoConta(item.ISBN.ToString()))
+                {
+                    <div class="compra-card-avaliacao disponivel">
+                        <h3 href="#">Já avaliado</h3>
+                    </div>
+                }
+                else
+                {
+                    <div class="compra-card-avaliacao disponivel">
+                        <h3 href="#">*Avaliação disponível</h3>
+                    </div>
+                }
+                
+
+            </a>
+        }
+        
+
+    </section>
+
+</main>

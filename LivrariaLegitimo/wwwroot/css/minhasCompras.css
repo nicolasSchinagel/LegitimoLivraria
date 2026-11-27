@@ -1,0 +1,183 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.compras-main {
+    width: 100%;
+    min-height: 100vh;
+    padding: 32px 0 23px;
+}
+
+.compras-titulo {
+    text-align: center;
+    font-size: 29px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 47px;
+}
+
+.compras-lista {
+    width: 84.2%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.compra-card {
+    width: 100%;
+    height: 160px;
+    padding: 13px 20px;
+    display: grid;
+    grid-template-columns: 90px 146px 160px minmax(0, 1fr);
+    column-gap: 20px;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-radius: 13px;
+}
+
+.compra-card-capa {
+    width: 90px;
+    height: 135px;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.compra-card-livro {
+    height: 135px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 14px 0 11px;
+}
+
+.compra-card-livro-titulo {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111111;
+}
+
+.compra-card-livro-informacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+    .compra-card-livro-informacoes p {
+        font-size: 14px;
+        color: #111111;
+        line-height: 17px;
+    }
+
+.compra-card-dados {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+    .compra-card-dados p {
+        font-size: 12px;
+        color: #555555;
+        line-height: 14px;
+        white-space: nowrap;
+    }
+
+.compra-card-avaliacao {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 5px;
+}
+
+    .compra-card-avaliacao span,
+    .compra-card-avaliacao h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #176900;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+        .compra-card-avaliacao h3:hover {
+            text-decoration: underline;
+        }
+
+/* Responsividade */
+
+@media (max-width: 900px) {
+
+    .compras-lista {
+        width: 92%;
+    }
+
+    .compra-card {
+        grid-template-columns: 75px 130px 140px minmax(0, 1fr);
+        column-gap: 14px;
+        padding: 13px;
+    }
+
+    .compra-card-capa {
+        width: 75px;
+        height: 112px;
+    }
+
+    .compra-card-livro {
+        height: 112px;
+    }
+
+    .compra-card-avaliacao span,
+    .compra-card-avaliacao a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .compras-main {
+        padding-top: 25px;
+    }
+
+    .compras-titulo {
+        font-size: 25px;
+        margin-bottom: 30px;
+    }
+
+    .compra-card {
+        height: auto;
+        min-height: 160px;
+        grid-template-columns: 75px minmax(0, 1fr);
+        gap: 12px;
+        padding: 13px;
+    }
+
+    .compra-card-capa {
+        grid-row: span 2;
+    }
+
+    .compra-card-livro {
+        height: 112px;
+        padding: 5px 0;
+    }
+
+    .compra-card-dados {
+        grid-column: 2;
+        align-items: flex-start;
+        padding-bottom: 5px;
+    }
+
+    .compra-card-avaliacao {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        padding: 5px 0;
+    }
+}

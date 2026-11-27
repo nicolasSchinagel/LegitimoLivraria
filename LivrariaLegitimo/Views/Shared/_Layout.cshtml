@@ -151,16 +151,17 @@
                         <a class="lateral-bar-content-block-list-item">Bem avaliados</a>
                     </div>
                 </div>
-                <div class="lateral-bar-content-block">
-                    <h2 class="lateral-bar-content-block-title">Para você</h2>
-                    <div class="lateral-bar-content-block-list">
-                        <a class="lateral-bar-content-block-list-item">Histórico de Navegação</a>
-                        <a class="lateral-bar-content-block-list-item">Minhas compras</a>
-                        <a class="lateral-bar-content-block-list-item">Meus cupons</a>
-                        <a class="lateral-bar-content-block-list-item">Avaliações disponíveis</a>
-                        <a class="lateral-bar-content-block-list-item">Favoritos</a>
+                    @if(_LoginCliente.GetCliente() != null)
+                    {
+                    <div class="lateral-bar-content-block">
+                        <h2 class="lateral-bar-content-block-title">Para você</h2>
+                        <div class="lateral-bar-content-block-list">
+                            <a class="lateral-bar-content-block-list-item no-underline" asp-area="" asp-controller="Carrinho" asp-action="MinhasCompras">Minhas compras</a>
+                            <a class="lateral-bar-content-block-list-item">Carrinho</a>
+                        </div>
                     </div>
-                </div>
+                    }
+                    
                     @if(_LoginCliente.GetCliente() != null)
                     {
                     <div class="lateral-bar-content-block">

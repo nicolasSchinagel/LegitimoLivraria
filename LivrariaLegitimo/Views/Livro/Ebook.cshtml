@@ -1,0 +1,385 @@
+﻿@model LivrariaLegitimo.ViewModels.LivroViewModel
+@{
+    var livro = Model.ObterLivro.Value;
+}
+
+
+<link rel="stylesheet" href="~/css/ebook.css" asp-append-version="true" />
+
+<main class="leitor-container">
+
+    <!-- BARRA SUPERIOR -->
+    <section class="leitor-header">
+
+        <button class="voltar-btn" onclick="history.back()">
+            <span>←</span>
+            Voltar
+        </button>
+
+        <div class="livro-info">
+            <h1>@livro.livro.Nome</h1>
+            <p>@livro.livro.Autor</p>
+        </div>
+
+    </section>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <section class="leitor-content">
+
+        <!-- LATERAL -->
+        <aside class="leitor-sidebar">
+
+            <!-- CAPA -->
+            <div class="livro-capa">
+                <img src="@livro.arquivoImagem"
+                     alt="Capa do livro @livro.livro.Nome">
+            </div>
+
+            <!-- PROGRESSO -->
+            <div class="progresso-container">
+
+                <div class="progresso-info">
+                    <span>Seu progresso</span>
+                    <strong id="progresso-porcentagem">0%</strong>
+                </div>
+
+                <div class="progresso-barra">
+                    <div class="progresso-atual" id="progresso-atual">
+                    </div>
+                </div>
+
+                <p id="progresso-paginas">
+                    Página 1 de 1
+                </p>
+
+            </div>
+
+            <!-- INFORMAÇÕES DO LIVRO -->
+            <div class="livro-detalhes">
+
+                <div class="detalhe-item">
+                    <span>Editora</span>
+                    <strong>@livro.livro.Editora</strong>
+                </div>
+
+                <div class="detalhe-item">
+                    <span>Autor</span>
+                    <strong>@livro.livro.Autor</strong>
+                </div>
+
+            </div>
+
+        </aside>
+
+        <!-- ÁREA DE LEITURA -->
+        <section class="area-leitura" id="area-leitura">
+
+            <div class="pdf-container">
+
+                <div id="pdf-pages">
+                    <p class="pdf-loading">
+                        Carregando seu ebook...
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+<!-- PDF.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<script>
+
+    /* CONFIGURAÇÃO DO PDF.JS */
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    /* ELEMENTOS */
+    const pdfPages = document.getElementById('pdf-pages');
+    const areaLeitura = document.getElementById('area-leitura');
+
+    const progressoAtual = document.getElementById('progresso-atual');
+    const progressoPorcentagem = document.getElementById('progresso-porcentagem');
+    const progressoPaginas = document.getElementById('progresso-paginas');
+
+    /* CONFIGURAÇÕES */
+    const pdfUrl = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Url.Content(livro.arquivoEbook)));
+
+    let pdfDocument = null;
+    let observer = null;
+    let renderVersion = 0;
+    let renderTasks = [];
+
+    let paginaAtual = 1;
+    let redimensionamento;
+
+    /* ATUALIZAR PROGRESSO */
+    function atualizarProgresso(numeroPagina) {
+
+        if (!pdfDocument) return;
+
+        paginaAtual = numeroPagina;
+
+        const totalPaginas = pdfDocument.numPages;
+
+        const porcentagem = Math.round(
+            (numeroPagina / totalPaginas) * 100
+        );
+
+        progressoAtual.style.width = `${porcentagem}%`;
+        progressoPorcentagem.textContent = `${porcentagem}%`;
+
+        progressoPaginas.textContent =
+            `Página ${numeroPagina} de ${totalPaginas}`;
+    }
+
+    /* OBSERVAR PÁGINAS VISÍVEIS */
+    function configurarObservador() {
+
+        if (observer) {
+            observer.disconnect();
+        }
+
+        observer = new IntersectionObserver((entries) => {
+
+            const paginasVisiveis = entries.filter(
+                entry => entry.isIntersecting
+            );
+
+            if (paginasVisiveis.length === 0) return;
+
+            const centroArea =
+                areaLeitura.getBoundingClientRect().top +
+                areaLeitura.clientHeight / 2;
+
+            paginasVisiveis.sort((a, b) => {
+
+                const centroA =
+                    a.boundingClientRect.top +
+                    a.boundingClientRect.height / 2;
+
+                const centroB =
+                    b.boundingClientRect.top +
+                    b.boundingClientRect.height / 2;
+
+                return Math.abs(centroA - centroArea) -
+                    Math.abs(centroB - centroArea);
+
+            });
+
+            const numeroPagina = Number(
+                paginasVisiveis[0].target.dataset.page
+            );
+
+            atualizarProgresso(numeroPagina);
+
+        }, {
+            root: areaLeitura,
+            threshold: [0, 0.25, 0.5, 0.75, 1]
+        });
+
+    }
+
+    /* RENDERIZAR PDF */
+    async function renderizarPDF() {
+
+        if (!pdfDocument) return;
+
+        const versaoAtual = ++renderVersion;
+
+        renderTasks.forEach(task => {
+            task.cancel();
+        });
+
+        renderTasks = [];
+
+        if (observer) {
+            observer.disconnect();
+        }
+
+        pdfPages.innerHTML = '';
+
+        configurarObservador();
+
+        const larguraDisponivel = Math.max(
+            areaLeitura.clientWidth - 60,
+            100
+        );
+
+        const proporcaoTela = Math.min(
+            window.devicePixelRatio || 1,
+            2
+        );
+
+        try {
+
+            for (
+                let numeroPagina = 1;
+                numeroPagina <= pdfDocument.numPages;
+                numeroPagina++
+            ) {
+
+                if (versaoAtual !== renderVersion) return;
+
+                const pagina = await pdfDocument.getPage(numeroPagina);
+
+                if (versaoAtual !== renderVersion) return;
+
+                const viewportOriginal = pagina.getViewport({
+                    scale: 1
+                });
+
+                const escala = Math.min(
+                    1.25,
+                    larguraDisponivel / viewportOriginal.width
+                );
+
+                const viewport = pagina.getViewport({
+                    scale: escala
+                });
+
+                const canvas = document.createElement('canvas');
+
+                canvas.className = 'pdf-page';
+                canvas.dataset.page = numeroPagina;
+
+                const contexto = canvas.getContext('2d');
+
+                canvas.width = Math.floor(
+                    viewport.width * proporcaoTela
+                );
+
+                canvas.height = Math.floor(
+                    viewport.height * proporcaoTela
+                );
+
+                canvas.style.width = `${viewport.width}px`;
+                canvas.style.height = `${viewport.height}px`;
+
+                pdfPages.appendChild(canvas);
+
+                const renderTask = pagina.render({
+
+                    canvasContext: contexto,
+
+                    viewport: viewport,
+
+                    transform: [
+                        proporcaoTela,
+                        0,
+                        0,
+                        proporcaoTela,
+                        0,
+                        0
+                    ]
+
+                });
+
+                renderTasks.push(renderTask);
+
+                await renderTask.promise;
+
+                if (versaoAtual !== renderVersion) return;
+
+                observer.observe(canvas);
+
+            }
+
+            atualizarProgresso(1);
+
+            console.log('Todas as páginas foram renderizadas!');
+
+        }
+        catch (erro) {
+
+            if (erro.name === 'RenderingCancelledException') {
+                return;
+            }
+
+            console.error('Erro ao renderizar PDF:', erro);
+
+            if (versaoAtual === renderVersion) {
+
+                pdfPages.innerHTML = `
+                    <p class="pdf-error">
+                        Não foi possível renderizar o ebook.
+                    </p>
+                `;
+
+            }
+
+        }
+
+    }
+
+    /* CARREGAR PDF */
+    async function carregarPDF() {
+
+        try {
+
+            console.log('Caminho do PDF:', pdfUrl);
+
+            if (!pdfUrl) {
+                throw new Error('O caminho do PDF está vazio.');
+            }
+
+            if (typeof pdfjsLib === 'undefined') {
+                throw new Error('A biblioteca PDF.js não foi carregada.');
+            }
+
+            pdfPages.innerHTML = `
+                <p class="pdf-loading">
+                    Carregando seu ebook...
+                </p>
+            `;
+
+            console.log('Buscando documento PDF...');
+
+            pdfDocument = await pdfjsLib.getDocument({
+                url: pdfUrl
+            }).promise;
+
+            console.log('PDF carregado com sucesso!');
+            console.log('Total de páginas:', pdfDocument.numPages);
+
+            await renderizarPDF();
+
+        }
+        catch (erro) {
+
+            console.error('Erro ao carregar PDF:', erro);
+
+            pdfPages.innerHTML = `
+                <p class="pdf-error">
+                    Não foi possível carregar seu ebook.
+                </p>
+            `;
+
+        }
+
+    }
+
+    /* REAJUSTAR QUANDO A TELA MUDAR DE TAMANHO */
+    window.addEventListener('resize', () => {
+
+        clearTimeout(redimensionamento);
+
+        redimensionamento = setTimeout(() => {
+
+            if (pdfDocument) {
+                renderizarPDF();
+            }
+
+        }, 300);
+
+    });
+
+    /* INICIALIZAÇÃO */
+    carregarPDF();
+
+</script>

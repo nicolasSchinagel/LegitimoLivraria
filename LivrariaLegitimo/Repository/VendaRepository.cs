@@ -1,6 +1,7 @@
 ﻿using LivrariaLegitimo.Libraries.Login;
 using LivrariaLegitimo.Models;
 using LivrariaLegitimo.Repository.Contract;
+using LivrariaLegitimo.ViewModels;
 using MySql.Data.MySqlClient;
 using System.Data;
 namespace LivrariaLegitimo.Repository
@@ -126,10 +127,6 @@ namespace LivrariaLegitimo.Repository
             }
         }
 
-        public IEnumerable<ItemVenda> ObterListaPorNumero(int numeroVenda)
-        {
-            throw new NotImplementedException();
-        }
 
         public (string tipo, bool existencia) ExisteVenda(int idCli, decimal codBarras)
         {
@@ -153,6 +150,44 @@ namespace LivrariaLegitimo.Repository
                 return (tipo, existencia);
                 
             }
+        }
+
+        public IEnumerable<MinhaCompraViewModel> ObterItensVenda(int idCli)
+        {
+            List<MinhaCompraViewModel> itens = new List<MinhaCompraViewModel>();
+
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from MinhaCompra where(idCli = @IdCli)", conexao);
+                cmd.Parameters.AddWithValue("@IdCli", idCli);
+
+                MySqlDataReader dr;
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (dr.Read())
+                {
+                    MinhaCompraViewModel item = new MinhaCompraViewModel
+                    {
+                        IdCli = Convert.ToInt32(dr["idCli"]),
+                        Nome = dr["Nome"].ToString(),
+                        Autor = dr["Autor"].ToString(),
+                        Editora = dr["Editora"].ToString(),
+                        ISBN = Convert.ToDecimal(dr["ISBN"]),
+                        ImagemPri = dr["imagemPri"].ToString(),
+                        NotaFiscal = Convert.ToInt32(dr["notaFiscal"]),
+                        PrecoPago = Convert.ToDecimal(dr["PrecoPago"]),
+                        DataCompra = Convert.ToDateTime(dr["DataCompra"]),
+                        Quantidade = Convert.ToInt32(dr["Quantidade"])
+                    };
+
+                    itens.Add(item);
+                }
+
+                dr.Close();
+            }
+
+            return itens;
         }
     }
 }

@@ -18,7 +18,6 @@
     <Folder Include="NovaPasta\" />
     <Folder Include="wwwroot\img\" />
     <Folder Include="wwwroot\capas\" />
-    <Folder Include="wwwroot\ebooks\" />
   </ItemGroup>
 
   <ItemGroup>

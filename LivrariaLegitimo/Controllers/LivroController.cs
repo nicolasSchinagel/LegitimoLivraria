@@ -101,5 +101,24 @@ namespace LivrariaLegitimo.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult Ebook(string codBarras)
+        {
+            var livro = _livroRepository.ObterLivro(codBarras);
+            var quantidades = _avaliacaoRepository.ObterQuantidadesAvaliacaoLivro(codBarras);
+            var avaliacoes = _avaliacaoRepository.ObterTodasAvaliacoes(codBarras);
+            var existeAvaliacao = _avaliacaoRepository.ExisteAvaliacaoConta(codBarras);
+            var aleatorios = _livroRepository.AleatorizarLivros(codBarras);
+
+            var model = new LivroViewModel
+            {
+                ObterLivro = livro,
+                ObterQuantidadesAvaliacaoLivro = quantidades,
+                ObterTodasAvaliacoes = avaliacoes,
+                ExisteAvaliacaoConta = existeAvaliacao,
+                Aleatorios = aleatorios,
+            };
+            return View(model);
+        }
     }
 }
