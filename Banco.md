@@ -1,4 +1,5 @@
-Arquivo do Banco de dados - Nome - ArquivoLivrariaDefinitivo:
+Arquivo do Banco de dados - Nome - ArquivoLivrariaPremium:
+
 create database legitimoLivros;
 -- drop database legitimoLivros;
 use legitimoLivros;
@@ -86,7 +87,7 @@ cep varchar(8) not null,
 senha varchar(100) not null,
 numeroEndereco int not null,
 ComplementoEndereco varchar(100),
-fimContrato date not null ,
+fimContrato date null ,
 foreign key(cep) references tbEndereco(cep),
 foreign key(codTel) references tbTel(idTel),
 foreign key(codEmail) references tbEmail(codEmail)
@@ -188,6 +189,7 @@ qtdTotal int not null default(0),
 foreign key(idCli) references tbCliente(idCli),
 foreign key(idFuncionario) references tbFuncionario(idFuncionario)
 );
+
 
 create table tbItemVenda(
 numeroVenda int,
@@ -344,7 +346,7 @@ select * from tbFuncionario;
  alter table tbLivro_historico drop primary key;
  alter table tbLivro_historico add Idhistorico int auto_increment primary key;
  describe tbLivro_historico;
- 
+select * from tbLivro_historico; 
  -- Fazendo procedure de armazenar histórico
  DELIMITER $$
  create procedure spArmazenarHistorico(
@@ -360,7 +362,7 @@ select * from tbFuncionario;
  end
  $$
 
- 
+
  -- Fazendo procedure de mudar preço
 DELIMITER $$
 create procedure spChangePrice(
@@ -621,7 +623,7 @@ declare vidCli int;
 end
 $$
 -- chamando procedure
-call spCadastroClientePF('Enildo', 11111111111,'Enildo@gmail.com', 55119234567,'enildo123','05088901', 105, 'Deixar entregas no porão', 'Rua Guaipá', 'Vila Leopoldina', 'São Paulo', 'SP', '1975-06-26');
+call spCadastroClientePF('Carlos', 11111111111,'Carlos@gmail.com', 55119234567,'enildo123','05088901', 105, 'Deixar entregas no porão', 'Rua Guaipá', 'Vila Leopoldina', 'São Paulo', 'SP', '1975-06-26');
 select * from tbClientePFG;
 
 
@@ -713,17 +715,17 @@ begin
        end if;
        call spCriarEndereco(vCEP, vLogradouro, vBairro, vCidade, vEstado);
        insert into tbFuncionario(nome, cpf, codTel, codEmail, cargo, dataAdmissao, fimContrato, CEP, senha, numeroEndereco, complementoEndereco) values(vNome, vCPF, vcodTel, vcodEmail, vCargo, vDataAdmissao, vFimContrato, vCEP, vSenha, vNumeroEndereco, vComplementoEndereco);
-       
+
    end if;
 end 
 $$
 -- chamando procedure
-call spcadastrofuncionario('Maria oliveira', 98765432100, 11999998888, 'maria@email.com', 'gerente de compras', '2026-08-02', '2027-08-02', '01234567', 'SP', 'São Paulo', 'Centro', 'Avenida paulista', 'senha456', 200, 'apto 45');
-call spcadastrofuncionario('joão da silva', 12345678901, 11987654321, 'joao@email.com', 'gerente comercial', '2026-08-02', '2027-08-02', '12345678', 'SP', 'São Paulo', 'Centro', 'Rua das flores', 'senha123', 100, 'apto 12');
-
+call spcadastrofuncionario('Maria oliveira', 98765432100, 11999998888, 'maria@email.com', 'gerente de compras', '2026-08-02', '2027-08-02', '01234567', 'SP', 'São Paulo', 'Centro', 'Avenida paulista', 'Bh18659298Getkap', 200, 'apto 45');
+call spcadastrofuncionario('joão da silva', 12345678901, 11987654321, 'joao@email.com', 'gerente comercial', '2026-08-02', '2027-08-02', '12345678', 'SP', 'São Paulo', 'Centro', 'Rua das flores', 'kL96449287huYEws', 100, 'apto 12');
+call spcadastrofuncionario('Nícolas Schinagel', 57053591875, 11909090900, 'schinagel@gmail.com', 'administrador total', '2022-10-08', null, '12345678', 'SP', 'São Paulo', 'Centro', 'Rua das flores',  'Cg99881234Soruke', 157, 'apto 18'); 
 -- Chamando mudança de preço
 call spChangePrice(1234567891234, "Yukiguni", 140.55, 30, 1);
-select * from ViewFuncionario;
+
 
 
 -- procedure para adicionar no estoque
@@ -741,7 +743,7 @@ begin
        select capacidadeEstoque into vCapacidade from tbEstoque where codBarras = vCodBarras;
        if((vQtdAdd + vQtdAtual) <= vCapacidade) then
            update tbEstoque set qtd = qtd + vQtdAdd where codBarras = vCodBarras;
-       end if;
+       end if; -- pensando em adicionar condicional else com volta de erro
    end if;
 end
 $$
@@ -788,6 +790,7 @@ call spCadastroVenda(987654321, 11111111111, null, 5, "débito", 453914880343646
 -- drop procedure spCadastroItemVenda;
 -- pegar tipo capa
 DELIMITER $$
+
 create procedure spCadastroItemVenda(
 vNumeroVenda int,
 vCodBarras decimal(13,0),
@@ -796,11 +799,13 @@ vQtdItem int
 begin
    declare vValorItem decimal(10,2);
    declare vTipoLivro varchar(20);
+   declare vPromocao decimal(5,2);
    if exists(select 1 from tbLivro where codBarras = vCodBarras)
    then
       if exists( select 1 from tbVenda where numeroVenda = vNumeroVenda)
       then
-      select preco, Tipo into vValorItem, vTipoLivro from tbLivro where codBarras = vCodBarras;
+      select preco, Tipo, PromocaoPorcentagem into vValorItem, vTipoLivro, vPromocao from tbLivro where codBarras = vCodBarras;
+      set vValorItem = round(vValorItem * (1 - vPromocao / 100), 2);
       -- pegar tipo da capa para anular perda no estoque
       if vTipoLivro <> 'ebook' then
          update tbEstoque set qtd = qtd - vQtdItem where codBarras = vCodBarras;
@@ -812,7 +817,7 @@ begin
 end 
 $$
 select * from tbVenda;
-call spCadastroItemVenda(1, 1234567891234, 3);
+call spCadastroItemVenda(1, 9788581862538, 2);
 select * from tbItemVenda;
 select * from tbLivro;
 
@@ -843,7 +848,6 @@ select * from tbCliente;
 select * from tbAvaliacao;
 call spFazerAvaliacao(1234567891234, 1, 4, "Achei o conteúdo do livro muito bom, material é resistente e duraduouro", "Produto Maravilhoso" );
 call spFazerAvaliacao(1234567891234, 2, 4, "É uma história meio triste, mas seus aspectos literários são dignos de uma boa leitura", "Boa escolha para ler" );
-
 
 -- procedure de remover avaliação, talvez usarei mas sem certeza
 DELIMITER $$
@@ -930,8 +934,8 @@ select * from ViewLivroQuantidadeAvaliacoes;
 
 select * from ViewLivro;
 
-
 DELIMITER $$
+
 create procedure spAtualizarCliente(
 vIdCli int,
 vSenha varchar(100),
@@ -962,14 +966,14 @@ declare vcodTel int;
              set vcodTel = last_insert_id();
           end if;
           call spCriarEndereco(vCEP, vLogradouro, vBairro, vCidade, vEstado);
-          update tbCliente set nome = nome, codEmail = vcodEmail, codTel = vcodTel, CEP = vCEP, senha = vSenha, numeroEndereco = vNumeroEndereco, complementoEndereco = vComplementoEndereco where idCli = vIdCli;
+          update tbCliente set nome = nome, codEmail = vcodEmail, codTel = vcodTel, CEP = vCEP, senha = ifnull(vSenha, senha), numeroEndereco = vNumeroEndereco, complementoEndereco = vComplementoEndereco where idCli = vIdCli;
       end if;
    end if;
 end
 $$
 select * from ViewCliente;
 
-call spAtualizarCliente(1, 'enildo123', 55119234567, 'Enildoboneco@gmail.com', '05088901', 105, 'Deixar entregas no porão', 'RUA GUAIPÁ', 'VILA LEOPOLDINA', 'SÃO PAULO', 'SP');
+call spAtualizarCliente(1, 'enildo123', 55119234567, 'Carlosboneco@gmail.com', '05088901', 105, 'Deixar entregas no porão', 'RUA GUAIPÁ', 'VILA LEOPOLDINA', 'SÃO PAULO', 'SP');
 
 DELIMITER $$
 
@@ -999,6 +1003,64 @@ $$
 call spEditarEndereco(1, "04567000", "Rua Augusta", "Consolação", "São Paulo", "SP", 850, "Apartamento 32");
 select * from ViewCliente;
 
+
+
+DELIMITER $$
+
+CREATE PROCEDURE spAtualizarFuncionario(
+    vIdFuncionario int,
+    vSenha varchar(100),
+    vNumTel bigint,
+    vEmail varchar(100),
+    vCargo enum("administrador total", "gerente de compras", "gerente de contratação", "gerente comercial", "caixa"),
+    vFimContrato date,
+    vCEP varchar(8),
+    vEstado char(2),
+    vCidade varchar(100),
+    vBairro varchar(100),
+    vLogradouro varchar(100),
+    vNumeroEndereco int,
+    vComplementoEndereco varchar(100)
+)
+begin
+    declare vcodEmail int default null;
+    declare vcodTel int default null;
+
+    if exists(select 1 from tbFuncionario where idFuncionario = vIdFuncionario) then
+
+        if not exists(select 1 from ViewFuncionario where (Email = vEmail or numTel = vNumTel) and idFuncionario <> vIdFuncionario) then
+
+            set vcodEmail = (select codEmail from tbEmail where Email = vEmail limit 1);
+            set vcodTel = (select idTel from tbTel where numTel = vNumTel limit 1);
+
+            if vcodEmail is null then
+                insert into tbEmail(Email) values(vEmail);
+                set vcodEmail = last_insert_id();
+            end if;
+
+            if vcodTel is null then
+                insert into tbTel(numTel) values(vNumTel);
+                set vcodTel = last_insert_id();
+            end if;
+
+            call spCriarEndereco(vCEP, vLogradouro, vBairro, vCidade, vEstado);
+
+            update tbFuncionario
+            set senha = IFNULL(vSenha, senha),
+                codTel = vcodTel,
+                codEmail = vcodEmail,
+                cargo = vCargo,
+                fimContrato = vFimContrato,
+                CEP = vCEP,
+                numeroEndereco = vNumeroEndereco,
+                complementoEndereco = vComplementoEndereco
+            where idFuncionario = vIdFuncionario;
+
+        end if;
+    end if;
+end
+$$
+
 -- Fazendo View que mostra livros comprados e seu respecitivo cliente (Útil para saber se cliente comprou um livro e agora tem acesso a avaliação ou ao 
 create or replace View ViewLivrosComprados as
 select 
@@ -1018,39 +1080,30 @@ on i.codBarras = li.codBarras
 order by cli.idCli asc;
 select * from ViewLivrosComprados;
 
+create or replace View MinhaCompra as
+select
+    v.idCli,
+    li.nome as Nome,
+    au.nomeAutor as Autor,
+    ed.nomeEditora as Editora,
+    li.ISBN,
+    li.imagemPri,
+    v.notaFiscal,
+    iv.valorItem as PrecoPago,
+    v.dataVenda as DataCompra,
+    iv.qtdItem as Quantidade
+from tbVenda v
+inner join tbItemVenda iv
+on v.numeroVenda = iv.numeroVenda
+inner join tbLivro li
+on iv.codBarras = li.codBarras
+inner join tbAutor au
+on li.codAutor = au.codAutor
+inner join tbEditora ed
+on li.codEditora = ed.codEditora
+order by v.dataVenda desc;
+select * from MinhaCompra;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-update tbFuncionario set senha = "Bh18659298Getkap" where (idFuncionario = 1);
-update tbFuncionario set senha = "kL96449287huYEws" where (idFuncionario = 2);
--- update tbLivro set imagemPri = "/capas/yukiguni.jpg" where (codBarras = 1234567891234);
--- update tbLivro set Nome = "O engenhoso fidalgo Dom Quixote de La Mancha" where(codBarras = 9788544001257);
-select * from ViewFuncionario;
-select * from ViewCliente;
-Bh18659298Getkap
-select * from tbGeneros;
-select * from tbGeneros;
 select * from tbLivro;
-select * from tbEstoque;
-select * from ViewLivro;
-select * from ViewLivro;
-select * from ViewCliente;
-
-select * from ViewFuncionario;
-select * from tbClientePF;
-
-select * from tbVenda;
-select * from tbItemVenda;
