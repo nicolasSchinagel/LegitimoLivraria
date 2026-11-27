@@ -401,15 +401,17 @@
                             {
                                 <div class="section-descriptions-top-prices-addcartretangulo">
                                     <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
-                                    <a class="no-underline" asp-area="" asp-controller="Livro" asp-action="Ebook" asp-route-codBarras="@livro.livro.CodigoBarras.ToString()">Ler Ebook</a>
+                                    <a class="no-underline text-white" asp-area="" asp-controller="Livro" asp-action="Ebook" asp-route-codBarras="@livro.livro.CodigoBarras.ToString()">Ler Ebook</a>
                                 </div>
                             }
                             else
                             {
-                                <div class="section-descriptions-top-prices-addcartretangulo">
-                                    <img class="section-descriptions-top-prices-tag" src="~/img/icon_buy.png">
-                                    <h2>Comprar agora</h2>
-                                </div>
+                                <a class="section-descriptions-top-prices-cartCamada">
+                                    <div class="section-descriptions-top-prices-addcartretangulo">
+                                        <img class="section-descriptions-top-prices-carrinho" src="~/img/cart.png">
+                                        <h2>Adicionar no carrinho</h2>
+                                    </div>
+                                </a>
                             }
                         }
                         else if (_LoginFuncionario.GetFuncionario() != null)

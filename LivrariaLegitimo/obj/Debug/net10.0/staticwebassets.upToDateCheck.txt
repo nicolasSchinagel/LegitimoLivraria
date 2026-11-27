@@ -23,7 +23,6 @@ wwwroot\css\adicionarLivro.css
 wwwroot\css\cadCli.css
 wwwroot\css\carrinho.css
 wwwroot\css\checkout.css
-wwwroot\css\comprar.css
 wwwroot\css\confEndereco.css
 wwwroot\css\dados.css
 wwwroot\css\ebook.css
@@ -220,6 +219,7 @@ wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\lib\mask\jquery.mask.min.js
+wwwroot\css\comprar.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\adicionarLivro.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\cadCli.css
 C:\Users\lizsc\OneDrive\Pictures\Nic\TCC\testesLegitimo\LegitimoLivraria\LivrariaLegitimo\wwwroot\css\carrinho.css
