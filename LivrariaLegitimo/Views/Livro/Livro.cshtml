@@ -406,7 +406,7 @@
                             }
                             else
                             {
-                                <a class="section-descriptions-top-prices-cartCamada">
+                                <a class="section-descriptions-top-prices-cartCamada" asp-controller="Carrinho" asp-action="AdicionarItem" asp-route-codBarras="@livro.livro.CodigoBarras">
                                     <div class="section-descriptions-top-prices-addcartretangulo">
                                         <img class="section-descriptions-top-prices-carrinho" src="~/img/cart.png">
                                         <h2>Adicionar no carrinho</h2>
@@ -657,32 +657,42 @@
                                 <img class="livro-historico" src="@livroAleatorio.arquivoImagem">
 
                                 <div class="partelateral-historico">
-                                    <h1 class="titulo-historico">@(livroAleatorio.livro.Nome.Length > 37 ? livroAleatorio.livro.Nome.Substring(0, 37) + "..." : livroAleatorio.livro.Nome)</h1>
-                                    <h2 class="autor-historico">Por @livroAleatorio.livro.Autor</h2>
-                                    <h2 class="editor-historico">@livroAleatorio.livro.Editora</h2>
+                                    <a class="no-underline text-black" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@(livroAleatorio.livro.CodigoBarras)">
 
-                                    <div class="estrelas-historico">
-                                        <div class="estrelas-historico-specifics">
-                                            <img class="estrelasimg-historico" src="~/img/StarComb.png">
-                                            <div class="estrelas-specifics-yellowbar" style="width: @((livroAleatorio.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
+                                        <h1 class="titulo-historico">@(livroAleatorio.livro.Nome.Length > 37 ? livroAleatorio.livro.Nome.Substring(0, 37) + "..." : livroAleatorio.livro.Nome)</h1>
+                                        <h2 class="autor-historico">Por @livroAleatorio.livro.Autor</h2>
+                                        <h2 class="editor-historico">@livroAleatorio.livro.Editora</h2>
+
+                                        <div class="estrelas-historico">
+                                            <div class="estrelas-historico-specifics">
+                                                <img class="estrelasimg-historico" src="~/img/StarComb.png">
+                                                <div class="estrelas-specifics-yellowbar" style="width: @((livroAleatorio.mediaLivro / 5m * 100).ToString(CultureInfo.InvariantCulture))%;"></div>
+                                            </div>
+
+                                            <h3 class="avaliados-historico">( @livroAleatorio.mediaLivro )</h3>
+                                            <img class="setabaixo-historico" src="~/img/setabaixo.png"/>
                                         </div>
-
-                                        <h3 class="avaliados-historico">( @livroAleatorio.mediaLivro )</h3>
-                                        <img class="setabaixo-historico" src="~/img/setabaixo.png">
-                                    </div>
-
+                                    </a>
                                     <div class="partedebaixo-historico">
-                                        <h1 class="preco-historico">R$@livroAleatorio.livro.Preco</h1>
+                                        <a class="no-underline text-black" asp-controller="Livro" asp-action="Livro" asp-route-codBarras="@(livroAleatorio.livro.CodigoBarras)">
+                                            @if (livro.livro.PromocaoPorcentagem == 0)
+                                            {
+                                                <h1 class="preco-historico">R$ @livroAleatorio.livro.Preco</h1>
+                                            }
+                                            else
+                                            {
+                                                <h1 class="preco-historico">*R$ @(Math.Round(decimal.Parse(livroAleatorio.livro.Preco, new CultureInfo("pt-BR")) * (1 - livroAleatorio.livro.PromocaoPorcentagem / 100m), 2).ToString("N2", new CultureInfo("pt-BR")))</h1>
+                                            }
 
-                                        <div class="quadradosred-historico">
-                                            <div class="cartfundo-historico">
-                                                <img class="cart-historico" src="~/img/cart.png">
-                                            </div>
-
-                                            <div class="heartfundo-historico">
-                                                <img class="heart-historico" src="~/img/coracaored.png">
-                                            </div>
-                                        </div>
+                                        </a>
+                                        @if (_LoginFuncionario.GetFuncionario() == null)
+                                        {
+                                            <a class="quadradosred-historico" asp-controller="Carrinho" asp-action="AdicionarItem" asp-route-codBarras="@livroAleatorio.livro.CodigoBarras">
+                                                <div class="cartfundo-historico">
+                                                    <img class="cart-historico" src="~/img/cart.png">
+                                                </div>
+                                            </a>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -806,4 +816,4 @@
             });
         }
     }
-</script>
+</script> 

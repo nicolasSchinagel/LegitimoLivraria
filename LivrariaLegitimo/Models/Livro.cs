@@ -102,7 +102,7 @@ namespace LivrariaLegitimo.Models
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             // Verifica se e-book precisa de arquivo PDF
-            if (TipoCapa == "e-book" && ArquivoEbook == null)
+            if (TipoCapa == "ebook" && ArquivoEbook == null)
             {
                 yield return new ValidationResult(
                     "O arquivo do Ebook é obrigatório para livros digitais.",
@@ -111,7 +111,7 @@ namespace LivrariaLegitimo.Models
             }
 
             // E-books não possuem estoque físico
-            if (TipoCapa == "e-book" && Capacidade != 0)
+            if (TipoCapa == "ebook" && Capacidade != 0)
             {
                 yield return new ValidationResult(
                     "E-books devem possuir capacidade de estoque igual a 0.",
@@ -120,14 +120,14 @@ namespace LivrariaLegitimo.Models
             }
 
             // Livros físicos precisam ter capacidade entre 10 e 100
-            if (TipoCapa != "e-book" && (Capacidade < 10 || Capacidade > 100))
+            if (TipoCapa != "ebook" && (Capacidade < 10 || Capacidade > 100))
             {
                 yield return new ValidationResult(
                     "A capacidade de estoque de livros físicos deve estar entre 10 e 100.",
                     new[] { nameof(Capacidade) }
                 );
             }
-            if (TipoCapa == "e-book" && Tamanho != "Ebook")
+            if (TipoCapa == "ebook" && Tamanho != "Ebook")
             {
                 yield return new ValidationResult(
                     "O tamanho de um e-book deve ser 'Ebook'.",

@@ -226,7 +226,7 @@ namespace LivrariaLegitimo.Repository
                 conexao.Open();
                 MySqlCommand cmd = new MySqlCommand("call spAdicionarLivro(@CodBarras, @ISBN , @Nome, @Preco , @Sinopse , @Autor, @Editora, @IdadeMinRecomendada, @DataPublicacao, @Tipo, @Idioma, @Literatura, @Tamanho, @ImagemPri, @EbookFile, @CapacidadeEstoque);", conexao);
                 var caminhoImagem = GerenciadorCapa.CadastrarCapaLivro(livro.Imagem);
-                if (livro.TipoCapa == "Ebook")
+                if (livro.TipoCapa == "ebook")
                 {
                     caminhoEbook = GerenciadorEbook.CadastrarArquivoEbook(livro.ArquivoEbook);
                 }
