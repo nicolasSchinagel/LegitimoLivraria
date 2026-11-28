@@ -1,9 +1,9 @@
 Arquivo do Banco de dados - Nome - ArquivoLivrariaPremium:
 
+
 create database legitimoLivros;
 -- drop database legitimoLivros;
 use legitimoLivros;
- select * from tbLivro_historico;
 
 create table tbEmail(
 codEmail int primary key auto_increment,
@@ -146,7 +146,7 @@ insert into tbGeneros(Genero) values ("Romance"), ("Aventura");
 insert into tbGeneros(Genero) values ("Fantasia"), ("Ficção Científica"), ("História"), ("Biografia"),
 ("Autoajuda"), ("Terror"), ("Mistério"), ("Filosofia"), ("Humor"), ("Drama"), ("Suspense"), ("Religião"), ("Literatura Clássica"),
 ("Literatura Infantil"), ("Literatura Juvenil"), ("Contos"), ("Poesia"), ("Mangás");
-select * from tbGeneros order by IdGeneros asc; -- verificando gêneros
+
 
 create table tbGenerosLivros(
 IdGenero smallint,
@@ -169,7 +169,6 @@ foreign key(codBarras) references tbLivro(codBarras),
 foreign key(idCli) references tbCliente(idCli),
 check(codBarras >=1000000000000 and codBarras <= 9999999999999)
 );
-select * from tbAvaliacao;
 
 
 create table tbVenda(
@@ -218,11 +217,6 @@ end
 $$
 
 
-
-
-
-
-
 -- Acabando tabelas, iniciamos a View do Livro
 
 CREATE OR REPLACE VIEW ViewLivro AS
@@ -259,8 +253,6 @@ LEFT JOIN tbGeneros g
     ON gl.IdGenero = g.IdGeneros
 GROUP BY li.CodBarras
 ORDER BY CodBarras ASC;
-
-select * from ViewLivro; -- Verificando ViewLivro
 
 
 -- procedure para adicionar um livro
@@ -305,10 +297,7 @@ begin
    end if;
 end
 $$
-call spAdicionarLivro(1234567891234, 1234567891234,"Yukiguni", 140.55, "Yukiguni se passa em uma terra totalmente presente pelo gelo, enfrentando conflitos dolorosos", "Yasunari Kawabata", "Editora Clássicos", "+10", "2000-10-08", "capa dura", "português", "internacional", "50x90cm", "images/imagem1.png", null, 80  );
--- Teste para a procedure (trocar dados depois para melhor integridade ABNT
-call spAdicionarLivroGenero("Romance",1234567891234);
-call spAdicionarLivroGenero("Ficção Científica", 1234567891234);
+
 
 -- View que mostra a promoção e preço diminuido
 create or replace View ViewLivroPromotion as
@@ -319,70 +308,6 @@ round(preco * promocaoPorcentagem/100, 2) as precoDiminuido,
 round(preco - preco * promocaoPorcentagem/100, 2) as precoFinal
 from tbLivro;
 
-
--- criando tabela histórica
-create table tbLivro_historico like tbLivro;
-select * from tbLivro_historico;
-alter table tbLivro_historico drop column Nome,
- drop column Sinopse,
- drop column codAutor, 
- drop column codEditora,
- drop column promocaoPorcentagem,
- drop column idadeMinRecomendada,
- drop column dataPublicacao,
- drop column tipo,
- drop column idioma,
- drop column literatura,
- drop column tamanho,
- drop column imagemPri,
- drop column ebookfile;
-
--- Fazendo uma tabela histórica para usar em uma das ações do funcionário
-select * from tbFuncionario;
- alter table tbLivro_historico add IdFuncionario int not null;
- alter table tbLivro_historico add foreign key (IdFuncionario) references tbFuncionario(IdFuncionario);
- alter table tbLivro_historico add dataMudanca datetime not null;
- select * from tbLivro_historico;
- alter table tbLivro_historico drop primary key;
- alter table tbLivro_historico add Idhistorico int auto_increment primary key;
- describe tbLivro_historico;
-select * from tbLivro_historico; 
- -- Fazendo procedure de armazenar histórico
- DELIMITER $$
- create procedure spArmazenarHistorico(
- vCodBarras decimal(13,0),
- vISBN decimal(13,0),
- vPreco decimal(10,2),
- vIdFunc int
- )
- begin
-  declare vDataMudanca datetime;
-  set vDataMudanca = CURRENT_TIMESTAMP();
-  insert into tbLivro_historico (codBarras, ISBN, Preco, idFuncionario, dataMudanca) values (vCodBarras, vISBN, vPreco, vIdFunc, vDataMudanca);
- end
- $$
-
-
- -- Fazendo procedure de mudar preço
-DELIMITER $$
-create procedure spChangePrice(
-vCodBarras decimal(13,0),
-vNome varchar(100),
-vPreco decimal(10,2),
-vPromocaoPorcentagem int,
-vIdFunc int
-)
-begin
-   declare vISBN decimal(13,0);
-   if exists(select 1 from tbLivro where codBarras = vCodBarras) then
-     update tbLivro set promocaoPorcentagem = vPromocaoPorcentagem, preco = vpreco where (codBarras = vCodbarras and nome = vNome);
-     select ISBN into vISBN from tbLivro where codBarras = vCodBarras;
-     call spArmazenarHistorico(vCodBarras, vISBN, vPreco, vIdFunc);
-   end if;
-end
-$$
-
-select * from ViewLivroPromotion
 
 -- Fazendo Views para os clientes
 create or replace View tbClientePFG as
@@ -419,8 +344,7 @@ select
  inner join tbEmail em
  on cli.codEmail = em.codEmail
  order by cli.idCli asc;
- -- Selecionnando cliente geral pf
-select * from tbClientePFG;
+
 
 -- View Geral Cliente PJ
 create or replace View tbClientePJG as
@@ -456,8 +380,7 @@ select
  inner join tbEmail em
  on cli.codEmail = em.codEmail
  order by cli.idCli asc;
- -- Selecionado View Geral PJ
-select * from tbClientePJG;
+
 
 -- View do Cliente geral
 create or replace View ViewCliente as
@@ -490,7 +413,7 @@ select
  inner join tbEstado es
  on en.codEstado = es.codEstado
  order by cli.idCli asc;
-select * from ViewCliente;
+
 
 -- View do Funcionaria
 create or replace View ViewFuncionario as
@@ -527,8 +450,7 @@ on func.codEmail = em.codEmail
 inner join tbTel tel
 on func.codTel = tel.IdTel
 order by func.IdFuncionario asc;
--- selecionando View do funcionário
-select * from ViewFuncionario;
+
 
 -- Procedure para criar endereço
 
@@ -622,9 +544,9 @@ declare vidCli int;
    end if;
 end
 $$
+
 -- chamando procedure
 call spCadastroClientePF('Carlos', 11111111111,'Carlos@gmail.com', 55119234567,'enildo123','05088901', 105, 'Deixar entregas no porão', 'Rua Guaipá', 'Vila Leopoldina', 'São Paulo', 'SP', '1975-06-26');
-select * from tbClientePFG;
 
 
 -- procedure do cliente pj
@@ -669,11 +591,10 @@ declare vidCli int;
    end if;
 end
 $$
+
 -- camando procedure
 call spCadastroClientePJ('NilsonsCompany', 11111111111111,'NCom@gmail.com', 55119234566,'1980nilson','05088901', 105, 'Telefonar caso eu não estiver na porta', 'Rua Guaipá', 'Vila Leopoldina', 'São Paulo', 'SP');
-call spCadastroClientePJ('Livraria SATMO', 11111111111111,'SatmoLiv@gmail.com', 55119237566,'50satmo','05088901', 105, 'Telefonar caso eu não estiver na porta', 'Rua Guaipá', 'Vila Leopoldina', 'São Paulo', 'SP');
-
-select * from ViewCliente;
+call spCadastroClientePJ('Livraria SATMO', 22222222222222,'SatmoLiv@gmail.com', 55119237566,'50satmo','05088901', 105, 'Telefonar caso eu não estiver na porta', 'Rua Guaipá', 'Vila Leopoldina', 'São Paulo', 'SP');
 
 
 -- procedure do funcionário
@@ -719,13 +640,71 @@ begin
    end if;
 end 
 $$
+
 -- chamando procedure
 call spcadastrofuncionario('Maria oliveira', 98765432100, 11999998888, 'maria@email.com', 'gerente de compras', '2026-08-02', '2027-08-02', '01234567', 'SP', 'São Paulo', 'Centro', 'Avenida paulista', 'Bh18659298Getkap', 200, 'apto 45');
 call spcadastrofuncionario('joão da silva', 12345678901, 11987654321, 'joao@email.com', 'gerente comercial', '2026-08-02', '2027-08-02', '12345678', 'SP', 'São Paulo', 'Centro', 'Rua das flores', 'kL96449287huYEws', 100, 'apto 12');
-call spcadastrofuncionario('Nícolas Schinagel', 57053591875, 11909090900, 'schinagel@gmail.com', 'administrador total', '2022-10-08', null, '12345678', 'SP', 'São Paulo', 'Centro', 'Rua das flores',  'Cg99881234Soruke', 157, 'apto 18'); 
--- Chamando mudança de preço
-call spChangePrice(1234567891234, "Yukiguni", 140.55, 30, 1);
+call spcadastrofuncionario('Nícolas Schinagel', 57053591875, 11909090900, 'schinagel@gmail.com', 'administrador total', '2022-10-08', null, '12345678', 'SP', 'São Paulo', 'Centro', 'Rua das flores',  'Cg99881234Soruke', 157, 'apto 18');
 
+
+-- criando tabela histórica
+create table tbLivro_historico like tbLivro;
+
+alter table tbLivro_historico drop column Nome,
+ drop column Sinopse,
+ drop column codAutor, 
+ drop column codEditora,
+ drop column promocaoPorcentagem,
+ drop column idadeMinRecomendada,
+ drop column dataPublicacao,
+ drop column tipo,
+ drop column idioma,
+ drop column literatura,
+ drop column tamanho,
+ drop column imagemPri,
+ drop column ebookfile;
+
+alter table tbLivro_historico add IdFuncionario int not null;
+alter table tbLivro_historico add foreign key (IdFuncionario) references tbFuncionario(IdFuncionario);
+alter table tbLivro_historico add dataMudanca datetime not null;
+alter table tbLivro_historico drop primary key;
+alter table tbLivro_historico add Idhistorico int auto_increment primary key;
+
+
+-- Fazendo procedure de armazenar histórico
+DELIMITER $$
+create procedure spArmazenarHistorico(
+vCodBarras decimal(13,0),
+vISBN decimal(13,0),
+vPreco decimal(10,2),
+vIdFunc int
+)
+begin
+  declare vDataMudanca datetime;
+  set vDataMudanca = CURRENT_TIMESTAMP();
+  insert into tbLivro_historico (codBarras, ISBN, Preco, idFuncionario, dataMudanca) values (vCodBarras, vISBN, vPreco, vIdFunc, vDataMudanca);
+end
+$$
+
+
+-- Fazendo procedure de mudar preço
+DELIMITER $$
+create procedure spChangePrice(
+vCodBarras decimal(13,0),
+vNome varchar(100),
+vPreco decimal(10,2),
+vPromocaoPorcentagem int,
+vIdFunc int
+)
+begin
+   declare vISBN decimal(13,0);
+   if exists(select 1 from tbLivro where codBarras = vCodBarras) then
+     update tbLivro set promocaoPorcentagem = vPromocaoPorcentagem, preco = vpreco where (codBarras = vCodbarras and nome = vNome);
+     select ISBN into vISBN from tbLivro where codBarras = vCodBarras;
+     call spArmazenarHistorico(vCodBarras, vISBN, vPreco, vIdFunc);
+   end if;
+end
+$$
 
 
 -- procedure para adicionar no estoque
@@ -747,11 +726,8 @@ begin
    end if;
 end
 $$
--- chamando procedure 
-call spAdicionarEstoque(1234567891234, 20);
 
 
-select * from tbVenda;
 -- procedure da venda
 
 DELIMITER $$
@@ -769,25 +745,23 @@ vNumeroParcelamentos smallint
 )
 begin
    declare vdataVenda date;
-    declare vIdCli int;
-    set vdataVenda = CURRENT_TIMESTAMP();
+   declare vIdCli int;
+   set vdataVenda = CURRENT_TIMESTAMP();
+
       if exists(select 1 from tbClientePF where CPF = vCPFcliente) then
          select IdCli into vIdCli from tbClientePF where (CPF = vCPFCliente);
          insert into tbVenda (notaFiscal, idFuncionario, idCli, formaPagamento, dataVenda, numeroCartao, nomeCartao, validade, cvv, numeroParcelamentos) values(vNotaFiscal, vIdFunc, vIdCli, vFormaPagamento, vdataVenda, vNumeroCartao, vNomeCartao, vValidade, vCVV, vNumeroParcelamentos);
       end if;
+
       if exists(select 1 from tbClientePJ where CNPJ = vCNPJcliente) then
          select IdCli into vIdCli from tbClientePJ where (CNPJ = vCNPJcliente);
-         insert into tbVenda (notaFiscal, idFuncionario, idCli, formaPagamento, dataVenda, numero_cartao, nomeCartao, validade, cvv, numeroParcelamentos) values(vNotaFiscal, vIdFunc, vIdCli, vFormaPagamento, vdataVenda, vNumeroCartao, vNomeCartao, vValidade, vCVV, vNumeroParcelamentos);
+         insert into tbVenda (notaFiscal, idFuncionario, idCli, formaPagamento, dataVenda, numeroCartao, nomeCartao, validade, cvv, numeroParcelamentos) values(vNotaFiscal, vIdFunc, vIdCli, vFormaPagamento, vdataVenda, vNumeroCartao, vNomeCartao, vValidade, vCVV, vNumeroParcelamentos);
       end if;
 end
 $$
-call spCadastroVenda(987654321, 11111111111, null, 5, "débito", 4539148803436467, "Felipe Camargo S.", "2029-07-21", 182, 1);
-
-
 
 
 -- procedure do item da venda
--- drop procedure spCadastroItemVenda;
 -- pegar tipo capa
 DELIMITER $$
 
@@ -816,11 +790,6 @@ begin
    end if;
 end 
 $$
-select * from tbVenda;
-call spCadastroItemVenda(1, 9788581862538, 2);
-select * from tbItemVenda;
-select * from tbLivro;
-
 
 
 -- procedure de fazer avaliação
@@ -843,11 +812,7 @@ begin
     end if;
 end
 $$
-select * from tbLivro;
-select * from tbCliente;
-select * from tbAvaliacao;
-call spFazerAvaliacao(1234567891234, 1, 4, "Achei o conteúdo do livro muito bom, material é resistente e duraduouro", "Produto Maravilhoso" );
-call spFazerAvaliacao(1234567891234, 2, 4, "É uma história meio triste, mas seus aspectos literários são dignos de uma boa leitura", "Boa escolha para ler" );
+
 
 -- procedure de remover avaliação, talvez usarei mas sem certeza
 DELIMITER $$
@@ -861,8 +826,6 @@ begin
     end if;
 end
 $$
--- call spRemoverAvaliacao(1234567891234, 2); Não será usado
-select * from tbAvaliacao;
 
 
 -- Fazendo Views para mostrar Vendas por Livro e outro para fazer Média por Livro
@@ -880,8 +843,6 @@ left join tbVenda v
 group by li.codBarras, li.nome
 order by NumeroVendas desc;
 
-select * from ViewLivroVendas;
-
 
 create or replace View ViewLivroAvaliacoes as
 select
@@ -893,12 +854,7 @@ left join tbAvaliacao av
     on li.codBarras = av.codBarras
 group by li.codBarras, li.nome
 order by MediaAvaliacao desc;
-select * from ViewLivroAvaliacoes;
 
-
-select * from ViewLivro;
-select * from tbCliente;
-select * from tbAvaliacao;
 
 create or replace View ViewAvaliacao as 
 select 
@@ -913,7 +869,7 @@ from tbAvaliacao a
 inner join tbCliente cli
 on a.IdCli = cli.IdCli
 ;
-select * from ViewAvaliacao;
+
 
 create or replace view ViewLivroQuantidadeAvaliacoes as
 select
@@ -930,9 +886,6 @@ select
 
 from tbAvaliacao group by codBarras;
 
-select * from ViewLivroQuantidadeAvaliacoes;
-
-select * from ViewLivro;
 
 DELIMITER $$
 
@@ -971,9 +924,7 @@ declare vcodTel int;
    end if;
 end
 $$
-select * from ViewCliente;
 
-call spAtualizarCliente(1, 'enildo123', 55119234567, 'Carlosboneco@gmail.com', '05088901', 105, 'Deixar entregas no porão', 'RUA GUAIPÁ', 'VILA LEOPOLDINA', 'SÃO PAULO', 'SP');
 
 DELIMITER $$
 
@@ -999,10 +950,6 @@ begin
    end if;
 end
 $$
-
-call spEditarEndereco(1, "04567000", "Rua Augusta", "Consolação", "São Paulo", "SP", 850, "Apartamento 32");
-select * from ViewCliente;
-
 
 
 DELIMITER $$
@@ -1061,7 +1008,8 @@ begin
 end
 $$
 
--- Fazendo View que mostra livros comprados e seu respecitivo cliente (Útil para saber se cliente comprou um livro e agora tem acesso a avaliação ou ao 
+
+-- Fazendo View que mostra livros comprados e seu respecitivo cliente
 create or replace View ViewLivrosComprados as
 select 
 cli.Nome as "NomeCli",
@@ -1078,7 +1026,6 @@ on v.numeroVenda = i.numeroVenda
 inner join tbLivro li
 on i.codBarras = li.codBarras
 order by cli.idCli asc;
-select * from ViewLivrosComprados;
 
 create or replace View MinhaCompra as
 select
@@ -1102,8 +1049,84 @@ on li.codAutor = au.codAutor
 inner join tbEditora ed
 on li.codEditora = ed.codEditora
 order by v.dataVenda desc;
-select * from MinhaCompra;
 
 
+-- ==========================================
+-- CADASTROS DE TESTE NO FINAL DO SCRIPT
+-- ==========================================
 
-select * from tbLivro;
+-- Cadastro dos 10 livros
+
+call spAdicionarLivro(7890000000001, 9780000000001, "O Jardim das Estrelas", 59.90, "Uma jornada por um reino distante onde antigas estrelas guardam segredos esquecidos.", "Marina Albuquerque", "Editora Horizonte", "+10", "2018-05-12", "capa dura", "português", "nacional", "16x23cm", "images/livro1.png", null, 80);
+
+call spAdicionarLivro(7890000000002, 9780000000002, "A Última Fronteira", 74.90, "Uma expedição científica encontra sinais de vida em um planeta muito distante.", "Lucas Ferraz", "Editora Aurora", "+14", "2020-08-20", "capa mole", "português", "nacional", "16x23cm", "images/livro2.png", null, 80);
+
+call spAdicionarLivro(7890000000003, 9780000000003, "Memórias de um Inverno", 45.50, "Uma narrativa sobre lembranças, perdas e encontros durante um rigoroso inverno europeu.", "Helena Duarte", "Editora Clássicos", "+14", "2015-03-10", "capa dura", "português", "internacional", "14x21cm", "images/livro3.png", null, 80);
+
+call spAdicionarLivro(7890000000004, 9780000000004, "O Reino das Sombras", 89.90, "Em um reino ameaçado por forças antigas, uma jovem precisa descobrir sua verdadeira origem.", "Rafael Monteiro", "Editora Fantasia", "+14", "2021-11-05", "capa mole", "português", "nacional", "16x23cm", "images/livro4.png", null, 80);
+
+call spAdicionarLivro(7890000000005, 9780000000005, "História das Grandes Civilizações", 110.00, "Uma introdução às principais civilizações da humanidade e suas contribuições históricas.", "Eduardo Martins", "Editora Saber", "+10", "2017-06-15", "capa dura", "português", "nacional", "21x28cm", "images/livro5.png", null, 80);
+
+call spAdicionarLivro(7890000000006, 9780000000006, "Além do Horizonte", 52.90, "Uma aventura marítima em busca de uma ilha que aparece apenas em mapas antigos.", "Camila Nogueira", "Editora Horizonte", "+10", "2019-02-18", "capa mole", "português", "nacional", "16x23cm", "images/livro6.png", null, 80);
+
+call spAdicionarLivro(7890000000007, 9780000000007, "O Enigma da Mansão", 64.90, "Um mistério envolve os moradores de uma antiga mansão após um desaparecimento inexplicável.", "André Carvalho", "Editora Mistério", "+14", "2022-09-22", "capa dura", "português", "nacional", "16x23cm", "images/livro7.png", null, 80);
+
+call spAdicionarLivro(7890000000008, 9780000000008, "Pequenos Grandes Sonhos", 39.90, "Uma coletânea de histórias sobre amizade, coragem e descobertas durante a infância.", "Beatriz Almeida", "Editora Infantil", "+5", "2016-04-30", "capa mole", "português", "nacional", "20x20cm", "images/livro8.png", null, 80);
+
+call spAdicionarLivro(7890000000009, 9780000000009, "Filosofia para o Cotidiano", 69.90, "Reflexões sobre questões cotidianas a partir de ideias de grandes pensadores.", "Daniel Ribeiro", "Editora Saber", "+14", "2023-01-12", "capa mole", "português", "nacional", "16x23cm", "images/livro9.png", null, 80);
+
+call spAdicionarLivro(7890000000010, 9780000000010, "Contos de Outro Mundo", 49.90, "Uma coletânea de contos fantásticos que exploram mundos e personagens extraordinários.", "Isabela Costa", "Editora Aurora", "+10", "2024-07-19", "capa dura", "português", "nacional", "16x23cm", "images/livro10.png", null, 80);
+
+
+-- Associando dois gêneros para cada livro
+
+call spAdicionarLivroGenero("Fantasia", 7890000000001);
+call spAdicionarLivroGenero("Aventura", 7890000000001);
+
+call spAdicionarLivroGenero("Ficção Científica", 7890000000002);
+call spAdicionarLivroGenero("Aventura", 7890000000002);
+
+call spAdicionarLivroGenero("Romance", 7890000000003);
+call spAdicionarLivroGenero("Drama", 7890000000003);
+
+call spAdicionarLivroGenero("Fantasia", 7890000000004);
+call spAdicionarLivroGenero("Suspense", 7890000000004);
+
+call spAdicionarLivroGenero("História", 7890000000005);
+call spAdicionarLivroGenero("Biografia", 7890000000005);
+
+call spAdicionarLivroGenero("Aventura", 7890000000006);
+call spAdicionarLivroGenero("Mistério", 7890000000006);
+
+call spAdicionarLivroGenero("Mistério", 7890000000007);
+call spAdicionarLivroGenero("Suspense", 7890000000007);
+
+call spAdicionarLivroGenero("Literatura Infantil", 7890000000008);
+call spAdicionarLivroGenero("Contos", 7890000000008);
+
+call spAdicionarLivroGenero("Filosofia", 7890000000009);
+call spAdicionarLivroGenero("Autoajuda", 7890000000009);
+
+call spAdicionarLivroGenero("Fantasia", 7890000000010);
+call spAdicionarLivroGenero("Contos", 7890000000010);
+
+
+-- Fazendo duas reposições de estoque
+
+call spAdicionarEstoque(7890000000001, 10);
+call spAdicionarEstoque(7890000000002, 10);
+
+
+-- Fazendo uma venda com dois itens de quantidade 1
+
+call spCadastroVenda(987654321, 11111111111, null, 1, "pix", null, null, null, null, 1);
+
+call spCadastroItemVenda(1, 7890000000001, 1);
+call spCadastroItemVenda(1, 7890000000002, 1);
+
+
+-- Fazendo uma avaliação
+
+call spFazerAvaliacao(7890000000001, 1, 5, "Gostei bastante do livro. A história é envolvente e a edição tem ótima qualidade.", "Excelente leitura");
+
+
